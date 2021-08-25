@@ -38,6 +38,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
 const TimeCards = React.lazy(() => import('./views/forms/TimeCards'));
+const WorkOrder = React.lazy(() => import('./views/forms/WorkOrder'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -45,6 +46,7 @@ const routes = [
 
   // Forms
   { path: '/forms/timecards', exact: true, name: 'Time Cards', component: TimeCards },
+  { path: '/forms/work-order', exact: true, name: 'Time Cards', component: WorkOrder },
   
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },

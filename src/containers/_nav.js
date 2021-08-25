@@ -24,6 +24,12 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
+    name: 'Work Order',
+    to: '/forms/work-order',
+    icon: 'cil-clock',
+  },
+  {
+    _tag: 'CSidebarNavItem',
     name: 'Colors',
     to: '/theme/colors',
     icon: 'cil-drop',

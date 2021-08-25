@@ -40,15 +40,16 @@ import { DocsLink } from "src/reusable";
 const ESignature = () => {
   const ref = useRef(null);
   useEffect(() => {
-    var canvas = document.querySelector("#eSignature");
-    var signaturePad = new SignaturePad(canvas);
+    //debugger
+    //var canvas = document.querySelector(ref.current);
+    var signaturePad = new SignaturePad(ref.current);
   }, [ref.current]);
 
   return (
     <>
       <CRow>
         <CCol xs="12" sm="6" lg="4">
-          <canvas ref={ref} id="eSignature"></canvas>
+          <canvas ref={ref} ></canvas>
         </CCol>
       </CRow>
     </>
