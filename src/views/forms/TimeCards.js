@@ -35,11 +35,21 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
+import SignaturePad from "src/components/SiganturePadPaula";
+import moment from "moment";
 
 const TimeCards = () => {
+  const [currentDate, setCurrentDate] = useState(
+    moment().format("MMMM Do YYYY")
+  );
   const [collapsed, setCollapsed] = React.useState(true);
   const [showElements, setShowElements] = React.useState(true);
-  const [collapseMulti, setCollapseMulti] = useState([false, false]);
+  const [collapseMulti, setCollapseMulti] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
   const jobLocations = [
     { name: "ceres", key: "jLocation1", label: "Ceres" },
     { name: "frito-lay", key: "jLocation2", label: "Frito Lay" },
@@ -72,16 +82,19 @@ const TimeCards = () => {
   const toggleMulti = (type) => {
     let newCollapse = collapseMulti.slice();
     switch (type) {
-      case "left":
-        newCollapse[0] = !collapseMulti[0];
+      case "clockIn":
+        newCollapse[0] = true;
         break;
-      case "right":
-        newCollapse[1] = !collapseMulti[1];
+      case "lunchIn":
+        newCollapse[1] = true;
         break;
-      case "both":
-        newCollapse[0] = !collapseMulti[0];
-        newCollapse[1] = !collapseMulti[1];
+      case "lunchOut":
+        newCollapse[2] = true;
         break;
+      case "clockOut":
+        newCollapse[3] = true;
+        break;
+
       default:
     }
     setCollapseMulti(newCollapse);
@@ -93,8 +106,8 @@ const TimeCards = () => {
           <CFade timeout={300} in={showElements} unmountOnExit={true}>
             <CCard>
               <CCardHeader>
-                Daily Time Card
-                <small> - Clock In</small>
+                {currentDate.toString()}
+
                 <div className="card-header-actions">
                   <CButton
                     color="link"
@@ -171,11 +184,6 @@ const TimeCards = () => {
                   </CRow>
                 </CCardBody>
               </CCollapse>
-              <CCardFooter>
-                <CButton block color="success" type="submit" size="lg">
-                  <CIcon size="lg" name="cil-clock" /> Clock In
-                </CButton>
-              </CCardFooter>
             </CCard>
           </CFade>
         </CCol>
@@ -187,17 +195,17 @@ const TimeCards = () => {
                 <CIcon name="cil-arrow-left" /> Click to register Clock In time
               </CCol>
             }
-            header={<CCollapse show={collapseMulti[1]}>08:00 a.m.</CCollapse>}
+            header={<CCollapse show={collapseMulti[0]}>08:00 a.m.</CCollapse>}
             color="success"
             iconPadding={false}
             className="logButton"
             onClick={() => {
-              toggleMulti("right");
+              toggleMulti("clockIn");
             }}
           >
             <CCol md="12">
               <CCol md="12">
-                <CIcon width={24} name="cil-clock" />{" "}
+                <CIcon width={32} name="cil-clock" />{" "}
               </CCol>
               <p>Clock In</p>
             </CCol>
@@ -206,7 +214,7 @@ const TimeCards = () => {
         <CCol xs="12" sm="6" lg="6">
           <CWidgetIcon
             text={
-              <p className="text-center">
+              <p className="text-center" style={{ whiteSpace: "nowrap" }}>
                 <CIcon name="cil-arrow-left" /> Click to register Lunch In time
               </p>
             }
@@ -215,14 +223,16 @@ const TimeCards = () => {
             iconPadding={false}
             className="logButton"
             onClick={() => {
-              toggleMulti("right");
+              toggleMulti("lunchIn");
             }}
           >
             <CCol md="12">
               <CCol md="12">
-                <CIcon width={32} name="cil-clock" />
+                <CIcon width={32} name="cil-restaurant" />
               </CCol>
-              <p className="text-center">Lunch In</p>
+              <p className="text-center" style={{ whiteSpace: "nowrap" }}>
+                Lunch In
+              </p>
             </CCol>
           </CWidgetIcon>
         </CCol>
@@ -233,19 +243,21 @@ const TimeCards = () => {
                 <CIcon name="cil-arrow-left" /> Click to register Lunch Out time
               </CCol>
             }
-            header={<CCollapse show={collapseMulti[1]}>Lunch Out</CCollapse>}
+            header={<CCollapse show={collapseMulti[2]}>Lunch Out</CCollapse>}
             color="info"
             iconPadding={false}
             className="logButton"
             onClick={() => {
-              toggleMulti("right");
+              toggleMulti("lunchOut");
             }}
           >
             <CCol md="12">
               <CCol md="12">
-                <CIcon width={24} name="cil-restaurant" />
+                <CIcon width={32} name="cil-restaurant" />
               </CCol>
-              <p>Lunch Out</p>
+              <p className="text-center" style={{ whiteSpace: "nowrap" }}>
+                Lunch Out
+              </p>
             </CCol>
           </CWidgetIcon>
         </CCol>
@@ -257,114 +269,29 @@ const TimeCards = () => {
                 <CIcon name="cil-arrow-left" /> Click to register Clock Out time
               </CCol>
             }
-            header={<CCollapse show={collapseMulti[1]}>08:00 a.m.</CCollapse>}
+            header={<CCollapse show={collapseMulti[3]}>08:00 a.m.</CCollapse>}
             color="success"
             iconPadding={false}
             className="logButton"
             onClick={() => {
-              toggleMulti("right");
+              toggleMulti("clockOut");
             }}
           >
             <CCol md="12">
               <CCol md="12">
-                <CIcon iconPadding={false} width={24} name="cil-clock" />{" "}
+                <CIcon iconPadding={false} width={32} name="cil-clock" />{" "}
               </CCol>
-              <p>Clock Out</p>
+              <p className="text-center" style={{ whiteSpace: "nowrap" }}>
+                Clock Out
+              </p>
             </CCol>
           </CWidgetIcon>
         </CCol>
-
-        {/* Lunch In */}
-        <CCol xs="12" sm="12">
-          <CFade timeout={300} in={showElements} unmountOnExit={true}>
-            <CCard>
-              <CCardHeader>
-                Daily Time Card
-                <small> - Lunch In</small>
-                <div className="card-header-actions">
-                  <CButton
-                    color="link"
-                    className="card-header-action btn-minimize"
-                    onClick={() => setCollapsed(!collapsed)}
-                  >
-                    <CIcon
-                      name={collapsed ? "cil-arrow-top" : "cil-arrow-bottom"}
-                    />
-                  </CButton>
-                </div>
-              </CCardHeader>
-              <CCollapse show={collapsed} timeout={1000}>
-                <CCardBody>
-                  <CRow>
-                    <CCol sm="12">
-                      <CFormGroup>
-                        <CLabel htmlFor="jobName">Job Name</CLabel>
-                        <CInput
-                          id="jobName"
-                          placeholder="Enter the Job Name"
-                          required
-                        />
-                      </CFormGroup>
-
-                      <CFormGroup row>
-                        <CCol md="12">
-                          <CLabel>Job Location</CLabel>
-                        </CCol>
-
-                        {jobLocations.map((jobLocation) => (
-                          <CCol md="6" sm="6">
-                            <CFormGroup variant="custom-checkbox" inline>
-                              <CInputCheckbox
-                                custom
-                                id={jobLocation.key}
-                                name={jobLocation.name}
-                                checked={checkedJobLocations[jobLocation.name]}
-                                onChange={handleChange}
-                              />
-                              <CLabel
-                                variant="custom-checkbox"
-                                htmlFor={jobLocation.key}
-                              >
-                                {jobLocation.label}
-                              </CLabel>
-                            </CFormGroup>
-                          </CCol>
-                        ))}
-                      </CFormGroup>
-
-                      <CFormGroup row>
-                        <CCol md="12">
-                          <CLabel htmlFor="textarea-input">
-                            Type of work in progress
-                          </CLabel>
-                        </CCol>
-                        <CCol xs="12" md="12">
-                          <CTextarea
-                            name="textarea-input"
-                            id="jobDescription"
-                            rows="3"
-                            placeholder="Enter the type of work in progress..."
-                          />
-                          <CInvalidFeedback className="help-block">
-                            Please provide a valid information
-                          </CInvalidFeedback>
-                          <CValidFeedback className="help-block">
-                            Input provided
-                          </CValidFeedback>
-                        </CCol>
-                      </CFormGroup>
-                    </CCol>
-                  </CRow>
-                </CCardBody>
-              </CCollapse>
-              <CCardFooter>
-                <CButton block color="success" type="submit" size="lg">
-                  <CIcon size="lg" name="cil-clock" /> Clock In
-                </CButton>
-              </CCardFooter>
-            </CCard>
-          </CFade>
-        </CCol>
+        <CCard>
+          <CCol md="12">
+            <SignaturePad />
+          </CCol>
+        </CCard>
       </CRow>
     </>
   );
