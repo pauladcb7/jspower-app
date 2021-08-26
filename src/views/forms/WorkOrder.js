@@ -115,50 +115,94 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="jobName">Date</CLabel>
                         <CInput
-                          type="date" id="date-input" name="date-input" placeholder="Date"
+                          type="date"
+                          id="date-input"
+                          name="date-input"
+                          placeholder="Date"
                         />
                       </CFormGroup>
                       <CFormGroup>
                         <CLabel htmlFor="jobName">Type of work</CLabel>
                         <CCol>
                           <CFormGroup variant="checkbox">
-                            <CInputRadio className="form-check-input" id="radio1" name="radios" value="option1" />
-                            <CLabel variant="checkbox" htmlFor="radio1">Service Call</CLabel>
+                            <CInputRadio
+                              className="form-check-input"
+                              id="radio1"
+                              name="radios"
+                              value="option1"
+                            />
+                            <CLabel variant="checkbox" htmlFor="radio1">
+                              Service Call
+                            </CLabel>
                           </CFormGroup>
                           <CFormGroup variant="checkbox">
-                            <CInputRadio className="form-check-input" id="radio2" name="radios" value="option2" />
-                            <CLabel variant="checkbox" htmlFor="radio2">Extra</CLabel>
+                            <CInputRadio
+                              className="form-check-input"
+                              id="radio2"
+                              name="radios"
+                              value="option2"
+                            />
+                            <CLabel variant="checkbox" htmlFor="radio2">
+                              Extra
+                            </CLabel>
                           </CFormGroup>
                           <CFormGroup variant="checkbox">
-                            <CInputRadio className="form-check-input" id="radio3" name="radios" value="option3" />
-                            <CLabel variant="checkbox" htmlFor="radio3">Other</CLabel>
+                            <CInputRadio
+                              className="form-check-input"
+                              id="radio3"
+                              name="radios"
+                              value="option3"
+                            />
+                            <CLabel variant="checkbox" htmlFor="radio3">
+                              Other
+                            </CLabel>
                           </CFormGroup>
                         </CCol>
                       </CFormGroup>
 
-                      <CFormGroup >
+                      <CFormGroup>
                         <CLabel htmlFor="employeeName">Employee Name</CLabel>
-                        <CInput size="sm" type="text" id="input-small" name="input-small" className="input-sm" placeholder="Employee Name" />
+                        <CInput
+                          size="sm"
+                          type="text"
+                          id="input-small"
+                          name="input-small"
+                          className="input-sm"
+                          placeholder="Employee Name"
+                        />
                       </CFormGroup>
-                      
+
                       <CFormGroup>
                         <CLabel htmlFor="jobName">Start Time</CLabel>
                         <CInput
-                          type="time" id="date-input" name="date-input" placeholder="Start Time"
+                          type="time"
+                          id="date-input"
+                          name="date-input"
+                          placeholder="Start Time"
                         />
                       </CFormGroup>
                       <CFormGroup>
                         <CLabel htmlFor="jobName">End Time</CLabel>
                         <CInput
-                          type="time" id="date-input" name="date-input" placeholder="End Time"
+                          type="time"
+                          id="date-input"
+                          name="date-input"
+                          placeholder="End Time"
                         />
                       </CFormGroup>
 
-                      <CFormGroup >
+                      <CFormGroup>
                         <CLabel htmlFor="employeeName">Job Location</CLabel>
-                        <CInput size="sm" type="text" id="input-small" name="input-small" className="input-sm" placeholder="Job Location" />
+                        <CInput
+                          size="sm"
+                          type="text"
+                          id="input-small"
+                          name="input-small"
+                          className="input-sm"
+                          placeholder="Job Location"
+                        />
                       </CFormGroup>
-                      <CFormGroup >
+                      <CFormGroup>
                         <CLabel htmlFor="employeeName">Job Details</CLabel>
                         <CTextarea
                           name="textarea-input"
@@ -167,24 +211,49 @@ const WorkOrder = () => {
                           placeholder="Type Here..."
                         />
                       </CFormGroup>
-                      <CFormGroup >
+                      <CFormGroup>
                         <CLabel htmlFor="employeeName">Total Cost</CLabel>
-                        <CInput size="sm" type="text" id="input-small" name="input-small" className="input-sm" placeholder="Total Cost" />
+                        <CInput
+                          size="sm"
+                          type="text"
+                          id="input-small"
+                          name="input-small"
+                          className="input-sm"
+                          placeholder="Total Cost"
+                        />
                       </CFormGroup>
-                      <CFormGroup >
+                      <CFormGroup>
                         <CLabel htmlFor="employeeName">Full Name</CLabel>
-                        <CInput size="sm" type="text" id="input-small" name="input-small" className="input-sm" placeholder="Full Name" />
+                        <CInput
+                          size="sm"
+                          type="text"
+                          id="input-small"
+                          name="input-small"
+                          className="input-sm"
+                          placeholder="Full Name"
+                        />
                       </CFormGroup>
-                      <CFormGroup >
+                      <CFormGroup>
                         <CLabel htmlFor="employeeName">Phone Number</CLabel>
-                        <CInput size="sm" type="text" id="input-small" name="input-small" className="input-sm" placeholder="Phone Number" />
+                        <CInput
+                          size="sm"
+                          type="text"
+                          id="input-small"
+                          name="input-small"
+                          className="input-sm"
+                          placeholder="Phone Number"
+                        />
                       </CFormGroup>
-                      <CFormGroup >
-                        <CLabel htmlFor="employeeName">Customer Signature</CLabel>
+                      <CFormGroup>
+                        <CLabel htmlFor="employeeName">
+                          Customer Signature
+                        </CLabel>
                         <ESignature></ESignature>
                       </CFormGroup>
-                      <CFormGroup >
-                        <CLabel htmlFor="employeeName">Employee Signature</CLabel>
+                      <CFormGroup>
+                        <CLabel htmlFor="employeeName">
+                          Employee Signature
+                        </CLabel>
                         <ESignature></ESignature>
                       </CFormGroup>
                     </CCol>
@@ -197,10 +266,8 @@ const WorkOrder = () => {
                 </CButton>
               </CCardFooter>
             </CCard>
-            
           </CFade>
         </CCol>
-        
       </CRow>
     </>
   );

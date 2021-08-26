@@ -42,6 +42,7 @@ const TimeCards = () => {
   const [currentDate, setCurrentDate] = useState(
     moment().format("MMMM Do YYYY")
   );
+  const [currentTime, setCurrentTime] = useState("");
   const [collapsed, setCollapsed] = React.useState(true);
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([
@@ -79,6 +80,10 @@ const TimeCards = () => {
     });
   };
 
+  const logTime = (event) => {
+    console.log(event);
+  };
+
   const toggleMulti = (type) => {
     let newCollapse = collapseMulti.slice();
     switch (type) {
@@ -107,7 +112,6 @@ const TimeCards = () => {
             <CCard>
               <CCardHeader>
                 {currentDate.toString()}
-
                 <div className="card-header-actions">
                   <CButton
                     color="link"

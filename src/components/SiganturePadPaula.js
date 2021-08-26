@@ -48,8 +48,8 @@ const ESignature = () => {
   return (
     <>
       <CRow>
-        <CCol xs="12" sm="6" lg="4">
-          <canvas ref={ref} ></canvas>
+        <CCol xs="12" sm="6" lg="4" className="esignaturee-container">
+          <canvas ref={ref}></canvas>
         </CCol>
       </CRow>
     </>
