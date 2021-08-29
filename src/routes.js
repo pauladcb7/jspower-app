@@ -1,4 +1,5 @@
 import React from 'react';
+import MaterialRequisitionForm from './views/forms/MaterialRequisitionForm';
 
 const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));
 const Tables = React.lazy(() => import('./views/base/tables/Tables'));
@@ -47,6 +48,7 @@ const routes = [
   // Forms
   { path: '/forms/timecards', exact: true, name: 'Time Cards', component: TimeCards },
   { path: '/forms/work-order', exact: true, name: 'Time Cards', component: WorkOrder },
+  { path: '/forms/material-requisition', exact: true, name: 'Time Cards', component: MaterialRequisitionForm },
   
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },

@@ -28,6 +28,13 @@ const _nav = [
     to: "/forms/work-order",
     icon: "cil-clock",
   },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Material Requisition",
+    to: "/forms/material-requisition",
+    icon: "cil-clock",
+  },
+  
   /*{
     _tag: 'CSidebarNavItem',
     name: 'Colors',
