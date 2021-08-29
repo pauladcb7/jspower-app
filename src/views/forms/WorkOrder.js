@@ -163,7 +163,7 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="employeeName">Employee Name</CLabel>
                         <CInput
-                          size="sm"
+                          
                           type="text"
                           id="input-small"
                           name="input-small"
@@ -194,7 +194,7 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="employeeName">Job Location</CLabel>
                         <CInput
-                          size="sm"
+                          
                           type="text"
                           id="input-small"
                           name="input-small"
@@ -214,7 +214,7 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="employeeName">Total Cost</CLabel>
                         <CInput
-                          size="sm"
+                          
                           type="text"
                           id="input-small"
                           name="input-small"
@@ -225,7 +225,7 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="employeeName">Full Name</CLabel>
                         <CInput
-                          size="sm"
+                          
                           type="text"
                           id="input-small"
                           name="input-small"
@@ -236,7 +236,7 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="employeeName">Phone Number</CLabel>
                         <CInput
-                          size="sm"
+                          
                           type="text"
                           id="input-small"
                           name="input-small"

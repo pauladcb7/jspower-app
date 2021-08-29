@@ -38,7 +38,7 @@ import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
 import ESignature from "src/components/SiganturePadPaula";
 
-const fields = ['qty','size', 'part#', 'item']
+const fields = ['id','qty','size', 'part#', 'item']
 
 const MaterialRequisitionForm = () => {
   const [collapsed, setCollapsed] = React.useState(true);
@@ -96,8 +96,7 @@ const MaterialRequisitionForm = () => {
           <CFade timeout={300} in={showElements} unmountOnExit={true}>
             <CCard>
               <CCardHeader>
-                Daily Time Card
-                <small> - Clock In</small>
+                Material Requisition Form
                 <div className="card-header-actions">
                   <CButton
                     color="link"
@@ -114,48 +113,58 @@ const MaterialRequisitionForm = () => {
                 <CCardBody>
                   <CRow>
                     <CCol sm="12">
-                      <CFormGroup>
-                        <CLabel htmlFor="jobName">Job Name</CLabel>
-                        <CInput
-                          size="sm"
-                          type="text"
-                          id="jobName"
-                          name="input-small"
-                          className="input-sm"
-                          placeholder="Job Name"
-                        />
-                      </CFormGroup>
-                      <CFormGroup>
-                        <CLabel htmlFor="jobLocation">Job Location</CLabel>
-                        <CInput
-                          size="sm"
-                          type="text"
-                          id="jobLocation"
-                          name="jobLocation"
-                          className="input-sm"
-                          placeholder="Job Location"
-                        />
-                      </CFormGroup>
-                      <CFormGroup>
-                        <CLabel htmlFor="requestedBy">Requested by</CLabel>
-                        <CInput
-                          size="sm"
-                          type="text"
-                          id="requestedBy"
-                          name="requestedBy"
-                          className="input-sm"
-                          placeholder="Requested By"
-                        />
-                      </CFormGroup>
-                      <CFormGroup>
-                        <CLabel htmlFor="todayDate">Today's Date</CLabel>
-                        <CInput
-                          type="date"
-                          id="todayDate"
-                          name="todayDate"
-                          placeholder="Today's Date"
-                        />
-                      </CFormGroup>
+                      <CRow>
+                        <CCol sm="6">
+                          <CFormGroup>
+                            <CLabel htmlFor="jobName">Job Name</CLabel>
+                            <CInput
+                              //size="sm"
+                              type="text"
+                              id="jobName"
+                              name="input-small"
+                              className="input-sm"
+                              placeholder="Job Name"
+                            />
+                          </CFormGroup>
+                        </CCol>
+                        <CCol sm="6">
+                          <CFormGroup>
+                            <CLabel htmlFor="jobLocation">Job Location</CLabel>
+                            <CInput
+                              //size="sm"
+                              type="text"
+                              id="jobLocation"
+                              name="jobLocation"
+                              className="input-sm"
+                              placeholder="Job Location"
+                            />
+                          </CFormGroup>
+                        </CCol>
+                        <CCol sm="6">
+                          <CFormGroup>
+                            <CLabel htmlFor="requestedBy">Requested by</CLabel>
+                            <CInput
+                              //size="sm"
+                              type="text"
+                              id="requestedBy"
+                              name="requestedBy"
+                              className="input-sm"
+                              placeholder="Requested By"
+                            />
+                          </CFormGroup>
+                        </CCol>
+                        <CCol sm="6">
+                          <CFormGroup>
+                            <CLabel htmlFor="todayDate">Today's Date</CLabel>
+                            <CInput
+                              type="date"
+                              id="todayDate"
+                              name="todayDate"
+                              placeholder="Today's Date"
+                            />
+                          </CFormGroup>
+                        </CCol>
+                      </CRow>
                       <CFormGroup>
                         <CLabel htmlFor="needBy">Need by</CLabel>
                         <CInput
@@ -167,16 +176,16 @@ const MaterialRequisitionForm = () => {
                       </CFormGroup>
                       <CFormGroup>
                         <CLabel htmlFor="description">Description (Labor and Task</CLabel>
-                        <CInput
-                          type="text"
-                          id="description"
-                          name="description"
-                          placeholder="Description"
+                        <CTextarea 
+                          name="description" 
+                          id="description" 
+                          rows="9"
+                          placeholder="Description..." 
                         />
                       </CFormGroup>
                       <CCard>
                         <CCardHeader>
-                          Striped Table
+                          Items
                         </CCardHeader>
                         <CCardBody>
                         <CDataTable
@@ -186,12 +195,19 @@ const MaterialRequisitionForm = () => {
                           itemsPerPage={50}
                           pagination
                           scopedSlots={{
+                            'id' : (item,index ) => {
+                                return (
+                                  <td className="py-2">
+                                    {index+1}
+                                  </td>
+                                )
+                            },
                             'qty' : (item,index ) => {
                                 return (
                                   <td className="py-2">
                                     <CInput
                                       type="text"
-                                      placeholder="Description"
+                                      placeholder="Qty"
                                       onChange={(e) => {
                                         const rowsT = [...rows];
                                         rowsT[index]['qty'] = e.target.value
@@ -206,7 +222,7 @@ const MaterialRequisitionForm = () => {
                                   <td className="py-2">
                                     <CInput
                                       type="text"
-                                      placeholder="Description"
+                                      placeholder="Size"
                                       onChange={(e) => {
                                         const rowsT = [...rows];
                                         rowsT[index]['size'] = e.target.value
@@ -222,7 +238,7 @@ const MaterialRequisitionForm = () => {
                                   <td className="py-2">
                                     <CInput
                                       type="text"
-                                      placeholder="Description"
+                                      placeholder="Part"
                                       onChange={(e) => {
                                         const rowsT = [...rows];
                                         rowsT[index]['part#'] = e.target.value
@@ -251,12 +267,12 @@ const MaterialRequisitionForm = () => {
                             }
                           }}
                         />
-                        <CButton block color="success" type="button" size="sm" onClick={() => {
+                        <CButton block color="success" type="button"  onClick={() => {
                           const rowsT = [...rows];
                           rowsT.push({})
                           setRow(rowsT)
                         }}>
-                          <CIcon size="lg" name="cil-clock" /> Add
+                          <CIcon size="lg" name="cil-plus" /> Add Row
                         </CButton>
                         </CCardBody>
                       </CCard>

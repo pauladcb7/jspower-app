@@ -19,20 +19,20 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Time Cards",
-    to: "/forms/timecards",
+    to: "/timecards/create",
     icon: "cil-clock",
   },
   {
     _tag: "CSidebarNavItem",
     name: "Work Order",
-    to: "/forms/work-order",
-    icon: "cil-clock",
+    to: "/work-order/create",
+    icon: "cil-notes",
   },
   {
     _tag: "CSidebarNavItem",
     name: "Material Requisition",
-    to: "/forms/material-requisition",
-    icon: "cil-clock",
+    to: "/material-requisition/create",
+    icon: "cil-notes",
   },
   
   /*{

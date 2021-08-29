@@ -46,9 +46,9 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
 
   // Forms
-  { path: '/forms/timecards', exact: true, name: 'Time Cards', component: TimeCards },
-  { path: '/forms/work-order', exact: true, name: 'Time Cards', component: WorkOrder },
-  { path: '/forms/material-requisition', exact: true, name: 'Time Cards', component: MaterialRequisitionForm },
+  { path: '/timecards/create', exact: true, name: 'Time Cards', component: TimeCards },
+  { path: '/work-order/create', exact: true, name: 'Work Order', component: WorkOrder },
+  { path: '/material-requisition/create', exact: true, name: 'Material Requisition Form', component: MaterialRequisitionForm },
   
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
