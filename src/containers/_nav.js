@@ -34,6 +34,12 @@ const _nav = [
     to: "/material-requisition/create",
     icon: "cil-notes",
   },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Circuit Directory",
+    to: "/circuit-directory/selector",
+    icon: "cil-notes",
+  },
   
   /*{
     _tag: 'CSidebarNavItem',

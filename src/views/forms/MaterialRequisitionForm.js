@@ -44,7 +44,7 @@ const MaterialRequisitionForm = () => {
   const [collapsed, setCollapsed] = React.useState(true);
   const [showElements, setShowElements] = React.useState(true);
   const [details, setDetails] = useState([]);
-  const [rows, setRow] = useState([{}]);
+  const [rows, setRow] = useState([{},{},{},{}]);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
 
@@ -191,6 +191,7 @@ const MaterialRequisitionForm = () => {
                         <CDataTable
                           items={rows}
                           fields={fields}
+                          responsive
                           striped
                           itemsPerPage={50}
                           pagination
@@ -204,7 +205,7 @@ const MaterialRequisitionForm = () => {
                             },
                             'qty' : (item,index ) => {
                                 return (
-                                  <td className="py-2">
+                                  <td className="py-2" style={{minWidth: 120}}>
                                     <CInput
                                       type="text"
                                       placeholder="Qty"
@@ -219,7 +220,7 @@ const MaterialRequisitionForm = () => {
                             },
                             'size' : (item,index ) => {
                                 return (
-                                  <td className="py-2">
+                                  <td className="py-2"  style={{minWidth: 120}}>
                                     <CInput
                                       type="text"
                                       placeholder="Size"
@@ -235,7 +236,7 @@ const MaterialRequisitionForm = () => {
                             },
                             'part#' : (item,index ) => {
                                 return (
-                                  <td className="py-2">
+                                  <td className="py-2"  style={{minWidth: 120}}>
                                     <CInput
                                       type="text"
                                       placeholder="Part"
@@ -251,7 +252,7 @@ const MaterialRequisitionForm = () => {
                             },
                             'item' : (item,index ) => {
                               return (
-                                  <td className="py-2">
+                                  <td className="py-2"  style={{minWidth: 120}}>
                                     <CInput
                                     type="text"
                                     placeholder="Description"

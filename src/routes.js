@@ -40,6 +40,9 @@ const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
 const TimeCards = React.lazy(() => import('./views/forms/TimeCards'));
 const WorkOrder = React.lazy(() => import('./views/forms/WorkOrder'));
+const CircuitDirectoryBusiness = React.lazy(() => import('./views/forms/CircuitDirectoryBusiness'));
+const CircuitDirectoryHome = React.lazy(() => import('./views/forms/CircuitDirectoryHome'));
+const CircuitDirectorySelector = React.lazy(() => import('./views/forms/CircuitDirectorySelector'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -49,6 +52,9 @@ const routes = [
   { path: '/timecards/create', exact: true, name: 'Time Cards', component: TimeCards },
   { path: '/work-order/create', exact: true, name: 'Work Order', component: WorkOrder },
   { path: '/material-requisition/create', exact: true, name: 'Material Requisition Form', component: MaterialRequisitionForm },
+  { path: '/circuit-directory/selector', exact: true, name: 'Circuit Directory Selector', component: CircuitDirectorySelector },
+  { path: '/circuit-directory-business/create', exact: true, name: 'Circuit Directory Business', component: CircuitDirectoryBusiness },
+  { path: '/circuit-directory-home/create', exact: true, name: 'Circuit Directory Home', component: CircuitDirectoryHome },
   
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },

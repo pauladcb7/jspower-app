@@ -94,8 +94,7 @@ const WorkOrder = () => {
           <CFade timeout={300} in={showElements} unmountOnExit={true}>
             <CCard>
               <CCardHeader>
-                Daily Time Card
-                <small> - Clock In</small>
+                Work Order
                 <div className="card-header-actions">
                   <CButton
                     color="link"
