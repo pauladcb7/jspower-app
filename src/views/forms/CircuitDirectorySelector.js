@@ -37,23 +37,22 @@ import {
 import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
 import ESignature from "src/components/SiganturePadPaula";
-import { Form, Field } from 'react-final-form'
-import arrayMutators from 'final-form-arrays'
-import { FieldArray } from 'react-final-form-arrays'
+import { Form, Field } from "react-final-form";
+import arrayMutators from "final-form-arrays";
+import { FieldArray } from "react-final-form-arrays";
 import { circuitPrint } from "src/utils/circuitPrint";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 const required = (value) => (value ? undefined : "Required");
 
-const fieldsTable = ['ckt','load','ckt1', 'load1']
-const initialArray = []
+const fieldsTable = ["ckt", "load", "ckt1", "load1"];
+const initialArray = [];
 for (let index = 1; index < 43; index++) {
-  const element = {ckt: index, load: '', ckt1: index +1,load1:''};
-  initialArray.push(element)
-  index++
-  
+  const element = { ckt: index, load: "", ckt1: index + 1, load1: "" };
+  initialArray.push(element);
+  index++;
 }
-initialArray.push()
+initialArray.push();
 
 const CircuitDirectorySelector = () => {
   const [collapsed, setCollapsed] = React.useState(true);
@@ -91,33 +90,42 @@ const CircuitDirectorySelector = () => {
     }
     setCollapseMulti(newCollapse);
   };
-  const onSubmit = function(e) {
+  const onSubmit = function (e) {
     circuitPrint({
       date: e.date,
       voltage: e.voltage,
-      rows
-    })
-  }
-  const validate = function() {
-
-  }
+      rows,
+    });
+  };
+  const validate = function () {};
   const history = useHistory();
   return (
     <>
       <CRow>
         <CCol xs="12" sm="12">
           <CFade timeout={300} in={showElements} unmountOnExit={true}>
-            <CButton onClick={() => {
-              history.push('/circuit-directory-business/create')
-            }} block color="success" type="button" size="lg">
-              <CIcon size="lg" name="cil-clock" /> Business
+            <CButton
+              onClick={() => {
+                history.push("/circuit-directory-business/create");
+              }}
+              block
+              color="danger"
+              type="button"
+              size="lg"
+            >
+              <CIcon size="lg" name="cil-building" /> Business
             </CButton>
-            <CButton onClick={() => {
-              history.push('/circuit-directory-home/create')
-            }} block color="success" type="button" size="lg">
-              <CIcon size="lg" name="cil-clock" /> Home
+            <CButton
+              onClick={() => {
+                history.push("/circuit-directory-home/create");
+              }}
+              block
+              color="danger"
+              type="button"
+              size="lg"
+            >
+              <CIcon size="lg" name="cil-home" /> Home
             </CButton>
-            
           </CFade>
         </CCol>
       </CRow>

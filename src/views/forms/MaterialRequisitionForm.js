@@ -176,7 +176,7 @@ const MaterialRequisitionForm = () => {
                       </CFormGroup>
                       <CFormGroup>
                         <CLabel htmlFor="description">
-                          Description (Labor and Task
+                          Description (Labor and Task)
                         </CLabel>
                         <CTextarea
                           name="description"
@@ -271,7 +271,7 @@ const MaterialRequisitionForm = () => {
                           />
                           <CButton
                             block
-                            color="success"
+                            color="dark"
                             type="button"
                             onClick={() => {
                               const rowsT = [...rows];
@@ -290,7 +290,7 @@ const MaterialRequisitionForm = () => {
               <CCardFooter>
                 <CButton
                   block
-                  color="success"
+                  color="danger"
                   type="submit"
                   size="lg"
                   onClick={() => {}}

@@ -162,7 +162,6 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="employeeName">Employee Name</CLabel>
                         <CInput
-                          
                           type="text"
                           id="input-small"
                           name="input-small"
@@ -193,7 +192,6 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="employeeName">Job Location</CLabel>
                         <CInput
-                          
                           type="text"
                           id="input-small"
                           name="input-small"
@@ -213,7 +211,6 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="employeeName">Total Cost</CLabel>
                         <CInput
-                          
                           type="text"
                           id="input-small"
                           name="input-small"
@@ -224,7 +221,6 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="employeeName">Full Name</CLabel>
                         <CInput
-                          
                           type="text"
                           id="input-small"
                           name="input-small"
@@ -235,7 +231,6 @@ const WorkOrder = () => {
                       <CFormGroup>
                         <CLabel htmlFor="employeeName">Phone Number</CLabel>
                         <CInput
-                          
                           type="text"
                           id="input-small"
                           name="input-small"
@@ -260,8 +255,8 @@ const WorkOrder = () => {
                 </CCardBody>
               </CCollapse>
               <CCardFooter>
-                <CButton block color="success" type="submit" size="lg">
-                  <CIcon size="lg" name="cil-clock" /> Save
+                <CButton block color="danger" type="submit" size="lg">
+                  <CIcon size="lg" name="cil-save" /> Save
                 </CButton>
               </CCardFooter>
             </CCard>
