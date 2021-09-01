@@ -38,13 +38,13 @@ import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
 import ESignature from "src/components/SiganturePadPaula";
 
-const fields = ['id','qty','size', 'part#', 'item']
+const fields = ["id", "qty", "size", "part#", "item"];
 
 const MaterialRequisitionForm = () => {
   const [collapsed, setCollapsed] = React.useState(true);
   const [showElements, setShowElements] = React.useState(true);
   const [details, setDetails] = useState([]);
-  const [rows, setRow] = useState([{},{},{},{}]);
+  const [rows, setRow] = useState([{}, {}, {}, {}]);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
 
@@ -79,15 +79,15 @@ const MaterialRequisitionForm = () => {
     setCollapseMulti(newCollapse);
   };
   const toggleDetails = (index) => {
-    const position = details.indexOf(index)
-    let newDetails = details.slice()
+    const position = details.indexOf(index);
+    let newDetails = details.slice();
     if (position !== -1) {
-      newDetails.splice(position, 1)
+      newDetails.splice(position, 1);
     } else {
-      newDetails = [...details, index]
+      newDetails = [...details, index];
     }
-    setDetails(newDetails)
-  }
+    setDetails(newDetails);
+  };
 
   return (
     <>
@@ -175,106 +175,112 @@ const MaterialRequisitionForm = () => {
                         />
                       </CFormGroup>
                       <CFormGroup>
-                        <CLabel htmlFor="description">Description (Labor and Task</CLabel>
-                        <CTextarea 
-                          name="description" 
-                          id="description" 
+                        <CLabel htmlFor="description">
+                          Description (Labor and Task
+                        </CLabel>
+                        <CTextarea
+                          name="description"
+                          id="description"
                           rows="9"
-                          placeholder="Description..." 
+                          placeholder="Description..."
                         />
                       </CFormGroup>
                       <CCard>
-                        <CCardHeader>
-                          Items
-                        </CCardHeader>
+                        <CCardHeader>Items</CCardHeader>
                         <CCardBody>
-                        <CDataTable
-                          items={rows}
-                          fields={fields}
-                          responsive
-                          striped
-                          itemsPerPage={50}
-                          pagination
-                          scopedSlots={{
-                            'id' : (item,index ) => {
+                          <CDataTable
+                            items={rows}
+                            fields={fields}
+                            striped
+                            itemsPerPage={50}
+                            pagination
+                            scopedSlots={{
+                              id: (item, index) => {
+                                return <td className="py-2">{index + 1}</td>;
+                              },
+                              qty: (item, index) => {
                                 return (
-                                  <td className="py-2">
-                                    {index+1}
-                                  </td>
-                                )
-                            },
-                            'qty' : (item,index ) => {
-                                return (
-                                  <td className="py-2" style={{minWidth: 120}}>
+                                  <td
+                                    className="py-2"
+                                    style={{ minWidth: 120 }}
+                                  >
                                     <CInput
                                       type="text"
                                       placeholder="Qty"
                                       onChange={(e) => {
                                         const rowsT = [...rows];
-                                        rowsT[index]['qty'] = e.target.value
-                                        setRow(rowsT)
+                                        rowsT[index]["qty"] = e.target.value;
+                                        setRow(rowsT);
                                       }}
                                     />
                                   </td>
-                                )
-                            },
-                            'size' : (item,index ) => {
+                                );
+                              },
+                              size: (item, index) => {
                                 return (
-                                  <td className="py-2"  style={{minWidth: 120}}>
+                                  <td
+                                    className="py-2"
+                                    style={{ minWidth: 120 }}
+                                  >
                                     <CInput
                                       type="text"
                                       placeholder="Size"
                                       onChange={(e) => {
                                         const rowsT = [...rows];
-                                        rowsT[index]['size'] = e.target.value
-                                        setRow(rowsT)
+                                        rowsT[index]["size"] = e.target.value;
+                                        setRow(rowsT);
                                       }}
                                     />
                                   </td>
-                                )
-
-                            },
-                            'part#' : (item,index ) => {
+                                );
+                              },
+                              "part#": (item, index) => {
                                 return (
-                                  <td className="py-2"  style={{minWidth: 120}}>
+                                  <td
+                                    className="py-2"
+                                    style={{ minWidth: 120 }}
+                                  >
                                     <CInput
                                       type="text"
                                       placeholder="Part"
                                       onChange={(e) => {
                                         const rowsT = [...rows];
-                                        rowsT[index]['part#'] = e.target.value
-                                        setRow(rowsT)
+                                        rowsT[index]["part#"] = e.target.value;
+                                        setRow(rowsT);
                                       }}
                                     />
                                   </td>
-                                )
-
-                            },
-                            'item' : (item,index ) => {
-                              return (
-                                  <td className="py-2"  style={{minWidth: 120}}>
+                                );
+                              },
+                              item: (item, index) => {
+                                return (
+                                  <td className="py-2">
                                     <CInput
-                                    type="text"
-                                    placeholder="Description"
-                                    onChange={(e) => {
-                                      const rowsT = [...rows];
-                                      rowsT[index]['item'] = e.target.value
-                                      setRow(rowsT)
-                                    }}
-                                  />
+                                      type="text"
+                                      placeholder="Description"
+                                      onChange={(e) => {
+                                        const rowsT = [...rows];
+                                        rowsT[index]["item"] = e.target.value;
+                                        setRow(rowsT);
+                                      }}
+                                    />
                                   </td>
-                              )
-
-                            }
-                          }}
-                        />
-                        <CButton block color="success" type="button"  onClick={() => {
-                          const rowsT = [...rows];
-                          rowsT.push({})
-                          setRow(rowsT)
-                        }}>
-                          <CIcon size="lg" name="cil-plus" /> Add Row
-                        </CButton>
+                                );
+                              },
+                            }}
+                          />
+                          <CButton
+                            block
+                            color="success"
+                            type="button"
+                            onClick={() => {
+                              const rowsT = [...rows];
+                              rowsT.push({});
+                              setRow(rowsT);
+                            }}
+                          >
+                            <CIcon size="lg" name="cil-plus" /> Add Row
+                          </CButton>
                         </CCardBody>
                       </CCard>
                     </CCol>
@@ -282,8 +288,13 @@ const MaterialRequisitionForm = () => {
                 </CCardBody>
               </CCollapse>
               <CCardFooter>
-                <CButton block color="success" type="submit" size="lg" onClick={() => {
-                }}>
+                <CButton
+                  block
+                  color="success"
+                  type="submit"
+                  size="lg"
+                  onClick={() => {}}
+                >
                   <CIcon size="lg" name="cil-clock" /> Save
                 </CButton>
               </CCardFooter>

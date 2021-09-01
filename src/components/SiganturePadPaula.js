@@ -47,11 +47,13 @@ const ESignature = () => {
 
   return (
     <>
-      <CRow>
-        <CCol xs="12" sm="6" lg="4" className="esignaturee-container">
+      <CCol xs="12" sm="6" lg="4">
+        <CCard className="esignature-canvas">
+          {" "}
+          Signature
           <canvas ref={ref}></canvas>
-        </CCol>
-      </CRow>
+        </CCard>
+      </CCol>
     </>
   );
 };

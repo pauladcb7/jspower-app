@@ -1,8 +1,29 @@
 // Here you can add other styles
-.esignaturee-container {
-  border: 1 solid black;
+.esignature-canvas {
+  margin: 4px;
+}
+
+.brand-container {
+  background-color: white !important;
 }
 
 .c-avatar-img {
   overflow: hidden;
+}
+body {
+  background-color: black;
+  opacity: 0.8;
+}
+
+.c-main {
+  padding-top: 8px !important;
+}
+
+.card {
+  margin-bottom: 8px !important;
+}
+
+.container-fluid {
+  padding-right: 10px !important;
+  padding-left: 10px !important;
 }

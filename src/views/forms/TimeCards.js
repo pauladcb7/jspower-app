@@ -63,12 +63,12 @@ const TimeCards = () => {
       label: "Sensient Livingston",
     },
     { name: "sensient-turlock", key: "jLocation7", label: "Sensient Turlock" },
-    { name: "Other", key: "jLocation8", label: "Other" },
   ];
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
+  const [otherOption, setOtherOption] = useState(false);
 
   useEffect(() => {
-    console.log("checked items: ", checkedJobLocations);
+    console.log("event", otherOption);
   }, [checkedJobLocations]);
 
   const handleChange = (event) => {
@@ -78,6 +78,11 @@ const TimeCards = () => {
       [event.target.name]: event.target.checked,
       [event.target.name]: event.target.checked,
     });
+  };
+
+  const handleotherJobLocationChange = (event) => {
+    console.log("event", event.target.checked);
+    setOtherOption(!event.target.checked);
   };
 
   const logTime = (event) => {
@@ -114,9 +119,16 @@ const TimeCards = () => {
                 {currentDate.toString()}
                 <div className="card-header-actions">
                   <CButton
+                    color="success"
+                    className=" btn-minimize"
+                    onClick={() => setCollapsed(!collapsed)}
+                    size="sm"
+                  >
+                    Save
+                  </CButton>
+                  <CButton
                     color="link"
                     className="card-header-action btn-minimize"
-                    onClick={() => setCollapsed(!collapsed)}
                   >
                     <CIcon
                       name={collapsed ? "cil-arrow-top" : "cil-arrow-bottom"}
@@ -161,6 +173,29 @@ const TimeCards = () => {
                             </CFormGroup>
                           </CCol>
                         ))}
+                        <CCol md="6" sm="6">
+                          <CFormGroup variant="custom-checkbox" inline>
+                            <CInputCheckbox
+                              custom
+                              id="otherOption"
+                              name="Other"
+                              checked={otherOption}
+                              onChange={() => {
+                                setOtherOption(!otherOption);
+                              }}
+                            />
+                            <CLabel variant="custom-checkbox" htmlFor="Other">
+                              Other
+                            </CLabel>
+                          </CFormGroup>
+                          {otherOption == false ? (
+                            <CInput
+                              id="otherJobLocation"
+                              placeholder="Enter Job Location"
+                              required
+                            />
+                          ) : null}
+                        </CCol>
                       </CFormGroup>
 
                       <CFormGroup row>
@@ -200,7 +235,7 @@ const TimeCards = () => {
               </CCol>
             }
             header={<CCollapse show={collapseMulti[0]}>08:00 a.m.</CCollapse>}
-            color="success"
+            color="danger"
             iconPadding={false}
             className="logButton"
             onClick={() => {
@@ -218,12 +253,12 @@ const TimeCards = () => {
         <CCol xs="12" sm="6" lg="6">
           <CWidgetIcon
             text={
-              <p className="text-center" style={{ whiteSpace: "nowrap" }}>
+              <CCol md="12">
                 <CIcon name="cil-arrow-left" /> Click to register Lunch In time
-              </p>
+              </CCol>
             }
             header={<CCollapse show={collapseMulti[1]}>12:00 p.m.</CCollapse>}
-            color="info"
+            color="dark"
             iconPadding={false}
             className="logButton"
             onClick={() => {
@@ -248,7 +283,7 @@ const TimeCards = () => {
               </CCol>
             }
             header={<CCollapse show={collapseMulti[2]}>Lunch Out</CCollapse>}
-            color="info"
+            color="dark"
             iconPadding={false}
             className="logButton"
             onClick={() => {
@@ -274,7 +309,7 @@ const TimeCards = () => {
               </CCol>
             }
             header={<CCollapse show={collapseMulti[3]}>08:00 a.m.</CCollapse>}
-            color="success"
+            color="danger"
             iconPadding={false}
             className="logButton"
             onClick={() => {
@@ -291,11 +326,12 @@ const TimeCards = () => {
             </CCol>
           </CWidgetIcon>
         </CCol>
-        <CCard>
-          <CCol md="12">
+
+        <CCol xs="12" md="6" lg="4" className="m3">
+          <CCard>
             <SignaturePad />
-          </CCol>
-        </CCard>
+          </CCard>
+        </CCol>
       </CRow>
     </>
   );
