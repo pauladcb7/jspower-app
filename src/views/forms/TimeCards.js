@@ -45,7 +45,7 @@ const TimeCards = () => {
   const [currentDate, setCurrentDate] = useState(
     moment().format("MMMM Do YYYY")
   );
-  const [currentTime, setCurrentTime] = useState("");
+
   const [collapsed, setCollapsed] = React.useState(true);
   const [collapseOther, setCollapseOther] = React.useState(false);
   const [showElements, setShowElements] = React.useState(true);
@@ -56,32 +56,31 @@ const TimeCards = () => {
     false,
   ]);
   let [jobLocations, setJobLocations] = React.useState([]);
-  // const jobLocations = [
-  //   { code: "ceres", id: "jLocation1", value: "Ceres" },
-  //   { code: "frito-lay", id: "jLocation2", value: "Frito Lay" },
-  //   { code: "lodi-bowling", id: "jLocation3", value: "Lodi Bowling" },
-  //   { code: "modesto", id: "jLocation4", value: "Modesto" },
-  //   { code: "pepsico", id: "jLocation5", value: "PepsiCo" },
-  //   {
-  //     code: "sensient-livingston",
-  //     id: "jLocation6",
-  //     value: "Sensient Livingston",
-  //   },
-  //   { code: "sensient-turlock", id: "jLocation7", value: "Sensient Turlock" },
-  // ];
+  const [latitude, setLatitude] = React.useState(null);
+  const [longitude, setLongitude] = React.useState(null);
+  const [clockInTime, setClockInTime] = useState("");
+  const [clockInLatitude, setClockInLatitude] = React.useState(null);
+  const [clockInLongitude, setClockInLongitude] = React.useState(null);
+  const [clockInAddress, setClockInAddress] = React.useState("");
+  const [clockOutTime, setClockOutTime] = useState("");
+  const [clockOutLatitude, setClockOutLatitude] = React.useState(null);
+  const [clockOutLongitude, setClockOutLongitude] = React.useState(null);
+  const [clockOutAddress, setClockOutAddress] = React.useState("");
+  const [lunchInTime, setLunchInTime] = useState("");
+  const [lunchInLatitude, setLunchInLatitude] = React.useState(null);
+  const [lunchInLongitude, setLunchInLongitude] = React.useState(null);
+  const [lunchInAddress, setLunchInAddress] = React.useState("");
+  const [lunchOutTime, setLunchOutTime] = useState("");
+  const [lunchOutLatitude, setLunchOutLatitude] = React.useState(null);
+  const [lunchOutLongitude, setLunchOutLongitude] = React.useState(null);
+  const [lunchOutAddress, setLunchOutAddress] = React.useState("");
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
   const [otherOption, setOtherOption] = React.useState(false);
 
   useEffect(() => {
-    // navigator.geolocation.getCurrentPosition(function (position) {
-    //   console.log("Latitude is :", position.coords.latitude);
-    //   console.log("Longitude is :", position.coords.longitude);
-    //   console.log("position is ", position);
-    // });
-    console.log(JOB_LOCATIONS);
+    console.log(moment().format("dddd"));
     api
       .get(JOB_LOCATIONS)
-
       .then((data) => {
         setJobLocations(data);
       })
@@ -100,6 +99,49 @@ const TimeCards = () => {
     });
   };
 
+  const logTime = (type) => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      let lng = position.coords.longitude;
+      let lat = position.coords.latitude;
+      fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${process.env.REACT_APP_API_KEY}`,
+        {
+          method: "GET",
+          headers: {},
+        }
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          let address = response.results[0]?.formatted_address;
+          let currentTime = moment().format("hh:mm A");
+          console.log(type);
+          if (type == "clockIn") {
+            setClockInAddress(address);
+            setClockInLatitude(lat);
+            setClockInLongitude(lng);
+            setClockInTime(currentTime);
+            console.log("clock in time ", currentTime);
+          } else if (type == "clockOut") {
+            setClockOutAddress(address);
+            setClockOutLatitude(lat);
+            setClockOutLongitude(lng);
+            setClockOutTime(currentTime);
+          } else if (type == "lunchIn") {
+            setLunchInAddress(address);
+            setLunchInLatitude(lat);
+            setLunchInLongitude(lng);
+            setLunchInTime(currentTime);
+            console.log("lunch in time ", currentTime);
+          } else if (type == "lunchOut") {
+            setLunchOutAddress(address);
+            setLunchOutLatitude(lat);
+            setLunchOutLongitude(lng);
+            setLunchOutTime(currentTime);
+          }
+        })
+        .catch((err) => console.log(err));
+    });
+  };
   const handleChangeOtherOpt = (event) => {
     // updating an object instead of a Map
     setCollapseOther({
@@ -112,10 +154,6 @@ const TimeCards = () => {
   const handleotherJobLocationChange = (event) => {
     console.log("event", event.target.checked);
     setOtherOption(!event.target.checked);
-  };
-
-  const logTime = (event) => {
-    console.log(event);
   };
 
   const toggleMulti = (type) => {
@@ -210,16 +248,7 @@ const TimeCards = () => {
                               name="other"
                               onChange={(e) => {
                                 setOtherOption(e.target.checked);
-
-                                //debugger;
                               }}
-                              /*  onClick={() => {
-                                setOtherOption(!therOption);
-                                setCollapseOther(true);
-                                console.log("ss", otherOption);
-                                console.log("aaaaaaa", collapseOther);
-                              }} */
-                              //onClick={() => setOtherOption(!otherOption)}
                             />
                             <CLabel
                               variant="custom-checkbox"
@@ -270,76 +299,101 @@ const TimeCards = () => {
         <CCol xs="12" sm="6" lg="6">
           <CWidgetIcon
             text={
-              <CCol md="12">
-                <CIcon name="cil-arrow-left" className="clickArrow" /> Click to
-                register Clock In time
-              </CCol>
+              <div>
+                {clockInAddress || (
+                  <div>
+                    <CIcon name="cil-arrow-left" className="clickArrow" /> Click
+                    to register Clock In time
+                  </div>
+                )}
+              </div>
             }
-            header={<CCollapse show={collapseMulti[0]}>08:00 a.m.</CCollapse>}
+            header={
+              <CCollapse timeout={2000} show={collapseMulti[0]}>
+                {clockInTime}
+              </CCollapse>
+            }
             color="danger"
             iconPadding={false}
             className="logButton"
-            onClick={() => {
-              toggleMulti("clockIn");
-            }}
           >
-            <CCol md="12">
-              <CCol md="12">
-                <CIcon width={32} name="cil-clock" />{" "}
-              </CCol>
-              <p>Clock In</p>
+            <CCol
+              md="12"
+              className="timeLog"
+              onClick={() => {
+                toggleMulti("clockIn");
+                logTime("clockIn");
+              }}
+            >
+              <CIcon width={32} name="cil-clock" /> <p>Clock In</p>
             </CCol>
           </CWidgetIcon>
         </CCol>
         <CCol xs="12" sm="6" lg="6">
           <CWidgetIcon
             text={
-              <CCol md="12">
-                <CIcon name="cil-arrow-left" className="clickArrow" /> Click to
-                register Lunch In time
-              </CCol>
+              <div>
+                {lunchInAddress || (
+                  <div>
+                    <CIcon name="cil-arrow-left" className="clickArrow" /> Click
+                    to register Lunch In time
+                  </div>
+                )}
+              </div>
             }
-            header={<CCollapse show={collapseMulti[1]}>12:00 p.m.</CCollapse>}
+            header={
+              <CCollapse timeout={2000} show={collapseMulti[1]}>
+                {lunchInTime}
+              </CCollapse>
+            }
             color="dark"
             iconPadding={false}
             className="logButton"
-            onClick={() => {
-              toggleMulti("lunchIn");
-            }}
           >
-            <CCol md="12">
-              <CCol md="12">
-                <CIcon width={32} name="cil-restaurant" />
-              </CCol>
-              <p className="text-center" style={{ whiteSpace: "nowrap" }}>
-                Lunch In
-              </p>
+            <CCol
+              md="12"
+              className="timeLog"
+              onClick={() => {
+                toggleMulti("lunchIn");
+                logTime("lunchIn");
+              }}
+            >
+              <CIcon width={32} name="cil-restaurant" />
+              <p>Lunch In</p>
             </CCol>
           </CWidgetIcon>
         </CCol>
         <CCol xs="12" sm="6" lg="6">
           <CWidgetIcon
             text={
-              <CCol md="12">
-                <CIcon name="cil-arrow-left" className="clickArrow" /> Click to
-                register Lunch Out time
-              </CCol>
+              <div>
+                {lunchOutAddress || (
+                  <div>
+                    <CIcon name="cil-arrow-left" className="clickArrow" /> Click
+                    to register Lunch Out time
+                  </div>
+                )}
+              </div>
             }
-            header={<CCollapse show={collapseMulti[2]}>Lunch Out</CCollapse>}
+            header={
+              <CCollapse timeout={2000} show={collapseMulti[2]}>
+                {lunchOutTime}
+              </CCollapse>
+            }
             color="dark"
             iconPadding={false}
             className="logButton"
-            onClick={() => {
-              toggleMulti("lunchOut");
-            }}
           >
-            <CCol md="12">
-              <CCol md="12">
-                <CIcon width={32} name="cil-restaurant" />
-              </CCol>
-              <p className="text-center" style={{ whiteSpace: "nowrap" }}>
-                Lunch Out
-              </p>
+            <CCol
+              md="12"
+              className="timeLog"
+              onClick={() => {
+                toggleMulti("lunchOut");
+                logTime("lunchOut");
+              }}
+            >
+              <CIcon width={32} name="cil-restaurant" />
+              <p>LunchOut</p>
             </CCol>
           </CWidgetIcon>
         </CCol>
@@ -347,35 +401,46 @@ const TimeCards = () => {
         <CCol xs="12" sm="6" lg="6">
           <CWidgetIcon
             text={
-              <CCol md="12">
-                <CIcon name="cil-arrow-left" className="clickArrow" /> Click to
-                register Clock Out time
-              </CCol>
+              <div>
+                {clockOutAddress || (
+                  <div>
+                    <CIcon name="cil-arrow-left" className="clickArrow" /> Click
+                    to register Clock Out time
+                  </div>
+                )}
+              </div>
             }
-            header={<CCollapse show={collapseMulti[3]}>08:00 a.m.</CCollapse>}
+            header={
+              <CCollapse timeout={2000} show={collapseMulti[3]}>
+                {clockOutTime}
+              </CCollapse>
+            }
             color="danger"
             iconPadding={false}
             className="logButton"
-            onClick={() => {
-              toggleMulti("clockOut");
-            }}
           >
-            <CCol md="12">
-              <CCol md="12">
-                <CIcon iconPadding={false} width={32} name="cil-clock" />{" "}
-              </CCol>
-              <p className="text-center" style={{ whiteSpace: "nowrap" }}>
-                Clock Out
-              </p>
+            <CCol
+              md="12"
+              className="timeLog"
+              onClick={() => {
+                toggleMulti("clockOut");
+                logTime("clockOut");
+              }}
+            >
+              <CIcon iconPadding={false} width={32} name="cil-clock" />{" "}
+              <p>Clock Out</p>
             </CCol>
           </CWidgetIcon>
         </CCol>
-
-        <CCol xs="12" md="6" lg="4" className="m3">
-          <CCard>
-            <SignaturePad />
-          </CCard>
-        </CCol>
+        {moment().format("dddd") == "Friday" ? (
+          <CCol xs="12" md="6" lg="4" className="m3">
+            <CCard>
+              <SignaturePad />
+            </CCard>
+          </CCol>
+        ) : (
+          <p></p>
+        )}
       </CRow>
     </>
   );
