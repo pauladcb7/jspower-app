@@ -27,3 +27,18 @@ body {
   padding-right: 10px !important;
   padding-left: 10px !important;
 }
+
+.clickArrow {
+  animation: arrowMove 1s infinite ease;
+}
+
+@keyframes arrowMove {
+  from {
+    color: black;
+    transform: translateX(-5px);
+  }
+  to {
+    color: red;
+    transform: translateX(-10px);
+  }
+}

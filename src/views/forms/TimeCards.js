@@ -38,12 +38,16 @@ import { DocsLink } from "src/reusable";
 import SignaturePad from "src/components/SiganturePadPaula";
 import moment from "moment";
 
+import { api } from "../../helpers/api";
+import { JOB_LOCATIONS } from "../../helpers/urls/index";
+
 const TimeCards = () => {
   const [currentDate, setCurrentDate] = useState(
     moment().format("MMMM Do YYYY")
   );
   const [currentTime, setCurrentTime] = useState("");
   const [collapsed, setCollapsed] = React.useState(true);
+  const [collapseOther, setCollapseOther] = React.useState(false);
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([
     false,
@@ -51,30 +55,55 @@ const TimeCards = () => {
     false,
     false,
   ]);
-  const jobLocations = [
-    { name: "ceres", key: "jLocation1", label: "Ceres" },
-    { name: "frito-lay", key: "jLocation2", label: "Frito Lay" },
-    { name: "lodi-bowling", key: "jLocation3", label: "Lodi Bowling" },
-    { name: "modesto", key: "jLocation4", label: "Modesto" },
-    { name: "pepsico", key: "jLocation5", label: "PepsiCo" },
-    {
-      name: "sensient-livingston",
-      key: "jLocation6",
-      label: "Sensient Livingston",
-    },
-    { name: "sensient-turlock", key: "jLocation7", label: "Sensient Turlock" },
-  ];
+  let [jobLocations, setJobLocations] = React.useState([]);
+  // const jobLocations = [
+  //   { code: "ceres", id: "jLocation1", value: "Ceres" },
+  //   { code: "frito-lay", id: "jLocation2", value: "Frito Lay" },
+  //   { code: "lodi-bowling", id: "jLocation3", value: "Lodi Bowling" },
+  //   { code: "modesto", id: "jLocation4", value: "Modesto" },
+  //   { code: "pepsico", id: "jLocation5", value: "PepsiCo" },
+  //   {
+  //     code: "sensient-livingston",
+  //     id: "jLocation6",
+  //     value: "Sensient Livingston",
+  //   },
+  //   { code: "sensient-turlock", id: "jLocation7", value: "Sensient Turlock" },
+  // ];
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
-  const [otherOption, setOtherOption] = useState(false);
+  const [otherOption, setOtherOption] = React.useState(false);
 
   useEffect(() => {
-    console.log("event", otherOption);
+    // navigator.geolocation.getCurrentPosition(function (position) {
+    //   console.log("Latitude is :", position.coords.latitude);
+    //   console.log("Longitude is :", position.coords.longitude);
+    //   console.log("position is ", position);
+    // });
+    console.log(JOB_LOCATIONS);
+    api
+      .get(JOB_LOCATIONS)
+
+      .then((data) => {
+        setJobLocations(data);
+      })
+      .catch(function (error) {
+        debugger;
+        console.error(error);
+      });
   }, [checkedJobLocations]);
 
   const handleChange = (event) => {
     // updating an object instead of a Map
     setCheckedJobLocations({
       ...checkedJobLocations,
+      [event.target.name]: event.target.checked,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const handleChangeOtherOpt = (event) => {
+    // updating an object instead of a Map
+    setCollapseOther({
+      ...collapseOther,
       [event.target.name]: event.target.checked,
       [event.target.name]: event.target.checked,
     });
@@ -154,21 +183,21 @@ const TimeCards = () => {
                           <CLabel>Job Location</CLabel>
                         </CCol>
 
-                        {jobLocations.map((jobLocation) => (
+                        {jobLocations?.map((jobLocation) => (
                           <CCol md="6" sm="6">
                             <CFormGroup variant="custom-checkbox" inline>
                               <CInputCheckbox
                                 custom
-                                id={jobLocation.key}
-                                name={jobLocation.name}
-                                checked={checkedJobLocations[jobLocation.name]}
+                                id={jobLocation.id}
+                                name={jobLocation.code}
+                                checked={checkedJobLocations[jobLocation.code]}
                                 onChange={handleChange}
                               />
                               <CLabel
                                 variant="custom-checkbox"
-                                htmlFor={jobLocation.key}
+                                htmlFor={jobLocation.id}
                               >
-                                {jobLocation.label}
+                                {jobLocation.value}
                               </CLabel>
                             </CFormGroup>
                           </CCol>
@@ -178,23 +207,34 @@ const TimeCards = () => {
                             <CInputCheckbox
                               custom
                               id="otherOption"
-                              name="Other"
-                              checked={otherOption}
-                              onChange={() => {
-                                setOtherOption(!otherOption);
+                              name="other"
+                              onChange={(e) => {
+                                setOtherOption(e.target.checked);
+
+                                //debugger;
                               }}
+                              /*  onClick={() => {
+                                setOtherOption(!therOption);
+                                setCollapseOther(true);
+                                console.log("ss", otherOption);
+                                console.log("aaaaaaa", collapseOther);
+                              }} */
+                              //onClick={() => setOtherOption(!otherOption)}
                             />
-                            <CLabel variant="custom-checkbox" htmlFor="Other">
+                            <CLabel
+                              variant="custom-checkbox"
+                              htmlFor="otherOption"
+                            >
                               Other
                             </CLabel>
                           </CFormGroup>
-                          {otherOption == false ? (
+                          <CCollapse show={otherOption} timeout={1000}>
                             <CInput
                               id="otherJobLocation"
                               placeholder="Enter Job Location"
                               required
                             />
-                          ) : null}
+                          </CCollapse>
                         </CCol>
                       </CFormGroup>
 
@@ -231,7 +271,8 @@ const TimeCards = () => {
           <CWidgetIcon
             text={
               <CCol md="12">
-                <CIcon name="cil-arrow-left" /> Click to register Clock In time
+                <CIcon name="cil-arrow-left" className="clickArrow" /> Click to
+                register Clock In time
               </CCol>
             }
             header={<CCollapse show={collapseMulti[0]}>08:00 a.m.</CCollapse>}
@@ -254,7 +295,8 @@ const TimeCards = () => {
           <CWidgetIcon
             text={
               <CCol md="12">
-                <CIcon name="cil-arrow-left" /> Click to register Lunch In time
+                <CIcon name="cil-arrow-left" className="clickArrow" /> Click to
+                register Lunch In time
               </CCol>
             }
             header={<CCollapse show={collapseMulti[1]}>12:00 p.m.</CCollapse>}
@@ -279,7 +321,8 @@ const TimeCards = () => {
           <CWidgetIcon
             text={
               <CCol md="12">
-                <CIcon name="cil-arrow-left" /> Click to register Lunch Out time
+                <CIcon name="cil-arrow-left" className="clickArrow" /> Click to
+                register Lunch Out time
               </CCol>
             }
             header={<CCollapse show={collapseMulti[2]}>Lunch Out</CCollapse>}
@@ -305,7 +348,8 @@ const TimeCards = () => {
           <CWidgetIcon
             text={
               <CCol md="12">
-                <CIcon name="cil-arrow-left" /> Click to register Clock Out time
+                <CIcon name="cil-arrow-left" className="clickArrow" /> Click to
+                register Clock Out time
               </CCol>
             }
             header={<CCollapse show={collapseMulti[3]}>08:00 a.m.</CCollapse>}

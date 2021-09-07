@@ -21,7 +21,7 @@ const Dashboard = () => {
   return (
     <>
       <CRow>
-        <CCol sm="4" lg="2">
+        <CCol sm="4" md="6" lg="4" style={{ cursor: "pointer" }}>
           <CWidgetSimple
             header="Time Cards"
             text={<CIcon height="44" name="cil-clock" />}
@@ -30,7 +30,7 @@ const Dashboard = () => {
             }}
           ></CWidgetSimple>
         </CCol>
-        <CCol sm="4" lg="2">
+        <CCol sm="4" md="6" lg="4" style={{ cursor: "pointer" }}>
           <CWidgetSimple
             header="Work Orders"
             text={<CIcon height="44" name="cil-description" />}
@@ -39,7 +39,7 @@ const Dashboard = () => {
             }}
           ></CWidgetSimple>
         </CCol>
-        <CCol sm="4" lg="2">
+        <CCol sm="4" md="6" lg="4" style={{ cursor: "pointer" }}>
           <CWidgetSimple
             header="Material Requisition"
             text={<CIcon height="44" name="cil-layers" />}
@@ -48,7 +48,7 @@ const Dashboard = () => {
             }}
           ></CWidgetSimple>
         </CCol>
-        <CCol sm="4" lg="2">
+        <CCol sm="4" md="6" lg="4" style={{ cursor: "pointer" }}>
           <CWidgetSimple
             header="Circuit Directory"
             text={<CIcon height="44" name="cil-spreadsheet" />}
@@ -57,7 +57,7 @@ const Dashboard = () => {
             }}
           ></CWidgetSimple>
         </CCol>
-        <CCol sm="4" lg="2">
+        <CCol sm="4" md="6" lg="4" style={{ cursor: "pointer" }}>
           <CWidgetSimple
             header="Safety Sheets"
             text={<CIcon height="44" name="cil-task" />}
