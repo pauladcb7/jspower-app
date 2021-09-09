@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  CButton, CDataTable, CFooter, CFormGroup, CInput, CInvalidFeedback, CLabel, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle, CTextarea } from "@coreui/react";
+import { CButton, CDataTable, CFooter, CFormGroup, CInput, CInputRadio, CInvalidFeedback, CLabel, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle, CTextarea } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { Field, Form } from "react-final-form";
 import SignaturePad from "signature_pad";
@@ -22,29 +22,31 @@ const CrudTable = ({
       filter: false,
     }
   ],
-  onEdit = () => {},
-  onDelete = () => {},
-  onCreate = () => {},
-  onRead = () => {},
+  title='',
+  onEdit = () => { },
+  onDelete = () => { },
+  onCreate = () => { },
+  onRead = () => { },
   onRefreshTable
 }) => {
   const [modal, setModal] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
-  function onSubmit (newData) {
-    if(selectedData) {
-      onEdit(selectedData,newData)
+  function onSubmit(newData) {
+    if (selectedData) {
+      onEdit(selectedData, newData)
     } else {
       onCreate(newData)
     }
+    setModal(false)
   }
-  function validate () {
+  function validate() {
 
   }
   return (
     <>
-      
+
       <CButton
-        block
+        playsInline
         color="dark"
         type="button"
         onClick={() => {
@@ -55,7 +57,11 @@ const CrudTable = ({
         <CIcon size="lg" name="cil-plus" /> Add Row
       </CButton>
       <CDataTable
+        striped
+        hover
         items={rows}
+        tableFilter
+        tablfi
         fields={[
           {
             key: 'show-modal',
@@ -64,7 +70,7 @@ const CrudTable = ({
             sorter: false,
             filter: false
           },
-          ...metadata.filter(function (m) { 
+          ...metadata.filter(function (m) {
             return !m.hide
           })
         ]}
@@ -87,7 +93,7 @@ const CrudTable = ({
                       //toggleDetails(index)
                     }}
                   >
-                    <CIcon width={24} name="cil-pencil"/>
+                    <CIcon width={24} name="cil-pencil" />
                   </CButton>
                 </td>
               )
@@ -99,108 +105,161 @@ const CrudTable = ({
         show={modal}
         onClose={() => {
           setModal(false)
+          setSelectedData(null)
           //setLarge(!large)
         }}
         size="lg"
       >
         <CModalHeader closeButton>
-          <CModalTitle>Modal title</CModalTitle>
+          <CModalTitle>{title}</CModalTitle>
         </CModalHeader>
-        <CModalBody>
-          <Form
-            onSubmit={onSubmit}
-            initialValues={selectedData}
-            validate={validate}
-            render={({ handleSubmit }) => (
+        <Form
+          onSubmit={onSubmit}
+          initialValues={selectedData || {}}
+          validate={validate}
+          render={({ handleSubmit }) => (
+            <>
               <form onSubmit={handleSubmit}>
-                {metadata.map(function(metadataRow) {
-                  return <Field name={metadataRow.key} key={metadataRow.key}>
-                    {({ input, meta }) => (
-                      <>
-                        <CFormGroup>
-                          <CLabel htmlFor={metadataRow.key}>{metadataRow.label}</CLabel>
-                          {
-                            metadataRow.type === 'signature' ?
-                            <ESignature svg={input.value}></ESignature>
-                            :null
-                          }
-                          {
-                            metadataRow.type === 'text' ?
-                            <CInput
-                              {...input}
-                              id={metadataRow.key}
-                              invalid={meta.invalid && meta.touched}
-                            />
-                            :null
-                          }
-                          {
-                            metadataRow.type === 'date' ?
-                            <CInput
-                              {...input}
-                              type='date'
-                              id={metadataRow.key}
-                              invalid={meta.invalid && meta.touched}
-                            />
-                            :null
-                          }
-                          {
-                            metadataRow.type === 'time' ?
-                            <CInput
-                              {...input}
-                              type='time'
-                              id={metadataRow.key}
-                              invalid={meta.invalid && meta.touched}
-                            />
-                            :null
-                          }
-                          {
-                            metadataRow.type === 'textarea' ?
-                            <CTextarea
-                              {...input}
-                              type='time'
-                              id={metadataRow.key}
-                              rows="9"
-                              invalid={meta.invalid && meta.touched}
-                            />
-                            :null
-                          }
-                          {/* <CInput
+                <CModalBody>
+                  {metadata.map(function (metadataRow) {
+                    return <Field name={metadataRow.key} key={metadataRow.key}>
+                      {({ input, meta }) => (
+                        <>
+                          <CFormGroup>
+                            <CLabel htmlFor={metadataRow.key}>{metadataRow.label}</CLabel>
+                            {
+                              metadataRow.type === 'signature' ?
+                                <ESignature 
+                                  svg={input.value}
+                                  onChange={input.onChange}
+                                ></ESignature>
+                                : null
+                            }
+                            {
+                              metadataRow.type === 'text' ?
+                                <CInput
+                                  {...input}
+                                  id={metadataRow.key}
+                                  invalid={meta.invalid && meta.touched}
+                                />
+                                : null
+                            }
+                            {
+                              metadataRow.type === 'date' ?
+                                <CInput
+                                  {...input}
+                                  type='date'
+                                  id={metadataRow.key}
+                                  invalid={meta.invalid && meta.touched}
+                                />
+                                : null
+                            }
+                            {
+                              metadataRow.type === 'time' ?
+                                <CInput
+                                  {...input}
+                                  type='time'
+                                  id={metadataRow.key}
+                                  invalid={meta.invalid && meta.touched}
+                                />
+                                : null
+                            }
+                            {
+                              metadataRow.type === 'textarea' ?
+                                <CTextarea
+                                  {...input}
+                                  type='time'
+                                  id={metadataRow.key}
+                                  rows="9"
+                                  invalid={meta.invalid && meta.touched}
+                                />
+                                : null
+                            }
+                            {
+                              metadataRow.type === 'radius' ?
+                                <>
+                                  {
+                                    metadataRow.options?.map(function (option) {
+                                      return <Field name={metadataRow.key} type="radio" value={option.value}>
+                                        {({ input:inputOption, meta, values }) => (
+                                          <>
+                                            <CFormGroup variant="checkbox">
+                                              <CInputRadio
+                                                className="form-check-input"
+                                                id={option.value}
+                                                value={option.value}
+                                                name={inputOption.name}
+                                                checked={inputOption.checked || (
+                                                   option.otherOption && !metadataRow.options.find((option) => {
+                                                    return option.value === input.value
+                                                  })
+                                                )}
+                                                onChange={inputOption.onChange}
+                                              />
+                                              <CLabel variant="checkbox" htmlFor={option.value}>
+                                                {option.label}
+                                              </CLabel>
+                                              {option.otherOption && !metadataRow.options.find((option) => {
+                                                return option.value === input.value && !option.otherOption
+                                              }) && <div >
+                                                <CInput
+                                                  {...input}
+                                                  id={metadataRow.key}
+                                                  invalid={meta.invalid && meta.touched}
+                                                />
+                                              </div>
+                                              }
+                                            </CFormGroup>
+                                          </>
+                                        )}
+                                      </Field>
+                                    })
+                                  }
+
+                                </>
+                                : null
+                            }
+
+                            {/*  service-call
+extra */}
+                            {/* <CInput
                             {...input}
                             id={metadataRow.key}
                             invalid={meta.invalid && meta.touched}
                           /> */}
-                          {meta.touched && meta.error && (
-                            <CInvalidFeedback className="help-block">
-                              Please provide a valid information
-                            </CInvalidFeedback>
-                          )}
-                        </CFormGroup>
-                      </>
-                    )}
-                  </Field>
-                })}
-                
+                            {meta.touched && meta.error && (
+                              <CInvalidFeedback className="help-block">
+                                Please provide a valid information
+                              </CInvalidFeedback>
+                            )}
+                          </CFormGroup>
+                        </>
+                      )}
+                    </Field>
+                  })}
+                </CModalBody>
+                <CModalFooter>
+                  <CButton color="primary" type="submit">{selectedData === null ? 'Create' : 'Update'}</CButton>{' '}
+                  {
+                    !!selectedData &&
+                    <>
+                      <CButton color="danger" onClick={() => {
+                        onDelete(selectedData)
+                        setModal(false)
+                      }}>Delete</CButton>{' '}
+                    </>
+                  }
+                  <CButton color="secondary" onClick={() => {
+                    setModal(false)
+                    setSelectedData(null)
+                  }}>Cancel
+                  </CButton>
+                </CModalFooter>
+
               </form>
-            )}
-          />
-        </CModalBody>
-        <CModalFooter>
-          <CButton color="primary" onClick={() => {
-            //setLarge(!large)
-          }}>{selectedData === null ? 'Create': 'Update'}</CButton>{' '}
-          {
-            !!selectedData && 
-            <>
-            <CButton color="danger" onClick={() => {
-              onDelete(selectedData)
-            }}>Delete</CButton>{' '}
             </>
-          }
-          <CButton color="secondary" onClick={() => {
-            setModal(false)
-          }}>Cancel
-          </CButton>
-        </CModalFooter>
+          )}
+        />
       </CModal>
     </>
   );

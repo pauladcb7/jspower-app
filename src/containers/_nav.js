@@ -50,6 +50,13 @@ const _nav = [
     to: "/report/work-order",
     icon: "cil-notes",
   },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Time Card",
+    to: "/report/time-card",
+    icon: "cil-notes",
+  },
+  
   
   /*{
     _tag: 'CSidebarNavItem',
