@@ -5,6 +5,7 @@ import WorkOrder from "./views/forms/WorkOrder";
 import CircuitDirectoryBusiness from "./views/forms/CircuitDirectoryBusiness";
 import CircuitDirectoryHome from "./views/forms/CircuitDirectoryHome";
 import CircuitDirectorySelector from "./views/forms/CircuitDirectorySelector";
+import WorkOrdersCrud from "./views/crud/WorkOrdersCrud";
 
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -82,6 +83,12 @@ const routes = [
     exact: true,
     name: "Work Order",
     component: WorkOrder,
+  },
+  {
+    path: "/report/work-order",
+    exact: true,
+    name: "Report Work Order",
+    component: WorkOrdersCrud,
   },
   {
     path: "/material-requisition/create",

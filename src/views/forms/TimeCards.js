@@ -371,9 +371,16 @@ const TimeCards = () => {
           </CWidgetIcon>
         </CCol>
 
-        <CCol xs="12" md="6" lg="4" className="m3">
+        <CCol xs="12" md="12" lg="12" className="m3">
           <CCard>
-            <SignaturePad />
+            <CCardBody>
+              <CFormGroup row>
+                <CCol md="12">
+                  <CLabel >Signature</CLabel>
+                  <SignaturePad />
+                </CCol>
+              </CFormGroup>
+            </CCardBody>
           </CCard>
         </CCol>
       </CRow>
