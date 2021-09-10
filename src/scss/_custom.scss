@@ -1,6 +1,26 @@
 // Here you can add other styles
 .esignature-canvas {
   margin: 4px;
+  canvas {
+    height: 180px;
+  }
+  svg, img {
+    max-width: 100%;
+    max-height: 180px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .esignature-canvas {
+    margin: 4px;
+    canvas {
+      height: 250px;
+    }
+    svg, img {
+      max-width: 100%;
+      max-height: 250px;
+    }
+  }
 }
 
 .brand-container {

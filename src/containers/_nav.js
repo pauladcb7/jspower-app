@@ -40,6 +40,23 @@ const _nav = [
     to: "/circuit-directory/selector",
     icon: "cil-notes",
   },
+  {
+    _tag: "CSidebarNavTitle",
+    _children: ["Reports"],
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Work Order",
+    to: "/report/work-order",
+    icon: "cil-notes",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Time Card",
+    to: "/report/time-card",
+    icon: "cil-notes",
+  },
+  
   
   /*{
     _tag: 'CSidebarNavItem',
