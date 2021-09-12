@@ -7,13 +7,15 @@ const initialState = {
 };
 
 const changeState = (state = initialState, { type, ...action }) => {
-  /* switch (type) {
-    case "set":
-      return { ...state, ...rest };
-    default:
-      return state;
-  } */
+  // switch (type) {
+  //   case "set":
+  //     return { ...state, ...rest };
+  //   default:
+  //     return state;
+  // }
   switch (type) {
+    case "set":
+      return { ...state, ...action };
     case "ADD_TO_BASKET":
       return {
         ...state,

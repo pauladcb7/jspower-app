@@ -32,12 +32,15 @@ import {
   CSwitch,
   CLink,
   CWidgetIcon,
+  CElementCover,
+  CSpinner,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
 import SignaturePad from "src/components/SiganturePadPaula";
 import moment from "moment";
 
+import { useToasts } from "react-toast-notifications";
 import { api } from "../../helpers/api";
 import {
   JOB_LOCATIONS,
@@ -50,16 +53,14 @@ import {
 import { useSelector, useStore } from "react-redux";
 
 const TimeCards = () => {
+  const state = useSelector((state) => {
+    return state.state;
+  });
+  const { addToast } = useToasts();
+
   const [currentDate, setCurrentDate] = useState(
     moment().format("MMMM Do YYYY")
   );
-
-  const state = useSelector((state) => {
-    console.log(state);
-    debugger;
-    return state.state;
-  });
-
   const [jobName, setJobName] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [otherJobLocation, setOtherJobLocation] = useState("");
@@ -131,8 +132,17 @@ const TimeCards = () => {
   const [lunchOutAddress, setLunchOutAddress] = React.useState("");
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
   const [otherOption, setOtherOption] = React.useState(false);
-
+  const [enableLogs, setEnableLogs] = useState([true, true, true, true]);
+  const [timeLogDisabledClass, setTimeLogDisabledClass] = useState([
+    null,
+    null,
+    null,
+    null,
+  ]);
   useEffect(() => {
+    addToast("Clock In Time Registered", {
+      appearance: "success",
+    });
     api
       .get(GET_TIME_CARD_BY_DAY, {
         params: {
@@ -142,16 +152,23 @@ const TimeCards = () => {
       })
       .then((result) => {
         console.log("time card info is ", result);
-        setJobName(result?.job_name);
-        setJobDescription(result?.job_desription);
-        setClockInTime(result?.clock_in);
-        setClockInAddress(result?.clock_in_gps);
-        setClockOutTime(result?.clock_out);
-        setClockOutAddress(result?.clock_out_gps);
-        setLunchInTime(result?.lunch_in);
-        setLunchInAddress(result?.lunch_in_gps);
-        setLunchOutTime(result?.lunch_out);
-        setLunchOutAddress(result?.lunch_out_gps);
+        setTimeCardId(result[0]?.id);
+        setJobName(result[0]?.job_name);
+        setJobDescription(result[0]?.job_desription);
+        setClockInTime(() => {
+          let time = result[0]?.clock_in;
+          if (time != "") {
+            toggleMulti("clockIn");
+            return time;
+          }
+        });
+        setClockInAddress(result[0]?.clock_in_gps);
+        setClockOutTime(result[0]?.clock_out);
+        setClockOutAddress(result[0]?.clock_out_gps);
+        setLunchInTime(result[0]?.lunch_in);
+        setLunchInAddress(result[0]?.lunch_in_gps);
+        setLunchOutTime(result[0]?.lunch_out);
+        setLunchOutAddress(result[0]?.lunch_out_gps);
 
         api
           .get(JOB_LOCATIONS)
@@ -164,7 +181,7 @@ const TimeCards = () => {
       .catch(function (error) {
         console.error(error);
       });
-  }, [checkedJobLocations]);
+  }, []);
 
   const handleChange = (event) => {
     // updating an object instead of a Map
@@ -176,67 +193,98 @@ const TimeCards = () => {
   };
 
   const logTime = (type) => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      let lng = position.coords.longitude;
-      let lat = position.coords.latitude;
-      fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${process.env.REACT_APP_API_KEY}`,
-        {
-          method: "GET",
-          headers: {},
-        }
-      )
-        .then((response) => response.json())
-        .then((response) => {
-          let address = response.results[0]?.formatted_address;
-          let currentTime = moment().format("hh:mm A");
-          console.log(moment().format("YYYY-MM-DD"));
+    let pos = null;
+    if (type == "clockIn") pos = 0;
+    else if (type == "lunchIn") pos = 1;
+    else if (type == "lunchOut") pos = 2;
+    else if (type == "clockOut") pos = 3;
 
-          if (type == "clockIn") {
-            api.post(CLOCK_IN, {
-              params: {
-                time_card_id: timeCardId || "-1",
-                user_email: "example@email.com",
-                entry_date: "2021-09-08",
-                lunch_out_time: "2021-10-07T01:41:10.436Z",
-                lunch_out_gps: "2020 Oakdale Dr, Modesto, CA, USA",
-                lunch_out_lat: "-33.25485545",
-                lunch_out_lng: "12.25687465",
-              },
-            });
-            setClockInAddress(address);
-            setClockInLatitude(lat);
-            setClockInLongitude(lng);
-            setClockInTime(currentTime);
-            console.log("clock in time ", currentTime);
-          } else if (type == "clockOut") {
-            setClockOutAddress(address);
-            setClockOutLatitude(lat);
-            setClockOutLongitude(lng);
-            setClockOutTime(currentTime);
-          } else if (type == "lunchIn") {
-            setLunchInAddress(address);
-            setLunchInLatitude(lat);
-            setLunchInLongitude(lng);
-            setLunchInTime(currentTime);
-            console.log("lunch in time ", currentTime);
-          } else if (type == "lunchOut") {
-            setLunchOutAddress(address);
-            setLunchOutLatitude(lat);
-            setLunchOutLongitude(lng);
-            setLunchOutTime(currentTime);
+    if (enableLogs[pos] != false) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var lng = position.coords.longitude;
+        var lat = position.coords.latitude;
+        fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${process.env.REACT_APP_API_KEY}`,
+          {
+            method: "GET",
+            headers: {},
           }
-        })
-        .catch((err) => console.log(err));
-    });
-  };
-  const handleChangeOtherOpt = (event) => {
-    // updating an object instead of a Map
-    setCollapseOther({
-      ...collapseOther,
-      [event.target.name]: event.target.checked,
-      [event.target.name]: event.target.checked,
-    });
+        )
+          .then((response) => response.json())
+          .then((response) => {
+            let address = response.results[0]?.formatted_address;
+            let currentTime = moment().format("hh:mm A");
+            console.log(moment().format("YYYY-MM-DD"));
+
+            if (type == "clockIn") {
+              api
+                .post(CLOCK_IN, {
+                  data: {
+                    time_card_id: timeCardId || "-1",
+                    user_email: "example@email.com",
+                    entry_date: moment().format("YYYY-MM-DD"),
+                    clock_in_time: currentTime,
+                    clock_in_gps: address,
+                    clock_in_lat: lat,
+                    clock_in_lng: lng,
+                  },
+                })
+                .then(() => {
+                  toggleMulti(type);
+                  addToast("Clock In Time Registered", {
+                    appearance: "success",
+                  });
+                })
+                .catch((error) => {
+                  console.log(error);
+                  addToast("Something went wrong while Cloking In", {
+                    appearance: "error",
+                  });
+                });
+              setClockInAddress(address);
+              setClockInLatitude(lat);
+              setClockInLongitude(lng);
+              setClockInTime(currentTime);
+              console.log("clock in time ", currentTime);
+            } else if (type == "clockOut") {
+              api
+                .post(CLOCK_OUT, {
+                  data: {
+                    time_card_id: timeCardId || "-1",
+                    user_email: "example@email.com",
+                    entry_date: moment().format("YYYY-MM-DD"),
+                    clock_in_time: currentTime,
+                    clock_in_gps: address,
+                    clock_in_lat: lat,
+                    clock_in_lng: lng,
+                  },
+                })
+                .then(() => {
+                  toggleMulti(type);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+              setClockOutAddress(address);
+              setClockOutLatitude(lat);
+              setClockOutLongitude(lng);
+              setClockOutTime(currentTime);
+            } else if (type == "lunchIn") {
+              setLunchInAddress(address);
+              setLunchInLatitude(lat);
+              setLunchInLongitude(lng);
+              setLunchInTime(currentTime);
+              console.log("lunch in time ", currentTime);
+            } else if (type == "lunchOut") {
+              setLunchOutAddress(address);
+              setLunchOutLatitude(lat);
+              setLunchOutLongitude(lng);
+              setLunchOutTime(currentTime);
+            }
+          })
+          .catch((err) => console.log(err));
+      });
+    }
   };
 
   const handleotherJobLocationChange = (event) => {
@@ -246,23 +294,35 @@ const TimeCards = () => {
 
   const toggleMulti = (type) => {
     let newCollapse = collapseMulti.slice();
+    let newEnableLogs = enableLogs.slice();
+    let newTimeLogDisabledClass = timeLogDisabledClass.slice();
     switch (type) {
       case "clockIn":
         newCollapse[0] = true;
+        newEnableLogs[0] = false;
+        newTimeLogDisabledClass[0] = "disabledTimeLog";
         break;
       case "lunchIn":
         newCollapse[1] = true;
+        newEnableLogs[1] = false;
+        newTimeLogDisabledClass[1] = "disabledTimeLog";
         break;
       case "lunchOut":
         newCollapse[2] = true;
+        newEnableLogs[2] = false;
+        newTimeLogDisabledClass[2] = "disabledTimeLog";
         break;
       case "clockOut":
         newCollapse[3] = true;
+        newEnableLogs[3] = false;
+        newTimeLogDisabledClass[3] = "disabledTimeLog";
         break;
 
       default:
     }
     setCollapseMulti(newCollapse);
+    setEnableLogs(newEnableLogs);
+    setTimeLogDisabledClass(newTimeLogDisabledClass);
   };
   return (
     <>
@@ -407,19 +467,26 @@ const TimeCards = () => {
             }
             color="danger"
             iconPadding={false}
-            className="logButton"
+            className={timeLogDisabledClass[0]}
+            id="clockInCard"
           >
             <CCol
               md="12"
               className="timeLog"
               onClick={() => {
-                toggleMulti("clockIn");
                 logTime("clockIn");
+                // toggleMulti("clockIn");
               }}
             >
               <CIcon width={32} name="cil-clock" /> <p>Clock In</p>
             </CCol>
           </CWidgetIcon>
+          {/* <CElementCover
+            boundaries={[{ sides: ["top", "left"], query: "#clockInCard" }]}
+            opacity="0.8"
+          >
+            <CSpinner size="5xl" color="success" />
+          </CElementCover> */}
         </CCol>
         <CCol xs="12" sm="6" lg="6">
           <CWidgetIcon
@@ -440,13 +507,13 @@ const TimeCards = () => {
             }
             color="dark"
             iconPadding={false}
-            className="logButton"
+            className={timeLogDisabledClass[1]}
           >
             <CCol
               md="12"
               className="timeLog"
               onClick={() => {
-                toggleMulti("lunchIn");
+                //toggleMulti("lunchIn");
                 logTime("lunchIn");
               }}
             >
@@ -474,7 +541,7 @@ const TimeCards = () => {
             }
             color="dark"
             iconPadding={false}
-            className="logButton"
+            className={timeLogDisabledClass[2]}
           >
             <CCol
               md="12"
@@ -509,7 +576,7 @@ const TimeCards = () => {
             }
             color="danger"
             iconPadding={false}
-            className="logButton"
+            className={timeLogDisabledClass[3]}
           >
             <CCol
               md="12"
