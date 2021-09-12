@@ -43,6 +43,29 @@ body {
   margin-bottom: 8px !important;
 }
 
+.card-header {
+  border-color: #e55353;
+  background-color: #000000d7;
+  color: white;
+}
+
+.card-footer {
+  border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+  border-color: #e55353;
+}
+
+.c-sidebar {
+  color: #fff;
+  background: #000000c7;
+}
+
+.c-main {
+  background: linear-gradient(110deg, #e55353 40%, #000 40%);
+}
+.c-sidebar-nav-icon {
+  color: red !important;
+}
+
 .container-fluid {
   padding-right: 10px !important;
   padding-left: 10px !important;

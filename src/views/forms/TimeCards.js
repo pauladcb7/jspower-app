@@ -39,12 +39,31 @@ import SignaturePad from "src/components/SiganturePadPaula";
 import moment from "moment";
 
 import { api } from "../../helpers/api";
-import { JOB_LOCATIONS } from "../../helpers/urls/index";
+import {
+  JOB_LOCATIONS,
+  GET_TIME_CARD_BY_DAY,
+  CLOCK_IN,
+  CLOCK_OUT,
+  LUNCH_IN,
+  LUNCH_OUT,
+} from "../../helpers/urls/index";
+import { useSelector, useStore } from "react-redux";
 
 const TimeCards = () => {
   const [currentDate, setCurrentDate] = useState(
     moment().format("MMMM Do YYYY")
   );
+
+  const state = useSelector((state) => {
+    console.log(state);
+    debugger;
+    return state.state;
+  });
+
+  const [jobName, setJobName] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
+  const [otherJobLocation, setOtherJobLocation] = useState("");
+  const [timeCardId, setTimeCardId] = useState("");
 
   const [collapsed, setCollapsed] = React.useState(true);
   const [collapseOther, setCollapseOther] = React.useState(false);
@@ -55,7 +74,43 @@ const TimeCards = () => {
     false,
     false,
   ]);
-  let [jobLocations, setJobLocations] = React.useState([]);
+  const [jobLocations, setJobLocations] = React.useState([
+    {
+      id: 1,
+      value: "Ceres",
+      code: "CERES",
+    },
+    {
+      id: 2,
+      value: "Frito Lay",
+      code: "FRITO_LAY",
+    },
+    {
+      id: 4,
+      value: "Lodi Bowling",
+      code: "LODI_BOWLING",
+    },
+    {
+      id: 3,
+      value: "Modesto",
+      code: "MODESTO",
+    },
+    {
+      id: 7,
+      value: "PepsiCo",
+      code: "PEPSICO",
+    },
+    {
+      id: 5,
+      value: "Sensient Livingston",
+      code: "SENSIENT_LIVINGSTON",
+    },
+    {
+      id: 6,
+      value: "Sensient Turlock",
+      code: "SENSIENT_TURLOCK",
+    },
+  ]);
   const [latitude, setLatitude] = React.useState(null);
   const [longitude, setLongitude] = React.useState(null);
   const [clockInTime, setClockInTime] = useState("");
@@ -78,14 +133,35 @@ const TimeCards = () => {
   const [otherOption, setOtherOption] = React.useState(false);
 
   useEffect(() => {
-    console.log(moment().format("dddd"));
     api
-      .get(JOB_LOCATIONS)
-      .then((data) => {
-        setJobLocations(data);
+      .get(GET_TIME_CARD_BY_DAY, {
+        params: {
+          user_email: "example@email.com",
+          entry_date: moment().format("YYYY-MM-DD"),
+        },
       })
+      .then((result) => {
+        console.log("time card info is ", result);
+        setJobName(result?.job_name);
+        setJobDescription(result?.job_desription);
+        setClockInTime(result?.clock_in);
+        setClockInAddress(result?.clock_in_gps);
+        setClockOutTime(result?.clock_out);
+        setClockOutAddress(result?.clock_out_gps);
+        setLunchInTime(result?.lunch_in);
+        setLunchInAddress(result?.lunch_in_gps);
+        setLunchOutTime(result?.lunch_out);
+        setLunchOutAddress(result?.lunch_out_gps);
+
+        api
+          .get(JOB_LOCATIONS)
+          .then((data) => {
+            setJobLocations(data);
+          })
+          .then(() => {});
+      })
+
       .catch(function (error) {
-        debugger;
         console.error(error);
       });
   }, [checkedJobLocations]);
@@ -114,8 +190,20 @@ const TimeCards = () => {
         .then((response) => {
           let address = response.results[0]?.formatted_address;
           let currentTime = moment().format("hh:mm A");
-          console.log(type);
+          console.log(moment().format("YYYY-MM-DD"));
+
           if (type == "clockIn") {
+            api.post(CLOCK_IN, {
+              params: {
+                time_card_id: timeCardId || "-1",
+                user_email: "example@email.com",
+                entry_date: "2021-09-08",
+                lunch_out_time: "2021-10-07T01:41:10.436Z",
+                lunch_out_gps: "2020 Oakdale Dr, Modesto, CA, USA",
+                lunch_out_lat: "-33.25485545",
+                lunch_out_lng: "12.25687465",
+              },
+            });
             setClockInAddress(address);
             setClockInLatitude(lat);
             setClockInLongitude(lng);
@@ -212,6 +300,7 @@ const TimeCards = () => {
                         <CInput
                           id="jobName"
                           placeholder="Enter the Job Name"
+                          value={jobName}
                           required
                         />
                       </CFormGroup>
@@ -249,6 +338,7 @@ const TimeCards = () => {
                               onChange={(e) => {
                                 setOtherOption(e.target.checked);
                               }}
+                              value={otherOption}
                             />
                             <CLabel
                               variant="custom-checkbox"
@@ -261,6 +351,7 @@ const TimeCards = () => {
                             <CInput
                               id="otherJobLocation"
                               placeholder="Enter Job Location"
+                              value={otherJobLocation}
                               required
                             />
                           </CCollapse>
@@ -277,6 +368,7 @@ const TimeCards = () => {
                           <CTextarea
                             name="textarea-input"
                             id="jobDescription"
+                            value={jobDescription}
                             rows="3"
                             placeholder="Enter the type of work in progress..."
                           />
@@ -432,7 +524,9 @@ const TimeCards = () => {
             </CCol>
           </CWidgetIcon>
         </CCol>
-        {moment().format("dddd") == "Friday" ? (
+        {moment().format("dddd") == "Friday" ||
+        moment().format("dddd") == "Saturday" ||
+        moment().format("dddd") == "Sunday" ? (
           <CCol xs="12" md="12" lg="12" className="m3">
             <CCard>
               <CCardBody>

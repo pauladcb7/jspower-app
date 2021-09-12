@@ -109,7 +109,7 @@ const CircuitDirectorySelector = () => {
                 history.push("/circuit-directory-business/create");
               }}
               block
-              color="danger"
+              color="dark"
               type="button"
               size="lg"
             >
@@ -120,7 +120,7 @@ const CircuitDirectorySelector = () => {
                 history.push("/circuit-directory-home/create");
               }}
               block
-              color="danger"
+              color="dark"
               type="button"
               size="lg"
             >
