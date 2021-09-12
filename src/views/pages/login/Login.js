@@ -12,11 +12,15 @@ import {
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
+  CInvalidFeedback,
   CRow,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBasketTotal } from "src/reducer/reducer";
+import { Field, Form } from "react-final-form";
+
+const required = (value) => (value ? undefined : "Required");
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -38,12 +42,19 @@ const Login = () => {
     });
   }
 
-  const singOut = () => {
+  function onSubmit (e) {
     dispatch({
       type: "SET_USER",
-      user: null,
+      user: {
+        name: "Eric",
+        rol: e.username === 'eric' ? 'admin': 'employee'
+      },
     });
-  };
+  }
+
+  function validate() {
+
+  }
 
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
@@ -53,69 +64,88 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm
-                    onClick={() => {
-                      console.log(1);
-                    }}
-                  >
-                    <h1>Login {user?.name}</h1>
-                    <a
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        console.log(2);
-                      }}
-                      href="https://google.com"
-                      target="_blank"
-                    >
-                      google
-                    </a>
-                    <p className="text-muted">Sign In to your account</p>
-                    <CInputGroup className="mb-3">
-                      <CInputGroupPrepend>
-                        <CInputGroupText>
-                          <CIcon name="cil-user" />
-                        </CInputGroupText>
-                      </CInputGroupPrepend>
-                      <CInput
-                        type="text"
-                        placeholder="Username"
-                        autoComplete="username"
-                      />
-                    </CInputGroup>
-                    <CInputGroup className="mb-4">
-                      <CInputGroupPrepend>
-                        <CInputGroupText>
-                          <CIcon name="cil-lock-locked" />
-                        </CInputGroupText>
-                      </CInputGroupPrepend>
-                      <CInput
-                        type="password"
-                        placeholder="Password"
-                        autoComplete="current-password"
-                      />
-                    </CInputGroup>
-                    <CRow>
-                      <CCol xs="6">
-                        <CButton
-                          onClick={signIn}
-                          color="primary"
-                          className="px-4"
-                        >
-                          Login
-                        </CButton>
-                      </CCol>
-                      <CCol xs="6" className="text-right">
-                        <CButton
-                          onClick={singOut}
-                          color="link"
-                          className="px-0"
-                        >
-                          Forgot password?
-                        </CButton>
-                      </CCol>
-                    </CRow>
-                  </CForm>
+                  <Form
+                    onSubmit={onSubmit}
+                    validate={validate}
+                    render={({ handleSubmit }) => (
+                      <CForm
+                        onSubmit={handleSubmit}
+                      >
+                        <h1>Login</h1>
+                        <p className="text-muted">Sign In to your account</p>
+                        <CInputGroup className="mb-3">
+                          <CInputGroupPrepend>
+                            <CInputGroupText>
+                              <CIcon name="cil-user" />
+                            </CInputGroupText>
+                          </CInputGroupPrepend>
+                          
+                          <Field name="username" validate={required}>
+                            {({ input, meta }) => (
+                              <>
+                                <CInput
+                                  type="text"
+                                  placeholder="Username"
+                                  autoComplete="username"
+                                  {...input}
+                                  invalid={meta.invalid && meta.touched}
+                                />
+                                {meta.touched && meta.error && (
+                                  <CInvalidFeedback className="help-block">
+                                    Please provide a valid information
+                                  </CInvalidFeedback>
+                                )}
+                              </>
+                            )}
+                          </Field>
+                        </CInputGroup>
+                        <CInputGroup className="mb-4">
+                          <CInputGroupPrepend>
+                            <CInputGroupText>
+                              <CIcon name="cil-lock-locked" />
+                            </CInputGroupText>
+                          </CInputGroupPrepend>
+                          <Field name="password" validate={required}>
+                            {({ input, meta }) => (
+                              <>
+                                <CInput
+                                  type="password"
+                                  placeholder="Password"
+                                  autoComplete="current-password"
+                                  {...input}
+                                  invalid={meta.invalid && meta.touched}
+                                />
+                                {meta.touched && meta.error && (
+                                  <CInvalidFeedback className="help-block">
+                                    Please provide a valid information
+                                  </CInvalidFeedback>
+                                )}
+                              </>
+                            )}
+                          </Field>
+                        </CInputGroup>
+                        <CRow>
+                          <CCol xs="6">
+                            <CButton
+                              type="submit"
+                              color="primary"
+                              className="px-4"
+                            >
+                              Login
+                            </CButton>
+                          </CCol>
+                          <CCol xs="6" className="text-right">
+                            <CButton
+                              color="link"
+                              className="px-0"
+                            >
+                              Forgot password?
+                            </CButton>
+                          </CCol>
+                        </CRow>
+                      </CForm>
+                    )}
+                  />
                 </CCardBody>
               </CCard>
               <CCard

@@ -12,7 +12,11 @@ import { icons } from "./assets/icons";
 import { Provider } from "react-redux";
 import store from "./store";
 
-React.icons = icons;
+import("./assets/icons").then(({ icons }) => {
+  //debugger
+  //React.icons
+  React.icons = icons;
+});
 
 ReactDOM.render(
   <Provider store={store}>
