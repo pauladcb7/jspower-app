@@ -1,9 +1,18 @@
-import React, { useState } from "react";
-import { CButton, CDataTable, CFooter, CFormGroup, CInput, CInputRadio, CInvalidFeedback, CLabel, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle, CTextarea } from "@coreui/react";
+import React, { useEffect, useState } from "react";
+import { CButton, CDataTable, CFormGroup, CInput, CInputRadio, CInvalidFeedback, CLabel, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle, CTextarea } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { Field, Form } from "react-final-form";
-import SignaturePad from "signature_pad";
 import ESignature from "src/components/SiganturePadPaula";
+import { FieldArray ,mu} from "react-final-form-arrays";
+import arrayMutators from 'final-form-arrays'
+
+
+function uuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 const CrudTable = ({
   rows = [
@@ -20,6 +29,7 @@ const CrudTable = ({
       type: 'text',
       sorter: false,
       filter: false,
+      hide:false
     }
   ],
   title='',
@@ -27,10 +37,12 @@ const CrudTable = ({
   onDelete = () => { },
   onCreate = () => { },
   onRead = () => { },
-  onRefreshTable
+  onRefreshTable = () => { }
 }) => {
   const [modal, setModal] = useState(false);
+  const [reRender, setRerender] = useState(uuid());
   const [selectedData, setSelectedData] = useState(null);
+  const [loading,  setLoading] = useState(false)
   function onSubmit(newData) {
     if (selectedData) {
       onEdit(selectedData, newData)
@@ -39,9 +51,63 @@ const CrudTable = ({
     }
     setModal(false)
   }
+
+  useEffect(() => {
+    setRerender(uuid())
+  }, [ modal])
+
   function validate() {
 
   }
+
+  async function downloadXls() {
+    const XLSX = (await import('xlsx')).default;
+
+    /* var data = [
+      { name: "Barack Obama", pres: 44 },
+      { name: "Donald Trump", pres: 45 }
+    ]; */
+    const data =rows.map((row) => {
+      return metadata.reduce((previous,current) => {
+        if(!current.hide){
+          previous.push(row[current.key])
+        }
+        return previous
+      },[])
+    })
+    //metadata
+    var heading = [
+      metadata.reduce((previous,current) => {
+        if(!current.hide){
+          previous.push(current.label)
+        }
+        return previous
+      },[])
+    ];
+    const ws = XLSX.utils.book_new();
+    XLSX.utils.sheet_add_aoa(ws, heading);
+    XLSX.utils.sheet_add_aoa(ws, data, {
+      origin: 'A2',
+    });
+    
+    function fitToColumn(arrayOfArray) {
+      return arrayOfArray[0].map((a, i) => ({ wch: Math.max(...arrayOfArray.map(a2 => a2[i] ? a2[i].toString().length : 0)) + 5 }));
+    }
+    var wholeRange = XLSX.utils.decode_range(ws["!ref"]);
+    var range = XLSX.utils.encode_range({
+      c: wholeRange.s.c,
+      r: 0
+    }, {
+      c: wholeRange.e.c,
+      r: 0
+    });
+    ws['!autofilter']={ref:range};
+    ws['!cols'] = fitToColumn([...heading, ...[data[0]]]);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet");
+    XLSX.writeFile(wb, "sheetjs.xlsx");
+  }
+
   return (
     <>
 
@@ -55,9 +121,36 @@ const CrudTable = ({
         }}
       >
         <CIcon size="lg" name="cil-plus" /> Add Row
+      </CButton>{' '}
+      <CButton
+        playsInline
+        color="dark"
+        type="button"
+        onClick={() => {
+          downloadXls()
+        }}
+      >
+        <CIcon size="lg" name="cil-cloud-download" /> 
+      </CButton>{' '}
+      <CButton
+        playsInline
+        color="dark"
+        type="button"
+        onClick={() => {
+          setLoading(true)
+          setTimeout(() => {
+            setLoading(false)
+          }, 1200) 
+          onRefreshTable()
+          // TODO: Only to DEMO show like a blink
+
+        }}
+      >
+        <CIcon size="lg" name="cil-sync" /> 
       </CButton>
       <CDataTable
         striped
+        loading={loading}
         hover
         items={rows}
         tableFilter
@@ -116,8 +209,14 @@ const CrudTable = ({
         <Form
           onSubmit={onSubmit}
           initialValues={selectedData || {}}
+          key={reRender}
+          mutators={{
+            ...arrayMutators
+          }}
           validate={validate}
-          render={({ handleSubmit }) => (
+          render={({ handleSubmit ,form: {
+            mutators: { push, pop }
+          }}) => (
             <>
               <form onSubmit={handleSubmit}>
                 <CModalBody>
@@ -129,7 +228,7 @@ const CrudTable = ({
                             <CLabel htmlFor={metadataRow.key}>{metadataRow.label}</CLabel>
                             {
                               metadataRow.type === 'signature' ?
-                                <ESignature 
+                                <ESignature
                                   svg={input.value}
                                   onChange={input.onChange}
                                 ></ESignature>
@@ -155,6 +254,17 @@ const CrudTable = ({
                                 : null
                             }
                             {
+                              metadataRow.type === 'datetime' ?
+                                <CInput
+                                  {...input}
+                                  type='datetime-local'
+                                  id={metadataRow.key}
+                                  invalid={meta.invalid && meta.touched}
+                                />
+                                : null
+                            }
+                            
+                            {
                               metadataRow.type === 'time' ?
                                 <CInput
                                   {...input}
@@ -173,6 +283,82 @@ const CrudTable = ({
                                   rows="9"
                                   invalid={meta.invalid && meta.touched}
                                 />
+                                : null
+                            }
+                            {
+                              metadataRow.type === 'array' ?
+                                <>
+                                <FieldArray name={metadataRow.key}
+                                >
+                                  {({ fields:items }) => (
+                                    <div>
+                                      <CDataTable
+                                        items={items.value}
+                                        fields={[
+                                          ...metadataRow.shape.filter(function (m) {
+                                            return !m.hide
+                                          })
+                                        ]}
+                                        striped
+                                        scopedSlots={
+                                          metadataRow.shape.reduce(function (prev,curr) {
+                                            prev[curr.key] = (item, index) => {
+                                              return <Field name={`${metadataRow.key}.${index}.${curr.key}`}>
+                                              {({ input:inputArray, meta }) => (
+                                                <>
+                                                  <td
+                                                    className="py-2"
+                                                    style={{ minWidth: 120 }}
+                                                  >
+                                                    <CFormGroup>
+                                                      {curr.type === 'idNumeric' &&
+                                                        (index + 1)
+                                                      }
+                                                      {
+                                                        curr.type === 'text' ?
+                                                          <CInput
+                                                            {...inputArray}
+                                                            id={metadataRow.key}
+                                                            invalid={meta.invalid && meta.touched}
+                                                          />
+                                                          : null
+                                                      }
+                                                    </CFormGroup>
+                                                  </td>
+                                                </>
+                                              )}
+                                              </Field>
+                                            }
+                                            return prev
+                                          }, {})
+                                        }
+                                      />
+                                      <CButton
+                                        block
+                                        color="dark"
+                                        type="button"
+                                        onClick={() => {
+                                          push(metadataRow.key, {})
+                                        }}
+                                      >
+                                        <CIcon size="lg" name="cil-plus" /> Add Row
+                                      </CButton> 
+                                    </div>
+                                  )}
+                                </FieldArray>
+                                  {/* <CButton
+                                    block
+                                    color="dark"
+                                    type="button"
+                                    onClick={() => {
+                                      const rowsT = [...rows];
+                                      rowsT.push({});
+                                      setRow(rowsT);
+                                    }}
+                                  >
+                                    <CIcon size="lg" name="cil-plus" /> Add Row
+                                  </CButton> */}
+                                </>
                                 : null
                             }
                             {

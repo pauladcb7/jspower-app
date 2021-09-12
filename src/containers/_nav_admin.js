@@ -1,7 +1,7 @@
 import React from "react";
 import CIcon from "@coreui/icons-react";
 
-const _nav = [
+const _nav_admin = [
   {
     _tag: "CSidebarNavItem",
     name: "Dashboard",
@@ -14,32 +14,32 @@ const _nav = [
   },
   {
     _tag: "CSidebarNavTitle",
-    _children: ["Forms"],
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Time Cards",
-    to: "/timecards/create",
-    icon: "cil-clock",
+    _children: ["Reports"],
   },
   {
     _tag: "CSidebarNavItem",
     name: "Work Order",
-    to: "/work-order/create",
+    to: "/report/work-order",
+    icon: "cil-notes",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Time Card",
+    to: "/report/time-card",
     icon: "cil-notes",
   },
   {
     _tag: "CSidebarNavItem",
     name: "Material Requisition",
-    to: "/material-requisition/create",
+    to: "/report/material-requisition",
     icon: "cil-notes",
   },
   {
     _tag: "CSidebarNavItem",
     name: "Circuit Directory",
-    to: "/circuit-directory/selector",
+    to: "/report/circuit-directory",
     icon: "cil-notes",
-  }
+  },
   
   
   /*{
@@ -335,4 +335,4 @@ const _nav = [
   },*/
 ];
 
-export default _nav;
+export default _nav_admin;

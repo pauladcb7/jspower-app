@@ -7,6 +7,8 @@ import CircuitDirectoryHome from "./views/forms/CircuitDirectoryHome";
 import CircuitDirectorySelector from "./views/forms/CircuitDirectorySelector";
 import WorkOrdersCrud from "./views/crud/WorkOrdersCrud";
 import TimeCardCrud from "./views/crud/TimeCardCrud";
+import MaterialRequisitionCrud from "./views/crud/MaterialRequisitionCrud";
+import CircuitDirectoryCrud from "./views/crud/CircuitDirectoryCrud";
 
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -55,7 +57,6 @@ const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const CoreUIIcons = React.lazy(() =>
   import("./views/icons/coreui-icons/CoreUIIcons")
 );
-const Flags = React.lazy(() => import("./views/icons/flags/Flags"));
 const Brands = React.lazy(() => import("./views/icons/brands/Brands"));
 const Alerts = React.lazy(() => import("./views/notifications/alerts/Alerts"));
 const Badges = React.lazy(() => import("./views/notifications/badges/Badges"));
@@ -96,6 +97,18 @@ const routes = [
     exact: true,
     name: "Time Card Order",
     component: TimeCardCrud,
+  },
+  {
+    path: "/report/material-requisition",
+    exact: true,
+    name: "Material Requisition",
+    component: MaterialRequisitionCrud,
+  },
+  {
+    path: "/report/circuit-directory",
+    exact: true,
+    name: "Circuit Directory",
+    component: CircuitDirectoryCrud,
   },
   
   {
@@ -163,7 +176,6 @@ const routes = [
   { path: "/charts", name: "Charts", component: Charts },
   { path: "/icons", exact: true, name: "Icons", component: CoreUIIcons },
   { path: "/icons/coreui-icons", name: "CoreUI Icons", component: CoreUIIcons },
-  { path: "/icons/flags", name: "Flags", component: Flags },
   { path: "/icons/brands", name: "Brands", component: Brands },
   {
     path: "/notifications",

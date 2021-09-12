@@ -8,8 +8,16 @@ import {
   CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { useDispatch } from "react-redux";
 
 const TheHeaderDropdown = () => {
+  const dispatch = useDispatch();
+  function logout () {
+    dispatch({
+      type: 'LOG_OUT'
+    })
+  } 
+
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
@@ -32,6 +40,12 @@ const TheHeaderDropdown = () => {
         <CDropdownItem>
           <CIcon name="cil-settings" className="mfe-2" />
           Settings
+        </CDropdownItem>
+        <CDropdownItem
+          onClick={logout}
+        >
+          <CIcon name="cil-account-logout" className="mfe-2" />
+          Log out
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

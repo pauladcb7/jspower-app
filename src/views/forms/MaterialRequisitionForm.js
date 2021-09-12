@@ -254,7 +254,9 @@ const MaterialRequisitionForm = () => {
                               },
                               item: (item, index) => {
                                 return (
-                                  <td className="py-2">
+                                  <td className="py-2"
+                                    style={{ minWidth: 120 }}
+                                  >
                                     <CInput
                                       type="text"
                                       placeholder="Description"

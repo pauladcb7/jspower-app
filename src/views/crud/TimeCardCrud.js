@@ -104,7 +104,7 @@ const TimeCardCrud = () => {
       id: 1,
       jobName: ' Job Name',
       jobLocation: 'Job Location',
-      workType: 'WorkType',
+      jobDescription: 'jobDescription',
       clockIn: '12:00',
       clockIn: '13:00',
       lunchIn: '14:00',
@@ -153,13 +153,12 @@ const TimeCardCrud = () => {
       
     },
     {
-      key: 'workType',
-      label: 'Type of work',
+      key: 'jobDescription',
+      label: 'Job Description',
       type: 'textarea',
       sorter: false,
       filter: false,
       _style: { minWidth: '190px'},
-      
     },
     {
       key: 'clockIn',
@@ -168,16 +167,30 @@ const TimeCardCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: '100px'},
-      
     },
     {
-      key: 'clockIn',
+      key: 'clockInGps',
+      label: 'Clock In GPS',
+      type: 'text',
+      sorter: false,
+      filter: false,
+      _style: { minWidth: '100px'},
+    },
+    {
+      key: 'clockOut',
       label: 'Clock Out',
       type: 'time',
       sorter: false,
       filter: false,
       _style: { minWidth: '100px'},
-      
+    },
+    {
+      key: 'clockOutGps',
+      label: 'Clock Out GPS',
+      type: 'text',
+      sorter: false,
+      filter: false,
+      _style: { minWidth: '100px'},
     },
     {
       key: 'lunchIn',
@@ -186,7 +199,14 @@ const TimeCardCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: '100px'},
-      
+    },
+    {
+      key: 'lunchInGps',
+      label: 'Lunch In GPS',
+      type: 'text',
+      sorter: false,
+      filter: false,
+      _style: { minWidth: '100px'},
     },
     {
       key: 'lunchOut',
@@ -195,6 +215,14 @@ const TimeCardCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: '160px'},
+    },
+    {
+      key: 'lunchOutGps',
+      label: 'Lunch out GPS',
+      type: 'text',
+      sorter: false,
+      filter: false,
+      _style: { minWidth: '100px'},
     },
     {
       key: 'signature',

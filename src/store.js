@@ -43,6 +43,11 @@ const changeState = (state = initialState, { type, ...action }) => {
         ...state,
         user: action.user,
       };
+    case "LOG_OUT":
+      return {
+        ...state,
+        user: null,
+      };
     default:
       return state;
   }

@@ -53,7 +53,9 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "sass": "^1.32.8",
-    "signature_pad": "^3.0.0-beta.4"
+    "signature_pad": "^3.0.0-beta.4",
+    "source-map-explorer": "^2.5.2",
+    "xlsx": "^0.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -61,6 +63,7 @@
     "react-scripts": "^4.0.3"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
