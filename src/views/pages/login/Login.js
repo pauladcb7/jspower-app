@@ -38,7 +38,7 @@ const Login = () => {
     dispatch({
       type: "SET_USER",
       user: {
-        name: "Eric",
+        name: "Admin",
       },
     });
   }
@@ -48,7 +48,7 @@ const Login = () => {
       type: "SET_USER",
       user: {
         name: e.username,
-        rol: e.username === "eric" ? "admin" : "employee",
+        rol: e.username === "admin" ? "admin" : "employee",
       },
     });
   }
