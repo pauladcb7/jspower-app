@@ -140,9 +140,6 @@ const TimeCards = () => {
     null,
   ]);
   useEffect(() => {
-    addToast("Clock In Time Registered", {
-      appearance: "success",
-    });
     api
       .get(GET_TIME_CARD_BY_DAY, {
         params: {
@@ -253,29 +250,83 @@ const TimeCards = () => {
                     time_card_id: timeCardId || "-1",
                     user_email: "example@email.com",
                     entry_date: moment().format("YYYY-MM-DD"),
-                    clock_in_time: currentTime,
-                    clock_in_gps: address,
-                    clock_in_lat: lat,
-                    clock_in_lng: lng,
+                    clock_out_time: currentTime,
+                    clock_out_gps: address,
+                    clock_out_lat: lat,
+                    clock_out_lng: lng,
                   },
                 })
                 .then(() => {
                   toggleMulti(type);
+                  addToast("Clock Out Time Registered", {
+                    appearance: "success",
+                  });
                 })
                 .catch((error) => {
                   console.log(error);
+                  addToast("Something went wrong while Cloking Out", {
+                    appearance: "error",
+                  });
                 });
               setClockOutAddress(address);
               setClockOutLatitude(lat);
               setClockOutLongitude(lng);
               setClockOutTime(currentTime);
             } else if (type == "lunchIn") {
+              api
+                .post(LUNCH_IN, {
+                  data: {
+                    time_card_id: timeCardId || "-1",
+                    user_email: "example@email.com",
+                    entry_date: moment().format("YYYY-MM-DD"),
+                    lunch_in_time: currentTime,
+                    lunch_in_gps: address,
+                    lunch_in_lat: lat,
+                    lunch_in_lng: lng,
+                  },
+                })
+                .then(() => {
+                  toggleMulti(type);
+                  addToast("Lunch In Time Registered", {
+                    appearance: "success",
+                  });
+                })
+                .catch((error) => {
+                  console.log(error);
+                  addToast("Something went wrong while Lunching In", {
+                    appearance: "error",
+                  });
+                });
               setLunchInAddress(address);
               setLunchInLatitude(lat);
               setLunchInLongitude(lng);
               setLunchInTime(currentTime);
               console.log("lunch in time ", currentTime);
             } else if (type == "lunchOut") {
+              api
+                .post(LUNCH_OUT, {
+                  data: {
+                    time_card_id: timeCardId || "-1",
+                    user_email: "example@email.com",
+                    entry_date: moment().format("YYYY-MM-DD"),
+                    lunch_out_time: currentTime,
+                    lunch_out_gps: address,
+                    lunch_out_lat: lat,
+                    lunch_out_lng: lng,
+                  },
+                })
+                .then(() => {
+                  toggleMulti(type);
+                  addToast("Lunch Out Time Registered", {
+                    appearance: "success",
+                  });
+                })
+                .catch((error) => {
+                  console.log(error);
+                  addToast("Something went wrong while Lunching Out", {
+                    appearance: "error",
+                  });
+                });
               setLunchOutAddress(address);
               setLunchOutLatitude(lat);
               setLunchOutLongitude(lng);
