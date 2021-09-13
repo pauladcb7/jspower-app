@@ -23,21 +23,33 @@ function useTraceUpdate(props) {
   });
 }
 
+function isVisible(domElement) {
+  return new Promise(resolve => {
+    const o = new IntersectionObserver(([entry]) => {
+      resolve(entry.intersectionRatio === 1);
+      o.disconnect();
+    });
+    o.observe(domElement);
+  });
+}
+
 const ESignature = (props) => {
   const {onReady, svg, onChange = () => {}} = props
   const ref = useRef(null);
   const [signaturePad, setSignaturePad] =useState(null);
   const [sign , setSign] = useState(svg);
+  const [hideImage , setHideImage] = useState(!svg);
   const [currentSign , setCurrentSign] = useState(null);
-  const resizeCanvas = useCallback(() => {
-    if(ref.current && signaturePad) {
+  const resizeCanvas = useCallback((signaturePad2) => {
+    if(ref.current && (signaturePad || signaturePad2)) {
+      
       var ratio =  Math.max(window.devicePixelRatio || 1, 1);
       ref.current.width = ref.current.offsetWidth * ratio;
       ref.current.height = ref.current.offsetHeight * ratio;
       ref.current.getContext("2d").scale(ratio, ratio);
-      signaturePad.clear(); // otherwise isEmpty() might return incorrect value
+      //(signaturePad || signaturePad2).clear(); // otherwise isEmpty() might return incorrect value
     }
-  },[signaturePad])
+  })
   /* function resizeCanvas() {
     if(ref.current && signaturePad) {
       var ratio =  Math.max(window.devicePixelRatio || 1, 1);
@@ -48,31 +60,31 @@ const ESignature = (props) => {
     }
   } */
   useEffect(() => {
-    if(svg !== currentSign) {
-      setSign(svg)
-    }
-    resizeCanvas()
-  }, [svg,currentSign,resizeCanvas])
-  useEffect(() => {
-    //debugger
-    //var canvas = document.querySelector(ref.current);
-    if(ref.current) {
-      var signaturePad = new SignaturePad(ref.current,{
-        onEnd: () => {
-          setCurrentSign(signaturePad.toDataURL("image/svg+xml"))
-          onChange(signaturePad.toDataURL("image/svg+xml"))
+    var signaturePad2 = new SignaturePad(ref.current,{
+      onEnd: () => {
+        //setCurrentSign(signaturePad2.toDataURL())
+        setHideImage(true);
+        onChange(signaturePad2.toDataURL())
+      },
+    });
+    onReady && onReady(signaturePad2)
+    setSignaturePad(signaturePad2);
+    
+    resizeCanvas(signaturePad2)
+    const o = new IntersectionObserver(([entry]) => {
+      if(entry.intersectionRatio > 0) {
+        if(signaturePad2.isEmpty()) {
+          resizeCanvas(signaturePad2)
         }
-      });
-      onReady && onReady(signaturePad)
-      setSignaturePad(signaturePad);
-    }
-
-    window.addEventListener("resize", resizeCanvas);
+      }
+    });
+    o.observe(ref.current);
     resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
     return () => {
+      o.disconnect();
       window.removeEventListener('resize',resizeCanvas)
     }
-    
   }, [ref]);
   /* useEffect(() => {
     if(!sign) {
@@ -88,22 +100,21 @@ const ESignature = (props) => {
       <CRow>
         <CCol xs="12" sm="6" lg="4">
           <CCard className="esignature-canvas">
-            <div style={{
-              display: sign ? 'block': 'none'
-            }} 
-              //dangerouslySetInnerHTML={{__html: hasSign}}
-            >
-              <img alt="sign" src={sign}/>
-            </div>
-            <canvas style={{
-              display: sign ? 'none': 'block'
-            }}  ref={ref} ></canvas>
+            <canvas 
+              style={{
+                display: 'block'
+              }} ref={ref} ></canvas>
+            {
+              !hideImage && <img alt="sign" src={svg} />
+            }
           </CCard>
           <CLabel style={{
             cursor: 'pointer'
           }} onClick={() => {
             setSign(null)
             signaturePad.clear();
+            setHideImage(true)
+            resizeCanvas();
           }}>Clear</CLabel>
         </CCol>
       </CRow>

@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { logo } from './logo'
 import {getPDfInstance} from './pdf'
 
@@ -30,14 +31,14 @@ export function circuitHPrint ({
                                           { text: 'Call us for service!', fontSize: 16,alignment:'center' },
                                           {
                                               image: 'logo',
-                                              fit: [300, 100],alignment:'center'
+                                              fit: [220, 100],alignment:'center'
                                           },
                                           {
                                               columns: [
                                                   { text: 'Date: ', fontSize: 11,bold:true },
-                                                  { text: '12-12-12 ', fontSize: 11,bold:true ,decoration:'underline'},
+                                                  { text: moment(date).format('DD MM YYYY'), width:80 ,fontSize: 11,bold:true ,decoration:'underline'},
                                                   { text: 'Voltage: ', fontSize: 11,bold:true },
-                                                  { text: '12v', fontSize: 11,bold:true ,decoration:'underline' }
+                                                  { text: voltage, fontSize: 11,bold:true ,decoration:'underline' }
                                               ],
                                               alignment:'center'
                                           },
@@ -117,14 +118,14 @@ export function circuitPrint ({
                                           { text: 'Call us for service!', fontSize: 16,alignment:'center' },
                                           {
                                               image: 'logo',
-                                              fit: [300, 100],alignment:'center'
+                                              fit: [220, 100],alignment:'center'
                                           },
                                           {
                                               columns: [
                                                   { text: 'Date: ', fontSize: 11,bold:true },
-                                                  { text: '12-12-12 ', fontSize: 11,bold:true ,decoration:'underline'},
-                                                  { text: 'Voltage: ', fontSize: 11,bold:true },
-                                                  { text: '12v', fontSize: 11,bold:true ,decoration:'underline' }
+                                                  { text: moment(date).format('DD MM YYYY'), fontSize: 11,bold:true ,decoration:'underline'},
+                                                  { text: 'Voltage: ' , fontSize: 11,bold:true },
+                                                  { text: voltage, fontSize: 11,bold:true ,decoration:'underline' }
                                               ],
                                               alignment:'center'
                                           },
