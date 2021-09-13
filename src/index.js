@@ -8,21 +8,22 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ToastProvider } from "react-toast-notifications";
 import { icons } from "./assets/icons";
+import { PersistGate } from "redux-persist/integration/react";
 
 import { Provider } from "react-redux";
 import store from "./store";
 
 import("./assets/icons").then(({ icons }) => {
-  //debugger
-  //React.icons
   React.icons = icons;
 });
 
 ReactDOM.render(
   <Provider store={store}>
-    <ToastProvider>
-      <App />
-    </ToastProvider>
+    <PersistGate loading={null} persistor={persistor}>
+      <ToastProvider>
+        <App />
+      </ToastProvider>
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

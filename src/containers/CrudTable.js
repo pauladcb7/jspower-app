@@ -37,7 +37,8 @@ const CrudTable = ({
   onDelete = () => { },
   onCreate = () => { },
   onRead = () => { },
-  onRefreshTable = () => { }
+  onRefreshTable = () => { },
+  addOption = () => { return null} 
 }) => {
   const [modal, setModal] = useState(false);
   const [reRender, setRerender] = useState(uuid());
@@ -188,6 +189,9 @@ const CrudTable = ({
                   >
                     <CIcon width={24} name="cil-pencil" />
                   </CButton>
+                  {
+                    addOption(item)
+                  }
                 </td>
               )
             },
