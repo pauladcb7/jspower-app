@@ -174,7 +174,9 @@ const CrudTable = ({
           'show-modal':
             (item, index) => {
               return (
-                <td className="py-2">
+                <td className="py-2" style={{
+                  minWidth: 100
+                }}>
                   <CButton
                     color="primary"
                     variant="outline"
