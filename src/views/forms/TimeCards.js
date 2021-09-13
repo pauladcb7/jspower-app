@@ -59,9 +59,10 @@ const TimeCards = () => {
     return state.state;
   });
   const { addToast } = useToasts();
+  const [initialValues, setInitialValue] = useState({});
 
   const [currentDate, setCurrentDate] = useState(
-    moment().format("MMMM Do YYYY")
+    moment().format("dddd, MMMM Do, YYYY")
   );
   const [jobName, setJobName] = useState("");
   const [jobDescription, setJobDescription] = useState("");
@@ -147,11 +148,10 @@ const TimeCards = () => {
         },
       })
       .then((result) => {
-        console.log("time card info is ", result);
-        setTimeCardId(result[0]?.id);
-        setJobName(result[0]?.job_name);
-        setJobDescription(result[0]?.job_desription);
-        let time = result[0]?.clock_in;
+        setTimeCardId(result.id);
+        setJobName(result.job_name);
+        setJobDescription(result.job_desription);
+        let time = result.clock_in;
 
         let showTime = [false, false, false, false];
         let cardState = [true, true, true, true];
@@ -160,31 +160,38 @@ const TimeCards = () => {
           showTime[0] = true;
           cardState[0] = false;
         }
-        setClockInAddress(result[0]?.clock_in_gps);
-        time = result[0]?.clock_out;
+        setClockInAddress(result.clock_in_gps);
+        time = result.clock_out;
         if (time != undefined) {
           showTime[3] = true;
           cardState[3] = false;
           setClockOutTime(time);
         }
 
-        setClockOutAddress(result[0]?.clock_out_gps);
-        time = result[0]?.lunch_in;
+        setClockOutAddress(result.clock_out_gps);
+        time = result.lunch_in;
         if (time != undefined) {
           showTime[1] = true;
           cardState[1] = false;
           setLunchInTime(time);
         }
-        setLunchInAddress(result[0]?.lunch_in_gps);
-        time = result[0]?.lunch_out;
+        setLunchInAddress(result.lunch_in_gps);
+        time = result.lunch_out;
         if (time != undefined) {
           showTime[2] = true;
           cardState[2] = false;
           setLunchOutTime(time);
         }
         setCollapseMulti(showTime);
-        setLunchOutAddress(result[0]?.lunch_out_gps);
+        setLunchOutAddress(result.lunch_out_gps);
         setEnableLogs(cardState);
+        setInitialValue({
+          jobName: result.job_name,
+          jobLocations: result.job_locations.map(function (jl) {
+            return jl.job_location_rc;
+          }),
+          jobDescription: result.job_description,
+        });
         api
           .get(JOB_LOCATIONS)
           .then((data) => {
@@ -401,16 +408,16 @@ const TimeCards = () => {
   const RenderLogCards = () => {
     var format = "hh:mm:ss";
     var cIn = moment().isBetween(
-      moment("18:50:00", format),
-      moment("18:58:00", format)
+      moment("08:00:00", format),
+      moment("08:59:59", format)
     );
     var cOut = moment().isBetween(
-      moment("18:50:00", format),
-      moment("19:58:00", format)
+      moment("13:00:00", format),
+      moment("17:59:00", format)
     );
     var lIn = moment().isBetween(
-      moment("18:50:00", format),
-      moment("19:58:00", format)
+      moment("10:00:00", format),
+      moment("13:59:00", format)
     );
     var lOut = moment().isBetween(
       moment("18:50:00", format),
@@ -573,23 +580,23 @@ const TimeCards = () => {
   };
 
   const onSubmit = function (e) {
-    debugger;
     api
       .post(CREATE_TIME_CARD, {
         data: {
           time_card_id: timeCardId || "-1",
           user_email: "example@email.com",
           entry_date: moment().format("YYYY-MM-DD"),
-          job_name: jobName,
-          job_locations: jobLocations,
-          job_description: jobDescription,
+          job_name: e.jobName,
+          job_locations: e.jobLocations,
+          job_description: e.jobDescription,
           other: otherJobLocation,
           all_week_ind: allWeek,
         },
       })
       .then((result) => {
+        setTimeCardId(result);
         addToast("Time Card Saved.", {
-          appearance: "error",
+          appearance: "success",
           autoDismiss: true,
         });
       })
@@ -611,6 +618,7 @@ const TimeCards = () => {
         <Form
           onSubmit={onSubmit}
           validate={validate}
+          initialValues={initialValues}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <CCol xs="12" sm="12">
@@ -644,27 +652,6 @@ const TimeCards = () => {
                       <CCardBody>
                         <CRow>
                           <CCol sm="12">
-                            <Field name="employeeName" validate={required}>
-                              {({ input, meta }) => (
-                                <>
-                                  <CFormGroup>
-                                    <CLabel htmlFor="employeeName">
-                                      Employee Name
-                                    </CLabel>
-                                    <CInput
-                                      {...input}
-                                      invalid={meta.invalid && meta.touched}
-                                      placeholder="Employee Name"
-                                    />
-                                    {meta.touched && meta.error && (
-                                      <CInvalidFeedback className="help-block">
-                                        Please provide a valid information
-                                      </CInvalidFeedback>
-                                    )}
-                                  </CFormGroup>
-                                </>
-                              )}
-                            </Field>
                             <Field name="jobName" validate={required}>
                               {({ input, meta }) => (
                                 <>
@@ -691,23 +678,32 @@ const TimeCards = () => {
 
                               {jobLocations?.map((jobLocation) => (
                                 <CCol md="6" sm="6">
-                                  <CFormGroup variant="custom-checkbox" inline>
-                                    <CInputCheckbox
-                                      custom
-                                      id={jobLocation.id}
-                                      name={jobLocation.code}
-                                      checked={
-                                        checkedJobLocations[jobLocation.code]
-                                      }
-                                      onChange={handleChange}
-                                    />
-                                    <CLabel
-                                      variant="custom-checkbox"
-                                      htmlFor={jobLocation.id}
-                                    >
-                                      {jobLocation.value}
-                                    </CLabel>
-                                  </CFormGroup>
+                                  <Field
+                                    name="jobLocations"
+                                    type="checkbox"
+                                    value={jobLocation.id}
+                                  >
+                                    {({ input, meta }) => (
+                                      <>
+                                        <CFormGroup variant="custom-checkbox">
+                                          <CInputCheckbox
+                                            id={jobLocation.id}
+                                            value="extra"
+                                            name={input.name}
+                                            checked={input.checked}
+                                            onChange={input.onChange}
+                                            custom
+                                          />
+                                          <CLabel
+                                            variant="custom-checkbox"
+                                            htmlFor={jobLocation.id}
+                                          >
+                                            {jobLocation.value}
+                                          </CLabel>
+                                        </CFormGroup>
+                                      </>
+                                    )}
+                                  </Field>
                                 </CCol>
                               ))}
                               <CCol md="6" sm="6">
@@ -736,33 +732,55 @@ const TimeCards = () => {
                                   />
                                 </CCollapse>
                               </CCol>
-                            </CFormGroup>
-
-                            <CFormGroup row>
                               <CCol md="12">
-                                <CLabel htmlFor="textarea-input">
-                                  Type of work in progress
-                                </CLabel>
-                              </CCol>
-                              <CCol xs="12" md="12">
-                                <CTextarea
-                                  name="textarea-input"
-                                  id="jobDescription"
-                                  value={jobDescription}
-                                  onChange={(e) => {
-                                    setJobDescription(e.target.value);
-                                  }}
-                                  rows="3"
-                                  placeholder="Enter the type of work in progress..."
-                                />
-                                <CInvalidFeedback className="help-block">
-                                  Please provide a valid information
-                                </CInvalidFeedback>
-                                <CValidFeedback className="help-block">
-                                  Input provided
-                                </CValidFeedback>
+                                <Field name="jobLocations" validate={required}>
+                                  {({ input, meta }) => (
+                                    <>
+                                      <CFormGroup row>
+                                        <CCol md="12">
+                                          {meta.touched && meta.error && (
+                                            <CInvalidFeedback
+                                              style={{ display: "block" }}
+                                              className="help-block "
+                                            >
+                                              Please provide a valid information
+                                            </CInvalidFeedback>
+                                          )}
+                                        </CCol>
+                                      </CFormGroup>
+                                    </>
+                                  )}
+                                </Field>
                               </CCol>
                             </CFormGroup>
+                            <Field name="jobDescription" validate={required}>
+                              {({ input, meta }) => (
+                                <>
+                                  <CFormGroup row>
+                                    <CCol md="12">
+                                      <CLabel htmlFor="textarea-input">
+                                        Type of work in progress
+                                      </CLabel>
+                                    </CCol>
+                                    <CCol xs="12" md="12">
+                                      <CTextarea
+                                        {...input}
+                                        invalid={meta.invalid && meta.touched}
+                                        name="textarea-input"
+                                        id="jobDescription"
+                                        rows="3"
+                                        placeholder="Enter the type of work in progress..."
+                                      />
+                                      {meta.touched && meta.error && (
+                                        <CInvalidFeedback className="help-block">
+                                          Please provide a valid information
+                                        </CInvalidFeedback>
+                                      )}
+                                    </CCol>
+                                  </CFormGroup>
+                                </>
+                              )}
+                            </Field>
                           </CCol>
                         </CRow>
                       </CCardBody>
@@ -775,143 +793,7 @@ const TimeCards = () => {
         />
         {/* Log Buttons */}
         <RenderLogCards />
-        {/* <CCol xs="12" sm="6" lg="6">
-          <CWidgetIcon
-            text={
-              <div>
-                {clockInAddress || (
-                  <div>
-                    <CIcon name="cil-arrow-left" className="clickArrow" /> Click
-                    to register Clock In time
-                  </div>
-                )}
-              </div>
-            }
-            header={
-              <CCollapse timeout={2000} show={collapseMulti[0]}>
-                {clockInTime}
-              </CCollapse>
-            }
-            color="danger"
-            iconPadding={false}
-            className={timeLogDisabledClass[0]}
-            id="clockInCard"
-          >
-            <CCol
-              md="12"
-              className="timeLog"
-              onClick={() => {
-                logTime("clockIn");
-                // toggleMulti("clockIn");
-              }}
-            >
-              <CIcon width={32} name="cil-clock" /> <p>Clock In</p>
-            </CCol>
-          </CWidgetIcon>
-        </CCol>
-        <CCol xs="12" sm="6" lg="6">
-          <CWidgetIcon
-            text={
-              <div>
-                {lunchInAddress || (
-                  <div>
-                    <CIcon name="cil-arrow-left" className="clickArrow" /> Click
-                    to register Lunch In time
-                  </div>
-                )}
-              </div>
-            }
-            header={
-              <CCollapse timeout={2000} show={collapseMulti[1]}>
-                {lunchInTime}
-              </CCollapse>
-            }
-            color="dark"
-            iconPadding={false}
-            className={timeLogDisabledClass[1]}
-          >
-            <CCol
-              md="12"
-              className="timeLog"
-              onClick={() => {
-                //toggleMulti("lunchIn");
-                logTime("lunchIn");
-              }}
-            >
-              <CIcon width={32} name="cil-restaurant" />
-              <p>Lunch In</p>
-            </CCol>
-          </CWidgetIcon>
-        </CCol>
-        <CCol xs="12" sm="6" lg="6">
-          <CWidgetIcon
-            text={
-              <div>
-                {lunchOutAddress || (
-                  <div>
-                    <CIcon name="cil-arrow-left" className="clickArrow" /> Click
-                    to register Lunch Out time
-                  </div>
-                )}
-              </div>
-            }
-            header={
-              <CCollapse timeout={2000} show={collapseMulti[2]}>
-                {lunchOutTime}
-              </CCollapse>
-            }
-            color="dark"
-            iconPadding={false}
-            className={timeLogDisabledClass[2]}
-          >
-            <CCol
-              md="12"
-              className="timeLog"
-              onClick={() => {
-                toggleMulti("lunchOut");
-                logTime("lunchOut");
-              }}
-            >
-              <CIcon width={32} name="cil-restaurant" />
-              <p>LunchOut</p>
-            </CCol>
-          </CWidgetIcon>
-        </CCol>
 
-        <CCol xs="12" sm="6" lg="6">
-          <CWidgetIcon
-            text={
-              <div>
-                {clockOutAddress || (
-                  <div>
-                    <CIcon name="cil-arrow-left" className="clickArrow" /> Click
-                    to register Clock Out time
-                  </div>
-                )}
-              </div>
-            }
-            header={
-              <CCollapse timeout={2000} show={collapseMulti[3]}>
-                {clockOutTime}
-              </CCollapse>
-            }
-            color="danger"
-            iconPadding={false}
-            className={timeLogDisabledClass[3]}
-          >
-            <CCol
-              md="12"
-              className="timeLog"
-              onClick={() => {
-                toggleMulti("clockOut");
-                logTime("clockOut");
-              }}
-            >
-              <CIcon iconPadding={false} width={32} name="cil-clock" />{" "}
-              <p>Clock Out</p>
-            </CCol>
-          </CWidgetIcon>
-        </CCol> */}
         {moment().format("dddd") == "Friday" ||
         moment().format("dddd") == "Saturday" ||
         moment().format("dddd") == "Sunday" ? (

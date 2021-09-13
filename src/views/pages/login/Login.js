@@ -8,6 +8,7 @@ import {
   CCol,
   CContainer,
   CForm,
+  CImg,
   CInput,
   CInputGroup,
   CInputGroupPrepend,
@@ -67,6 +68,18 @@ const Login = () => {
                     validate={validate}
                     render={({ handleSubmit }) => (
                       <CForm onSubmit={handleSubmit}>
+                        <CCol
+                          md="12"
+                          sm="12"
+                          lg="12"
+                          className="text-center mb-5"
+                        >
+                          <CImg
+                            src={"avatars/jspower_logo.png"}
+                            className="c-avatar-img"
+                            alt="JS Power"
+                          />
+                        </CCol>
                         <h1>Login</h1>
                         <p className="text-muted">Sign In to your account</p>
                         <CInputGroup className="mb-3">
@@ -124,7 +137,7 @@ const Login = () => {
                           <CCol xs="6">
                             <CButton
                               type="submit"
-                              color="primary"
+                              color="danger"
                               className="px-4"
                             >
                               Login
