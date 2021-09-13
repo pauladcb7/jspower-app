@@ -32,8 +32,8 @@ const CrudTable = ({
   rows = [
     {
       id: 1,
-      name: "eric",
-      lastName: "vargas",
+      name: "jhon",
+      lastName: "doe",
     },
   ],
   metadata = [

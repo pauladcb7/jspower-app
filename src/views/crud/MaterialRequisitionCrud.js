@@ -74,133 +74,128 @@ const MaterialRequisitionCrud = () => {
   };
   const validate = function () {};
 
-
   const rows = [
     {
       id: 1,
-      jobName: '2002-12-12',
-      jobLocation: 'quepaso ',
-      requestedBy: 'Eric Vargas',
-      entryDate: '12:00',
-      needBy: '13:33',
-      description: 'Anywhere',
+      jobName: "2002-12-12",
+      jobLocation: "quepaso ",
+      requestedBy: "Jhon Doe",
+      entryDate: "12:00",
+      needBy: "13:33",
+      description: "Anywhere",
       materialRequisitionDetails: [
         {
           id: 1,
           quantity: 2,
-          size: 'L',
-          partNumber: '23',
-          itemDescription: 'ID',
-        }
-      ]
+          size: "L",
+          partNumber: "23",
+          itemDescription: "ID",
+        },
+      ],
     },
   ];
   //const [rows, setRow] = useState(rowsInitial);
 
   const metadata = [
     {
-      key: 'jobName',
-      label: 'Job Name',
-      type: 'text',
+      key: "jobName",
+      label: "Job Name",
+      type: "text",
       sorter: false,
       filter: false,
-      _style: { minWidth: '120px'},
+      _style: { minWidth: "120px" },
     },
     {
-      key: 'jobLocation',
-      label: 'Job Location',
+      key: "jobLocation",
+      label: "Job Location",
       options: [
         {
-          label: 'Service Call',
-          value: 'service-call'
+          label: "Service Call",
+          value: "service-call",
         },
         {
-          label: 'Extra',
-          value: 'extra'
+          label: "Extra",
+          value: "extra",
         },
         {
-          label: 'Other',
-          value: 'other',
-          otherOption: true
+          label: "Other",
+          value: "other",
+          otherOption: true,
         },
       ],
-      type: 'radius',
+      type: "radius",
       sorter: false,
       filter: false,
-      _style: { minWidth: '120px'},
-      
+      _style: { minWidth: "120px" },
     },
     {
-      key: 'employeeName',
-      label: 'Employee Name',
-      type: 'text',
+      key: "employeeName",
+      label: "Employee Name",
+      type: "text",
       sorter: false,
       filter: false,
-      _style: { minWidth: '190px'},
-      
+      _style: { minWidth: "190px" },
     },
     {
-      key: 'entryDate',
-      label: 'Entry Date',
-      type: 'datetime',
+      key: "entryDate",
+      label: "Entry Date",
+      type: "datetime",
       sorter: false,
       filter: false,
-      _style: { minWidth: '100px'},
-      
+      _style: { minWidth: "100px" },
     },
     {
-      key: 'needBy',
-      label: 'Need By',
-      type: 'datetime',
+      key: "needBy",
+      label: "Need By",
+      type: "datetime",
       sorter: false,
       filter: false,
-      _style: { minWidth: '100px'},
-      
+      _style: { minWidth: "100px" },
     },
     {
-      key: 'description',
-      label: 'Job Location',
-      type: 'textarea',
+      key: "description",
+      label: "Job Location",
+      type: "textarea",
       sorter: false,
       filter: false,
-      _style: { minWidth: '160px'},
+      _style: { minWidth: "160px" },
     },
     {
-      key: 'materialRequisitionDetails',
-      label: 'Job Details',
-      type: 'array',
+      key: "materialRequisitionDetails",
+      label: "Job Details",
+      type: "array",
       shape: [
         {
-          key: 'id',
-          type: 'idNumeric',
+          key: "id",
+          type: "idNumeric",
         },
         {
-          key: 'quantity',
-          type: 'text',
-          _style: { minWidth: '160px'},
+          key: "quantity",
+          type: "text",
+          _style: { minWidth: "160px" },
         },
         {
-           key: 'size',
-          type: 'text',
-          _style: { minWidth: '160px'},
+          key: "size",
+          type: "text",
+          _style: { minWidth: "160px" },
         },
         {
-          key: 'partNumber',
-          type: 'text',
-          _style: { minWidth: '160px'},
+          key: "partNumber",
+          type: "text",
+          _style: { minWidth: "160px" },
         },
         {
-          key: 'itemDescription',
-          type: 'text',
-          _style: { minWidth: '160px'},
+          key: "itemDescription",
+          type: "text",
+          _style: { minWidth: "160px" },
         },
       ],
       sorter: false,
       filter: false,
-      _style: { minWidth: '160px'},
-      hide:true
+      _style: { minWidth: "160px" },
+      hide: true,
     },
-  ]
+  ];
   return (
     <>
       <CRow>
@@ -227,12 +222,9 @@ const MaterialRequisitionCrud = () => {
                     title="Material Requisition"
                     rows={rows}
                     metadata={metadata}
-                    onEdit={(row,edittedRow) => {
-                    }}
-                    onCreate={(row) => {
-                    }}
-                    onDelete={(row,close) => {
-                    }}
+                    onEdit={(row, edittedRow) => {}}
+                    onCreate={(row) => {}}
+                    onDelete={(row, close) => {}}
                   ></CrudTable>
                 </CCardBody>
               </CCollapse>

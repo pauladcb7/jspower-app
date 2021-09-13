@@ -98,153 +98,144 @@ const WorkOrdersCrud = () => {
   };
   const validate = function () {};
 
-
   const rows = [
     {
       id: 1,
-      entryDate: '2002-12-12',
+      entryDate: "2002-12-12",
       workTypeRc: 3,
-      workTypeOther: 'Que paso',
-      employeeName: 'Eric Vargas',
-      startTime: '12:00',
-      endTime: '13:33',
-      jobLocation: 'Anywhere',
-      jobDetails: 'All the job details',
-      totalCost: '12',
-      customerName: 'Paula',
-      customerPhone: '+51951101101',
-      customerSignature: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMjI1IDE4MCIgd2lkdGg9IjIyNSIgaGVpZ2h0PSIxODAiPjxwYXRoIGQ9Ik0gMjUuMDAwLDkzLjAwMCBDIDI3LjIxNyw4OC41ODQgMjcuMDAwLDg4LjUwMCAyOS4wMDAsODQuMDAwIiBzdHJva2Utd2lkdGg9IjQuOTk4IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDI5LjAwMCw4NC4wMDAgQyAyOS44OTIsNzkuMjE2IDMwLjcxNyw3OS41ODQgMzIuMDAwLDc1LjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjk5OSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSAzMi4wMDAsNzUuMDAwIEMgMzUuNzcwLDY4LjM0NiAzNS4zOTIsNjguMjE2IDQwLjAwMCw2Mi4wMDAiIHN0cm9rZS13aWR0aD0iMy4yMTMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNDAuMDAwLDYyLjAwMCBDIDQzLjcyNyw1Ni4yNzkgNDMuNzcwLDU2LjM0NiA0OC4wMDAsNTEuMDAwIiBzdHJva2Utd2lkdGg9IjMuMDkwIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDQ4LjAwMCw1MS4wMDAgQyA1MS43NjksNDUuMDk0IDUyLjIyNyw0NS43NzkgNTcuMDAwLDQxLjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjEyNSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA1Ny4wMDAsNDEuMDAwIEMgNjMuODY4LDM2LjczNiA2My4yNjksMzYuMDk0IDcxLjAwMCwzMy4wMDAiIHN0cm9rZS13aWR0aD0iMy4wMTMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNzEuMDAwLDMzLjAwMCBDIDc0Ljc0MCwyOS43MjggNzQuMzY4LDMxLjIzNiA3OC4wMDAsMzAuMDAwIiBzdHJva2Utd2lkdGg9IjMuNTMwIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDc4LjAwMCwzMC4wMDAgQyA4Mi4zMTYsMzEuMTI3IDgwLjc0MCwzMC4yMjggODMuMDAwLDM0LjAwMCIgc3Ryb2tlLXdpZHRoPSI0LjQzMSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA4My4wMDAsMzQuMDAwIEMgODMuNjg1LDQyLjU1MSA4NC44MTYsNDEuNjI3IDgzLjAwMCw1MS4wMDAiIHN0cm9rZS13aWR0aD0iMy4wODMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gODMuMDAwLDUxLjAwMCBDIDgzLjY0Niw2MS43NzggODIuMTg1LDYxLjA1MSA4MC4wMDAsNzEuMDAwIiBzdHJva2Utd2lkdGg9IjIuNzA0IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDgwLjAwMCw3MS4wMDAgQyA3MS45NzEsODIuMDU3IDc1LjE0Niw4My4yNzggNjYuMDAwLDk0LjAwMCIgc3Ryb2tlLXdpZHRoPSIyLjMxMiIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA2Ni4wMDAsOTQuMDAwIEMgNjQuNTAwLDk5LjUwMCA2My40NzEsOTkuMDU3IDYzLjAwMCwxMDUuMDAwIiBzdHJva2Utd2lkdGg9IjIuOTYyIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDYzLjAwMCwxMDUuMDAwIEMgNjEuNjc2LDExMC41NTMgNjEuNTAwLDExMC41MDAgNjAuMDAwLDExNi4wMDAiIHN0cm9rZS13aWR0aD0iMy4yMzQiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNjAuMDAwLDExNi4wMDAgQyA1Ny4wNzMsMTIzLjM5OSA1Ny42NzYsMTIzLjU1MyA1NS4wMDAsMTMxLjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjAwMyIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA1NS4wMDAsMTMxLjAwMCBDIDU1LjUxOSwxMzQuOTYyIDU0LjA3MywxMzQuMzk5IDU0LjAwMCwxMzguMDAwIiBzdHJva2Utd2lkdGg9IjMuNjIyIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDU0LjAwMCwxMzguMDAwIEMgNTEuMjQ2LDE0MS43NTQgNTIuMDE5LDE0MS45NjIgNDguMDAwLDE0NS4wMDAiIHN0cm9rZS13aWR0aD0iMy42OTAiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNDguMDAwLDE0NS4wMDAgQyA0NS43MTYsMTQ3LjM3MCA0NS43NDYsMTQ3LjI1NCA0My4wMDAsMTQ5LjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjkxMyIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA0My4wMDAsMTQ5LjAwMCBDIDQwLjQ0OSwxNDkuODg3IDQwLjcxNiwxNTAuMzcwIDM4LjAwMCwxNTEuMDAwIiBzdHJva2Utd2lkdGg9IjQuMTE1IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDM4LjAwMCwxNTEuMDAwIEMgMzAuNTg3LDE1MS4wMjMgMzQuOTQ5LDE1Mi4zODcgMzIuMDAwLDE1NC4wMDAiIHN0cm9rZS13aWR0aD0iNC40OTIiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjwvc3ZnPg==',
-      employeeSignature: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMjI1IDE4MCIgd2lkdGg9IjIyNSIgaGVpZ2h0PSIxODAiPjxwYXRoIGQ9Ik0gMjUuMDAwLDkzLjAwMCBDIDI3LjIxNyw4OC41ODQgMjcuMDAwLDg4LjUwMCAyOS4wMDAsODQuMDAwIiBzdHJva2Utd2lkdGg9IjQuOTk4IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDI5LjAwMCw4NC4wMDAgQyAyOS44OTIsNzkuMjE2IDMwLjcxNyw3OS41ODQgMzIuMDAwLDc1LjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjk5OSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSAzMi4wMDAsNzUuMDAwIEMgMzUuNzcwLDY4LjM0NiAzNS4zOTIsNjguMjE2IDQwLjAwMCw2Mi4wMDAiIHN0cm9rZS13aWR0aD0iMy4yMTMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNDAuMDAwLDYyLjAwMCBDIDQzLjcyNyw1Ni4yNzkgNDMuNzcwLDU2LjM0NiA0OC4wMDAsNTEuMDAwIiBzdHJva2Utd2lkdGg9IjMuMDkwIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDQ4LjAwMCw1MS4wMDAgQyA1MS43NjksNDUuMDk0IDUyLjIyNyw0NS43NzkgNTcuMDAwLDQxLjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjEyNSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA1Ny4wMDAsNDEuMDAwIEMgNjMuODY4LDM2LjczNiA2My4yNjksMzYuMDk0IDcxLjAwMCwzMy4wMDAiIHN0cm9rZS13aWR0aD0iMy4wMTMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNzEuMDAwLDMzLjAwMCBDIDc0Ljc0MCwyOS43MjggNzQuMzY4LDMxLjIzNiA3OC4wMDAsMzAuMDAwIiBzdHJva2Utd2lkdGg9IjMuNTMwIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDc4LjAwMCwzMC4wMDAgQyA4Mi4zMTYsMzEuMTI3IDgwLjc0MCwzMC4yMjggODMuMDAwLDM0LjAwMCIgc3Ryb2tlLXdpZHRoPSI0LjQzMSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA4My4wMDAsMzQuMDAwIEMgODMuNjg1LDQyLjU1MSA4NC44MTYsNDEuNjI3IDgzLjAwMCw1MS4wMDAiIHN0cm9rZS13aWR0aD0iMy4wODMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gODMuMDAwLDUxLjAwMCBDIDgzLjY0Niw2MS43NzggODIuMTg1LDYxLjA1MSA4MC4wMDAsNzEuMDAwIiBzdHJva2Utd2lkdGg9IjIuNzA0IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDgwLjAwMCw3MS4wMDAgQyA3MS45NzEsODIuMDU3IDc1LjE0Niw4My4yNzggNjYuMDAwLDk0LjAwMCIgc3Ryb2tlLXdpZHRoPSIyLjMxMiIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA2Ni4wMDAsOTQuMDAwIEMgNjQuNTAwLDk5LjUwMCA2My40NzEsOTkuMDU3IDYzLjAwMCwxMDUuMDAwIiBzdHJva2Utd2lkdGg9IjIuOTYyIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDYzLjAwMCwxMDUuMDAwIEMgNjEuNjc2LDExMC41NTMgNjEuNTAwLDExMC41MDAgNjAuMDAwLDExNi4wMDAiIHN0cm9rZS13aWR0aD0iMy4yMzQiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNjAuMDAwLDExNi4wMDAgQyA1Ny4wNzMsMTIzLjM5OSA1Ny42NzYsMTIzLjU1MyA1NS4wMDAsMTMxLjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjAwMyIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA1NS4wMDAsMTMxLjAwMCBDIDU1LjUxOSwxMzQuOTYyIDU0LjA3MywxMzQuMzk5IDU0LjAwMCwxMzguMDAwIiBzdHJva2Utd2lkdGg9IjMuNjIyIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDU0LjAwMCwxMzguMDAwIEMgNTEuMjQ2LDE0MS43NTQgNTIuMDE5LDE0MS45NjIgNDguMDAwLDE0NS4wMDAiIHN0cm9rZS13aWR0aD0iMy42OTAiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNDguMDAwLDE0NS4wMDAgQyA0NS43MTYsMTQ3LjM3MCA0NS43NDYsMTQ3LjI1NCA0My4wMDAsMTQ5LjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjkxMyIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA0My4wMDAsMTQ5LjAwMCBDIDQwLjQ0OSwxNDkuODg3IDQwLjcxNiwxNTAuMzcwIDM4LjAwMCwxNTEuMDAwIiBzdHJva2Utd2lkdGg9IjQuMTE1IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDM4LjAwMCwxNTEuMDAwIEMgMzAuNTg3LDE1MS4wMjMgMzQuOTQ5LDE1Mi4zODcgMzIuMDAwLDE1NC4wMDAiIHN0cm9rZS13aWR0aD0iNC40OTIiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjwvc3ZnPg==',
+      workTypeOther: "Que paso",
+      employeeName: "Jhon Doe",
+      startTime: "12:00",
+      endTime: "13:33",
+      jobLocation: "Anywhere",
+      jobDetails: "All the job details",
+      totalCost: "12",
+      customerName: "Paula",
+      customerPhone: "+51951101101",
+      customerSignature:
+        "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMjI1IDE4MCIgd2lkdGg9IjIyNSIgaGVpZ2h0PSIxODAiPjxwYXRoIGQ9Ik0gMjUuMDAwLDkzLjAwMCBDIDI3LjIxNyw4OC41ODQgMjcuMDAwLDg4LjUwMCAyOS4wMDAsODQuMDAwIiBzdHJva2Utd2lkdGg9IjQuOTk4IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDI5LjAwMCw4NC4wMDAgQyAyOS44OTIsNzkuMjE2IDMwLjcxNyw3OS41ODQgMzIuMDAwLDc1LjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjk5OSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSAzMi4wMDAsNzUuMDAwIEMgMzUuNzcwLDY4LjM0NiAzNS4zOTIsNjguMjE2IDQwLjAwMCw2Mi4wMDAiIHN0cm9rZS13aWR0aD0iMy4yMTMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNDAuMDAwLDYyLjAwMCBDIDQzLjcyNyw1Ni4yNzkgNDMuNzcwLDU2LjM0NiA0OC4wMDAsNTEuMDAwIiBzdHJva2Utd2lkdGg9IjMuMDkwIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDQ4LjAwMCw1MS4wMDAgQyA1MS43NjksNDUuMDk0IDUyLjIyNyw0NS43NzkgNTcuMDAwLDQxLjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjEyNSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA1Ny4wMDAsNDEuMDAwIEMgNjMuODY4LDM2LjczNiA2My4yNjksMzYuMDk0IDcxLjAwMCwzMy4wMDAiIHN0cm9rZS13aWR0aD0iMy4wMTMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNzEuMDAwLDMzLjAwMCBDIDc0Ljc0MCwyOS43MjggNzQuMzY4LDMxLjIzNiA3OC4wMDAsMzAuMDAwIiBzdHJva2Utd2lkdGg9IjMuNTMwIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDc4LjAwMCwzMC4wMDAgQyA4Mi4zMTYsMzEuMTI3IDgwLjc0MCwzMC4yMjggODMuMDAwLDM0LjAwMCIgc3Ryb2tlLXdpZHRoPSI0LjQzMSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA4My4wMDAsMzQuMDAwIEMgODMuNjg1LDQyLjU1MSA4NC44MTYsNDEuNjI3IDgzLjAwMCw1MS4wMDAiIHN0cm9rZS13aWR0aD0iMy4wODMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gODMuMDAwLDUxLjAwMCBDIDgzLjY0Niw2MS43NzggODIuMTg1LDYxLjA1MSA4MC4wMDAsNzEuMDAwIiBzdHJva2Utd2lkdGg9IjIuNzA0IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDgwLjAwMCw3MS4wMDAgQyA3MS45NzEsODIuMDU3IDc1LjE0Niw4My4yNzggNjYuMDAwLDk0LjAwMCIgc3Ryb2tlLXdpZHRoPSIyLjMxMiIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA2Ni4wMDAsOTQuMDAwIEMgNjQuNTAwLDk5LjUwMCA2My40NzEsOTkuMDU3IDYzLjAwMCwxMDUuMDAwIiBzdHJva2Utd2lkdGg9IjIuOTYyIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDYzLjAwMCwxMDUuMDAwIEMgNjEuNjc2LDExMC41NTMgNjEuNTAwLDExMC41MDAgNjAuMDAwLDExNi4wMDAiIHN0cm9rZS13aWR0aD0iMy4yMzQiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNjAuMDAwLDExNi4wMDAgQyA1Ny4wNzMsMTIzLjM5OSA1Ny42NzYsMTIzLjU1MyA1NS4wMDAsMTMxLjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjAwMyIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA1NS4wMDAsMTMxLjAwMCBDIDU1LjUxOSwxMzQuOTYyIDU0LjA3MywxMzQuMzk5IDU0LjAwMCwxMzguMDAwIiBzdHJva2Utd2lkdGg9IjMuNjIyIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDU0LjAwMCwxMzguMDAwIEMgNTEuMjQ2LDE0MS43NTQgNTIuMDE5LDE0MS45NjIgNDguMDAwLDE0NS4wMDAiIHN0cm9rZS13aWR0aD0iMy42OTAiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNDguMDAwLDE0NS4wMDAgQyA0NS43MTYsMTQ3LjM3MCA0NS43NDYsMTQ3LjI1NCA0My4wMDAsMTQ5LjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjkxMyIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA0My4wMDAsMTQ5LjAwMCBDIDQwLjQ0OSwxNDkuODg3IDQwLjcxNiwxNTAuMzcwIDM4LjAwMCwxNTEuMDAwIiBzdHJva2Utd2lkdGg9IjQuMTE1IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDM4LjAwMCwxNTEuMDAwIEMgMzAuNTg3LDE1MS4wMjMgMzQuOTQ5LDE1Mi4zODcgMzIuMDAwLDE1NC4wMDAiIHN0cm9rZS13aWR0aD0iNC40OTIiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjwvc3ZnPg==",
+      employeeSignature:
+        "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMjI1IDE4MCIgd2lkdGg9IjIyNSIgaGVpZ2h0PSIxODAiPjxwYXRoIGQ9Ik0gMjUuMDAwLDkzLjAwMCBDIDI3LjIxNyw4OC41ODQgMjcuMDAwLDg4LjUwMCAyOS4wMDAsODQuMDAwIiBzdHJva2Utd2lkdGg9IjQuOTk4IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDI5LjAwMCw4NC4wMDAgQyAyOS44OTIsNzkuMjE2IDMwLjcxNyw3OS41ODQgMzIuMDAwLDc1LjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjk5OSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSAzMi4wMDAsNzUuMDAwIEMgMzUuNzcwLDY4LjM0NiAzNS4zOTIsNjguMjE2IDQwLjAwMCw2Mi4wMDAiIHN0cm9rZS13aWR0aD0iMy4yMTMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNDAuMDAwLDYyLjAwMCBDIDQzLjcyNyw1Ni4yNzkgNDMuNzcwLDU2LjM0NiA0OC4wMDAsNTEuMDAwIiBzdHJva2Utd2lkdGg9IjMuMDkwIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDQ4LjAwMCw1MS4wMDAgQyA1MS43NjksNDUuMDk0IDUyLjIyNyw0NS43NzkgNTcuMDAwLDQxLjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjEyNSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA1Ny4wMDAsNDEuMDAwIEMgNjMuODY4LDM2LjczNiA2My4yNjksMzYuMDk0IDcxLjAwMCwzMy4wMDAiIHN0cm9rZS13aWR0aD0iMy4wMTMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNzEuMDAwLDMzLjAwMCBDIDc0Ljc0MCwyOS43MjggNzQuMzY4LDMxLjIzNiA3OC4wMDAsMzAuMDAwIiBzdHJva2Utd2lkdGg9IjMuNTMwIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDc4LjAwMCwzMC4wMDAgQyA4Mi4zMTYsMzEuMTI3IDgwLjc0MCwzMC4yMjggODMuMDAwLDM0LjAwMCIgc3Ryb2tlLXdpZHRoPSI0LjQzMSIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA4My4wMDAsMzQuMDAwIEMgODMuNjg1LDQyLjU1MSA4NC44MTYsNDEuNjI3IDgzLjAwMCw1MS4wMDAiIHN0cm9rZS13aWR0aD0iMy4wODMiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gODMuMDAwLDUxLjAwMCBDIDgzLjY0Niw2MS43NzggODIuMTg1LDYxLjA1MSA4MC4wMDAsNzEuMDAwIiBzdHJva2Utd2lkdGg9IjIuNzA0IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDgwLjAwMCw3MS4wMDAgQyA3MS45NzEsODIuMDU3IDc1LjE0Niw4My4yNzggNjYuMDAwLDk0LjAwMCIgc3Ryb2tlLXdpZHRoPSIyLjMxMiIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA2Ni4wMDAsOTQuMDAwIEMgNjQuNTAwLDk5LjUwMCA2My40NzEsOTkuMDU3IDYzLjAwMCwxMDUuMDAwIiBzdHJva2Utd2lkdGg9IjIuOTYyIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDYzLjAwMCwxMDUuMDAwIEMgNjEuNjc2LDExMC41NTMgNjEuNTAwLDExMC41MDAgNjAuMDAwLDExNi4wMDAiIHN0cm9rZS13aWR0aD0iMy4yMzQiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNjAuMDAwLDExNi4wMDAgQyA1Ny4wNzMsMTIzLjM5OSA1Ny42NzYsMTIzLjU1MyA1NS4wMDAsMTMxLjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjAwMyIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA1NS4wMDAsMTMxLjAwMCBDIDU1LjUxOSwxMzQuOTYyIDU0LjA3MywxMzQuMzk5IDU0LjAwMCwxMzguMDAwIiBzdHJva2Utd2lkdGg9IjMuNjIyIiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDU0LjAwMCwxMzguMDAwIEMgNTEuMjQ2LDE0MS43NTQgNTIuMDE5LDE0MS45NjIgNDguMDAwLDE0NS4wMDAiIHN0cm9rZS13aWR0aD0iMy42OTAiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjxwYXRoIGQ9Ik0gNDguMDAwLDE0NS4wMDAgQyA0NS43MTYsMTQ3LjM3MCA0NS43NDYsMTQ3LjI1NCA0My4wMDAsMTQ5LjAwMCIgc3Ryb2tlLXdpZHRoPSIzLjkxMyIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PHBhdGggZD0iTSA0My4wMDAsMTQ5LjAwMCBDIDQwLjQ0OSwxNDkuODg3IDQwLjcxNiwxNTAuMzcwIDM4LjAwMCwxNTEuMDAwIiBzdHJva2Utd2lkdGg9IjQuMTE1IiBzdHJva2U9ImJsYWNrIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cGF0aCBkPSJNIDM4LjAwMCwxNTEuMDAwIEMgMzAuNTg3LDE1MS4wMjMgMzQuOTQ5LDE1Mi4zODcgMzIuMDAwLDE1NC4wMDAiIHN0cm9rZS13aWR0aD0iNC40OTIiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjwvc3ZnPg==",
     },
   ];
   //const [rows, setRow] = useState(rowsInitial);
 
   const metadata = [
     {
-      key: 'entryDate',
-      label: 'Date',
-      type: 'date',
+      key: "entryDate",
+      label: "Date",
+      type: "date",
       sorter: false,
       filter: false,
-      _style: { minWidth: '120px'},
-      
+      _style: { minWidth: "120px" },
     },
     {
-      key: 'workTypeRc',
-      otherKey: 'workTypeOther',
-      label: 'Type of work',
+      key: "workTypeRc",
+      otherKey: "workTypeOther",
+      label: "Type of work",
       options: [
         {
-          label: 'Service Call',
-          value: 'service-call'
+          label: "Service Call",
+          value: "service-call",
         },
         {
-          label: 'Extra',
-          value: 'extra'
+          label: "Extra",
+          value: "extra",
         },
         {
-          label: 'Other',
-          value: 'other',
-          otherOption: true
+          label: "Other",
+          value: "other",
+          otherOption: true,
         },
       ],
-      type: 'radius',
+      type: "radius",
       sorter: false,
       filter: false,
-      _style: { minWidth: '120px'},
-      
+      _style: { minWidth: "120px" },
     },
     {
-      key: 'employeeName',
-      label: 'Employee Name',
-      type: 'text',
+      key: "employeeName",
+      label: "Employee Name",
+      type: "text",
       sorter: false,
       filter: false,
-      _style: { minWidth: '190px'},
-      
+      _style: { minWidth: "190px" },
     },
     {
-      key: 'startTime',
-      label: 'Start Time',
-      type: 'time',
+      key: "startTime",
+      label: "Start Time",
+      type: "time",
       sorter: false,
       filter: false,
-      _style: { minWidth: '100px'},
-      
+      _style: { minWidth: "100px" },
     },
     {
-      key: 'endTime',
-      label: 'End Time',
-      type: 'time',
+      key: "endTime",
+      label: "End Time",
+      type: "time",
       sorter: false,
       filter: false,
-      _style: { minWidth: '100px'},
-      
+      _style: { minWidth: "100px" },
     },
     {
-      key: 'jobLocation',
-      label: 'Job Location',
-      type: 'text',
+      key: "jobLocation",
+      label: "Job Location",
+      type: "text",
       sorter: false,
       filter: false,
-      _style: { minWidth: '160px'},
-      
+      _style: { minWidth: "160px" },
     },
     {
-      key: 'jobDetails',
-      label: 'Job Details',
-      type: 'textarea',
+      key: "jobDetails",
+      label: "Job Details",
+      type: "textarea",
       sorter: false,
       filter: false,
-      _style: { minWidth: '160px'},
-      
+      _style: { minWidth: "160px" },
     },
     {
-      key: 'totalCost',
-      label: 'Total Cost',
-      type: 'text',
+      key: "totalCost",
+      label: "Total Cost",
+      type: "text",
       sorter: false,
       filter: false,
-      _style: { minWidth: '100px'},
-      
+      _style: { minWidth: "100px" },
     },
     {
-      key: 'customerName',
-      label: 'Full Name',
-      type: 'text',
+      key: "customerName",
+      label: "Full Name",
+      type: "text",
       sorter: false,
       filter: false,
-      _style: { minWidth: '150px'},
-      
+      _style: { minWidth: "150px" },
     },
     {
-      key: 'customerPhone',
-      label: 'Phone Number',
-      type: 'text',
+      key: "customerPhone",
+      label: "Phone Number",
+      type: "text",
       sorter: false,
       filter: false,
-      _style: { minWidth: '150px'},
-      
+      _style: { minWidth: "150px" },
     },
     {
-      key: 'customerSignature',
-      label: 'Customer Signature',
-      type: 'signature',
+      key: "customerSignature",
+      label: "Customer Signature",
+      type: "signature",
       sorter: false,
       filter: false,
-      _style: { minWidth: '150px'},
-      hide:true
+      _style: { minWidth: "150px" },
+      hide: true,
     },
     {
-      key: 'employeeSignature',
-      label: 'Employee Signature',
-      type: 'signature',
+      key: "employeeSignature",
+      label: "Employee Signature",
+      type: "signature",
       sorter: false,
       filter: false,
-      _style: { minWidth: '150px'},
-      hide:true
+      _style: { minWidth: "150px" },
+      hide: true,
     },
-  ]
+  ];
   return (
     <>
       <CRow>
@@ -271,12 +262,9 @@ const WorkOrdersCrud = () => {
                     title="Work Order"
                     rows={rows}
                     metadata={metadata}
-                    onEdit={(row,edittedRow) => {
-                    }}
-                    onCreate={(row) => {
-                    }}
-                    onDelete={(row,close) => {
-                    }}
+                    onEdit={(row, edittedRow) => {}}
+                    onCreate={(row) => {}}
+                    onDelete={(row, close) => {}}
                   ></CrudTable>
                 </CCardBody>
               </CCollapse>
