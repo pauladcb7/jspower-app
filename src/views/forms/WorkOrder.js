@@ -91,11 +91,11 @@ const WorkOrder = () => {
     }
     setCollapseMulti(newCollapse);
   };
-  const [signatureCustomer,setSignatureCustomer] = useState(null)
-  const [signatureEmployee,setSignatureEmployee] = useState(null)
+  const [signatureCustomer, setSignatureCustomer] = useState(null);
+  const [signatureEmployee, setSignatureEmployee] = useState(null);
   const onSubmit = function (e) {
-    if( !signatureCustomer.isEmpty() && !signatureEmployee.isEmpty()) {
-      debugger
+    if (!signatureCustomer.isEmpty() && !signatureEmployee.isEmpty()) {
+      debugger;
       workOrderPrint({
         date: e.date,
         workType: e.workType,
@@ -107,7 +107,7 @@ const WorkOrder = () => {
         jobDetails: e.jobDetails,
         customerSignature: signatureCustomer.toDataURL(),
         employeeSignature: signatureEmployee.toDataURL(),
-        customerInformation: e.clientName
+        customerInformation: e.clientName,
       });
     }
   };
@@ -116,10 +116,10 @@ const WorkOrder = () => {
   };
   const onReadyCustomerSignature = function (signaturePad) {
     setSignatureCustomer(signaturePad);
-  }
+  };
   const onReadyEmployeeSignature = function (signaturePad) {
     setSignatureEmployee(signaturePad);
-  }
+  };
   return (
     <>
       <CRow>
@@ -128,7 +128,6 @@ const WorkOrder = () => {
             <Form
               onSubmit={onSubmit}
               validate={validate}
-              
               render={({ handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
                   <CCard>
@@ -141,7 +140,9 @@ const WorkOrder = () => {
                           onClick={() => setCollapsed(!collapsed)}
                         >
                           <CIcon
-                            name={collapsed ? "cil-arrow-top" : "cil-arrow-bottom"}
+                            name={
+                              collapsed ? "cil-arrow-top" : "cil-arrow-bottom"
+                            }
                           />
                         </CButton>
                       </div>
@@ -154,7 +155,10 @@ const WorkOrder = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="date">Date</CLabel>
+                                    <CLabel htmlFor="date">
+                                      Date{" "}
+                                      <span style={{ color: "red" }}>*</span>
+                                    </CLabel>
                                     <CInput
                                       type="date"
                                       id="date"
@@ -171,12 +175,18 @@ const WorkOrder = () => {
                                 </>
                               )}
                             </Field>
-                            
+
                             <CFormGroup>
-                              <CLabel htmlFor="workType">Type of work</CLabel>
+                              <CLabel htmlFor="workType">
+                                Type of work
+                                <span style={{ color: "red" }}>*</span>
+                              </CLabel>
                               <CCol>
-                                
-                                <Field name="workType" type="radio" value="serviceCall">
+                                <Field
+                                  name="workType"
+                                  type="radio"
+                                  value="serviceCall"
+                                >
                                   {({ input, meta }) => (
                                     <>
                                       <CFormGroup variant="checkbox">
@@ -188,14 +198,21 @@ const WorkOrder = () => {
                                           checked={input.checked}
                                           onChange={input.onChange}
                                         />
-                                        <CLabel variant="checkbox" htmlFor="radio1">
+                                        <CLabel
+                                          variant="checkbox"
+                                          htmlFor="radio1"
+                                        >
                                           Service Call
                                         </CLabel>
                                       </CFormGroup>
                                     </>
                                   )}
                                 </Field>
-                                <Field name="workType" type="radio" value="extra">
+                                <Field
+                                  name="workType"
+                                  type="radio"
+                                  value="extra"
+                                >
                                   {({ input, meta }) => (
                                     <>
                                       <CFormGroup variant="checkbox">
@@ -207,14 +224,21 @@ const WorkOrder = () => {
                                           checked={input.checked}
                                           onChange={input.onChange}
                                         />
-                                        <CLabel variant="checkbox" htmlFor="radio2">
+                                        <CLabel
+                                          variant="checkbox"
+                                          htmlFor="radio2"
+                                        >
                                           Extra
                                         </CLabel>
                                       </CFormGroup>
                                     </>
                                   )}
                                 </Field>
-                                <Field name="workType" type="radio" value="other">
+                                <Field
+                                  name="workType"
+                                  type="radio"
+                                  value="other"
+                                >
                                   {({ input, meta }) => (
                                     <>
                                       <CFormGroup variant="checkbox">
@@ -226,19 +250,23 @@ const WorkOrder = () => {
                                           checked={input.checked}
                                           onChange={input.onChange}
                                         />
-                                        <CLabel variant="checkbox" htmlFor="radio3">
+                                        <CLabel
+                                          variant="checkbox"
+                                          htmlFor="radio3"
+                                        >
                                           Other
                                         </CLabel>
                                       </CFormGroup>
-                                      {
-                                        !!input.checked &&
-                                        <Field name="otherWorkType" >
+                                      {!!input.checked && (
+                                        <Field name="otherWorkType">
                                           {({ input, meta }) => (
                                             <>
                                               <CFormGroup>
                                                 <CInput
                                                   {...input}
-                                                  invalid={meta.invalid && meta.touched}
+                                                  invalid={
+                                                    meta.invalid && meta.touched
+                                                  }
                                                   id="otherWorkType"
                                                 />
                                                 {/* {meta.touched && meta.error && (
@@ -250,7 +278,7 @@ const WorkOrder = () => {
                                             </>
                                           )}
                                         </Field>
-                                      }
+                                      )}
                                     </>
                                   )}
                                 </Field>
@@ -261,7 +289,9 @@ const WorkOrder = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="employeeName">Employee Name</CLabel>
+                                    <CLabel htmlFor="employeeName">
+                                      Employee Name
+                                    </CLabel>
                                     <CInput
                                       {...input}
                                       invalid={meta.invalid && meta.touched}
@@ -281,7 +311,9 @@ const WorkOrder = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="startTime">Start Time</CLabel>
+                                    <CLabel htmlFor="startTime">
+                                      Start Time
+                                    </CLabel>
                                     <CInput
                                       {...input}
                                       type="time"
@@ -323,7 +355,9 @@ const WorkOrder = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="jobLocation">Job Location</CLabel>
+                                    <CLabel htmlFor="jobLocation">
+                                      Job Location
+                                    </CLabel>
                                     <CInput
                                       {...input}
                                       id="jobLocation"
@@ -343,7 +377,9 @@ const WorkOrder = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="jobDetails">Job Details</CLabel>
+                                    <CLabel htmlFor="jobDetails">
+                                      Job Details
+                                    </CLabel>
                                     <CTextarea
                                       name="textarea-input"
                                       id="jobDetails"
@@ -365,7 +401,9 @@ const WorkOrder = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="totalCost">Total Cost</CLabel>
+                                    <CLabel htmlFor="totalCost">
+                                      Total Cost
+                                    </CLabel>
                                     <CInput
                                       {...input}
                                       id="totalCost"
@@ -385,7 +423,9 @@ const WorkOrder = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="clientName">Full Name</CLabel>
+                                    <CLabel htmlFor="clientName">
+                                      Full Name
+                                    </CLabel>
                                     <CInput
                                       {...input}
                                       id="clientName"
@@ -405,7 +445,9 @@ const WorkOrder = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="phoneNumber">Phone Number</CLabel>
+                                    <CLabel htmlFor="phoneNumber">
+                                      Phone Number
+                                    </CLabel>
                                     <CInput
                                       {...input}
                                       id="phoneNumber"
@@ -425,13 +467,17 @@ const WorkOrder = () => {
                               <CLabel htmlFor="employeeName">
                                 Customer Signature
                               </CLabel>
-                              <ESignature onReady={onReadyCustomerSignature}></ESignature>
+                              <ESignature
+                                onReady={onReadyCustomerSignature}
+                              ></ESignature>
                             </CFormGroup>
                             <CFormGroup>
                               <CLabel htmlFor="employeeName">
                                 Employee Signature
                               </CLabel>
-                              <ESignature onReady={onReadyEmployeeSignature} ></ESignature>
+                              <ESignature
+                                onReady={onReadyEmployeeSignature}
+                              ></ESignature>
                             </CFormGroup>
                           </CCol>
                         </CRow>
@@ -446,7 +492,6 @@ const WorkOrder = () => {
                 </form>
               )}
             />
-            
           </CFade>
         </CCol>
       </CRow>

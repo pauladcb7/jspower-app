@@ -42,19 +42,17 @@ const Login = () => {
     });
   }
 
-  function onSubmit (e) {
+  function onSubmit(e) {
     dispatch({
       type: "SET_USER",
       user: {
-        name: "Eric",
-        rol: e.username === 'eric' ? 'admin': 'employee'
+        name: e.username,
+        rol: e.username === "eric" ? "admin" : "employee",
       },
     });
   }
 
-  function validate() {
-
-  }
+  function validate() {}
 
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
@@ -68,9 +66,7 @@ const Login = () => {
                     onSubmit={onSubmit}
                     validate={validate}
                     render={({ handleSubmit }) => (
-                      <CForm
-                        onSubmit={handleSubmit}
-                      >
+                      <CForm onSubmit={handleSubmit}>
                         <h1>Login</h1>
                         <p className="text-muted">Sign In to your account</p>
                         <CInputGroup className="mb-3">
@@ -79,7 +75,7 @@ const Login = () => {
                               <CIcon name="cil-user" />
                             </CInputGroupText>
                           </CInputGroupPrepend>
-                          
+
                           <Field name="username" validate={required}>
                             {({ input, meta }) => (
                               <>
@@ -135,10 +131,7 @@ const Login = () => {
                             </CButton>
                           </CCol>
                           <CCol xs="6" className="text-right">
-                            <CButton
-                              color="link"
-                              className="px-0"
-                            >
+                            <CButton color="link" className="px-0">
                               Forgot password?
                             </CButton>
                           </CCol>
