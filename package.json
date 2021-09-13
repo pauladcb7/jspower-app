@@ -52,6 +52,7 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
     "sass": "^1.32.8",
     "signature_pad": "^3.0.0-beta.4",
     "source-map-explorer": "^2.5.2",
