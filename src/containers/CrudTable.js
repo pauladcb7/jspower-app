@@ -193,7 +193,12 @@ const CrudTable = ({
         scopedSlots={{
           "show-modal": (item, index) => {
             return (
-              <td className="py-2">
+              <td
+                className="py-2"
+                style={{
+                  minWidth: 100,
+                }}
+              >
                 <CButton
                   color="primary"
                   variant="outline"
@@ -221,6 +226,7 @@ const CrudTable = ({
           setSelectedData(null);
           //setLarge(!large)
         }}
+        key={reRender}
         size="lg"
       >
         <CModalHeader closeButton>
@@ -229,7 +235,6 @@ const CrudTable = ({
         <Form
           onSubmit={onSubmit}
           initialValues={selectedData || {}}
-          key={reRender}
           mutators={{
             ...arrayMutators,
           }}
@@ -463,13 +468,6 @@ const CrudTable = ({
                                 </>
                               ) : null}
 
-                              {/*  service-call
-extra */}
-                              {/* <CInput
-                            {...input}
-                            id={metadataRow.key}
-                            invalid={meta.invalid && meta.touched}
-                          /> */}
                               {meta.touched && meta.error && (
                                 <CInvalidFeedback className="help-block">
                                   Please provide a valid information

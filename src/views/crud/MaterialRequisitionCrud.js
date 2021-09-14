@@ -18,6 +18,7 @@ import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 import { circuitPrint } from "src/utils/circuitPrint";
 import CrudTable from "src/containers/CrudTable";
+import { materialRequisitionPrint } from "src/utils/materialRequisitionPrint";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -79,19 +80,22 @@ const MaterialRequisitionCrud = () => {
       id: 1,
       jobName: "2002-12-12",
       jobLocation: "quepaso ",
-      requestedBy: "Jhon Doe",
+      requestedBy: "Eric Vargas",
       entryDate: "12:00",
       needBy: "13:33",
       description: "Anywhere",
-      materialRequisitionDetails: [
-        {
-          id: 1,
+      materialRequisitionDetails: Array.from(Array(50).keys()).map(function (
+        m,
+        i
+      ) {
+        return {
+          id: i + 1,
           quantity: 2,
           size: "L",
           partNumber: "23",
           itemDescription: "ID",
-        },
-      ],
+        };
+      }),
     },
   ];
   //const [rows, setRow] = useState(rowsInitial);
@@ -225,6 +229,33 @@ const MaterialRequisitionCrud = () => {
                     onEdit={(row, edittedRow) => {}}
                     onCreate={(row) => {}}
                     onDelete={(row, close) => {}}
+                    addOption={(row) => {
+                      return (
+                        <>
+                          <CButton
+                            color="primary"
+                            variant="outline"
+                            shape="square"
+                            size="sm"
+                            onClick={() => {
+                              materialRequisitionPrint({
+                                jobName: row.jobName,
+                                description: row.description,
+                                jobLocation: row.jobLocation,
+                                requestedBy: row.requestedBy,
+                                todayDate: row.entryDate,
+                                needBy: row.needBy,
+                                materialRequisitionDetails:
+                                  row.materialRequisitionDetails,
+                              });
+                              //toggleDetails(index)
+                            }}
+                          >
+                            <CIcon width={24} name="cil-print" />
+                          </CButton>
+                        </>
+                      );
+                    }}
                   ></CrudTable>
                 </CCardBody>
               </CCollapse>

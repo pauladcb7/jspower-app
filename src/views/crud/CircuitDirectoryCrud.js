@@ -16,7 +16,7 @@ import ESignature from "src/components/SiganturePadPaula";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
-import { circuitPrint } from "src/utils/circuitPrint";
+import { circuitHPrint, circuitPrint } from "src/utils/circuitPrint";
 import CrudTable from "src/containers/CrudTable";
 
 const required = (value) => (value ? undefined : "Required");
@@ -173,6 +173,56 @@ const CircuitDirectoryCrud = () => {
                     onCreate={(row) => {
                     }}
                     onDelete={(row, close) => {
+                    }}
+                    addOption={(row) => {
+                     return <>
+                      <CButton
+                        color="primary"
+                        variant="outline"
+                        shape="square"
+                        size="sm"
+                        onClick={() => {
+                          if(row.type === 'Business') { 
+                            const initialArray = [];
+                            for (let index = 1; index < 43; index++) {
+                              var cd = row.circuitDirectoryDetails.find((d) => {
+                                return d.id === index
+                              });
+                              var cd2 = row.circuitDirectoryDetails.find((d) => {
+                                return d.id === index +1
+                              });
+
+                              const element = { ckt: index, load: (cd?.load || ""), ckt1: index + 1, load1: (cd2?.load || "") };
+                              initialArray.push(element);
+                              index++;
+                            }
+                            circuitPrint({
+                              date: row.date,
+                              rows: initialArray,
+                              voltage: row.voltage
+                            })
+                          } else { 
+                            const initialArray = [];
+                            for (let index = 0; index < 20; index++) {
+                              var cd = row.circuitDirectoryDetails.find((d) => {
+                                return d.id === index + 1 
+                              });
+                              const element = { ckt: index + 1, load: (cd?.load||"") };
+                              initialArray.push(element);
+                            }
+                            circuitHPrint({
+                              date: row.date,
+                              rows: initialArray,
+                              voltage: row.voltage
+                            })
+                          }
+                          //circuitPrint
+                          //toggleDetails(index)
+                        }}
+                      >
+                        <CIcon width={24} name="cil-print" />
+                      </CButton> 
+                     </>
                     }}
                   ></CrudTable>
                 </CCardBody>
