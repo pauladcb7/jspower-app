@@ -9,6 +9,8 @@ import WorkOrdersCrud from "./views/crud/WorkOrdersCrud";
 import TimeCardCrud from "./views/crud/TimeCardCrud";
 import MaterialRequisitionCrud from "./views/crud/MaterialRequisitionCrud";
 import CircuitDirectoryCrud from "./views/crud/CircuitDirectoryCrud";
+import SignSheet from "./views/forms/SignSheet";
+import ListSheet from "./views/forms/ListSheet";
 
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -85,6 +87,18 @@ const routes = [
     exact: true,
     name: "Work Order",
     component: WorkOrder,
+  },
+  {
+    path: "/sign-sheet/list",
+    exact: true,
+    name: "List Sheet",
+    component: ListSheet,
+  },
+  {
+    path: "/sign-sheet/sign/:idFile",
+    exact: true,
+    name: "Sign Sheet",
+    component: SignSheet,
   },
   {
     path: "/report/work-order",
