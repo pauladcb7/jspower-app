@@ -45,52 +45,9 @@ const WorkOrder = () => {
   const [collapsed, setCollapsed] = React.useState(true);
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
-  const jobLocations = [
-    { name: "ceres", key: "jLocation1", label: "Ceres" },
-    { name: "frito-lay", key: "jLocation2", label: "Frito Lay" },
-    { name: "lodi-bowling", key: "jLocation3", label: "Lodi Bowling" },
-    { name: "modesto", key: "jLocation4", label: "Modesto" },
-    { name: "pepsico", key: "jLocation5", label: "PepsiCo" },
-    {
-      name: "sensient-livingston",
-      key: "jLocation6",
-      label: "Sensient Livingston",
-    },
-    { name: "sensient-turlock", key: "jLocation7", label: "Sensient Turlock" },
-    { name: "Other", key: "jLocation8", label: "Other" },
-  ];
-  const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
 
-  useEffect(() => {
-    console.log("checked items: ", checkedJobLocations);
-  }, [checkedJobLocations]);
+  useEffect(() => {}, []);
 
-  const handleChange = (event) => {
-    // updating an object instead of a Map
-    setCheckedJobLocations({
-      ...checkedJobLocations,
-      [event.target.name]: event.target.checked,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  const toggleMulti = (type) => {
-    let newCollapse = collapseMulti.slice();
-    switch (type) {
-      case "left":
-        newCollapse[0] = !collapseMulti[0];
-        break;
-      case "right":
-        newCollapse[1] = !collapseMulti[1];
-        break;
-      case "both":
-        newCollapse[0] = !collapseMulti[0];
-        newCollapse[1] = !collapseMulti[1];
-        break;
-      default:
-    }
-    setCollapseMulti(newCollapse);
-  };
   const [signatureCustomer, setSignatureCustomer] = useState(null);
   const [signatureEmployee, setSignatureEmployee] = useState(null);
   const onSubmit = function (e) {
@@ -397,7 +354,7 @@ const WorkOrder = () => {
                                 </>
                               )}
                             </Field>
-                            <Field name="totalCost" validate={required}>
+                            <Field name="totalCost">
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
@@ -407,8 +364,24 @@ const WorkOrder = () => {
                                     <CInput
                                       {...input}
                                       id="totalCost"
-                                      invalid={meta.invalid && meta.touched}
                                       placeholder="Total Cost"
+                                    />
+                                  </CFormGroup>
+                                </>
+                              )}
+                            </Field>
+                            <Field name="clientName" validate={required}>
+                              {({ input, meta }) => (
+                                <>
+                                  <CFormGroup>
+                                    <CLabel htmlFor="clientName">
+                                      Customer Full Name
+                                    </CLabel>
+                                    <CInput
+                                      {...input}
+                                      id="clientName"
+                                      invalid={meta.invalid && meta.touched}
+                                      placeholder="Customer Full Name"
                                     />
                                     {meta.touched && meta.error && (
                                       <CInvalidFeedback className="help-block">
@@ -419,18 +392,18 @@ const WorkOrder = () => {
                                 </>
                               )}
                             </Field>
-                            <Field name="clientName" validate={required}>
+                            <Field name="emailAddress" validate={required}>
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="clientName">
-                                      Full Name
+                                    <CLabel htmlFor="emailAddress">
+                                      Customer Email Address
                                     </CLabel>
                                     <CInput
                                       {...input}
-                                      id="clientName"
+                                      id="emailAddress"
                                       invalid={meta.invalid && meta.touched}
-                                      placeholder="Full Name"
+                                      placeholder="Customer Email Address"
                                     />
                                     {meta.touched && meta.error && (
                                       <CInvalidFeedback className="help-block">
@@ -446,13 +419,13 @@ const WorkOrder = () => {
                                 <>
                                   <CFormGroup>
                                     <CLabel htmlFor="phoneNumber">
-                                      Phone Number
+                                      Customer Phone Number
                                     </CLabel>
                                     <CInput
                                       {...input}
                                       id="phoneNumber"
                                       invalid={meta.invalid && meta.touched}
-                                      placeholder="Phone Number"
+                                      placeholder="Customer Phone Number"
                                     />
                                     {meta.touched && meta.error && (
                                       <CInvalidFeedback className="help-block">

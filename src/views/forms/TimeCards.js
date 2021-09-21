@@ -191,6 +191,8 @@ const TimeCards = () => {
             return jl.job_location_rc;
           }),
           jobDescription: result.job_description,
+          otherJobLocation: result.other,
+          otherCheckbox: result.other ? ["other"] : [],
         });
         api
           .get(JOB_LOCATIONS)
@@ -580,6 +582,7 @@ const TimeCards = () => {
   };
 
   const onSubmit = function (e) {
+    debugger;
     api
       .post(CREATE_TIME_CARD, {
         data: {
@@ -589,7 +592,7 @@ const TimeCards = () => {
           job_name: e.jobName,
           job_locations: e.jobLocations,
           job_description: e.jobDescription,
-          other: otherJobLocation,
+          other: e.otherCheckbox?.length == 0 ? "" : e.otherJobLocation,
           all_week_ind: allWeek,
         },
       })
@@ -602,7 +605,7 @@ const TimeCards = () => {
       })
       .catch((error) => {
         console.log(error);
-        addToast("Something went wrong getting Time Card data.", {
+        addToast("Something went wrong saving Time Card information.", {
           appearance: "error",
           autoDismiss: true,
         });
@@ -707,7 +710,63 @@ const TimeCards = () => {
                                 </CCol>
                               ))}
                               <CCol md="6" sm="6">
-                                <CFormGroup variant="custom-checkbox" inline>
+                                <Field
+                                  name="otherCheckbox"
+                                  type="checkbox"
+                                  value="other"
+                                >
+                                  {({ input, meta }) => (
+                                    <>
+                                      <CFormGroup variant="custom-checkbox">
+                                        <CInputCheckbox
+                                          id="otherCheckbox"
+                                          value="extra"
+                                          name={input.name}
+                                          checked={input.checked}
+                                          onChange={input.onChange}
+                                          custom
+                                        />
+                                        <CLabel
+                                          variant="custom-checkbox"
+                                          htmlFor="otherCheckbox"
+                                        >
+                                          Other
+                                        </CLabel>
+                                      </CFormGroup>
+                                      {input.checked ? (
+                                        <CCollapse
+                                          show={input.checked}
+                                          timeout={1000}
+                                        >
+                                          <Field
+                                            name="otherJobLocation"
+                                            validate={required}
+                                          >
+                                            {({ input, meta }) => (
+                                              <>
+                                                <CInput
+                                                  id="otherJobLocation"
+                                                  placeholder="Enter Job Location"
+                                                  {...input}
+                                                  invalid={
+                                                    meta.invalid && meta.touched
+                                                  }
+                                                />
+                                                {meta.touched && meta.error && (
+                                                  <CInvalidFeedback className="help-block">
+                                                    Please provide a valid
+                                                    information
+                                                  </CInvalidFeedback>
+                                                )}
+                                              </>
+                                            )}
+                                          </Field>
+                                        </CCollapse>
+                                      ) : null}
+                                    </>
+                                  )}
+                                </Field>
+                                {/* <CFormGroup variant="custom-checkbox" inline>
                                   <CInputCheckbox
                                     custom
                                     id="otherOption"
@@ -723,14 +782,7 @@ const TimeCards = () => {
                                   >
                                     Other
                                   </CLabel>
-                                </CFormGroup>
-                                <CCollapse show={otherOption} timeout={1000}>
-                                  <CInput
-                                    id="otherJobLocation"
-                                    placeholder="Enter Job Location"
-                                    value={otherJobLocation}
-                                  />
-                                </CCollapse>
+                                </CFormGroup> */}
                               </CCol>
                               <CCol md="12">
                                 <Field name="jobLocations" validate={required}>

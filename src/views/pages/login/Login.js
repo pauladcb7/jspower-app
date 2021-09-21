@@ -17,9 +17,13 @@ import {
   CRow,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { useToasts } from "react-toast-notifications";
 import { useDispatch, useSelector } from "react-redux";
 import { getBasketTotal } from "src/reducer/reducer";
 import { Field, Form } from "react-final-form";
+import { api } from "src/helpers/api";
+
+import { LOG_IN, TEST } from "../../../helpers/urls";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -29,6 +33,7 @@ const Login = () => {
     return state.user;
   });
   const total = useSelector(getBasketTotal);
+  const { addToast } = useToasts();
 
   useEffect(() => {
     console.log(user);
@@ -44,13 +49,33 @@ const Login = () => {
   }
 
   function onSubmit(e) {
-    dispatch({
-      type: "SET_USER",
-      user: {
-        name: e.username,
-        rol: e.username === "admin" ? "admin" : "employee",
-      },
-    });
+    api
+      .post(LOG_IN, {
+        user_email: e.username,
+        user_passwd: e.password,
+      })
+      .then((token) => {
+        console.log("Logged In!!");
+        api
+          .get(TEST, { headers: { "x-access-token": token.token } })
+          .then((data) => {
+            console.log("data return ", data);
+
+            dispatch({
+              type: "SET_USER",
+              user: {
+                first_name: data.first_name,
+                last_name: data.last_name,
+                email: data.email,
+                rol: data.role === "admin" ? "admin" : "employee",
+                token: token.token,
+              },
+            });
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function validate() {}
@@ -154,7 +179,7 @@ const Login = () => {
                   />
                 </CCardBody>
               </CCard>
-              <CCard
+              {/* <CCard
                 className="text-white bg-primary py-5 d-md-down-none"
                 style={{ width: "44%" }}
               >
@@ -178,7 +203,7 @@ const Login = () => {
                     </Link>
                   </div>
                 </CCardBody>
-              </CCard>
+              </CCard> */}
             </CCardGroup>
           </CCol>
         </CRow>
