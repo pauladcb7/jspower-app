@@ -39,6 +39,12 @@ const _nav = [
     name: "Circuit Directory",
     to: "/circuit-directory/selector",
     icon: "cil-notes",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Sheets List",
+    to: "/sign-sheet/list",
+    icon: "cil-notes",
   }
   
   
