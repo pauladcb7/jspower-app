@@ -14,7 +14,7 @@ jobs:
           node-version: "14"
       - name: Install dependencies
         run: npm install
-      - run: npm run build --if-present
+      - run: npm run build-ci --if-present
       - name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
