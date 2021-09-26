@@ -7,34 +7,17 @@ import {
   CCardHeader,
   CCol,
   CCollapse,
-  CDropdownItem,
-  CDropdownMenu,
-  CDropdownToggle,
   CFade,
   CForm,
   CFormGroup,
   CFormText,
   CValidFeedback,
   CInvalidFeedback,
-  CTextarea,
   CInput,
-  CInputFile,
-  CInputCheckbox,
-  CInputRadio,
-  CInputGroup,
-  CInputGroupAppend,
-  CInputGroupPrepend,
-  CDropdown,
-  CInputGroupText,
   CLabel,
-  CSelect,
   CRow,
-  CSwitch,
-  CLink,
-  CWidgetIcon,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { DocsLink } from "src/reusable";
 import ESignature from "src/components/SiganturePadPaula";
 import { Field, Form } from "react-final-form";
 import { workOrderPrint } from "src/utils/workOrder";
@@ -42,6 +25,9 @@ import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 import { documents } from "src/constants/files";
 import { useParams } from "react-router";
+import axios from "axios";
+import htmlToPdfmake from "html-to-pdfmake";
+import { getPDfInstance } from "src/utils/pdf";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -50,6 +36,9 @@ const ListSheet = () => {
   const [signatureCustomer,setSignatureCustomer] = useState(null)
   const [signatureEmployee,setSignatureEmployee] = useState(null)
   const [showElements, setShowElements] = React.useState(true);
+  const [document, setDocument] = React.useState(null);
+  const [b64, setB64] = useState("")
+
   const onSubmit = function (e) {
     if( !signatureCustomer.isEmpty() && !signatureEmployee.isEmpty()) {
       debugger
@@ -78,9 +67,26 @@ const ListSheet = () => {
     setSignatureEmployee(signaturePad);
   }
   const params = useParams()
-  const document = documents.find((d) => {
-    return d.id === params.idFile
-  })
+  useEffect(() => {
+
+    const document = documents.find((d) => {
+      return d.id === params.idFile
+    })
+    if(document) {
+      axios.get(`/pdfs/${document.filePath}`).then((response) => {
+        var html = response.data
+        var document2 = htmlToPdfmake(html, {
+          imagesByReference:true
+        });
+        
+        getPDfInstance().then((pdfMake) => {
+          pdfMake.createPdf(document2).getBase64((res) => {
+            setB64(res)
+          })
+        })
+      })
+    }
+  },[])
   return (
     <>
       <CRow>
@@ -95,11 +101,10 @@ const ListSheet = () => {
 
               render={({ handleSubmit , form: {
                 mutators: { push, pop }
-              } }) => (
+              },valid }) => (
                 <form onSubmit={handleSubmit}>
                   <CCard>
                     <CCardHeader>
-                      {document?.fileName}
                       <div className="card-header-actions">
                         <CButton
                           color="link"
@@ -180,8 +185,12 @@ const ListSheet = () => {
                                 </>
                               )}
                             </Field>
-                            <object className="pdf-viewer" data={`/pdfs/${document?.filePath}`} type="application/pdf">
+                            {/* <object className="pdf-viewer" data={`/pdfs/${document?.filePath}`} type="application/pdf">
                                 <embed src="/pdfs/01. PPE.docx.pdf" type="application/pdf" />
+                            </object> */}
+                            
+                            <object className="pdf-viewer" data={"data:application/pdf;base64,"+ b64} type="application/pdf">
+                                <embed src={"data:image/png;base64,"+ b64} type="application/pdf" />
                             </object>
                             <Field name="safetySuggestion" validate={required}>
                               {({ input, meta }) => (

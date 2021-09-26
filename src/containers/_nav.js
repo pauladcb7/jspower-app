@@ -45,9 +45,13 @@ const _nav = [
     name: "Sheets List",
     to: "/sign-sheet/list",
     icon: "cil-notes",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Sheets Creation",
+    to: "/sheet/create",
+    icon: "cil-notes",
   }
-  
-  
   /*{
     _tag: 'CSidebarNavItem',
     name: 'Colors',

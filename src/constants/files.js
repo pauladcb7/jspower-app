@@ -1,6 +1,6 @@
 export const documents = [
   {
-    filePath: '01. PPE.docx.pdf',
+    filePath: '01. PPE.html',
     fileName: 'PPE',
     id: "01"
   },
