@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -14,17 +14,16 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: "14"
       - name: Install dependencies
         run: npm ci
       - run: npm run build --if-present
-      - run: npm test
       - name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          username: '${{ secrets.USERNAME }}'
-          server: '${{ secrets.SERVER_IP }}'
+          username: "${{ secrets.USERNAME }}"
+          server: "${{ secrets.SERVER_IP }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: './build/*'
-          remote_path: '/home/jspowere/jspower-app/build'
-          args: '-o ConnectTimeout=5'
+          local_path: "./build/*"
+          remote_path: "/home/jspowere/jspower-app/build"
+          args: "-o ConnectTimeout=5"
