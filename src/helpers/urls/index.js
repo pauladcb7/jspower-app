@@ -14,10 +14,16 @@ export const LUNCH_OUT = "time-card/lunchOut/";
 
 /*  Work Orders */
 export const SAVE_WORK_ORDER = "work-order/save/";
+export const DELETE_WORK_ORDER = "work-order";
+
+
+
 export const WORK_TYPES = "work-order/getWorkOrderTypes/";
 
 /* Material Requisition */
+export const MATERIAL_REQUISITION = "material-requisition";
 
 /* Circuit Directory */
+export const CIRCUIT_DIRECTORY = "circuit-directory";
 
 /* Safety Sheets */
