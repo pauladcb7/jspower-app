@@ -108,7 +108,7 @@ const CircuitDirectoryHome = () => {
                 <form onSubmit={handleSubmit}>
                   <CCard>
                     <CCardHeader>
-                      Circuit Directory
+                      Circuit Directory - 240 Volt
                       <div className="card-header-actions">
                         <CButton
                           color="link"
@@ -171,6 +171,7 @@ const CircuitDirectoryHome = () => {
                               fields={fieldsTable}
                               responsive
                               striped
+                              addTableClasses="black-red-striped"
                               itemsPerPage={50}
                               scopedSlots={{
                                 ckt: (item, index) => {

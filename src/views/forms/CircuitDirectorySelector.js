@@ -55,7 +55,7 @@ for (let index = 1; index < 43; index++) {
 initialArray.push();
 
 const CircuitDirectorySelector = () => {
-  const [collapsed, setCollapsed] = React.useState(true);
+  const [collapsed, setCollapsed] = React.useState(false);
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
@@ -102,30 +102,68 @@ const CircuitDirectorySelector = () => {
   return (
     <>
       <CRow>
-        <CCol xs="12" sm="12">
+        <CCol xs="12" sm="12" lg="12">
           <CFade timeout={300} in={showElements} unmountOnExit={true}>
-            <CButton
-              onClick={() => {
-                history.push("/circuit-directory-business/create");
-              }}
-              block
-              color="dark"
-              type="button"
-              size="lg"
-            >
-              <CIcon size="lg" name="cil-building" /> Business
-            </CButton>
-            <CButton
-              onClick={() => {
-                history.push("/circuit-directory-home/create");
-              }}
-              block
-              color="dark"
-              type="button"
-              size="lg"
-            >
-              <CIcon size="lg" name="cil-home" /> Home
-            </CButton>
+            <CRow row>
+              <CCol sm="12" md="6">
+                <CButton
+                  onClick={() => setCollapsed(!collapsed)}
+                  // onClick={() => {
+                  //   history.push("/circuit-directory-business/create");
+                  // }}
+                  block
+                  color="dark"
+                  type="button"
+                  size="lg"
+                >
+                  <CIcon size="lg" name="cil-building" /> Business
+                </CButton>
+
+                <CCol className="p-2">
+                  <CCollapse timeout={2000} show={collapsed}>
+                    <CButton
+                      onClick={() => {
+                        history.push("/circuit-directory-business/create");
+                      }}
+                      block
+                      color="dark"
+                      type="button"
+                      size="lg"
+                    >
+                      <strong style={{ color: "black" }}>l</strong>{" "}
+                      <strong style={{ color: "red" }}>l</strong>{" "}
+                      <strong style={{ color: "blue" }}>l</strong> 208 Volt
+                    </CButton>
+                    <CButton
+                      onClick={() => {
+                        history.push("/circuit-directory-business/create");
+                      }}
+                      block
+                      color="dark"
+                      type="button"
+                      size="lg"
+                    >
+                      <strong style={{ color: "brown" }}>l</strong>{" "}
+                      <strong style={{ color: "orange" }}>l</strong>{" "}
+                      <strong style={{ color: "yellow" }}>l</strong> 480 Volt
+                    </CButton>
+                  </CCollapse>
+                </CCol>
+              </CCol>
+              <CCol sm="12" md="6">
+                <CButton
+                  onClick={() => {
+                    history.push("/circuit-directory-home/create");
+                  }}
+                  block
+                  color="dark"
+                  type="button"
+                  size="lg"
+                >
+                  <CIcon size="lg" name="cil-home" /> Home
+                </CButton>
+              </CCol>
+            </CRow>
           </CFade>
         </CCol>
       </CRow>

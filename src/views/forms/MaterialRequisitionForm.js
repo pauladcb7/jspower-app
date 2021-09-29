@@ -37,10 +37,16 @@ import {
 import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
 import ESignature from "src/components/SiganturePadPaula";
-import arrayMutators from 'final-form-arrays'
+import { useToasts } from "react-toast-notifications";
+import { api } from "../../helpers/api";
+import { SAVE_WORK_ORDER, WORK_TYPES } from "../../helpers/urls/index";
+import { useSelector, useStore } from "react-redux";
+
+import arrayMutators from "final-form-arrays";
 import { Field, Form } from "react-final-form";
 import { FieldArray } from "react-final-form-arrays";
 import { materialRequisitionPrint } from "src/utils/materialRequisitionPrint";
+import moment from "moment";
 
 const fields = ["id", "qty", "size", "part#", "item"];
 const required = (value) => (value ? undefined : "Required");
@@ -50,39 +56,36 @@ const MaterialRequisitionForm = () => {
   const [showElements, setShowElements] = React.useState(true);
   const [details, setDetails] = useState([]);
   const [rows, setRow] = useState([{}, {}, {}, {}]);
-  const [collapseMulti, setCollapseMulti] = useState([false, false]);
-  const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
+  const { addToast } = useToasts();
+  const [initialValues, setInitialValue] = useState({});
+  const user = useSelector((state) => {
+    return state.user;
+  });
 
   useEffect(() => {
-    console.log("checked items: ", checkedJobLocations);
-  }, [checkedJobLocations]);
-
-  const handleChange = (event) => {
-    // updating an object instead of a Map
-    setCheckedJobLocations({
-      ...checkedJobLocations,
-      [event.target.name]: event.target.checked,
-      [event.target.name]: event.target.checked,
+    const fullName =
+      user.first_name && user.last_name
+        ? user.first_name + " " + user.last_name
+        : user.email
+            .split("@")
+            .shift()
+            .split(".")
+            .map((i) => {
+              return i.charAt(0).toUpperCase() + i.slice(1) + " ";
+            })
+            .toString()
+            .replace(",", "")
+            .trim();
+    setInitialValue({
+      requestedBy: fullName,
+      todayDate: moment().format("YYYY-MM-DD"),
     });
+  }, []);
+
+  const Required = () => {
+    return <span style={{ color: "red" }}>*</span>;
   };
 
-  const toggleMulti = (type) => {
-    let newCollapse = collapseMulti.slice();
-    switch (type) {
-      case "left":
-        newCollapse[0] = !collapseMulti[0];
-        break;
-      case "right":
-        newCollapse[1] = !collapseMulti[1];
-        break;
-      case "both":
-        newCollapse[0] = !collapseMulti[0];
-        newCollapse[1] = !collapseMulti[1];
-        break;
-      default:
-    }
-    setCollapseMulti(newCollapse);
-  };
   const toggleDetails = (index) => {
     const position = details.indexOf(index);
     let newDetails = details.slice();
@@ -93,20 +96,19 @@ const MaterialRequisitionForm = () => {
     }
     setDetails(newDetails);
   };
-  
-  const onSubmit = (e) => {
-    materialRequisitionPrint({
-      jobLocation:e.jobLocation,
-      jobName:e.jobName,
-      needBy:e.needBy,
-      requestedBy:e.requestedBy,
-      rows:e.materialRequisitionDetails,
-      todayDate:e.todayDate,
-    })
-  }
-  const validate = () => {
 
-  }
+  const onSubmit = (e) => {
+    console.log(JSON.stringify(e.materialRequisitionDetails));
+    // materialRequisitionPrint({
+    //   jobLocation: e.jobLocation,
+    //   jobName: e.jobName,
+    //   needBy: e.needBy,
+    //   requestedBy: e.requestedBy,
+    //   rows: e.materialRequisitionDetails,
+    //   todayDate: e.todayDate,
+    // });
+  };
+  const validate = () => {};
   return (
     <>
       <CRow>
@@ -116,13 +118,17 @@ const MaterialRequisitionForm = () => {
               <Form
                 onSubmit={onSubmit}
                 validate={validate}
+                initialValues={initialValues}
                 mutators={{
-                  ...arrayMutators
+                  ...arrayMutators,
                 }}
-      
-                render={({ handleSubmit,form: {
-                  mutators: { push, pop }
-                } }) => (
+                render={({
+                  handleSubmit,
+                  valid,
+                  form: {
+                    mutators: { push, pop },
+                  },
+                }) => (
                   <form onSubmit={handleSubmit}>
                     <CCardHeader>
                       Material Requisition Form
@@ -133,7 +139,9 @@ const MaterialRequisitionForm = () => {
                           onClick={() => setCollapsed(!collapsed)}
                         >
                           <CIcon
-                            name={collapsed ? "cil-arrow-top" : "cil-arrow-bottom"}
+                            name={
+                              collapsed ? "cil-arrow-top" : "cil-arrow-bottom"
+                            }
                           />
                         </CButton>
                       </div>
@@ -148,7 +156,10 @@ const MaterialRequisitionForm = () => {
                                   {({ input, meta }) => (
                                     <>
                                       <CFormGroup>
-                                        <CLabel htmlFor="jobName">Job Name</CLabel>
+                                        <CLabel htmlFor="jobName">
+                                          Job Name
+                                          <Required />
+                                        </CLabel>
                                         <CInput
                                           type="text"
                                           id="jobName"
@@ -171,7 +182,10 @@ const MaterialRequisitionForm = () => {
                                   {({ input, meta }) => (
                                     <>
                                       <CFormGroup>
-                                        <CLabel htmlFor="jobLocation">Job Location</CLabel>
+                                        <CLabel htmlFor="jobLocation">
+                                          Job Location
+                                          <Required />
+                                        </CLabel>
                                         <CInput
                                           type="text"
                                           id="jobLocation"
@@ -194,7 +208,10 @@ const MaterialRequisitionForm = () => {
                                   {({ input, meta }) => (
                                     <>
                                       <CFormGroup>
-                                        <CLabel htmlFor="requestedBy">Requested by</CLabel>
+                                        <CLabel htmlFor="requestedBy">
+                                          Requested by
+                                          <Required />
+                                        </CLabel>
                                         <CInput
                                           type="text"
                                           id="requestedBy"
@@ -217,7 +234,10 @@ const MaterialRequisitionForm = () => {
                                   {({ input, meta }) => (
                                     <>
                                       <CFormGroup>
-                                        <CLabel htmlFor="todayDate">Today's Date</CLabel>
+                                        <CLabel htmlFor="todayDate">
+                                          Today's Date
+                                          <Required />
+                                        </CLabel>
                                         <CInput
                                           type="date"
                                           id="todayDate"
@@ -240,7 +260,10 @@ const MaterialRequisitionForm = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="needBy">Need by</CLabel>
+                                    <CLabel htmlFor="needBy">
+                                      Need by
+                                      <Required />
+                                    </CLabel>
                                     <CInput
                                       type="date"
                                       id="needBy"
@@ -258,174 +281,241 @@ const MaterialRequisitionForm = () => {
                               )}
                             </Field>
 
+                            <Field name="jobDescription" validate={required}>
+                              {({ input, meta }) => (
+                                <>
+                                  <CFormGroup row>
+                                    <CCol md="12">
+                                      <CLabel htmlFor="textarea-input">
+                                        Description (Labor and Task)
+                                      </CLabel>
+                                    </CCol>
+                                    <CCol xs="12" md="12">
+                                      <CTextarea
+                                        {...input}
+                                        name="textarea-input"
+                                        id="jobDescription"
+                                        rows="3"
+                                        placeholder="Enter the type of work in progress..."
+                                      />
+                                    </CCol>
+                                  </CFormGroup>
+                                </>
+                              )}
+                            </Field>
 
                             <CCard>
                               <CCardHeader>Items</CCardHeader>
                               <CCardBody>
-                              <FieldArray name="materialRequisitionDetails">
-                              {({ fields:items }) => (
-                                <>
-                                  <CDataTable
-                                    items={items.value}
-                                    fields={[
-                                      {
-                                        key: 'id',
-                                        type: 'idNumeric',
-                                      },
-                                      {
-                                        key: 'quantity',
-                                        type: 'text',
-                                        _style: { minWidth: '160px'},
-                                      },
-                                      {
-                                         key: 'size',
-                                        type: 'text',
-                                        _style: { minWidth: '160px'},
-                                      },
-                                      {
-                                        key: 'partNumber',
-                                        type: 'text',
-                                        _style: { minWidth: '160px'},
-                                      },
-                                      {
-                                        key: 'itemDescription',
-                                        type: 'text',
-                                        _style: { minWidth: '160px'},
-                                      },
-                                    ]}
-                                    striped
-                                    scopedSlots={
-                                      {
-                                        id: (item, index) => {
-                                          return <td className="py-2">{index + 1}</td>;
-                                        },
-                                        quantity: (item, index) => {
-                                          return (
-                                            <td
-                                              className="py-2"
-                                              style={{ minWidth: 120 }}
-                                            >
-                                              <Field name={`materialRequisitionDetails.${index}.quantity`}>
-                                                {({ input:inputArray, meta }) => (
-                                                  <>
-                                                    <td
-                                                      className="py-2"
-                                                      style={{ minWidth: 120 }}
-                                                    >
-                                                      <CFormGroup>
-                                                        <CInput
-                                                          {...inputArray}
-                                                          //id={metadataRow.key}
-                                                          invalid={meta.invalid && meta.touched}
-                                                        />
-                                                      </CFormGroup>
-                                                    </td>
-                                                  </>
-                                                )}
-                                              </Field>
-                                            </td>
+                                <FieldArray name="materialRequisitionDetails">
+                                  {({ fields: items }) => (
+                                    <>
+                                      <CDataTable
+                                        items={items.value}
+                                        fields={[
+                                          {
+                                            key: "id",
+                                            type: "idNumeric",
+                                          },
+                                          {
+                                            key: "quantity",
+                                            type: "text",
+                                            _style: { minWidth: "160px" },
+                                          },
+                                          {
+                                            key: "size",
+                                            type: "text",
+                                            _style: { minWidth: "160px" },
+                                          },
+                                          {
+                                            key: "partNumber",
+                                            type: "text",
+                                            _style: { minWidth: "160px" },
+                                          },
+                                          {
+                                            key: "itemDescription",
+                                            type: "text",
+                                            _style: { minWidth: "160px" },
+                                          },
+                                        ]}
+                                        striped
+                                        scopedSlots={{
+                                          id: (item, index) => {
+                                            return (
+                                              <td className="py-2">
+                                                {index + 1}
+                                              </td>
+                                            );
+                                          },
+                                          quantity: (item, index) => {
+                                            return (
+                                              <td
+                                                className="py-2"
+                                                style={{ minWidth: 120 }}
+                                              >
+                                                <Field
+                                                  name={`materialRequisitionDetails.${index}.quantity`}
+                                                >
+                                                  {({
+                                                    input: inputArray,
+                                                    meta,
+                                                  }) => (
+                                                    <>
+                                                      <td
+                                                        className="py-2"
+                                                        style={{
+                                                          minWidth: 120,
+                                                        }}
+                                                      >
+                                                        <CFormGroup>
+                                                          <CInput
+                                                            {...inputArray}
+                                                            //id={metadataRow.key}
+                                                            invalid={
+                                                              meta.invalid &&
+                                                              meta.touched
+                                                            }
+                                                          />
+                                                        </CFormGroup>
+                                                      </td>
+                                                    </>
+                                                  )}
+                                                </Field>
+                                              </td>
+                                            );
+                                          },
+                                          size: (item, index) => {
+                                            return (
+                                              <td
+                                                className="py-2"
+                                                style={{ minWidth: 120 }}
+                                              >
+                                                <Field
+                                                  name={`materialRequisitionDetails.${index}.size`}
+                                                >
+                                                  {({
+                                                    input: inputArray,
+                                                    meta,
+                                                  }) => (
+                                                    <>
+                                                      <td
+                                                        className="py-2"
+                                                        style={{
+                                                          minWidth: 120,
+                                                        }}
+                                                      >
+                                                        <CFormGroup>
+                                                          <CInput
+                                                            {...inputArray}
+                                                            //id={metadataRow.key}
+                                                            invalid={
+                                                              meta.invalid &&
+                                                              meta.touched
+                                                            }
+                                                          />
+                                                        </CFormGroup>
+                                                      </td>
+                                                    </>
+                                                  )}
+                                                </Field>
+                                              </td>
+                                            );
+                                          },
+                                          partNumber: (item, index) => {
+                                            return (
+                                              <td
+                                                className="py-2"
+                                                style={{ minWidth: 120 }}
+                                              >
+                                                <Field
+                                                  name={`materialRequisitionDetails.${index}.partNumber`}
+                                                >
+                                                  {({
+                                                    input: inputArray,
+                                                    meta,
+                                                  }) => (
+                                                    <>
+                                                      <td
+                                                        className="py-2"
+                                                        style={{
+                                                          minWidth: 120,
+                                                        }}
+                                                      >
+                                                        <CFormGroup>
+                                                          <CInput
+                                                            {...inputArray}
+                                                            //id={metadataRow.key}
+                                                            invalid={
+                                                              meta.invalid &&
+                                                              meta.touched
+                                                            }
+                                                          />
+                                                        </CFormGroup>
+                                                      </td>
+                                                    </>
+                                                  )}
+                                                </Field>
+                                              </td>
+                                            );
+                                          },
+                                          itemDescription: (item, index) => {
+                                            return (
+                                              <td
+                                                className="py-2"
+                                                style={{ minWidth: 120 }}
+                                              >
+                                                <Field
+                                                  name={`materialRequisitionDetails.${index}.itemDescription`}
+                                                >
+                                                  {({
+                                                    input: inputArray,
+                                                    meta,
+                                                  }) => (
+                                                    <>
+                                                      <td
+                                                        className="py-2"
+                                                        style={{
+                                                          minWidth: 120,
+                                                        }}
+                                                      >
+                                                        <CFormGroup>
+                                                          <CInput
+                                                            {...inputArray}
+                                                            //id={metadataRow.key}
+                                                            invalid={
+                                                              meta.invalid &&
+                                                              meta.touched
+                                                            }
+                                                          />
+                                                        </CFormGroup>
+                                                      </td>
+                                                    </>
+                                                  )}
+                                                </Field>
+                                              </td>
+                                            );
+                                          },
+                                        }}
+                                      />
+                                      <CButton
+                                        block
+                                        color="dark"
+                                        type="button"
+                                        onClick={() => {
+                                          push(
+                                            "materialRequisitionDetails",
+                                            {}
                                           );
-                                        },
-                                        size: (item, index) => {
-                                          return (
-                                            <td
-                                              className="py-2"
-                                              style={{ minWidth: 120 }}
-                                            >
-                                              <Field name={`materialRequisitionDetails.${index}.size`}>
-                                                {({ input:inputArray, meta }) => (
-                                                  <>
-                                                    <td
-                                                      className="py-2"
-                                                      style={{ minWidth: 120 }}
-                                                    >
-                                                      <CFormGroup>
-                                                        <CInput
-                                                          {...inputArray}
-                                                          //id={metadataRow.key}
-                                                          invalid={meta.invalid && meta.touched}
-                                                        />
-                                                      </CFormGroup>
-                                                    </td>
-                                                  </>
-                                                )}
-                                              </Field>
-                                            </td>
-                                          );
-                                        },
-                                        "partNumber": (item, index) => {
-                                          return (
-                                            <td
-                                              className="py-2"
-                                              style={{ minWidth: 120 }}
-                                            >
-                                              <Field name={`materialRequisitionDetails.${index}.partNumber`}>
-                                                {({ input:inputArray, meta }) => (
-                                                  <>
-                                                    <td
-                                                      className="py-2"
-                                                      style={{ minWidth: 120 }}
-                                                    >
-                                                      <CFormGroup>
-                                                        <CInput
-                                                          {...inputArray}
-                                                          //id={metadataRow.key}
-                                                          invalid={meta.invalid && meta.touched}
-                                                        />
-                                                      </CFormGroup>
-                                                    </td>
-                                                  </>
-                                                )}
-                                              </Field>
-                                            </td>
-                                          );
-                                        },
-                                        itemDescription: (item, index) => {
-                                          return (
-                                            <td className="py-2"
-                                              style={{ minWidth: 120 }}
-                                            >
-                                              <Field name={`materialRequisitionDetails.${index}.itemDescription`}>
-                                                {({ input:inputArray, meta }) => (
-                                                  <>
-                                                    <td
-                                                      className="py-2"
-                                                      style={{ minWidth: 120 }}
-                                                    >
-                                                      <CFormGroup>
-                                                        <CInput
-                                                          {...inputArray}
-                                                          //id={metadataRow.key}
-                                                          invalid={meta.invalid && meta.touched}
-                                                        />
-                                                      </CFormGroup>
-                                                    </td>
-                                                  </>
-                                                )}
-                                              </Field>
-                                            </td>
-                                          );
-                                        },
-                                      }
-                                    }
-                                  />
-                                  <CButton
-                                    block
-                                    color="dark"
-                                    type="button"
-                                    onClick={() => {
-                                      push("materialRequisitionDetails", {})
-                                    }}
-                                  >
-                                    <CIcon size="lg" name="cil-plus" /> Add Row
-                                  </CButton> 
-                                </>
-                              )}
-                            </FieldArray>
+                                        }}
+                                      >
+                                        <CIcon size="lg" name="cil-plus" /> Add
+                                        Row
+                                      </CButton>
+                                    </>
+                                  )}
+                                </FieldArray>
                               </CCardBody>
                             </CCard>
-                            
-
 
                             {/* <CCard>
                               <CCardHeader>Items</CCardHeader>
@@ -462,6 +552,14 @@ const MaterialRequisitionForm = () => {
                         color="danger"
                         type="submit"
                         size="lg"
+                        onClick={() => {
+                          if (!valid) {
+                            addToast("Please complete empty fields.", {
+                              appearance: "error",
+                              autoDismiss: true,
+                            });
+                          }
+                        }}
                       >
                         <CIcon size="lg" name="cil-clock" /> Save
                       </CButton>

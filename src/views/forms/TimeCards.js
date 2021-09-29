@@ -199,13 +199,31 @@ const TimeCards = () => {
           .then((data) => {
             setJobLocations(data);
           })
-          .then(() => {});
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+            addToast(
+              "Something went wrong loading Job Locations. Refresh the page.",
+              {
+                appearance: "error",
+                autoDismiss: true,
+              }
+            );
+          });
       })
 
       .catch(function (error) {
+        addToast("Something went wrong loading Time Card. Refresh the page.", {
+          appearance: "error",
+          autoDismiss: true,
+        });
         console.error(error);
       });
   }, []);
+
+  const Required = () => {
+    return <span style={{ color: "red" }}>*</span>;
+  };
 
   const saveChanges = () => {};
   const handleChange = (event) => {
@@ -582,7 +600,6 @@ const TimeCards = () => {
   };
 
   const onSubmit = function (e) {
-    debugger;
     api
       .post(CREATE_TIME_CARD, {
         data: {
@@ -622,7 +639,7 @@ const TimeCards = () => {
           onSubmit={onSubmit}
           validate={validate}
           initialValues={initialValues}
-          render={({ handleSubmit }) => (
+          render={({ handleSubmit, valid }) => (
             <form onSubmit={handleSubmit}>
               <CCol xs="12" sm="12">
                 <CFade timeout={300} in={showElements} unmountOnExit={true}>
@@ -635,6 +652,14 @@ const TimeCards = () => {
                           className=" btn-minimize"
                           size="sm"
                           type="submit"
+                          onClick={() => {
+                            if (!valid) {
+                              addToast("Please complete empty fields.", {
+                                appearance: "error",
+                                autoDismiss: true,
+                              });
+                            }
+                          }}
                         >
                           Save
                         </CButton>
@@ -659,7 +684,9 @@ const TimeCards = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="jobName">Job Name</CLabel>
+                                    <CLabel htmlFor="jobName">
+                                      Job Name <Required />
+                                    </CLabel>
                                     <CInput
                                       placeholder="Enter the Job Name"
                                       {...input}
@@ -676,7 +703,9 @@ const TimeCards = () => {
                             </Field>
                             <CFormGroup row>
                               <CCol md="12">
-                                <CLabel>Job Location</CLabel>
+                                <CLabel>
+                                  Job Location <Required />
+                                </CLabel>
                               </CCol>
 
                               {jobLocations?.map((jobLocation) => (
@@ -691,7 +720,7 @@ const TimeCards = () => {
                                         <CFormGroup variant="custom-checkbox">
                                           <CInputCheckbox
                                             id={jobLocation.id}
-                                            value="extra"
+                                            value="ss"
                                             name={input.name}
                                             checked={input.checked}
                                             onChange={input.onChange}
@@ -811,7 +840,7 @@ const TimeCards = () => {
                                   <CFormGroup row>
                                     <CCol md="12">
                                       <CLabel htmlFor="textarea-input">
-                                        Type of work in progress
+                                        Type of work in progress <Required />
                                       </CLabel>
                                     </CCol>
                                     <CCol xs="12" md="12">
