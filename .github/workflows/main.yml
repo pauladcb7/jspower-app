@@ -20,6 +20,7 @@ jobs:
         with:
           username: "${{ secrets.USERNAME }}"
           server: "${{ secrets.SERVER_IP }}"
+          port: "7822"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           local_path: "./build/*"
           remote_path: "/home/jspowere/jspower-app/build"
