@@ -25,7 +25,7 @@ api.interceptors.response.use(function (resp) {
 
 api.interceptors.request.use(function (req) {
   var state = store.getState();
-  req.headers['x-access-token'] = state.user?.token;
+  req.headers['x-access-token'] = req.headers['x-access-token'] || state.user?.token;
   return req;
 });
 

@@ -1,4 +1,4 @@
-export const BASE = "http://localhost:3000/api/";
+export const BASE = process.env.NODE_ENV === 'production' ? "/api" : "http://localhost:3000/api/";
 
 export const LOG_IN = "login/";
 export const TEST = "test/";
