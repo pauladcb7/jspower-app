@@ -55,16 +55,16 @@ const CrudTable = ({
   addOption = () => {
     return null;
   },
+  loading
 }) => {
   const [modal, setModal] = useState(false);
   const [reRender, setRerender] = useState(uuid());
   const [selectedData, setSelectedData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  function onSubmit(newData) {
+  async function onSubmit(newData) {
     if (selectedData) {
-      onEdit(selectedData, newData);
+      await onEdit(selectedData, newData);
     } else {
-      onCreate(newData);
+      await onCreate(newData);
     }
     setModal(false);
   }
@@ -158,12 +158,8 @@ const CrudTable = ({
         playsInline
         color="dark"
         type="button"
-        onClick={() => {
-          setLoading(true);
-          setTimeout(() => {
-            setLoading(false);
-          }, 1200);
-          onRefreshTable();
+        onClick={async () => {
+          await onRefreshTable();
           // TODO: Only to DEMO show like a blink
         }}
       >
@@ -196,7 +192,7 @@ const CrudTable = ({
               <td
                 className="py-2"
                 style={{
-                  minWidth: 100,
+                  minWidth: 127,
                 }}
               >
                 <CButton
@@ -213,6 +209,21 @@ const CrudTable = ({
                 >
                   <CIcon width={24} name="cil-pencil" />
                 </CButton>
+                {' '}
+                <CButton
+                  color="primary"
+                  variant="outline"
+                  shape="square"
+                  size="sm"
+                  onClick={async () => {
+                    await onDelete(item);
+                    onRefreshTable()
+                    //toggleDetails(index)
+                  }}
+                >
+                  <CIcon width={24} name="cil-trash" />
+                </CButton>
+                {' '}
                 {addOption(item)}
               </td>
             );
@@ -226,6 +237,7 @@ const CrudTable = ({
           setSelectedData(null);
           //setLarge(!large)
         }}
+        closeOnBackdrop={false}
         key={reRender}
         size="lg"
       >
@@ -260,6 +272,7 @@ const CrudTable = ({
                               {metadataRow.type === "signature" ? (
                                 <ESignature
                                   svg={input.value}
+                                  disableEdit={!!selectedData && metadataRow.disableEdit}
                                   onChange={input.onChange}
                                 ></ESignature>
                               ) : null}

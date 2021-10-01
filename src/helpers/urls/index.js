@@ -15,7 +15,7 @@ export const LUNCH_OUT = "time-card/lunchOut/";
 /*  Work Orders */
 export const SAVE_WORK_ORDER = "work-order/save/";
 export const DELETE_WORK_ORDER = "work-order";
-
+export const GET_WORK_ORDER = "work-order/getWorkOrders";
 
 
 export const WORK_TYPES = "work-order/getWorkOrderTypes/";

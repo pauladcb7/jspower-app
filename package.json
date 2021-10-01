@@ -15,6 +15,7 @@
     }
   ],
   "homepage": "https://apptest.jspowerelectricinc.com",
+  "proxy": "http://localhost:3000",
   "copyright": "Copyright 2017-2020 creativeLabs Łukasz Holeczek",
   "license": "MIT",
   "private": true,
