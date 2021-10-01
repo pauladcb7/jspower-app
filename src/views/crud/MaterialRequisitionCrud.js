@@ -19,6 +19,8 @@ import { FieldArray } from "react-final-form-arrays";
 import { circuitPrint } from "src/utils/circuitPrint";
 import CrudTable from "src/containers/CrudTable";
 import { materialRequisitionPrint } from "src/utils/materialRequisitionPrint";
+import { DELETE_WORK_ORDER, MATERIAL_REQUISITION } from "src/helpers/urls";
+import { api } from "src/helpers/api";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -200,6 +202,15 @@ const MaterialRequisitionCrud = () => {
       hide: true,
     },
   ];
+function onDelete (row, close){
+  api
+  .delete(MATERIAL_REQUISITION,{
+    id:row.id
+  })
+  .then((data) => {
+    console.log("data return ", data);
+  });
+}
   return (
     <>
       <CRow>
@@ -228,7 +239,7 @@ const MaterialRequisitionCrud = () => {
                     metadata={metadata}
                     onEdit={(row, edittedRow) => {}}
                     onCreate={(row) => {}}
-                    onDelete={(row, close) => {}}
+                    onDelete={onDelete}
                     addOption={(row) => {
                       return (
                         <>

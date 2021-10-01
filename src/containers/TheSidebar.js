@@ -38,7 +38,7 @@ const TheSidebar = () => {
       </CSidebarBrand>
       <CSidebarNav>
         <CCreateElement
-          items={user.role === "admin" ? navigationAdmin : navigation}
+          items={user.rol === "admin" ? navigationAdmin : navigation}
           components={{
             CSidebarNavDivider,
             CSidebarNavDropdown,

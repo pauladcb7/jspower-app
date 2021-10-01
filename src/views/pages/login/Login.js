@@ -39,14 +39,6 @@ const Login = () => {
     console.log(user);
   }, [user]);
 
-  function signIn() {
-    dispatch({
-      type: "SET_USER",
-      user: {
-        name: "Admin",
-      },
-    });
-  }
 
   function onSubmit(e) {
     api
@@ -60,7 +52,6 @@ const Login = () => {
           .get(TEST, { headers: { "x-access-token": token.token } })
           .then((data) => {
             console.log("data return ", data);
-
             dispatch({
               type: "SET_USER",
               user: {

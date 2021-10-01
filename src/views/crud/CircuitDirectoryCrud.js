@@ -18,6 +18,8 @@ import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 import { circuitHPrint, circuitPrint } from "src/utils/circuitPrint";
 import CrudTable from "src/containers/CrudTable";
+import { CIRCUIT_DIRECTORY } from "src/helpers/urls";
+import { api } from "src/helpers/api";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -142,6 +144,15 @@ const CircuitDirectoryCrud = () => {
 
 
   ]
+  function onDelete (row, close){
+    api
+    .delete(CIRCUIT_DIRECTORY,{
+      id:row.id
+    })
+    .then((data) => {
+      console.log("data return ", data);
+    });
+  }
   return (
     <>
       <CRow>
@@ -172,8 +183,7 @@ const CircuitDirectoryCrud = () => {
                     }}
                     onCreate={(row) => {
                     }}
-                    onDelete={(row, close) => {
-                    }}
+                    onDelete={onDelete}
                     addOption={(row) => {
                      return <>
                       <CButton

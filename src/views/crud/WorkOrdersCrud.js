@@ -43,6 +43,8 @@ import { FieldArray } from "react-final-form-arrays";
 import { circuitPrint } from "src/utils/circuitPrint";
 import CrudTable from "src/containers/CrudTable";
 import { workOrderPrint } from "src/utils/workOrder";
+import { DELETE_WORK_ORDER } from "src/helpers/urls";
+import { api } from "src/helpers/api";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -237,6 +239,18 @@ const WorkOrdersCrud = () => {
       hide: true,
     },
   ];
+
+
+  function onDelete (row, close){
+    api
+    .delete(DELETE_WORK_ORDER,{
+      id:row.id
+    })
+    .then((data) => {
+      console.log("data return ", data);
+    });
+  }
+
   return (
     <>
       <CRow>
@@ -265,7 +279,7 @@ const WorkOrdersCrud = () => {
                     metadata={metadata}
                     onEdit={(row, edittedRow) => {}}
                     onCreate={(row) => {}}
-                    onDelete={(row, close) => {}}
+                    onDelete={onDelete}
                     addOption={(row) => {
                       return (
                         <>

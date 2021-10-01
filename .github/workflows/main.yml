@@ -16,7 +16,7 @@ jobs:
         run: npm install
       - run: npm run build-ci --if-present
       - name: deploy file to server
-        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:
           username: "${{ secrets.USERNAME }}"
           server: "${{ secrets.SERVER_IP }}"
@@ -24,4 +24,3 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           local_path: "./build/*"
           remote_path: "/home/jspowere/jspower-app/build"
-          args: "-o ConnectTimeout=5"
