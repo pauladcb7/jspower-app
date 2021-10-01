@@ -67,6 +67,9 @@ const ESignature = (props) => {
         onChange(signaturePad2.toDataURL())
       },
     });
+    if(props.disableEdit ) {
+      signaturePad2.off()
+    }
     onReady && onReady(signaturePad2)
     setSignaturePad(signaturePad2);
     
@@ -86,6 +89,15 @@ const ESignature = (props) => {
       window.removeEventListener('resize',resizeCanvas)
     }
   }, [ref]);
+  useEffect(() => {
+    if(signaturePad) {
+      if(props.disableEdit) {
+        signaturePad.off()
+      } else {
+        signaturePad.on()
+      }
+    }
+  }, [props.disableEdit,signaturePad])
   /* useEffect(() => {
     if(!sign) {
       resizeCanvas();
@@ -108,14 +120,17 @@ const ESignature = (props) => {
               !hideImage && <img alt="sign" src={svg} />
             }
           </CCard>
-          <CLabel style={{
-            cursor: 'pointer'
-          }} onClick={() => {
-            setSign(null)
-            signaturePad.clear();
-            setHideImage(true)
-            resizeCanvas();
-          }}>Clear</CLabel>
+          {
+            !props.disableEdit &&
+            <CLabel style={{
+              cursor: 'pointer'
+            }} onClick={() => {
+              setSign(null)
+              signaturePad.clear();
+              setHideImage(true)
+              resizeCanvas();
+            }}>Clear</CLabel>
+          }
         </CCol>
       </CRow>
     </>
