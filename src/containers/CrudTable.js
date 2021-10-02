@@ -66,6 +66,7 @@ const CrudTable = ({
     } else {
       await onCreate(newData);
     }
+    await onRefreshTable()
     setModal(false);
   }
 
@@ -187,6 +188,28 @@ const CrudTable = ({
         itemsPerPage={15}
         pagination
         scopedSlots={{
+          ...metadata.reduce(
+            function (prev, curr) {
+              
+              if(curr.type === "radius") {
+                prev[curr.key] = (
+                  item,
+                  index
+                ) => {
+                  const optionFound = curr.options.find((option) => {
+                    return item[curr.key] === option.value && !option.otherOption
+                  })
+                  return (
+                    <td>
+                      { optionFound ? optionFound.label : item[curr.otherKey]}
+                    </td>
+                  );
+                };
+              }
+              return prev;
+            },
+            {}
+          ),
           "show-modal": (item, index) => {
             return (
               <td
@@ -266,8 +289,24 @@ const CrudTable = ({
                         {({ input, meta }) => (
                           <>
                             <CFormGroup>
-                              <CLabel htmlFor={metadataRow.key}>
+                              <CLabel htmlFor={metadataRow.key}
+                                style={{
+                                  fontWeight:  metadataRow.type === 'separator' ? 'bolder': 'normal',
+                                  width:  metadataRow.type === 'separator' ? '100%': 'auto'
+                                }}
+                              >
                                 {metadataRow.label}
+                                {
+                                  metadataRow.type === 'separator' &&
+                                  <hr
+                                    style={{
+                                      borderColor: "red",
+                                      borderTop: "2px solid red",
+                                      marginTop: "8px",
+                                      marginBottom: '1px'
+                                    }}
+                                  ></hr>
+                                }
                               </CLabel>
                               {metadataRow.type === "signature" ? (
                                 <ESignature
@@ -462,14 +501,25 @@ const CrudTable = ({
                                                   }
                                                 ) && (
                                                   <div>
-                                                    <CInput
-                                                      {...input}
-                                                      id={metadataRow.key}
-                                                      invalid={
-                                                        meta.invalid &&
-                                                        meta.touched
-                                                      }
-                                                    />
+                                                    <Field
+                                                      name={metadataRow.otherKey}
+                                                    >
+                                                      {({
+                                                        input,
+                                                        meta,
+                                                        values,
+                                                      }) => (
+                                                        <>
+                                                          <CInput
+                                                            {...input}
+                                                            invalid={
+                                                              meta.invalid &&
+                                                              meta.touched
+                                                            }
+                                                          />
+                                                        </>
+                                                      )}
+                                                    </Field>
                                                   </div>
                                                 )}
                                             </CFormGroup>

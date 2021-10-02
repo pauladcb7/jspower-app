@@ -141,23 +141,24 @@ const WorkOrdersCrud = () => {
     },
     {
       key: "totalCost",
-      label: "Total Cost",
+      label: "Labor & Material Total",
       type: "text",
       sorter: false,
       filter: false,
       _style: { minWidth: "100px" },
     },
     {
-      key: "customerName",
-      label: "Full Name",
-      type: "text",
+      key: "---Separator---",
+      label: "Customer Information",
+      type: "separator",
       sorter: false,
       filter: false,
-      _style: { minWidth: "150px" },
+      _style: { minWidth: "100px" },
+      hide: true,
     },
     {
-      key: "customerPhone",
-      label: "Phone Number",
+      key: "customerName",
+      label: "Customer Full Name",
       type: "text",
       sorter: false,
       filter: false,
@@ -166,6 +167,14 @@ const WorkOrdersCrud = () => {
     {
       key: "customerAddress",
       label: "Customer Address",
+      type: "text",
+      sorter: false,
+      filter: false,
+      _style: { minWidth: "150px" },
+    },
+    {
+      key: "customerPhone",
+      label: "Customer Phone Number",
       type: "text",
       sorter: false,
       filter: false,
@@ -283,19 +292,20 @@ const WorkOrdersCrud = () => {
     
     return {
       entryDate: moment(row.entry_date).format("YYYY-MM-DD"),
-      workTypeRc: String(row.work_type_rc),
+      workTypeRc: String(row.work_type_rc || "other"),
       employeeName: row.user_name,
       startTime:row.start_time,
       endTime: row.end_time,
       jobLocation: row.job_location,
       jobDetails: row.job_details,
       totalCost: row.total_cost,
-      customerName: row.name,
-      customerPhone: row.phone_number, 
-      customerAddress: row.address,
-      customer_email: row.email,
+      customerName: row.customer_name,
+      customerPhone: row.customer_phone_number, 
+      customerAddress: row.customer_address,
+      customer_email: row.customer_email,
       customerSignature: row.customer_signature,
       employeeSignature: row.employee_signature,
+      workTypeOther: row.other,
       id:row.id
     }
   }
@@ -314,19 +324,19 @@ const WorkOrdersCrud = () => {
         
         const newMetadata = [...metadata];
         newMetadata[1].options = [
-          ...data,
+          ...data.map((e) => {
+            return {
+              ...e,
+              value: String(e.id),
+              label: e.value
+            }
+          }),
           {
             label: "Other",
             value: "other",
             otherOption: true,
           }
-        ].map((e) => {
-          return {
-            ...e,
-            value: String(e.id),
-            label: e.value
-          }
-        });
+        ];
         setMetaData(newMetadata)
         //setWorkTypes(data);
       })
@@ -373,7 +383,6 @@ const WorkOrdersCrud = () => {
                     onRefreshTable={fetchTable}
                     loading={loading}
                     onEdit={(row, edittedRow) => {
-                      
                       const e = edittedRow;
                       return api
                         .post(SAVE_WORK_ORDER, {
@@ -391,9 +400,8 @@ const WorkOrdersCrud = () => {
                             customer_address: e.customerAddress,
                             customer_phone_number: e.customerPhone,
                             customer_signature: e.customerSignature,
-
-                            work_type: e.workTypeRc,
-                            other: e.otherWorkType?.length == 0 ? "" : e.otherWorkType,
+                            work_type: e.workTypeRc === 'other' ? null: e.workTypeRc,
+                            other: e.workTypeRc === 'other' ? e.workTypeOther: null,
                             customer_email: e.customer_email,
                           },
                         })
@@ -414,7 +422,6 @@ const WorkOrdersCrud = () => {
                     }}
                     onCreate={(row) => {
                       const e = row;
-                      debugger
                       return api
                         .post(SAVE_WORK_ORDER, {
                           data: {
@@ -432,8 +439,8 @@ const WorkOrdersCrud = () => {
                             customer_phone_number: e.customerPhone,
                             customer_signature: e.customerSignature,
 
-                            work_type: e.workTypeRc,
-                            other: e.otherWorkType?.length == 0 ? "" : e.otherWorkType,
+                            work_type: e.workTypeRc === 'other' ? null: e.workTypeRc,
+                            other: e.workTypeRc === 'other' ? e.workTypeOther: null,
                             customer_email: e.customer_email,
                           },
                         })
@@ -461,9 +468,12 @@ const WorkOrdersCrud = () => {
                             shape="square"
                             size="sm"
                             onClick={() => {
+                              const optionFound = metadata[1].options.find((option) => {
+                                return row.workTypeRc === option.value && !option.otherOption
+                              })
                               workOrderPrint({
                                 date: row.entryDate,
-                                workType: row.workTypeRc,
+                                workType: row.workTypeRc === 'other' ? row.workTypeOther: optionFound?.label,
                                 employeeName: row.employeeName,
                                 startTime: row.startTime,
                                 endTime: row.endTime,
