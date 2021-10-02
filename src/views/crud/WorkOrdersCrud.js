@@ -142,7 +142,7 @@ const WorkOrdersCrud = () => {
     {
       key: "totalCost",
       label: "Labor & Material Total",
-      type: "text",
+      type: "currency",
       sorter: false,
       filter: false,
       _style: { minWidth: "100px" },

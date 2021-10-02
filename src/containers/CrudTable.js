@@ -4,6 +4,9 @@ import {
   CDataTable,
   CFormGroup,
   CInput,
+  CInputGroup,
+  CInputGroupPrepend,
+  CInputGroupText,
   CInputRadio,
   CInvalidFeedback,
   CLabel,
@@ -356,6 +359,24 @@ const CrudTable = ({
                                   invalid={meta.invalid && meta.touched}
                                 />
                               ) : null}
+
+                              {metadataRow.type === "currency" ? (
+                                <div className="controls">
+                                  <CInputGroup className="input-prepend">
+                                    <CInputGroupPrepend>
+                                      <CInputGroupText>$</CInputGroupText>
+                                    </CInputGroupPrepend>
+                                    <CInput
+                                      {...input}
+                                      placeholder="00.00"
+                                      type="number"
+                                      min="0.00"
+                                      step="0.01"
+                                    />
+                                  </CInputGroup>
+                                </div>
+                              ) : null}
+                              
                               {metadataRow.type === "array" ? (
                                 <>
                                   <FieldArray name={metadataRow.key}>
