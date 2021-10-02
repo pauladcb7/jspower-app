@@ -44,6 +44,7 @@ import { useToasts } from "react-toast-notifications";
 import { api } from "../../helpers/api";
 import {
   JOB_LOCATIONS,
+  SAVE_TIME_CARD,
   GET_TIME_CARD_BY_DAY,
   CLOCK_IN,
   CLOCK_OUT,
@@ -68,6 +69,7 @@ const TimeCards = () => {
   const [jobDescription, setJobDescription] = useState("");
   const [otherJobLocation, setOtherJobLocation] = useState("");
   const [timeCardId, setTimeCardId] = useState("");
+  const [timeEntryId, setTimeEntryId] = useState("");
 
   const required = (value) => (value ? undefined : "Required");
   const [collapsed, setCollapsed] = React.useState(true);
@@ -138,20 +140,23 @@ const TimeCards = () => {
   const [otherOption, setOtherOption] = React.useState(false);
   const [enableLogs, setEnableLogs] = useState([true, true, true, true]);
   const [allWeek, setAllWeek] = useState(false);
+  const [timeCardStatus, setTimeCardStatus] = useState("NEW");
 
   useEffect(() => {
     api
       .get(GET_TIME_CARD_BY_DAY, {
         params: {
-          user_email: "example@email.com",
+          time_entry_id: timeEntryId,
+          time_card_id: timeCardId,
           entry_date: moment().format("YYYY-MM-DD"),
         },
       })
       .then((result) => {
-        setTimeCardId(result.id);
-        setJobName(result.job_name);
-        setJobDescription(result.job_desription);
-        let time = result.clock_in;
+        setTimeEntryId(result.time_entry_id);
+        setTimeCardId(result.time_card_info.time_card_id);
+        setJobName(result.time_card_info.job_name);
+        setJobDescription(result.time_card_info.job_desription);
+        let time = result.time_card_info.clock_in;
 
         let showTime = [false, false, false, false];
         let cardState = [true, true, true, true];
@@ -160,22 +165,22 @@ const TimeCards = () => {
           showTime[0] = true;
           cardState[0] = false;
         }
-        setClockInAddress(result.clock_in_gps);
-        time = result.clock_out;
+        setClockInAddress(result.time_card_info.clock_in_gps);
+        time = result.time_card_info.clock_out;
         if (time != undefined) {
           showTime[3] = true;
           cardState[3] = false;
           setClockOutTime(time);
         }
 
-        setClockOutAddress(result.clock_out_gps);
+        setClockOutAddress(result.time_card_info.clock_out_gps);
         time = result.lunch_in;
         if (time != undefined) {
           showTime[1] = true;
           cardState[1] = false;
           setLunchInTime(time);
         }
-        setLunchInAddress(result.lunch_in_gps);
+        setLunchInAddress(result.time_card_info.lunch_in_gps);
         time = result.lunch_out;
         if (time != undefined) {
           showTime[2] = true;
@@ -183,16 +188,16 @@ const TimeCards = () => {
           setLunchOutTime(time);
         }
         setCollapseMulti(showTime);
-        setLunchOutAddress(result.lunch_out_gps);
+        setLunchOutAddress(result.time_card_info.lunch_out_gps);
         setEnableLogs(cardState);
         setInitialValue({
-          jobName: result.job_name,
+          jobName: result.time_card_info.job_name,
           jobLocations: result.job_locations.map(function (jl) {
             return jl.job_location_rc;
           }),
-          jobDescription: result.job_description,
-          otherJobLocation: result.other,
-          otherCheckbox: result.other ? ["other"] : [],
+          jobDescription: result.time_card_info.job_description,
+          otherJobLocation: result.time_card_info.other,
+          otherCheckbox: result.time_card_info.other ? ["other"] : [],
         });
         api
           .get(JOB_LOCATIONS)
@@ -281,7 +286,7 @@ const TimeCards = () => {
                 })
                 .catch((error) => {
                   console.log(error);
-                  addToast("Something went wrong while Cloking In", {
+                  addToast("Something went wrong while Clocking In", {
                     appearance: "error",
                     autoDismiss: true,
                   });
@@ -313,7 +318,7 @@ const TimeCards = () => {
                 })
                 .catch((error) => {
                   console.log(error);
-                  addToast("Something went wrong while Cloking Out", {
+                  addToast("Something went wrong while Clocking Out", {
                     appearance: "error",
                     autoDismiss: true,
                   });
@@ -424,6 +429,80 @@ const TimeCards = () => {
     setCollapseMulti(newCollapse);
     setEnableLogs(newEnableLogs);
   };
+  const LogCards = () => {
+    return (
+      <>
+        {timeCardStatus == "NEW" && (
+          <CCol xs="12" sm="6" lg="6">
+            <CWidgetIcon
+              text={
+                <div>
+                  {clockInAddress || (
+                    <div>
+                      <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
+                      Click to register Clock In time
+                    </div>
+                  )}
+                </div>
+              }
+              header={
+                <CCollapse timeout={2000} show={collapseMulti[0]}>
+                  {clockInTime}
+                </CCollapse>
+              }
+              color="danger"
+              iconPadding={false}
+              id="clockInCard"
+            >
+              <CCol
+                md="12"
+                className="timeLog"
+                onClick={() => {
+                  logTime("clockIn");
+                }}
+              >
+                <CIcon width={32} name="cil-clock" /> <p>Clock In</p>
+              </CCol>
+            </CWidgetIcon>
+          </CCol>
+        )}
+        {timeCardStatus == "CLOCK_IN" && (
+          <CCol xs="12" sm="6" lg="6">
+            <CWidgetIcon
+              text={
+                <div>
+                  {clockOutAddress || (
+                    <div>
+                      <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
+                      Click to register Clock Out time
+                    </div>
+                  )}
+                </div>
+              }
+              header={
+                <CCollapse timeout={2000} show={collapseMulti[3]}>
+                  {clockOutTime}
+                </CCollapse>
+              }
+              color="danger"
+              iconPadding={false}
+            >
+              <CCol
+                md="12"
+                className="timeLog"
+                onClick={() => {
+                  logTime("clockOut");
+                }}
+              >
+                <CIcon iconPadding={false} width={32} name="cil-clock" />{" "}
+                <p>Clock Out</p>
+              </CCol>
+            </CWidgetIcon>
+          </CCol>
+        )}
+      </>
+    );
+  };
 
   const RenderLogCards = () => {
     var format = "hh:mm:ss";
@@ -447,40 +526,6 @@ const TimeCards = () => {
     if (cIn || cOut || lIn || lOut) {
       return (
         <>
-          {cIn && (
-            <CCol xs="12" sm="6" lg="6">
-              <CWidgetIcon
-                text={
-                  <div>
-                    {clockInAddress || (
-                      <div>
-                        <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
-                        Click to register Clock In time
-                      </div>
-                    )}
-                  </div>
-                }
-                header={
-                  <CCollapse timeout={2000} show={collapseMulti[0]}>
-                    {clockInTime}
-                  </CCollapse>
-                }
-                color="danger"
-                iconPadding={false}
-                id="clockInCard"
-              >
-                <CCol
-                  md="12"
-                  className="timeLog"
-                  onClick={() => {
-                    logTime("clockIn");
-                  }}
-                >
-                  <CIcon width={32} name="cil-clock" /> <p>Clock In</p>
-                </CCol>
-              </CWidgetIcon>
-            </CCol>
-          )}
           {lIn && (
             <CCol xs="12" sm="6" lg="6">
               <CWidgetIcon
@@ -549,40 +594,6 @@ const TimeCards = () => {
               </CWidgetIcon>
             </CCol>
           )}
-          {cOut && (
-            <CCol xs="12" sm="6" lg="6">
-              <CWidgetIcon
-                text={
-                  <div>
-                    {clockOutAddress || (
-                      <div>
-                        <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
-                        Click to register Clock Out time
-                      </div>
-                    )}
-                  </div>
-                }
-                header={
-                  <CCollapse timeout={2000} show={collapseMulti[3]}>
-                    {clockOutTime}
-                  </CCollapse>
-                }
-                color="danger"
-                iconPadding={false}
-              >
-                <CCol
-                  md="12"
-                  className="timeLog"
-                  onClick={() => {
-                    logTime("clockOut");
-                  }}
-                >
-                  <CIcon iconPadding={false} width={32} name="cil-clock" />{" "}
-                  <p>Clock Out</p>
-                </CCol>
-              </CWidgetIcon>
-            </CCol>
-          )}
         </>
       );
     } else {
@@ -601,10 +612,10 @@ const TimeCards = () => {
 
   const onSubmit = function (e) {
     api
-      .post(CREATE_TIME_CARD, {
+      .post(SAVE_TIME_CARD, {
         data: {
           time_card_id: timeCardId || "-1",
-          user_email: "example@email.com",
+          time_entry_id: timeEntryId || "-1",
           entry_date: moment().format("YYYY-MM-DD"),
           job_name: e.jobName,
           job_locations: e.jobLocations,
@@ -614,7 +625,8 @@ const TimeCards = () => {
         },
       })
       .then((result) => {
-        setTimeCardId(result);
+        setTimeEntryId(result.timeEntryId);
+        setTimeCardId(result.timeCardId);
         addToast("Time Card Saved.", {
           appearance: "success",
           autoDismiss: true,
@@ -863,6 +875,7 @@ const TimeCards = () => {
                               )}
                             </Field>
                           </CCol>
+                          <LogCards />
                         </CRow>
                       </CCardBody>
                     </CCollapse>

@@ -39,7 +39,7 @@ import { DocsLink } from "src/reusable";
 import ESignature from "src/components/SiganturePadPaula";
 import { useToasts } from "react-toast-notifications";
 import { api } from "../../helpers/api";
-import { SAVE_WORK_ORDER, WORK_TYPES } from "../../helpers/urls/index";
+import { SAVE_MATERIAL_REQUISITION } from "../../helpers/urls/index";
 import { useSelector, useStore } from "react-redux";
 
 import arrayMutators from "final-form-arrays";
@@ -107,6 +107,35 @@ const MaterialRequisitionForm = () => {
     //   rows: e.materialRequisitionDetails,
     //   todayDate: e.todayDate,
     // });
+    api
+      .post(SAVE_MATERIAL_REQUISITION, {
+        data: {
+          material_requisition_id: "-1",
+          job_name: e.jobName,
+          job_location: e.jobLocation,
+          requested_by: e.requestedBy,
+          entry_date: e.todayDate,
+          need_by: e.needBy,
+          description: e.jobDetails,
+          material_requisition_details: e.materialRequisitionDetails,
+        },
+      })
+      .then((result) => {
+        addToast("Material Requisition Submitted.", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        addToast(
+          "Something went wrong creating Material Requisition. Try again.",
+          {
+            appearance: "error",
+            autoDismiss: true,
+          }
+        );
+      });
   };
   const validate = () => {};
   return (
