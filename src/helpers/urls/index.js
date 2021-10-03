@@ -1,10 +1,12 @@
-export const BASE = process.env.NODE_ENV === 'production' ? "/api" : "http://localhost:3000/api/";
+export const BASE =
+  process.env.NODE_ENV === "production" ? "/api" : "http://localhost:3000/api/";
 
 export const LOG_IN = "login/";
 export const TEST = "test/";
 
 /* Time Cards */
 export const CREATE_TIME_CARD = "time-card/create/";
+export const SAVE_TIME_CARD = "time-card/save/";
 export const JOB_LOCATIONS = "time-card-location/get/";
 export const GET_TIME_CARD_BY_DAY = "time-card/getTimeCardByDay/";
 export const CLOCK_IN = "time-card/clockIn/";
@@ -17,11 +19,11 @@ export const SAVE_WORK_ORDER = "work-order/save/";
 export const DELETE_WORK_ORDER = "work-order";
 export const GET_WORK_ORDER = "work-order/getWorkOrders";
 
-
 export const WORK_TYPES = "work-order/getWorkOrderTypes/";
 
 /* Material Requisition */
 export const MATERIAL_REQUISITION = "material-requisition";
+export const SAVE_MATERIAL_REQUISITION = "material-requisition/save";
 
 /* Circuit Directory */
 export const CIRCUIT_DIRECTORY = "circuit-directory";
