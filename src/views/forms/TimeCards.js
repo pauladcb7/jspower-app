@@ -143,6 +143,8 @@ const TimeCards = () => {
   const [timeCardStatus, setTimeCardStatus] = useState("NEW");
 
   useEffect(() => {
+    console.log("time card id is ", timeCardId);
+    console.log("time entry id is ", timeEntryId);
     api
       .get(GET_TIME_CARD_BY_DAY, {
         params: {
@@ -152,8 +154,10 @@ const TimeCards = () => {
         },
       })
       .then((result) => {
+        console.log("time card info is", result);
         setTimeEntryId(result.time_entry_id);
         setTimeCardId(result.time_card_info.time_card_id);
+
         setJobName(result.time_card_info.job_name);
         setJobDescription(result.time_card_info.job_desription);
         let time = result.time_card_info.clock_in;
@@ -611,6 +615,8 @@ const TimeCards = () => {
   };
 
   const onSubmit = function (e) {
+    console.log("---time card id is ", timeCardId);
+    console.log("---time entry id is ", timeEntryId);
     api
       .post(SAVE_TIME_CARD, {
         data: {
