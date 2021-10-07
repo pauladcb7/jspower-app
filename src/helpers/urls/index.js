@@ -13,6 +13,9 @@ export const CLOCK_IN = "time-card/clockIn/";
 export const CLOCK_OUT = "time-card/clockOut/";
 export const LUNCH_IN = "time-card/lunchIn/";
 export const LUNCH_OUT = "time-card/lunchOut/";
+export const GET_TIME_CARD = "time-card/get";
+export const DELETE_TIME_CARD = "time-card";
+export const DELETE_TIME_ENTRY = "time-entry";
 
 /*  Work Orders */
 export const SAVE_WORK_ORDER = "work-order/save/";
@@ -24,6 +27,7 @@ export const WORK_TYPES = "work-order/getWorkOrderTypes/";
 /* Material Requisition */
 export const MATERIAL_REQUISITION = "material-requisition";
 export const SAVE_MATERIAL_REQUISITION = "material-requisition/save";
+export const GET_MATERIAL_REQUISITION = "material-requisition/get";
 
 /* Circuit Directory */
 export const CIRCUIT_DIRECTORY = "circuit-directory";

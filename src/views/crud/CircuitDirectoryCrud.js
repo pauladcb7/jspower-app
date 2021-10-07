@@ -187,9 +187,7 @@ const CircuitDirectoryCrud = () => {
                     addOption={(row) => {
                      return <>
                       <CButton
-                        color="primary"
-                        variant="outline"
-                        shape="square"
+                        color="secondary"
                         size="sm"
                         onClick={() => {
                           if(row.type === 'Business') { 

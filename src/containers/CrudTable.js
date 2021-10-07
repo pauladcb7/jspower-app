@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   CButton,
+  CButtonGroup,
   CDataTable,
   CFormGroup,
   CInput,
@@ -22,6 +23,8 @@ import { Field, Form } from "react-final-form";
 import ESignature from "src/components/SiganturePadPaula";
 import { FieldArray, mu } from "react-final-form-arrays";
 import arrayMutators from "final-form-arrays";
+import moment from "moment";
+import ButtonGroups from "src/views/buttons/button-groups/ButtonGroups";
 
 function uuid() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
@@ -58,7 +61,9 @@ const CrudTable = ({
   addOption = () => {
     return null;
   },
-  loading
+  loading,
+  disableDelete,
+  disableEdit
 }) => {
   const [modal, setModal] = useState(false);
   const [reRender, setRerender] = useState(uuid());
@@ -175,7 +180,6 @@ const CrudTable = ({
         hover
         items={rows}
         tableFilter
-        tablfi
         fields={[
           {
             key: "show-modal",
@@ -209,6 +213,22 @@ const CrudTable = ({
                   );
                 };
               }
+              if(curr.type === "datetime") {
+                prev[curr.key] = (
+                  item,
+                  index
+                ) => {
+                  return (
+                    <td>
+                      { moment(item[curr.key]).format("YYYY-MM-DD HH:mm")}
+                    </td>
+                  );
+                };
+              }
+              
+              if(curr.custom) {
+                prev[curr.key] = curr.custom
+              }
               return prev;
             },
             {}
@@ -221,36 +241,37 @@ const CrudTable = ({
                   minWidth: 127,
                 }}
               >
-                <CButton
-                  color="primary"
-                  variant="outline"
-                  shape="square"
-                  size="sm"
-                  onClick={() => {
-                    setSelectedData(item);
-                    setModal(true);
-                    onRead(item);
-                    //toggleDetails(index)
-                  }}
-                >
-                  <CIcon width={24} name="cil-pencil" />
-                </CButton>
-                {' '}
-                <CButton
-                  color="primary"
-                  variant="outline"
-                  shape="square"
-                  size="sm"
-                  onClick={async () => {
-                    await onDelete(item);
-                    onRefreshTable()
-                    //toggleDetails(index)
-                  }}
-                >
-                  <CIcon width={24} name="cil-trash" />
-                </CButton>
-                {' '}
-                {addOption(item)}
+                <CButtonGroup size="sm">
+                {!disableEdit &&
+                    <CButton
+                      color="info"
+                      size="sm"
+                      onClick={() => {
+                        setSelectedData(item);
+                        setModal(true);
+                        onRead(item);
+                        //toggleDetails(index)
+                      }}
+                    >
+                      <CIcon width={24} name="cil-pencil" />
+                    </CButton>
+                  }
+                  {
+                    !disableDelete &&
+                    <CButton
+                      color="danger"
+                      size="sm"
+                      onClick={async () => {
+                        await onDelete(item);
+                        onRefreshTable()
+                        //toggleDetails(index)
+                      }}
+                    >
+                      <CIcon width={24} name="cil-trash" />
+                    </CButton>
+                  }
+                  {addOption(item,index)}
+                </CButtonGroup>
               </td>
             );
           },

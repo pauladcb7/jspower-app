@@ -19,8 +19,9 @@ import { FieldArray } from "react-final-form-arrays";
 import { circuitPrint } from "src/utils/circuitPrint";
 import CrudTable from "src/containers/CrudTable";
 import { materialRequisitionPrint } from "src/utils/materialRequisitionPrint";
-import { DELETE_WORK_ORDER, MATERIAL_REQUISITION } from "src/helpers/urls";
+import { DELETE_WORK_ORDER, GET_MATERIAL_REQUISITION, MATERIAL_REQUISITION } from "src/helpers/urls";
 import { api } from "src/helpers/api";
+import moment from "moment";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -37,6 +38,8 @@ const MaterialRequisitionCrud = () => {
   const [collapsed, setCollapsed] = React.useState(true);
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
+  const [loading, setLoading] = useState(false);
+  const [rows,setRows] = useState([]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
   useEffect(() => {
     console.log("checked items: ", checkedJobLocations);
@@ -77,7 +80,7 @@ const MaterialRequisitionCrud = () => {
   };
   const validate = function () {};
 
-  const rows = [
+/*   const rows = [
     {
       id: 1,
       jobName: "2002-12-12",
@@ -99,7 +102,7 @@ const MaterialRequisitionCrud = () => {
         };
       }),
     },
-  ];
+  ]; */
   //const [rows, setRow] = useState(rowsInitial);
 
   const metadata = [
@@ -114,22 +117,7 @@ const MaterialRequisitionCrud = () => {
     {
       key: "jobLocation",
       label: "Job Location",
-      options: [
-        {
-          label: "Service Call",
-          value: "service-call",
-        },
-        {
-          label: "Extra",
-          value: "extra",
-        },
-        {
-          label: "Other",
-          value: "other",
-          otherOption: true,
-        },
-      ],
-      type: "radius",
+      type: "text",
       sorter: false,
       filter: false,
       _style: { minWidth: "120px" },
@@ -160,14 +148,14 @@ const MaterialRequisitionCrud = () => {
     },
     {
       key: "description",
-      label: "Job Location",
+      label: "Description",
       type: "textarea",
       sorter: false,
       filter: false,
       _style: { minWidth: "160px" },
     },
     {
-      key: "materialRequisitionDetails",
+      key: "materialDetails",
       label: "Job Details",
       type: "array",
       shape: [
@@ -211,6 +199,26 @@ function onDelete (row, close){
     console.log("data return ", data);
   });
 }
+
+  function fetchTable () {
+    setLoading(true);
+    return api
+    .get(GET_MATERIAL_REQUISITION).then((materialRequisition) => {
+      setRows(materialRequisition.map((mr) => {
+        return {
+          ...mr,
+          entryDate:moment(mr.entryDate).format("YYYY-MM-DDTHH:mm"),
+          needBy:moment(mr.needBy).format("YYYY-MM-DDTHH:mm"),
+          description: mr.description || "",
+          employeeName: mr.requestedBy?.firstName + ' ' +mr.requestedBy?.lastName
+        }
+      }));
+      setLoading(false)
+    })
+  }
+  useEffect(() => {
+    fetchTable()
+  }, []);
   return (
     <>
       <CRow>
@@ -234,19 +242,22 @@ function onDelete (row, close){
               <CCollapse show={collapsed} timeout={1000}>
                 <CCardBody>
                   <CrudTable
+                    loading={loading}
                     title="Material Requisition"
                     rows={rows}
                     metadata={metadata}
-                    onEdit={(row, edittedRow) => {}}
+                    onEdit={(row, edittedRow) => {
+                      console.log(edittedRow);
+                      debugger
+                    }}
+                    onRefreshTable={fetchTable}
                     onCreate={(row) => {}}
                     onDelete={onDelete}
                     addOption={(row) => {
                       return (
                         <>
                           <CButton
-                            color="primary"
-                            variant="outline"
-                            shape="square"
+                            color="secondary"
                             size="sm"
                             onClick={() => {
                               materialRequisitionPrint({

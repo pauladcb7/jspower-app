@@ -7,12 +7,12 @@ export function timecardPrint ({
   employeeName,
   jobName,
   jobLocations,
-  employeeSignature
+  employeeSignature,
+  timeEntries
 }) {
   var days = Array.apply(null, Array(7)).map(function (_, i) {
               
     var day = moment(i, 'e').startOf('week').isoWeekday(i + 1)
-    //.format('ddd');
     return [
       [
         {
@@ -61,7 +61,74 @@ export function timecardPrint ({
       ],
     ]
   });
-  var merged = [].concat.apply([], days);
+  const mergedTimeEntries = timeEntries.map((timeEntry) => {
+    return [
+      [
+        {
+          text: moment(timeEntry.entryDate).format('ddd'),
+          style:'cell'
+        }, {
+          text: '',
+          style: ''
+        }
+      ],
+      [
+          {
+            text: 'Date',
+            style:'cell'
+          }, {
+            text: moment(timeEntry.entryDate).format("MM-DD-YYYY"),
+            style: ''
+          }
+      ],
+      [
+          {
+            text: 'Lunch in/Lunch out',
+            style:'cell'
+          }, {
+            text: `${timeEntry.lunchIn} - ${timeEntry.lunchOut}`,
+            style: 'cellResponse'
+          }
+      ],
+      ...[].concat.apply([], timeEntry.timecard.map((timeCard) => {
+        let locations = '';
+        timeCard.location.forEach((loc) => {
+          locations += loc.location
+        })
+        return [
+          [
+            {
+              text: 'Clock in/Clock out',
+              style:'cell'
+            }, {
+              text: `${timeCard.clockIn} - ${timeCard.clockOut}`,
+              style: 'cellResponse'
+            }
+          ],
+          [
+              {
+                text: 'Type of work in progress',
+                style:'cell'
+              }, {
+                text: timeCard.jobDescription,
+                style: 'cellResponse'
+              }
+          ],
+          [
+            {
+              text: 'Job Location',
+              style:'cell'
+            }, {
+              text: timeCard.otherLocation ? timeCard.otherLocation: locations,
+              style: 'cellResponse'
+            }
+          ]
+        ]
+      })),
+    ]
+  })
+  debugger
+  var merged = [].concat.apply([], mergedTimeEntries);
   var dd =  {
     content: [
       {
@@ -109,26 +176,8 @@ export function timecardPrint ({
                   style: 'cellResponse'
                 }
             ],
-            [
-                {
-                  text: 'Job Name',
-                  style:'cell'
-                }, {
-                  text: jobName,
-                  style: 'cellResponse'
-                }
-            ],
-            [
-                {
-                  text: 'Job Location',
-                  style:'cell'
-                }, {
-                  text: jobLocations,
-                  style: 'cellResponse'
-                }
-            ],
             ...merged,
-            [
+            /* [
                 {
                   text: 'Employee Signature',
                   style:'cell'
@@ -136,7 +185,7 @@ export function timecardPrint ({
                   image: 'employeeSignature',
                   fit: [200, 100],
                 }
-            ],
+            ], */
 
           ]
         }
@@ -147,7 +196,7 @@ export function timecardPrint ({
     images: {
       logo: logo,
       //customerSignature:customerSignature,
-      employeeSignature: employeeSignature
+      //employeeSignature: employeeSignature
     },
     styles: {
         cell: {

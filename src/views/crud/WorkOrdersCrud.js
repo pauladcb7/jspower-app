@@ -463,9 +463,7 @@ const WorkOrdersCrud = () => {
                       return (
                         <>
                           <CButton
-                            color="primary"
-                            variant="outline"
-                            shape="square"
+                            color="secondary"
                             size="sm"
                             onClick={() => {
                               const optionFound = metadata[1].options.find((option) => {

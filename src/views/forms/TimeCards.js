@@ -265,7 +265,7 @@ const TimeCards = () => {
           .then((response) => response.json())
           .then((response) => {
             let address = response.results[0]?.formatted_address;
-            let currentTime = moment().format("hh:mm A");
+            let currentTime = moment().format("HH:mm");
             console.log(moment().format("YYYY-MM-DD"));
 
             if (type == "clockIn") {
@@ -273,7 +273,6 @@ const TimeCards = () => {
                 .post(CLOCK_IN, {
                   data: {
                     time_card_id: timeCardId || "-1",
-                    user_email: "example@email.com",
                     entry_date: moment().format("YYYY-MM-DD"),
                     clock_in_time: currentTime,
                     clock_in_gps: address,
@@ -305,7 +304,6 @@ const TimeCards = () => {
                 .post(CLOCK_OUT, {
                   data: {
                     time_card_id: timeCardId || "-1",
-                    user_email: "example@email.com",
                     entry_date: moment().format("YYYY-MM-DD"),
                     clock_out_time: currentTime,
                     clock_out_gps: address,
@@ -336,7 +334,6 @@ const TimeCards = () => {
                 .post(LUNCH_IN, {
                   data: {
                     time_card_id: timeCardId || "-1",
-                    user_email: "example@email.com",
                     entry_date: moment().format("YYYY-MM-DD"),
                     lunch_in_time: currentTime,
                     lunch_in_gps: address,
@@ -368,7 +365,6 @@ const TimeCards = () => {
                 .post(LUNCH_OUT, {
                   data: {
                     time_card_id: timeCardId || "-1",
-                    user_email: "example@email.com",
                     entry_date: moment().format("YYYY-MM-DD"),
                     lunch_out_time: currentTime,
                     lunch_out_gps: address,
@@ -509,7 +505,7 @@ const TimeCards = () => {
   };
 
   const RenderLogCards = () => {
-    var format = "hh:mm:ss";
+    var format = "HH:mm:ss";
     var cIn = moment().isBetween(
       moment("08:00:00", format),
       moment("08:59:59", format)
