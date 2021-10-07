@@ -97,15 +97,6 @@ export function timecardPrint ({
         })
         return [
           [
-            {
-              text: 'Clock in/Clock out',
-              style:'cell'
-            }, {
-              text: `${timeCard.clockIn} - ${timeCard.clockOut}`,
-              style: 'cellResponse'
-            }
-          ],
-          [
               {
                 text: 'Type of work in progress',
                 style:'cell'
@@ -122,7 +113,16 @@ export function timecardPrint ({
               text: timeCard.otherLocation ? timeCard.otherLocation: locations,
               style: 'cellResponse'
             }
-          ]
+          ],
+          [
+            {
+              text: 'Clock in/Clock out',
+              style:'cell'
+            }, {
+              text: `${timeCard.clockIn} - ${timeCard.clockOut}`,
+              style: 'cellResponse'
+            }
+          ],
         ]
       })),
     ]
