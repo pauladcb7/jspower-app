@@ -34,9 +34,13 @@ import {
   CWidgetIcon,
   CElementCover,
   CSpinner,
+  CListGroup,
+  CListGroupItem,
+  CBadge,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
+import ESignature from "src/components/SiganturePadPaula";
 import SignaturePad from "src/components/SiganturePadPaula";
 import moment from "moment";
 
@@ -141,10 +145,10 @@ const TimeCards = () => {
   const [enableLogs, setEnableLogs] = useState([true, true, true, true]);
   const [allWeek, setAllWeek] = useState(false);
   const [timeCardStatus, setTimeCardStatus] = useState("NEW");
+  const [timeCardsLogged, setTimeCardsLogged] = useState([]);
+  const [employeeSignature, setEmployeeSignature] = useState(null);
 
   useEffect(() => {
-    console.log("time card id is ", timeCardId);
-    console.log("time entry id is ", timeEntryId);
     api
       .get(GET_TIME_CARD_BY_DAY, {
         params: {
@@ -155,70 +159,78 @@ const TimeCards = () => {
       })
       .then((result) => {
         console.log("time card info is", result);
-        setTimeEntryId(result.time_entry_id);
-        setTimeCardId(result.time_card_info.time_card_id);
+        let timeCardInfo = result.time_card_info;
+        let timeEntryInfo = result.time_entry_info;
+        setTimeEntryId(timeEntryInfo.id);
+        setEmployeeSignature(timeCardInfo.esignature);
+        setTimeCardsLogged(result.time_cards_logged);
+        if (timeCardInfo) {
+          setTimeCardId(timeCardInfo.time_card_id);
+          setTimeCardStatus(timeCardInfo.status);
+          setJobName(timeCardInfo.job_name);
+          setJobDescription(timeCardInfo.job_desription);
 
-        setJobName(result.time_card_info.job_name);
-        setJobDescription(result.time_card_info.job_desription);
-        let time = result.time_card_info.clock_in;
-
-        let showTime = [false, false, false, false];
-        let cardState = [true, true, true, true];
-        if (time != undefined) {
-          setClockInTime(time);
-          showTime[0] = true;
-          cardState[0] = false;
-        }
-        setClockInAddress(result.time_card_info.clock_in_gps);
-        time = result.time_card_info.clock_out;
-        if (time != undefined) {
-          showTime[3] = true;
-          cardState[3] = false;
-          setClockOutTime(time);
-        }
-
-        setClockOutAddress(result.time_card_info.clock_out_gps);
-        time = result.lunch_in;
-        if (time != undefined) {
-          showTime[1] = true;
-          cardState[1] = false;
-          setLunchInTime(time);
-        }
-        setLunchInAddress(result.time_card_info.lunch_in_gps);
-        time = result.lunch_out;
-        if (time != undefined) {
-          showTime[2] = true;
-          cardState[2] = false;
-          setLunchOutTime(time);
-        }
-        setCollapseMulti(showTime);
-        setLunchOutAddress(result.time_card_info.lunch_out_gps);
-        setEnableLogs(cardState);
-        setInitialValue({
-          jobName: result.time_card_info.job_name,
-          jobLocations: result.job_locations.map(function (jl) {
-            return jl.job_location_rc;
-          }),
-          jobDescription: result.time_card_info.job_description,
-          otherJobLocation: result.time_card_info.other,
-          otherCheckbox: result.time_card_info.other ? ["other"] : [],
-        });
-        api
-          .get(JOB_LOCATIONS)
-          .then((data) => {
-            setJobLocations(data);
-          })
-          .then(() => {})
-          .catch((error) => {
-            console.log(error);
-            addToast(
-              "Something went wrong loading Job Locations. Refresh the page.",
-              {
-                appearance: "error",
-                autoDismiss: true,
-              }
-            );
+          let showTime = [false, false, false, false];
+          let cardState = [true, true, true, true];
+          // Clock In
+          let time = timeCardInfo.clock_in;
+          if (time != undefined) {
+            setClockInTime(time);
+            showTime[0] = true;
+            cardState[0] = false;
+          }
+          setClockInAddress(timeCardInfo.clock_in_gps);
+          // Clock Out
+          time = timeCardInfo.clock_out;
+          if (time != undefined) {
+            showTime[3] = true;
+            cardState[3] = false;
+            setClockOutTime(time);
+          }
+          setClockOutAddress(timeCardInfo.clock_out_gps);
+          //Lunch In
+          time = timeEntryInfo.lunch_in;
+          if (time != undefined) {
+            showTime[1] = true;
+            cardState[1] = false;
+            setLunchInTime(time);
+          }
+          setLunchInAddress(timeEntryInfo.lunch_in_gps);
+          time = timeEntryInfo.lunch_out;
+          if (time != undefined) {
+            showTime[2] = true;
+            cardState[2] = false;
+            setLunchOutTime(time);
+          }
+          setLunchOutAddress(timeEntryInfo.lunch_out_gps);
+          setCollapseMulti(showTime);
+          setEnableLogs(cardState);
+          setInitialValue({
+            jobName: timeCardInfo.job_name,
+            jobLocations: result.job_locations.map(function (jl) {
+              return jl.job_location_rc;
+            }),
+            jobDescription: timeCardInfo.job_description,
+            otherJobLocation: timeCardInfo.other,
+            otherCheckbox: timeCardInfo.other ? ["other"] : [],
+            signature: timeCardInfo.esignature,
           });
+          api
+            .get(JOB_LOCATIONS)
+            .then((data) => {
+              setJobLocations(data);
+            })
+            .catch((error) => {
+              console.log(error);
+              addToast(
+                "Something went wrong loading Job Locations. Refresh the page.",
+                {
+                  appearance: "error",
+                  autoDismiss: true,
+                }
+              );
+            });
+        }
       })
 
       .catch(function (error) {
@@ -228,7 +240,7 @@ const TimeCards = () => {
         });
         console.error(error);
       });
-  }, []);
+  }, [timeEntryId, timeCardId, timeCardStatus]);
 
   const Required = () => {
     return <span style={{ color: "red" }}>*</span>;
@@ -250,8 +262,7 @@ const TimeCards = () => {
     else if (type == "lunchIn") pos = 1;
     else if (type == "lunchOut") pos = 2;
     else if (type == "clockOut") pos = 3;
-
-    if (enableLogs[pos] != false) {
+    if (timeEntryId && timeCardId) {
       navigator.geolocation.getCurrentPosition(function (position) {
         var lng = position.coords.longitude;
         var lat = position.coords.latitude;
@@ -266,9 +277,8 @@ const TimeCards = () => {
           .then((response) => {
             let address = response.results[0]?.formatted_address;
             let currentTime = moment().format("HH:mm");
-            console.log(moment().format("YYYY-MM-DD"));
 
-            if (type == "clockIn") {
+            if (type == "clockIn" && collapseMulti[0] == false) {
               api
                 .post(CLOCK_IN, {
                   data: {
@@ -280,8 +290,9 @@ const TimeCards = () => {
                     clock_in_lng: lng,
                   },
                 })
-                .then(() => {
+                .then((result) => {
                   toggleMulti(type);
+                  setTimeCardStatus(result.time_card_status);
                   addToast("Clock In Time Registered", {
                     appearance: "success",
                     autoDismiss: true,
@@ -298,8 +309,7 @@ const TimeCards = () => {
               setClockInLatitude(lat);
               setClockInLongitude(lng);
               setClockInTime(currentTime);
-              console.log("clock in time ", currentTime);
-            } else if (type == "clockOut") {
+            } else if (type == "clockOut" && collapseMulti[3] == false) {
               api
                 .post(CLOCK_OUT, {
                   data: {
@@ -311,11 +321,20 @@ const TimeCards = () => {
                     clock_out_lng: lng,
                   },
                 })
-                .then(() => {
+                .then((result) => {
                   toggleMulti(type);
+                  setTimeCardStatus(result.time_card_status);
+
                   addToast("Clock Out Time Registered", {
                     appearance: "success",
                     autoDismiss: true,
+                  });
+                  setInitialValue({
+                    jobName: null,
+                    jobLocations: [],
+                    jobDescription: null,
+                    otherJobLocation: null,
+                    otherCheckbox: null,
                   });
                 })
                 .catch((error) => {
@@ -329,11 +348,12 @@ const TimeCards = () => {
               setClockOutLatitude(lat);
               setClockOutLongitude(lng);
               setClockOutTime(currentTime);
-            } else if (type == "lunchIn") {
+            } else if (type == "lunchIn" && collapseMulti[1] == false) {
               api
                 .post(LUNCH_IN, {
                   data: {
                     time_card_id: timeCardId || "-1",
+                    time_entry_id: timeEntryId || "-1",
                     entry_date: moment().format("YYYY-MM-DD"),
                     lunch_in_time: currentTime,
                     lunch_in_gps: address,
@@ -359,12 +379,12 @@ const TimeCards = () => {
               setLunchInLatitude(lat);
               setLunchInLongitude(lng);
               setLunchInTime(currentTime);
-              console.log("lunch in time ", currentTime);
-            } else if (type == "lunchOut") {
+            } else if (type == "lunchOut" && collapseMulti[2] == false) {
               api
                 .post(LUNCH_OUT, {
                   data: {
                     time_card_id: timeCardId || "-1",
+                    time_entry_id: timeEntryId || "-1",
                     entry_date: moment().format("YYYY-MM-DD"),
                     lunch_out_time: currentTime,
                     lunch_out_gps: address,
@@ -393,6 +413,11 @@ const TimeCards = () => {
             }
           })
           .catch((err) => console.log(err));
+      });
+    } else {
+      addToast("Fill the Time Card information and Save it before Clock In.", {
+        appearance: "warning",
+        autoDismiss: true,
       });
     }
   };
@@ -430,9 +455,10 @@ const TimeCards = () => {
     setEnableLogs(newEnableLogs);
   };
   const LogCards = () => {
+    console.log("status is ", timeCardStatus);
     return (
       <>
-        {timeCardStatus == "NEW" && (
+        {(timeCardStatus == "NEW" || timeCardStatus == undefined) && (
           <CCol xs="12" sm="6" lg="6">
             <CWidgetIcon
               text={
@@ -503,6 +529,9 @@ const TimeCards = () => {
       </>
     );
   };
+  const onReadySignature = function (signaturePad) {
+    setEmployeeSignature(signaturePad);
+  };
 
   const RenderLogCards = () => {
     var format = "HH:mm:ss";
@@ -514,16 +543,10 @@ const TimeCards = () => {
       moment("13:00:00", format),
       moment("17:59:00", format)
     );
-    var lIn = moment().isBetween(
-      moment("10:00:00", format),
-      moment("13:59:00", format)
-    );
-    var lOut = moment().isBetween(
-      moment("18:50:00", format),
-      moment("19:58:00", format)
-    );
+    var lIn = lunchInTime.length != 0;
+    var lOut = lunchOutTime.length != 0;
 
-    if (cIn || cOut || lIn || lOut) {
+    if (lIn || lOut) {
       return (
         <>
           {lIn && (
@@ -597,22 +620,14 @@ const TimeCards = () => {
         </>
       );
     } else {
-      return (
-        <CCol md="12">
-          <CCard className="text-center p-1">
-            <h4>You can't log time.</h4>
-            <h6>If you miss loggin time today. Contact HR.</h6>
-          </CCard>
-        </CCol>
-      );
+      return null;
     }
     let cards = null;
     return cards;
   };
 
-  const onSubmit = function (e) {
-    console.log("---time card id is ", timeCardId);
-    console.log("---time entry id is ", timeEntryId);
+  const onSubmit = async (e) => {
+    debugger;
     api
       .post(SAVE_TIME_CARD, {
         data: {
@@ -624,11 +639,12 @@ const TimeCards = () => {
           job_description: e.jobDescription,
           other: e.otherCheckbox?.length == 0 ? "" : e.otherJobLocation,
           all_week_ind: allWeek,
+          esignature: e.signature,
         },
       })
-      .then((result) => {
-        setTimeEntryId(result.timeEntryId);
-        setTimeCardId(result.timeCardId);
+      .then(async (result) => {
+        const timeEntry = await setTimeEntryId(result.timeEntryId);
+        const timeCard = await setTimeCardId(result.timeCardId);
         addToast("Time Card Saved.", {
           appearance: "success",
           autoDismiss: true,
@@ -642,8 +658,61 @@ const TimeCards = () => {
         });
       });
   };
+  const RenderTimeCardsLogged = () => {
+    return (
+      <>
+        {timeCardsLogged.length !== 0 ? (
+          <CRow>
+            <CCol xs="12" md="12" lg="12">
+              <CCard>
+                <CCardHeader>Time Logged</CCardHeader>
+                <CListGroup>
+                  {timeCardsLogged.map((tc) => {
+                    return (
+                      <CListGroup>
+                        <CListGroupItem className="justify-content-between">
+                          {tc.job_description}
+                          <CBadge
+                            className="float-right"
+                            shape="pill"
+                            color="danger"
+                          >
+                            {tc.clock_out}
+                          </CBadge>
+                          <p className="float-right mr-2"></p>
+                          {tc.clock_out == null ? (
+                            <p className="float-right mr-5"></p>
+                          ) : null}
+                          <CBadge
+                            className="float-right"
+                            shape="pill"
+                            color="dark"
+                          >
+                            {tc.clock_in}
+                          </CBadge>
+                        </CListGroupItem>
+                      </CListGroup>
+                    );
+                  })}
+                </CListGroup>
+              </CCard>
+            </CCol>
+          </CRow>
+        ) : (
+          <p></p>
+        )}
+      </>
+    );
+  };
   const validate = function (e) {
     //signaturePad.isEmpty()
+    const errors = {};
+
+    if (!e.jobLocations && !e.otherJobLocation) {
+      errors.jobLocations = "required";
+      console.log("job locations not exist");
+    }
+    return errors;
   };
 
   return (
@@ -653,8 +722,9 @@ const TimeCards = () => {
           onSubmit={onSubmit}
           validate={validate}
           initialValues={initialValues}
-          render={({ handleSubmit, valid }) => (
+          render={({ handleSubmit, valid, values }) => (
             <form onSubmit={handleSubmit}>
+              {JSON.stringify(values)}
               <CCol xs="12" sm="12">
                 <CFade timeout={300} in={showElements} unmountOnExit={true}>
                   <CCard>
@@ -809,23 +879,6 @@ const TimeCards = () => {
                                     </>
                                   )}
                                 </Field>
-                                {/* <CFormGroup variant="custom-checkbox" inline>
-                                  <CInputCheckbox
-                                    custom
-                                    id="otherOption"
-                                    name="other"
-                                    onChange={(e) => {
-                                      setOtherOption(e.target.checked);
-                                    }}
-                                    value={otherOption}
-                                  />
-                                  <CLabel
-                                    variant="custom-checkbox"
-                                    htmlFor="otherOption"
-                                  >
-                                    Other
-                                  </CLabel>
-                                </CFormGroup> */}
                               </CCol>
                               <CCol md="12">
                                 <Field name="jobLocations" validate={required}>
@@ -876,8 +929,33 @@ const TimeCards = () => {
                                 </>
                               )}
                             </Field>
+
+                            <LogCards />
+                            {moment().format("dddd") == "Friday" ||
+                            moment().format("dddd") == "Saturday" ||
+                            moment().format("dddd") == "Sunday" ? (
+                              <Field name={"signature"}>
+                                {({ input, meta }) => (
+                                  <>
+                                    <CFormGroup>
+                                      <CLabel>Signature</CLabel>
+                                      <ESignature
+                                        svg={input.value}
+                                        onReady={onReadySignature}
+                                        /* disableEdit={
+                                          !!selectedData &&
+                                          metadataRow.disableEdit
+                                        } */
+                                        onChange={input.onChange}
+                                      ></ESignature>
+                                    </CFormGroup>
+                                  </>
+                                )}
+                              </Field>
+                            ) : (
+                              <p></p>
+                            )}
                           </CCol>
-                          <LogCards />
                         </CRow>
                       </CCardBody>
                     </CCollapse>
@@ -889,26 +967,8 @@ const TimeCards = () => {
         />
         {/* Log Buttons */}
         <RenderLogCards />
-
-        {moment().format("dddd") == "Friday" ||
-        moment().format("dddd") == "Saturday" ||
-        moment().format("dddd") == "Sunday" ? (
-          <CCol xs="12" md="12" lg="12" className="m3">
-            <CCard>
-              <CCardBody>
-                <CFormGroup row>
-                  <CCol md="12">
-                    <CLabel>Signature</CLabel>
-                    <SignaturePad />
-                  </CCol>
-                </CFormGroup>
-              </CCardBody>
-            </CCard>
-          </CCol>
-        ) : (
-          <p></p>
-        )}
       </CRow>
+      <RenderTimeCardsLogged />
     </>
   );
 };
