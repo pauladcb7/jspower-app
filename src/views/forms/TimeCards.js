@@ -738,8 +738,8 @@ const TimeCards = () => {
                   <CCol xs="12" sm="12">
                     <CFade timeout={300} in={showElements} unmountOnExit={true}>
                       <CCard>
-                        {JSON.stringify(values)}
-                        {JSON.stringify(errors)}
+                        {/* {JSON.stringify(values)}
+                        {JSON.stringify(errors)} */}
                         <CCardHeader>
                           {currentDate.toString()}
                           <div className="card-header-actions">
