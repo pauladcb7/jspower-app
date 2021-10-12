@@ -63,7 +63,8 @@ const CrudTable = ({
   },
   loading,
   disableDelete,
-  disableEdit
+  disableEdit,
+  customAddForm,
 }) => {
   const [modal, setModal] = useState(false);
   const [reRender, setRerender] = useState(uuid());
@@ -291,7 +292,11 @@ const CrudTable = ({
         <CModalHeader closeButton>
           <CModalTitle>{title}</CModalTitle>
         </CModalHeader>
-        <Form
+        {
+          !!customAddForm ?
+          customAddForm
+          :
+          <Form
           onSubmit={onSubmit}
           initialValues={selectedData || {}}
           mutators={{
@@ -616,6 +621,8 @@ const CrudTable = ({
             </>
           )}
         />
+        }
+        
       </CModal>
     </>
   );

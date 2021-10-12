@@ -50,9 +50,13 @@ import { circuitPrint } from "src/utils/circuitPrint";
 import CrudTable from "src/containers/CrudTable";
 import { timecardPrint } from "src/utils/timecardPrint";
 import moment from "moment";
-import { DELETE_TIME_CARD, DELETE_TIME_ENTRY, GET_TIME_CARD } from "src/helpers/urls";
+import { DELETE_TIME_CARD, DELETE_TIME_ENTRY, GET_TIME_CARD, GET_TIME_SHEETS_BY_DAY, JOB_LOCATIONS, USERS_GET } from "src/helpers/urls";
 import { api } from "src/helpers/api";
 import { array } from "prop-types";
+import Select from 'react-select'
+import CreatableSelect from 'react-select/creatable'
+import { useToasts } from "react-toast-notifications";
+
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -65,6 +69,308 @@ for (let index = 1; index < 43; index++) {
 }
 initialArray.push();
 
+function TimeEntry ({push,locations}) {
+  return <div>
+    <Field name="lunch_in">
+      {({ input, meta }) => (
+        <>
+          <CFormGroup>
+            <CLabel>
+              Lunch In
+            </CLabel>
+            <CInput
+              {...input}
+              type="time"
+              invalid={meta.invalid && meta.touched}
+            />
+            {meta.touched && meta.error && (
+              <CInvalidFeedback className="help-block">
+                Please provide a valid information
+              </CInvalidFeedback>
+            )}
+          </CFormGroup>
+        </>
+      )}
+    </Field>
+    <Field name="lunch_out">
+      {({ input, meta }) => (
+        <>
+          <CFormGroup>
+            <CLabel>
+              Lunch Out
+            </CLabel>
+            <CInput
+              {...input}
+              type="time"
+              invalid={meta.invalid && meta.touched}
+            />
+            {meta.touched && meta.error && (
+              <CInvalidFeedback className="help-block">
+                Please provide a valid information
+              </CInvalidFeedback>
+            )}
+          </CFormGroup>
+        </>
+      )}
+    </Field>
+    <FieldArray name={"timecards"} >
+      {({ fields: items }) => (
+        <div>
+          <CDataTable
+            items={items.value}
+            fields={[
+              {
+                key: "jobName",
+                label: "Job Name",
+                sorter: false,
+                filter: false,
+                _style: { minWidth: '150px' },
+              },
+              {
+                key: "jobDescription",
+                label: "Job Description",
+                sorter: false,
+                filter: false,
+                _style: { minWidth: '150px' },
+              },
+              {
+                key: "clockIn",
+                label: "Clock In",
+                sorter: false,
+                filter: false,
+              },
+              {
+                key: "clockInGps",
+                label: "Clock In GPS",
+                sorter: false,
+                filter: false,
+                _style: { minWidth: '150px' },
+              },
+              {
+                key: "clockOut",
+                label: "Clock Out",
+                sorter: false,
+                filter: false,
+              },
+              {
+                key: "clockOutGps",
+                label: "Clock Out GPS",
+                sorter: false,
+                filter: false,
+                _style: { minWidth: '150px' },
+              },
+              {
+                key: "jobLocations",
+                label: "Job Locations",
+                sorter: false,
+                filter: false,
+                _style: { minWidth: '300px' },
+              }
+            ]}
+            striped
+            scopedSlots={{
+              
+              'jobName': (item, index) => {
+                return <td>
+                  <Field 
+                    name={`timecards.${index}.jobName`}
+                    >
+                    {({ input, meta }) => (
+                      <>
+                        <CFormGroup>
+                          
+                          <CInput
+                            {...input}
+                            type="text"
+                            invalid={meta.invalid && meta.touched}
+                          />
+                          {meta.touched && meta.error && (
+                            <CInvalidFeedback className="help-block">
+                              Please provide a valid information
+                            </CInvalidFeedback>
+                          )}
+                        </CFormGroup>
+                      </>
+                    )}
+                  </Field>
+                </td>
+              },
+              'jobDescription': (item, index) => {
+                return <td>
+                  <Field 
+                    name={`timecards.${index}.jobDescription`}>
+                    {({ input, meta }) => (
+                      <>
+                        <CFormGroup>
+                          
+                          <CInput
+                            {...input}
+                            type="text"
+                            invalid={meta.invalid && meta.touched}
+                          />
+                          {meta.touched && meta.error && (
+                            <CInvalidFeedback className="help-block">
+                              Please provide a valid information
+                            </CInvalidFeedback>
+                          )}
+                        </CFormGroup>
+                      </>
+                    )}
+                  </Field>
+                </td>
+              },
+              'clockIn': (item, index) => {
+                return <td>
+                  <Field 
+                    name={`timecards.${index}.clockIn`}>
+                    {({ input, meta }) => (
+                      <>
+                        <CFormGroup>
+                          
+                          <CInput
+                            {...input}
+                            type="time"
+                            invalid={meta.invalid && meta.touched}
+                          />
+                          {meta.touched && meta.error && (
+                            <CInvalidFeedback className="help-block">
+                              Please provide a valid information
+                            </CInvalidFeedback>
+                          )}
+                        </CFormGroup>
+                      </>
+                    )}
+                  </Field>
+                </td>
+              },
+              'clockInGps': (item, index) => {
+                return <td>
+                  <Field 
+                    name={`timecards.${index}.clockInGps`}>
+                    {({ input, meta }) => (
+                      <>
+                        <CFormGroup>
+                          
+                          <CInput
+                            {...input}
+                            type="text"
+                            invalid={meta.invalid && meta.touched}
+                          />
+                          {meta.touched && meta.error && (
+                            <CInvalidFeedback className="help-block">
+                              Please provide a valid information
+                            </CInvalidFeedback>
+                          )}
+                        </CFormGroup>
+                      </>
+                    )}
+                  </Field>
+                </td>
+              },
+              'clockOut': (item, index) => {
+                return <td>
+                  <Field 
+                    name={`timecards.${index}.clockOut`}>
+                    {({ input, meta }) => (
+                      <>
+                        <CFormGroup>
+                          
+                          <CInput
+                            {...input}
+                            type="time"
+                            invalid={meta.invalid && meta.touched}
+                          />
+                          {meta.touched && meta.error && (
+                            <CInvalidFeedback className="help-block">
+                              Please provide a valid information
+                            </CInvalidFeedback>
+                          )}
+                        </CFormGroup>
+                      </>
+                    )}
+                  </Field>
+                </td>
+              },
+              'clockOutGps': (item, index) => {
+                return <td>
+                  <Field 
+                    name={`timecards.${index}.clockOutGps`}>
+                    {({ input, meta }) => (
+                      <>
+                        <CFormGroup>
+                          
+                          <CInput
+                            {...input}
+                            type="text"
+                            invalid={meta.invalid && meta.touched}
+                          />
+                          {meta.touched && meta.error && (
+                            <CInvalidFeedback className="help-block">
+                              Please provide a valid information
+                            </CInvalidFeedback>
+                          )}
+                        </CFormGroup>
+                      </>
+                    )}
+                  </Field>
+                </td>
+              },
+              'jobLocations' :  (item, index) => {
+                return <td>
+                  <Field 
+                    name={`timecards.${index}.jobLocations`}>
+                    {({ input, meta }) => (
+                      <CreatableSelect
+                        isMulti
+                        getOptionLabel={(option) => {
+                          return option.value
+                        }}
+                        menuPortalTarget={document.body} 
+                        onChange={input.onChange}
+                        value={input.value}
+                        styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
+                        /* onChange={(handleChange) => {
+
+                        }} */
+                        options={locations}
+                      />
+                    )}
+                  </Field>
+                </td>
+              }
+            }}
+          />
+          <CButton
+            block
+            color="dark"
+            type="button"
+            onClick={() => {
+              push("timecards", {});
+            }}
+          >
+            <CIcon size="lg" name="cil-plus" />{" "}
+            Add Timecard
+          </CButton>
+        </div>
+      )}
+    </FieldArray>
+   {/*  job_name: timecard.jobName,
+        job_description: timecard.jobDescription,
+        other: timecard.other,
+        clock_in: timecard.clock_in,
+        clock_out: timecard.clock_out,
+        clock_in_gps: timecard.clock_in_gps,
+        clock_out_gps: timecard.clock_out_gps,
+        //all_week_ind: timecard.allWeekInd,
+        time_entry_id: new_time_entry_id.id,
+        status: timecard.clock_out
+          ? "CLOCK_OUT"
+          : timecard.clock_in
+          ? "CLOCK_IN"
+          : "NEW",
+        created_at: new Date().toISOString(), */}
+  </div>
+}
 const TimeCardCrud = () => {
   const [collapsed, setCollapsed] = React.useState(true);
   const [showElements, setShowElements] = React.useState(true);
@@ -506,10 +812,57 @@ const TimeCardCrud = () => {
 
   const [modal,setModal] = useState(false)
   const [selectedData , setSelectedData] = useState(null)
+  const [locations , setJobLocations] = useState([])
+  const [initialData , setInitialData] = useState({})
+  const [users , setUsers] = useState([])
+  const {addToast} = useToasts()
   useEffect(() => {
-      fetchTable()
-      
+    
+    api
+    .get(JOB_LOCATIONS)
+    .then((data) => {
+      setJobLocations(data);
+    })
+    .catch((error) => {
+      console.log(error);
+      addToast(
+        "Something went wrong loading Job Locations. Refresh the page.",
+        {
+          appearance: "error",
+          autoDismiss: true,
+        }
+      );
+    });
+
+    api
+    .get(USERS_GET)
+    .then((data) => {
+      setUsers(data);
+    })
+    .catch((error) => {
+      console.log(error);
+      addToast(
+        "Something went wrong loading Job Locations. Refresh the page.",
+        {
+          appearance: "error",
+          autoDismiss: true,
+        }
+      );
+    });
+    
+    fetchTable()
   }, []);
+                        
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+
+  const onCreateTimeEntry = (e) => {
+    debugger
+  }
+
   return (
     <>
       <CRow>
@@ -535,6 +888,241 @@ const TimeCardCrud = () => {
                   <CrudTable
                     title="Time Card"
                     rows={rows}
+                    customAddForm={<Form
+                      onSubmit={onCreateTimeEntry}
+                      initialValues={initialData || {}}
+                      mutators={{
+                        ...arrayMutators,
+                      }}
+                      validate={validate}
+                      render={({
+                        handleSubmit,
+                        form: {
+                          mutators: { push, pop },
+                        },
+                        values
+                      }) => (
+                        <>
+                          <form onSubmit={handleSubmit}>
+                            <CModalBody>
+                              <Field name="date">
+                                {({ input, meta }) => (
+                                  <>
+                                    <CFormGroup>
+                                      <CLabel>
+                                        Pick Date
+                                      </CLabel>
+                                      <CInput
+                                        {...input}
+                                        type="date"
+                                        invalid={meta.invalid && meta.touched}
+                                      />
+                                    </CFormGroup>
+                                  </>
+                                )}
+                              </Field>
+                              <Field name="user">
+                                {({ input, meta }) => (
+                                  <>
+                                    <CFormGroup>
+                                      <CLabel>
+                                        Select User
+                                      </CLabel>
+                                      <Select 
+                                        options={users} 
+                                        onChange={input.onChange}
+                                        getOptionLabel={(option) => {
+                                          return option.display
+                                        }}
+                                      />
+                                      {meta.touched && meta.error && (
+                                        <CInvalidFeedback className="help-block">
+                                          Please provide a valid information
+                                        </CInvalidFeedback>
+                                      )}
+                                    </CFormGroup>
+                                  </>
+                                )}
+                              </Field>
+                              <CButton color="primary" onClick={() =>  {
+                                if(values.date && values.user)  {
+                                  api.get(
+                                    GET_TIME_SHEETS_BY_DAY,
+                                    {
+                                      params: {
+                                        user_id: values.user.return,
+                                        entry_date: values.date
+                                      }
+                                    }
+                                  ).then(([re]) => {
+                                    if(re) {
+                                      setInitialData({
+                                        user:values.user,
+                                        date: values.date,
+                                        lunch_in: re.timeEntryLunchIn,
+                                        lunch_out: re.timeEntryLunchOut,
+                                        timecards: re.timecard.map((tc) => {
+                                          return {
+                                            jobName:tc.jobName,
+                                            jobDescription: tc.jobDescription,
+                                            clockIn: tc.clockIn,
+                                            clockInGps: tc.clockInGps,
+                                            clockOut: tc.clockOut,
+                                            clockOutGps: tc.clockOutGps,
+                                            jobLocations: tc.otherLocation ? 
+                                            [ 
+                                              {"label": tc.otherLocation,"value": tc.otherLocation,"__isNew__":true},
+                                              ...locations.filter((value) => {
+                                                return tc.location.find((lc) => {
+                                                  return value.id == lc.id
+                                                })
+                                              })
+                                            ]
+                                            :
+                                            [
+                                              ...locations.filter((value) => {
+                                                return tc.location.find((lc) => {
+                                                  return value.id == lc.id
+                                                })
+                                              })
+                                            ]
+                                            ,
+                                          }
+                                        })
+                                      })
+                                    } else {
+                                      setInitialData({})
+                                    }
+                                  })
+                                }
+                              }}>
+                                Search
+                              </CButton>
+                              {
+                                !!values.date && !!values.user &&
+                                <TimeEntry 
+                                  locations={locations}
+                                  push={push}
+                                />
+                              }
+                              {/* {metadata.map(function (metadataRow) {
+                                return (
+                                  <Field name={metadataRow.key} key={metadataRow.key}>
+                                    {({ input, meta }) => (
+                                      <>
+                                        <CFormGroup>
+                                          <CLabel htmlFor={metadataRow.key}
+                                            style={{
+                                              fontWeight:  metadataRow.type === 'separator' ? 'bolder': 'normal',
+                                              width:  metadataRow.type === 'separator' ? '100%': 'auto'
+                                            }}
+                                          >
+                                            {metadataRow.label}
+                                            {
+                                              metadataRow.type === 'separator' &&
+                                              <hr
+                                                style={{
+                                                  borderColor: "red",
+                                                  borderTop: "2px solid red",
+                                                  marginTop: "8px",
+                                                  marginBottom: '1px'
+                                                }}
+                                              ></hr>
+                                            }
+                                          </CLabel>
+                                          {metadataRow.type === "signature" ? (
+                                            <ESignature
+                                              svg={input.value}
+                                              disableEdit={!!selectedData && metadataRow.disableEdit}
+                                              onChange={input.onChange}
+                                            ></ESignature>
+                                          ) : null}
+                                          {metadataRow.type === "text" ? (
+                                            <CInput
+                                              {...input}
+                                              id={metadataRow.key}
+                                              invalid={meta.invalid && meta.touched}
+                                            />
+                                          ) : null}
+                                          {metadataRow.type === "date" ? (
+                                            <CInput
+                                              {...input}
+                                              type="date"
+                                              id={metadataRow.key}
+                                              invalid={meta.invalid && meta.touched}
+                                            />
+                                          ) : null}
+                                          {metadataRow.type === "datetime" ? (
+                                            <CInput
+                                              {...input}
+                                              type="datetime-local"
+                                              id={metadataRow.key}
+                                              invalid={meta.invalid && meta.touched}
+                                            />
+                                          ) : null}
+            
+                                          {metadataRow.type === "time" ? (
+                                            <CInput
+                                              {...input}
+                                              type="time"
+                                              id={metadataRow.key}
+                                              invalid={meta.invalid && meta.touched}
+                                            />
+                                          ) : null}
+                                          {metadataRow.type === "textarea" ? (
+                                            <CTextarea
+                                              {...input}
+                                              type="time"
+                                              id={metadataRow.key}
+                                              rows="9"
+                                              invalid={meta.invalid && meta.touched}
+                                            />
+                                          ) : null}
+            
+                                          {meta.touched && meta.error && (
+                                            <CInvalidFeedback className="help-block">
+                                              Please provide a valid information
+                                            </CInvalidFeedback>
+                                          )}
+                                        </CFormGroup>
+                                      </>
+                                    )}
+                                  </Field>
+                                );
+                              })} */}
+                            </CModalBody>
+                            <CModalFooter>
+                              <CButton color="primary" type="submit">
+                                {selectedData === null ? "Create" : "Update"}
+                              </CButton>{" "}
+                              {!!selectedData && (
+                                <>
+                                  <CButton
+                                    color="danger"
+                                    onClick={() => {
+                                      //onDelete(selectedData);
+                                      setModal(false);
+                                    }}
+                                  >
+                                    Delete
+                                  </CButton>{" "}
+                                </>
+                              )}
+                              <CButton
+                                color="secondary"
+                                onClick={() => {
+                                  setModal(false);
+                                  setSelectedData(null);
+                                }}
+                              >
+                                Cancel
+                              </CButton>
+                            </CModalFooter>
+                          </form>
+                        </>
+                      )}
+                    />
+                    }
                     onRefreshTable={fetchTable}
                     onDelete={row => {
                       //debugger

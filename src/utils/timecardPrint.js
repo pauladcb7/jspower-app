@@ -207,7 +207,7 @@ export function timecardPrint ({
             color: '#606575',
             margin: [15, 5, 15, 5]
         },
-    },
+    }
   }
   getPDfInstance().then((pdfMake) => {
     pdfMake.createPdf(dd).download();
