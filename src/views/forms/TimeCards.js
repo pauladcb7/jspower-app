@@ -147,6 +147,7 @@ const TimeCards = () => {
   const [timeCardStatus, setTimeCardStatus] = useState("NEW");
   const [timeCardsLogged, setTimeCardsLogged] = useState([]);
   const [employeeSignature, setEmployeeSignature] = useState(null);
+  const [weekClosed, setWeekClosed] = useState(null);
 
   useEffect(() => {
     api
@@ -164,7 +165,8 @@ const TimeCards = () => {
         setTimeEntryId(timeEntryInfo.id);
         setEmployeeSignature(timeCardInfo.esignature);
         setTimeCardsLogged(result.time_cards_logged);
-        if (timeCardInfo) {
+        setWeekClosed(result.week_closed_ind);
+        if (timeCardInfo && result.week_closed_ind == "OPEN") {
           setTimeCardId(timeCardInfo.time_card_id);
           setTimeCardStatus(timeCardInfo.status);
           setJobName(timeCardInfo.job_name);
@@ -455,7 +457,6 @@ const TimeCards = () => {
     setEnableLogs(newEnableLogs);
   };
   const LogCards = () => {
-    console.log("status is ", timeCardStatus);
     return (
       <>
         {(timeCardStatus == "NEW" || timeCardStatus == undefined) && (
@@ -708,189 +709,241 @@ const TimeCards = () => {
     //signaturePad.isEmpty()
     const errors = {};
 
-    if (!e.jobLocations && !e.otherJobLocation) {
-      errors.jobLocations = "required";
-      console.log("job locations not exist");
+    if (!e.jobLocations || (e.jobLocations && e.jobLocations.length == 0)) {
+      if (
+        e.jobLocations?.length == 0 &&
+        //!e.otherJobLocation &&
+        e.otherCheckbox?.length == 0
+      ) {
+        errors.jobLocations = "required";
+      }
+    }
+    if (e.otherCheckbox?.length > 0 && !e.otherJobLocation) {
+      errors.otherJobLocation = "required";
     }
     return errors;
   };
 
   return (
     <>
-      <CRow>
-        <Form
-          onSubmit={onSubmit}
-          validate={validate}
-          initialValues={initialValues}
-          render={({ handleSubmit, valid, values }) => (
-            <form onSubmit={handleSubmit}>
-              {JSON.stringify(values)}
-              <CCol xs="12" sm="12">
-                <CFade timeout={300} in={showElements} unmountOnExit={true}>
-                  <CCard>
-                    <CCardHeader>
-                      {currentDate.toString()}
-                      <div className="card-header-actions">
-                        <CButton
-                          color="success"
-                          className=" btn-minimize"
-                          size="sm"
-                          type="submit"
-                          onClick={() => {
-                            if (!valid) {
-                              addToast("Please complete empty fields.", {
-                                appearance: "error",
-                                autoDismiss: true,
-                              });
-                            }
-                          }}
-                        >
-                          Save
-                        </CButton>
-                        <CButton
-                          color="link"
-                          className="card-header-action btn-minimize"
-                          onClick={() => setCollapsed(!collapsed)}
-                        >
-                          <CIcon
-                            name={
-                              collapsed ? "cil-arrow-top" : "cil-arrow-bottom"
-                            }
-                          />
-                        </CButton>
-                      </div>
-                    </CCardHeader>
-                    <CCollapse show={collapsed} timeout={1000}>
-                      <CCardBody>
-                        <CRow>
-                          <CCol sm="12">
-                            <Field name="jobName" validate={required}>
-                              {({ input, meta }) => (
-                                <>
-                                  <CFormGroup>
-                                    <CLabel htmlFor="jobName">
-                                      Job Name <Required />
-                                    </CLabel>
-                                    <CInput
-                                      placeholder="Enter the Job Name"
-                                      {...input}
-                                      invalid={meta.invalid && meta.touched}
-                                    />
-                                    {meta.touched && meta.error && (
-                                      <CInvalidFeedback className="help-block">
-                                        Please provide a valid information
-                                      </CInvalidFeedback>
-                                    )}
-                                  </CFormGroup>
-                                </>
-                              )}
-                            </Field>
-                            <CFormGroup row>
-                              <CCol md="12">
-                                <CLabel>
-                                  Job Location <Required />
-                                </CLabel>
-                              </CCol>
-
-                              {jobLocations?.map((jobLocation) => (
-                                <CCol md="6" sm="6">
-                                  <Field
-                                    name="jobLocations"
-                                    type="checkbox"
-                                    value={jobLocation.id}
-                                  >
-                                    {({ input, meta }) => (
-                                      <>
-                                        <CFormGroup variant="custom-checkbox">
-                                          <CInputCheckbox
-                                            id={jobLocation.id}
-                                            value="ss"
-                                            name={input.name}
-                                            checked={input.checked}
-                                            onChange={input.onChange}
-                                            custom
-                                          />
-                                          <CLabel
-                                            variant="custom-checkbox"
-                                            htmlFor={jobLocation.id}
-                                          >
-                                            {jobLocation.value}
-                                          </CLabel>
-                                        </CFormGroup>
-                                      </>
-                                    )}
-                                  </Field>
-                                </CCol>
-                              ))}
-                              <CCol md="6" sm="6">
-                                <Field
-                                  name="otherCheckbox"
-                                  type="checkbox"
-                                  value="other"
-                                >
+      {weekClosed != "CLOSED" ? (
+        <>
+          <CRow>
+            <Form
+              onSubmit={onSubmit}
+              validate={validate}
+              initialValues={initialValues}
+              render={({ handleSubmit, valid, values, errors }) => (
+                <form onSubmit={handleSubmit}>
+                  <CCol xs="12" sm="12">
+                    <CFade timeout={300} in={showElements} unmountOnExit={true}>
+                      <CCard>
+                        {JSON.stringify(values)}
+                        {JSON.stringify(errors)}
+                        <CCardHeader>
+                          {currentDate.toString()}
+                          <div className="card-header-actions">
+                            <CButton
+                              color="success"
+                              className=" btn-minimize"
+                              size="sm"
+                              type="submit"
+                              onClick={() => {
+                                if (!valid) {
+                                  addToast("Please complete empty fields.", {
+                                    appearance: "error",
+                                    autoDismiss: true,
+                                  });
+                                }
+                              }}
+                            >
+                              Save
+                            </CButton>
+                            <CButton
+                              color="link"
+                              className="card-header-action btn-minimize"
+                              onClick={() => setCollapsed(!collapsed)}
+                            >
+                              <CIcon
+                                name={
+                                  collapsed
+                                    ? "cil-arrow-top"
+                                    : "cil-arrow-bottom"
+                                }
+                              />
+                            </CButton>
+                          </div>
+                        </CCardHeader>
+                        <CCollapse show={collapsed} timeout={1000}>
+                          <CCardBody>
+                            <CRow>
+                              <CCol sm="12">
+                                <Field name="jobName" validate={required}>
                                   {({ input, meta }) => (
                                     <>
-                                      <CFormGroup variant="custom-checkbox">
-                                        <CInputCheckbox
-                                          id="otherCheckbox"
-                                          value="extra"
-                                          name={input.name}
-                                          checked={input.checked}
-                                          onChange={input.onChange}
-                                          custom
-                                        />
-                                        <CLabel
-                                          variant="custom-checkbox"
-                                          htmlFor="otherCheckbox"
-                                        >
-                                          Other
+                                      <CFormGroup>
+                                        <CLabel htmlFor="jobName">
+                                          Job Name <Required />
                                         </CLabel>
+                                        <CInput
+                                          placeholder="Enter the Job Name"
+                                          {...input}
+                                          invalid={meta.invalid && meta.touched}
+                                        />
+                                        {meta.touched && meta.error && (
+                                          <CInvalidFeedback className="help-block">
+                                            Please provide a valid information
+                                          </CInvalidFeedback>
+                                        )}
                                       </CFormGroup>
-                                      {input.checked ? (
-                                        <CCollapse
-                                          show={input.checked}
-                                          timeout={1000}
-                                        >
-                                          <Field
-                                            name="otherJobLocation"
-                                            validate={required}
-                                          >
-                                            {({ input, meta }) => (
-                                              <>
-                                                <CInput
-                                                  id="otherJobLocation"
-                                                  placeholder="Enter Job Location"
-                                                  {...input}
-                                                  invalid={
-                                                    meta.invalid && meta.touched
-                                                  }
-                                                />
-                                                {meta.touched && meta.error && (
-                                                  <CInvalidFeedback className="help-block">
-                                                    Please provide a valid
-                                                    information
-                                                  </CInvalidFeedback>
-                                                )}
-                                              </>
-                                            )}
-                                          </Field>
-                                        </CCollapse>
-                                      ) : null}
                                     </>
                                   )}
                                 </Field>
-                              </CCol>
-                              <CCol md="12">
-                                <Field name="jobLocations" validate={required}>
+                                <CFormGroup row>
+                                  <CCol md="12">
+                                    <CLabel>
+                                      Job Location <Required />
+                                    </CLabel>
+                                  </CCol>
+
+                                  {jobLocations?.map((jobLocation) => (
+                                    <CCol md="6" sm="6">
+                                      <Field
+                                        name="jobLocations"
+                                        type="checkbox"
+                                        value={jobLocation.id}
+                                      >
+                                        {({ input, meta }) => (
+                                          <>
+                                            <CFormGroup variant="custom-checkbox">
+                                              <CInputCheckbox
+                                                id={jobLocation.id}
+                                                value="ss"
+                                                name={input.name}
+                                                checked={input.checked}
+                                                onChange={input.onChange}
+                                                custom
+                                              />
+                                              <CLabel
+                                                variant="custom-checkbox"
+                                                htmlFor={jobLocation.id}
+                                              >
+                                                {jobLocation.value}
+                                              </CLabel>
+                                            </CFormGroup>
+                                          </>
+                                        )}
+                                      </Field>
+                                    </CCol>
+                                  ))}
+                                  <CCol md="6" sm="6">
+                                    <Field
+                                      name="otherCheckbox"
+                                      type="checkbox"
+                                      value="other"
+                                    >
+                                      {({ input, meta }) => (
+                                        <>
+                                          <CFormGroup variant="custom-checkbox">
+                                            <CInputCheckbox
+                                              id="otherCheckbox"
+                                              value="extra"
+                                              name={input.name}
+                                              checked={input.checked}
+                                              onChange={input.onChange}
+                                              custom
+                                            />
+                                            <CLabel
+                                              variant="custom-checkbox"
+                                              htmlFor="otherCheckbox"
+                                            >
+                                              Other
+                                            </CLabel>
+                                          </CFormGroup>
+                                          {input.checked ? (
+                                            <CCollapse
+                                              show={input.checked}
+                                              timeout={1000}
+                                            >
+                                              <Field
+                                                name="otherJobLocation"
+                                                //validate={required}
+                                              >
+                                                {({ input, meta }) => (
+                                                  <>
+                                                    <CInput
+                                                      id="otherJobLocation"
+                                                      placeholder="Enter Job Location"
+                                                      {...input}
+                                                      invalid={
+                                                        meta.invalid &&
+                                                        meta.touched
+                                                      }
+                                                    />
+                                                    {meta.touched &&
+                                                      meta.error && (
+                                                        <CInvalidFeedback className="help-block">
+                                                          Please provide a valid
+                                                          information
+                                                        </CInvalidFeedback>
+                                                      )}
+                                                  </>
+                                                )}
+                                              </Field>
+                                            </CCollapse>
+                                          ) : null}
+                                        </>
+                                      )}
+                                    </Field>
+                                  </CCol>
+                                  <CCol md="12">
+                                    <Field name="jobLocations">
+                                      {({ input, meta }) => (
+                                        <>
+                                          <CFormGroup row>
+                                            <CCol md="12">
+                                              {meta.touched && meta.error && (
+                                                <CInvalidFeedback
+                                                  style={{ display: "block" }}
+                                                  className="help-block "
+                                                >
+                                                  Please provide a valid
+                                                  information
+                                                </CInvalidFeedback>
+                                              )}
+                                            </CCol>
+                                          </CFormGroup>
+                                        </>
+                                      )}
+                                    </Field>
+                                  </CCol>
+                                </CFormGroup>
+                                <Field
+                                  name="jobDescription"
+                                  validate={required}
+                                >
                                   {({ input, meta }) => (
                                     <>
                                       <CFormGroup row>
                                         <CCol md="12">
+                                          <CLabel htmlFor="textarea-input">
+                                            Type of work in progress{" "}
+                                            <Required />
+                                          </CLabel>
+                                        </CCol>
+                                        <CCol xs="12" md="12">
+                                          <CTextarea
+                                            {...input}
+                                            invalid={
+                                              meta.invalid && meta.touched
+                                            }
+                                            name="textarea-input"
+                                            id="jobDescription"
+                                            rows="3"
+                                            placeholder="Enter the type of work in progress..."
+                                          />
                                           {meta.touched && meta.error && (
-                                            <CInvalidFeedback
-                                              style={{ display: "block" }}
-                                              className="help-block "
-                                            >
+                                            <CInvalidFeedback className="help-block">
                                               Please provide a valid information
                                             </CInvalidFeedback>
                                           )}
@@ -899,76 +952,58 @@ const TimeCards = () => {
                                     </>
                                   )}
                                 </Field>
-                              </CCol>
-                            </CFormGroup>
-                            <Field name="jobDescription" validate={required}>
-                              {({ input, meta }) => (
-                                <>
-                                  <CFormGroup row>
-                                    <CCol md="12">
-                                      <CLabel htmlFor="textarea-input">
-                                        Type of work in progress <Required />
-                                      </CLabel>
-                                    </CCol>
-                                    <CCol xs="12" md="12">
-                                      <CTextarea
-                                        {...input}
-                                        invalid={meta.invalid && meta.touched}
-                                        name="textarea-input"
-                                        id="jobDescription"
-                                        rows="3"
-                                        placeholder="Enter the type of work in progress..."
-                                      />
-                                      {meta.touched && meta.error && (
-                                        <CInvalidFeedback className="help-block">
-                                          Please provide a valid information
-                                        </CInvalidFeedback>
-                                      )}
-                                    </CCol>
-                                  </CFormGroup>
-                                </>
-                              )}
-                            </Field>
 
-                            <LogCards />
-                            {moment().format("dddd") == "Friday" ||
-                            moment().format("dddd") == "Saturday" ||
-                            moment().format("dddd") == "Sunday" ? (
-                              <Field name={"signature"}>
-                                {({ input, meta }) => (
-                                  <>
-                                    <CFormGroup>
-                                      <CLabel>Signature</CLabel>
-                                      <ESignature
-                                        svg={input.value}
-                                        onReady={onReadySignature}
-                                        /* disableEdit={
+                                <LogCards />
+                                {moment().format("dddd") == "Friday" ||
+                                moment().format("dddd") == "Saturday" ||
+                                moment().format("dddd") == "Sunday" ? (
+                                  <Field name={"signature"}>
+                                    {({ input, meta }) => (
+                                      <>
+                                        <CFormGroup>
+                                          <CLabel>
+                                            Signature <Required />
+                                          </CLabel>
+                                          <ESignature
+                                            svg={input.value}
+                                            onReady={onReadySignature}
+                                            /* disableEdit={
                                           !!selectedData &&
                                           metadataRow.disableEdit
                                         } */
-                                        onChange={input.onChange}
-                                      ></ESignature>
-                                    </CFormGroup>
-                                  </>
+                                            onChange={input.onChange}
+                                          ></ESignature>
+                                        </CFormGroup>
+                                      </>
+                                    )}
+                                  </Field>
+                                ) : (
+                                  <p></p>
                                 )}
-                              </Field>
-                            ) : (
-                              <p></p>
-                            )}
-                          </CCol>
-                        </CRow>
-                      </CCardBody>
-                    </CCollapse>
-                  </CCard>
-                </CFade>
-              </CCol>
-            </form>
-          )}
-        />
-        {/* Log Buttons */}
-        <RenderLogCards />
-      </CRow>
-      <RenderTimeCardsLogged />
+                              </CCol>
+                            </CRow>
+                          </CCardBody>
+                        </CCollapse>
+                      </CCard>
+                    </CFade>
+                  </CCol>
+                </form>
+              )}
+            />
+            {/* Log Buttons */}
+            <RenderLogCards />
+          </CRow>
+          <RenderTimeCardsLogged />
+        </>
+      ) : (
+        <CRow>
+          <CCol lg="12">
+            <CCard>
+              <h4 className="text-center">Week Closed</h4>
+            </CCard>
+          </CCol>
+        </CRow>
+      )}
     </>
   );
 };
