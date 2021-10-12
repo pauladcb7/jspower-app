@@ -39,7 +39,6 @@ const Login = () => {
     console.log(user);
   }, [user]);
 
-
   function onSubmit(e) {
     api
       .post(LOG_IN, {
@@ -66,6 +65,10 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
+        addToast("Credentials not valid. Try again.", {
+          appearance: "error",
+          autoDismiss: true,
+        });
       });
   }
 

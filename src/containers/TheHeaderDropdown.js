@@ -8,7 +8,7 @@ import {
   CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const TheHeaderDropdown = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,22 @@ const TheHeaderDropdown = () => {
       type: "LOG_OUT",
     });
   }
+  const user = useSelector((state) => {
+    return state.user;
+  });
+  const fullName =
+    user.first_name && user.last_name
+      ? user.first_name + " " + user.last_name
+      : user?.email
+          ?.split("@")
+          .shift()
+          .split(".")
+          .map((i) => {
+            return i.charAt(0).toUpperCase() + i.slice(1) + " ";
+          })
+          .toString()
+          .replace(",", "")
+          .trim() || user.email;
 
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
@@ -25,22 +41,22 @@ const TheHeaderDropdown = () => {
           <CImg
             src={"avatars/profile_photo.png"}
             className="c-avatar-img"
-            alt="example@jspowerelectricinc.com"
+            alt={user.email}
           />
         </div>
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem header tag="div" color="light" className="text-center">
-          <strong>Settings</strong>
+          <strong>{fullName}</strong>
         </CDropdownItem>
         <CDropdownItem>
           <CIcon name="cil-user" className="mfe-2" />
           Profile
         </CDropdownItem>
-        <CDropdownItem>
+        {/* <CDropdownItem>
           <CIcon name="cil-settings" className="mfe-2" />
           Settings
-        </CDropdownItem>
+        </CDropdownItem> */}
         <CDropdownItem onClick={logout}>
           <CIcon name="cil-account-logout" className="mfe-2" />
           Log out

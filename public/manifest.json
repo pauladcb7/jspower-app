@@ -1,10 +1,10 @@
 {
-  "short_name": "CoreUI-React",
-  "name": "CoreUI-React sample",
+  "short_name": "JSPower-App",
+  "name": "JS Power App",
   "icons": [
     {
-      "src": "./assets/img/favicon.png",
-      "sizes": "100x100",
+      "src": "./jspower-icon.png",
+      "sizes": "144x144",
       "type": "image/png"
     }
   ],

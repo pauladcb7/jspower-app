@@ -163,7 +163,7 @@ const TimeCards = () => {
         let timeCardInfo = result.time_card_info;
         let timeEntryInfo = result.time_entry_info;
         setTimeEntryId(timeEntryInfo.id);
-        setEmployeeSignature(timeCardInfo.esignature);
+        setEmployeeSignature(result.time_card_info?.esignature);
         setTimeCardsLogged(result.time_cards_logged);
         setWeekClosed(result.week_closed_ind);
         if (timeCardInfo && result.week_closed_ind == "OPEN") {
@@ -264,7 +264,7 @@ const TimeCards = () => {
     else if (type == "lunchIn") pos = 1;
     else if (type == "lunchOut") pos = 2;
     else if (type == "clockOut") pos = 3;
-    if (timeEntryId && timeCardId) {
+    if (timeEntryId) {
       navigator.geolocation.getCurrentPosition(function (position) {
         var lng = position.coords.longitude;
         var lat = position.coords.latitude;
@@ -544,8 +544,8 @@ const TimeCards = () => {
       moment("13:00:00", format),
       moment("17:59:00", format)
     );
-    var lIn = lunchInTime.length != 0;
-    var lOut = lunchOutTime.length != 0;
+    var lIn = lunchInTime.length == 0;
+    var lOut = lunchOutTime.length == 0;
 
     if (lIn || lOut) {
       return (
@@ -628,7 +628,6 @@ const TimeCards = () => {
   };
 
   const onSubmit = async (e) => {
-    debugger;
     api
       .post(SAVE_TIME_CARD, {
         data: {
@@ -672,7 +671,7 @@ const TimeCards = () => {
                     return (
                       <CListGroup>
                         <CListGroupItem className="justify-content-between">
-                          {tc.job_description}
+                          {tc.job_name}
                           <CBadge
                             className="float-right"
                             shape="pill"
