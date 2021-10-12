@@ -721,7 +721,7 @@ const TimeCards = () => {
     if (e.otherCheckbox?.length > 0 && !e.otherJobLocation) {
       errors.otherJobLocation = "required";
     }
-    return errors;
+    if (timeCardStatus) return errors;
   };
 
   return (
