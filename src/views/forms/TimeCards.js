@@ -457,78 +457,82 @@ const TimeCards = () => {
     setEnableLogs(newEnableLogs);
   };
   const LogCards = () => {
-    return (
-      <>
-        {(timeCardStatus == "NEW" || timeCardStatus == undefined) && (
-          <CCol xs="12" sm="6" lg="6">
-            <CWidgetIcon
-              text={
-                <div>
-                  {clockInAddress || (
-                    <div>
-                      <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
-                      Click to register Clock In time
-                    </div>
-                  )}
-                </div>
-              }
-              header={
-                <CCollapse timeout={2000} show={collapseMulti[0]}>
-                  {clockInTime}
-                </CCollapse>
-              }
-              color="danger"
-              iconPadding={false}
-              id="clockInCard"
-            >
-              <CCol
-                md="12"
-                className="timeLog"
-                onClick={() => {
-                  logTime("clockIn");
-                }}
+    if (timeCardId) {
+      return (
+        <>
+          {(timeCardStatus == "NEW" || timeCardStatus == undefined) && (
+            <CCol xs="12" sm="6" lg="6">
+              <CWidgetIcon
+                text={
+                  <div>
+                    {clockInAddress || (
+                      <div>
+                        <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
+                        Click to register Clock In time
+                      </div>
+                    )}
+                  </div>
+                }
+                header={
+                  <CCollapse timeout={2000} show={collapseMulti[0]}>
+                    {clockInTime}
+                  </CCollapse>
+                }
+                color="danger"
+                iconPadding={false}
+                id="clockInCard"
               >
-                <CIcon width={32} name="cil-clock" /> <p>Clock In</p>
-              </CCol>
-            </CWidgetIcon>
-          </CCol>
-        )}
-        {timeCardStatus == "CLOCK_IN" && (
-          <CCol xs="12" sm="6" lg="6">
-            <CWidgetIcon
-              text={
-                <div>
-                  {clockOutAddress || (
-                    <div>
-                      <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
-                      Click to register Clock Out time
-                    </div>
-                  )}
-                </div>
-              }
-              header={
-                <CCollapse timeout={2000} show={collapseMulti[3]}>
-                  {clockOutTime}
-                </CCollapse>
-              }
-              color="danger"
-              iconPadding={false}
-            >
-              <CCol
-                md="12"
-                className="timeLog"
-                onClick={() => {
-                  logTime("clockOut");
-                }}
+                <CCol
+                  md="12"
+                  className="timeLog"
+                  onClick={() => {
+                    logTime("clockIn");
+                  }}
+                >
+                  <CIcon width={32} name="cil-clock" /> <p>Clock In</p>
+                </CCol>
+              </CWidgetIcon>
+            </CCol>
+          )}
+          {timeCardStatus == "CLOCK_IN" && (
+            <CCol xs="12" sm="6" lg="6">
+              <CWidgetIcon
+                text={
+                  <div>
+                    {clockOutAddress || (
+                      <div>
+                        <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
+                        Click to register Clock Out time
+                      </div>
+                    )}
+                  </div>
+                }
+                header={
+                  <CCollapse timeout={2000} show={collapseMulti[3]}>
+                    {clockOutTime}
+                  </CCollapse>
+                }
+                color="danger"
+                iconPadding={false}
               >
-                <CIcon iconPadding={false} width={32} name="cil-clock" />{" "}
-                <p>Clock Out</p>
-              </CCol>
-            </CWidgetIcon>
-          </CCol>
-        )}
-      </>
-    );
+                <CCol
+                  md="12"
+                  className="timeLog"
+                  onClick={() => {
+                    logTime("clockOut");
+                  }}
+                >
+                  <CIcon iconPadding={false} width={32} name="cil-clock" />{" "}
+                  <p>Clock Out</p>
+                </CCol>
+              </CWidgetIcon>
+            </CCol>
+          )}
+        </>
+      );
+    } else {
+      return null;
+    }
   };
   const onReadySignature = function (signaturePad) {
     setEmployeeSignature(signaturePad);

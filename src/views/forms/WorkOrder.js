@@ -112,7 +112,7 @@ const WorkOrder = () => {
             work_order_id: "-1",
             user_id: user.email,
             entry_date: e.date,
-            work_type: "10", //e.workType,
+            work_type: e.workType == "other" ? null : e.workType,
             start_time: e.startTime,
             end_time: e.endTime,
             job_location: e.jobLocation,
@@ -129,6 +129,19 @@ const WorkOrder = () => {
         })
         .then((result) => {
           setWorkOrderId(result);
+          workOrderPrint({
+            date: e.date,
+            workType: e.workType,
+            employeeName: e.employeeName,
+            endTime: e.endTime,
+            startTime: e.startTime,
+            totalCost: e.totalCost,
+            jobLocation: e.jobLocation,
+            jobDetails: e.jobDetails,
+            customerSignature: signatureCustomer.toDataURL(),
+            employeeSignature: signatureEmployee.toDataURL(),
+            customerInformation: e.customerNAme,
+          });
           addToast("Work Order Submitted.", {
             appearance: "success",
             autoDismiss: true,
@@ -141,19 +154,6 @@ const WorkOrder = () => {
             autoDismiss: true,
           });
         });
-      // workOrderPrint({
-      //   date: e.date,
-      //   workType: e.workType,
-      //   employeeName: e.employeeName,
-      //   endTime: e.endTime,
-      //   startTime: e.startTime,
-      //   totalCost: e.totalCost,
-      //   jobLocation: e.jobLocation,
-      //   jobDetails: e.jobDetails,
-      //   customerSignature: signatureCustomer.toDataURL(),
-      //   employeeSignature: signatureEmployee.toDataURL(),
-      //   customerInformation: e.customerNAme,
-      // });
     }
   };
   const validate = function (e) {
@@ -317,28 +317,6 @@ const WorkOrder = () => {
                                 </Field>
                               </CCol>
                             </CFormGroup>
-
-                            {/* <Field name="employeeName" validate={required}>
-                              {({ input, meta }) => (
-                                <>
-                                  <CFormGroup>
-                                    <CLabel htmlFor="employeeName">
-                                      Employee Name
-                                    </CLabel>
-                                    <CInput
-                                      {...input}
-                                      invalid={meta.invalid && meta.touched}
-                                      placeholder="Employee Name"
-                                    />
-                                    {meta.touched && meta.error && (
-                                      <CInvalidFeedback className="help-block">
-                                        Please provide a valid information
-                                      </CInvalidFeedback>
-                                    )}
-                                  </CFormGroup>
-                                </>
-                              )}
-                            </Field> */}
 
                             <Field name="startTime" validate={required}>
                               {({ input, meta }) => (

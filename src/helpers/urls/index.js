@@ -14,7 +14,7 @@ export const CLOCK_OUT = "time-card/clockOut/";
 export const LUNCH_IN = "time-card/lunchIn/";
 export const LUNCH_OUT = "time-card/lunchOut/";
 export const GET_TIME_CARD = "time-card/get";
-export const GET_TIME_SHEETS_BY_DAY =  "time-card/getTimeSheetsbyUser";
+export const GET_TIME_SHEETS_BY_DAY = "time-card/getTimeSheetsbyUser";
 export const DELETE_TIME_CARD = "time-card";
 export const DELETE_TIME_ENTRY = "time-entry";
 
@@ -22,6 +22,7 @@ export const DELETE_TIME_ENTRY = "time-entry";
 export const SAVE_WORK_ORDER = "work-order/save/";
 export const DELETE_WORK_ORDER = "work-order";
 export const GET_WORK_ORDER = "work-order/getWorkOrders";
+export const SEND_WORK_ORDER = "work-order/sendWorkOrder";
 
 export const WORK_TYPES = "work-order/getWorkOrderTypes/";
 
