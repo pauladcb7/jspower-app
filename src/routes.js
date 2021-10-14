@@ -12,6 +12,7 @@ import CircuitDirectoryCrud from "./views/crud/CircuitDirectoryCrud";
 import SignSheet from "./views/forms/SignSheet";
 import ListSheet from "./views/forms/ListSheet";
 import SheetCreate from "./views/forms/SheetCreate";
+import Profile from "./views/pages/profile/Profile";
 
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -125,7 +126,7 @@ const routes = [
     name: "Circuit Directory",
     component: CircuitDirectoryCrud,
   },
-  
+
   {
     path: "/material-requisition/create",
     exact: true,
@@ -155,6 +156,12 @@ const routes = [
     exact: true,
     name: "Create Document",
     component: SheetCreate,
+  },
+  {
+    path: "/profile",
+    exact: true,
+    name: "Profile",
+    component: Profile,
   },
 
   { path: "/theme", name: "Theme", component: Colors, exact: true },

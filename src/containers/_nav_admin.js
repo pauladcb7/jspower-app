@@ -18,30 +18,29 @@ const _nav_admin = [
   },
   {
     _tag: "CSidebarNavItem",
-    name: "Work Order",
-    to: "/report/work-order",
-    icon: "cil-notes",
+    name: "Time Card",
+    to: "/report/time-card",
+    icon: "cil-clock",
   },
   {
     _tag: "CSidebarNavItem",
-    name: "Time Card",
-    to: "/report/time-card",
-    icon: "cil-notes",
+    name: "Work Order",
+    to: "/report/work-order",
+    icon: "cil-description",
   },
   {
     _tag: "CSidebarNavItem",
     name: "Material Requisition",
     to: "/report/material-requisition",
-    icon: "cil-notes",
+    icon: "cil-layers",
   },
   {
     _tag: "CSidebarNavItem",
     name: "Circuit Directory",
     to: "/report/circuit-directory",
-    icon: "cil-notes",
+    icon: "cil-spreadsheet",
   },
-  
-  
+
   /*{
     _tag: 'CSidebarNavItem',
     name: 'Colors',

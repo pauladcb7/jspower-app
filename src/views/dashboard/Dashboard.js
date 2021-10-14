@@ -94,14 +94,15 @@ const Dashboard = () => {
         <CCol sm="4" md="6" lg="4" style={{ cursor: "pointer" }}>
           <CWidgetSimple
             header={
-              <div style={{ color: "white", font: "14px" }}>Safety Sheets</div>
+              <div style={{ color: "white", fontSize: "14px" }}>
+                Safety Sheets
+              </div>
             }
             style={{
               borderColor: "#39f",
               backgroundColor: "rgba(51, 153, 255, 0.88)",
               color: "white",
             }}
-            className="dashboardCard"
             text={<CIcon height="44" name="cil-task" />}
           ></CWidgetSimple>
         </CCol>

@@ -9,7 +9,7 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useHistory, useLocation } from "react-router-dom";
 const TheHeaderDropdown = () => {
   const dispatch = useDispatch();
   function logout() {
@@ -20,6 +20,7 @@ const TheHeaderDropdown = () => {
   const user = useSelector((state) => {
     return state.user;
   });
+  const history = useHistory();
   const fullName =
     user.first_name && user.last_name
       ? user.first_name + " " + user.last_name
@@ -49,7 +50,7 @@ const TheHeaderDropdown = () => {
         <CDropdownItem header tag="div" color="light" className="text-center">
           <strong>{fullName}</strong>
         </CDropdownItem>
-        <CDropdownItem>
+        <CDropdownItem onClick={(item) => history.push(`/profile`)}>
           <CIcon name="cil-user" className="mfe-2" />
           Profile
         </CDropdownItem>
