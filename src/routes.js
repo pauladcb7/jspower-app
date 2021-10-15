@@ -13,6 +13,8 @@ import SignSheet from "./views/forms/SignSheet";
 import ListSheet from "./views/forms/ListSheet";
 import SheetCreate from "./views/forms/SheetCreate";
 import Profile from "./views/pages/profile/Profile";
+import CircuitDirectoryBusiness208 from "./views/forms/CircuitDirectoryBusiness208";
+import CircuitDirectoryBusiness480 from "./views/forms/CircuitDirectoryBusiness480";
 
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const CoreUIIcons = React.lazy(() =>
@@ -93,6 +95,18 @@ const routes = [
     exact: true,
     name: "Circuit Directory Business",
     component: CircuitDirectoryBusiness,
+  },
+  {
+    path: "/circuit-directory-business-208/create",
+    exact: true,
+    name: "Circuit Directory Business 208V",
+    component: CircuitDirectoryBusiness208,
+  },
+  {
+    path: "/circuit-directory-business-480/create",
+    exact: true,
+    name: "Circuit Directory Business 480V",
+    component: CircuitDirectoryBusiness480,
   },
   {
     path: "/circuit-directory-home/create",

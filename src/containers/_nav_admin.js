@@ -14,6 +14,34 @@ const _nav_admin = [
   },
   {
     _tag: "CSidebarNavTitle",
+    _children: ["Forms"],
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Time Cards",
+    to: "/timecards/create",
+    icon: "cil-clock",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Work Order",
+    to: "/work-order/create",
+    icon: "cil-description",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Material Requisition",
+    to: "/material-requisition/create",
+    icon: "cil-layers",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Circuit Directory",
+    to: "/circuit-directory/selector",
+    icon: "cil-spreadsheet",
+  },
+  {
+    _tag: "CSidebarNavTitle",
     _children: ["Reports"],
   },
   {

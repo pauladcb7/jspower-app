@@ -123,7 +123,7 @@ const CircuitDirectorySelector = () => {
                   <CCollapse timeout={2000} show={collapsed}>
                     <CButton
                       onClick={() => {
-                        history.push("/circuit-directory-business/create");
+                        history.push("/circuit-directory-business-208/create");
                       }}
                       block
                       color="dark"
@@ -136,7 +136,7 @@ const CircuitDirectorySelector = () => {
                     </CButton>
                     <CButton
                       onClick={() => {
-                        history.push("/circuit-directory-business/create");
+                        history.push("/circuit-directory-business-480/create");
                       }}
                       block
                       color="dark"

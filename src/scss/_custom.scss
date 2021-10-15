@@ -116,6 +116,7 @@ body {
   height: 600px;
 }
 
+/* Black Red Striped*/
 .black-red-striped > tbody > tr:nth-child(even) {
   background-color: #636f83d6;
 }
@@ -124,17 +125,49 @@ body {
   background-color: #e55353b5;
 }
 
-.black-red-striped > thead {
+.black-red-striped > thead,
+.black-red-blue-striped > thead,
+.brown-orange-yellow-striped > thead {
   background-color: #000000d7;
   color: white;
 }
 
-.black-red-striped {
+.black-red-striped,
+.black-red-blue-striped,
+.brown-orange-yellow-striped {
   color: black;
 }
 
-.black-red-striped > tbody > tr > td:nth-child(1) {
+/* Black Red Blue Striped*/
+.black-red-blue-striped > tbody > tr:nth-child(1n) {
+  background-color: #636f83d6;
+}
+
+.black-red-blue-striped > tbody > tr:nth-child(2n) {
+  background-color: #e55353b5;
+}
+
+.black-red-blue-striped > tbody > tr:nth-child(3n) {
+  background-color: #0408f7a1;
+}
+
+.black-red-striped > tbody > tr > td:nth-child(1),
+.black-red-blue-striped > tbody > tr > td:nth-child(1),
+.black-red-blue-striped > tbody > tr > td:nth-child(3),
+.brown-orange-yellow-striped > tbody > tr > td:nth-child(1),
+.brown-orange-yellow-striped > tbody > tr > td:nth-child(3) {
   width: 50px;
   text-align: center;
   vertical-align: middle;
+}
+
+/* Broen Orange Yellow Striped*/
+.brown-orange-yellow-striped > tbody > tr:nth-child(1n) {
+  background-color: #3d2506b4;
+}
+.brown-orange-yellow-striped > tbody > tr:nth-child(2n) {
+  background-color: #ee940db4;
+}
+.brown-orange-yellow-striped > tbody > tr:nth-child(3n) {
+  background-color: #eeea10b4;
 }

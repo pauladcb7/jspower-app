@@ -53,7 +53,7 @@ for (let index = 1; index < 43; index++) {
 }
 initialArray.push();
 
-const CircuitDirectoryBusiness = () => {
+const CircuitDirectoryBusiness208 = () => {
   const [collapsed, setCollapsed] = React.useState(true);
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
@@ -109,7 +109,7 @@ const CircuitDirectoryBusiness = () => {
                 <form onSubmit={handleSubmit}>
                   <CCard>
                     <CCardHeader>
-                      Circuit Directory
+                      Circuit Directory 208 Volt
                       <div className="card-header-actions">
                         <CButton
                           color="link"
@@ -172,6 +172,7 @@ const CircuitDirectoryBusiness = () => {
                               fields={fieldsTable}
                               responsive
                               striped
+                              addTableClasses="black-red-blue-striped"
                               itemsPerPage={50}
                               scopedSlots={{
                                 ckt: (item, index) => {
@@ -275,4 +276,4 @@ const CircuitDirectoryBusiness = () => {
   );
 };
 
-export default CircuitDirectoryBusiness;
+export default CircuitDirectoryBusiness208;
