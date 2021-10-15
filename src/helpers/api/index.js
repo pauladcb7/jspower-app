@@ -19,13 +19,21 @@ export const api = axios.create({
   headers: authHeader(),
 });
 
-api.interceptors.response.use(function (resp) {
-  return resp.data;
-});
+api.interceptors.response.use(
+  function (resp) {
+    return resp.data;
+  },
+  function (e) {
+    if (e.response.status === 401) {
+      store.dispatch({ type: "LOG_OUT" });
+    }
+  }
+);
 
 api.interceptors.request.use(function (req) {
   var state = store.getState();
-  req.headers['x-access-token'] = req.headers['x-access-token'] || state.user?.token;
+  req.headers["x-access-token"] =
+    req.headers["x-access-token"] || state.user?.token;
   return req;
 });
 

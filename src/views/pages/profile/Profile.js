@@ -48,8 +48,8 @@ import moment from "moment";
 
 import { useToasts } from "react-toast-notifications";
 import { api } from "../../../helpers/api";
-import { SAVE_WORK_ORDER, WORK_TYPES } from "../../../helpers/urls/index";
-import { useSelector, useStore } from "react-redux";
+import { USER_UPDATE, TEST } from "../../../helpers/urls/index";
+import { useSelector, useStore, useDispatch } from "react-redux";
 import { Field, Form } from "react-final-form";
 import { workOrderPrint } from "src/utils/workOrder";
 import { logo } from "src/utils/logo";
@@ -57,6 +57,7 @@ import { logo } from "src/utils/logo";
 const required = (value) => (value ? undefined : "Required");
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const [collapsed, setCollapsed] = React.useState(true);
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
@@ -67,87 +68,70 @@ const Profile = () => {
     return state.user;
   });
 
+  const refreshUserData = () => {
+    api.get(TEST).then((data) => {
+      console.log("data return ", data);
+      dispatch({
+        type: "SET_USER",
+        user: {
+          first_name: data.first_name,
+          last_name: data.last_name,
+          email: data.email,
+          phone_number: data.phone_number,
+          address: data.address,
+          profile_img: data.profile_img,
+          rol: data.role === "admin" ? "admin" : "employee",
+          token: user.token,
+        },
+      });
+    });
+    console.log(user);
+  };
   useEffect(() => {
-    // api
-    //   .get(WORK_TYPES)
-    //   .then((data) => {
-    //     setWorkTypes(data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     addToast(
-    //       "Something went wrong loading Job Locations. Refresh the page.",
-    //       {
-    //         appearance: "error",
-    //         autoDismiss: true,
-    //       }
-    //     );
-    //   });
+    refreshUserData();
+  }, []);
+  useEffect(() => {
     setInitialValue({
-      date: moment().format("YYYY-MM-DD"),
       firstName: user.first_name,
       lastName: user.last_name,
       emailAddress: user.email,
-      phoneNumber: user.phoneNumber,
+      phoneNumber: user.phone_number,
       address: user.address,
       profileImg: user.profile_img,
     });
-  }, []);
+  }, [user]);
 
   const Required = () => {
     return <span style={{ color: "red" }}>*</span>;
   };
   const onSubmit = function (e) {
     // if (!signatureCustomer.isEmpty() && !signatureEmployee.isEmpty()) {
-    //   api
-    //     .post(SAVE_WORK_ORDER, {
-    //       data: {
-    //         work_order_id: "-1",
-    //         user_id: user.email,
-    //         entry_date: e.date,
-    //         work_type: e.workType == "other" ? null : e.workType,
-    //         start_time: e.startTime,
-    //         end_time: e.endTime,
-    //         job_location: e.jobLocation,
-    //         job_details: e.jobDetails,
-    //         total_cost: e.totalCost,
-    //         other: e.otherWorkType?.length == 0 ? "" : e.otherWorkType,
-    //         employee_signature: signatureEmployee.toDataURL(),
-    //         customer_name: e.customerName,
-    //         customer_address: e.customerAddress,
-    //         customer_phone_number: e.customerPhone,
-    //         customer_email: e.customerEmail,
-    //         customer_signature: signatureCustomer.toDataURL(),
-    //       },
-    //     })
-    //     .then((result) => {
-    //       setWorkOrderId(result);
-    //       workOrderPrint({
-    //         date: e.date,
-    //         workType: e.workType,
-    //         employeeName: e.employeeName,
-    //         endTime: e.endTime,
-    //         startTime: e.startTime,
-    //         totalCost: e.totalCost,
-    //         jobLocation: e.jobLocation,
-    //         jobDetails: e.jobDetails,
-    //         customerSignature: signatureCustomer.toDataURL(),
-    //         employeeSignature: signatureEmployee.toDataURL(),
-    //         customerInformation: e.customerNAme,
-    //       });
-    //       addToast("Work Order Submitted.", {
-    //         appearance: "success",
-    //         autoDismiss: true,
-    //       });
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //       addToast("Something went wrong creating Work Order. Try again.", {
-    //         appearance: "error",
-    //         autoDismiss: true,
-    //       });
-    //     });
-    //   null;
+
+    api
+      .post(USER_UPDATE, {
+        data: {
+          first_name: e.firstName,
+          last_name: e.lastName,
+          phone_number: e.phoneNumber,
+          address: e.address,
+          profile_img: e.profileImg,
+        },
+      })
+      .then((result) => {
+        refreshUserData();
+        addToast("Information Updated.", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        addToast("Something went wrong updating Your Information. Try again.", {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      });
+
     // }
   };
   const validate = function (e) {
@@ -162,15 +146,6 @@ const Profile = () => {
     // setSignatureEmployee(signaturePad);
   };
   const [validated, setValidated] = useState(false);
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    setValidated(true);
-    console.log("submit", form);
-  };
 
   const PersonalInformation = () => {
     return (
@@ -181,7 +156,7 @@ const Profile = () => {
               onSubmit={onSubmit}
               validate={validate}
               initialValues={initialValues}
-              render={({ handleSubmit, valid }) => (
+              render={({ handleSubmit, values, valid }) => (
                 <form onSubmit={handleSubmit}>
                   <CCard>
                     <CCollapse show={collapsed} timeout={1000}>
@@ -212,7 +187,7 @@ const Profile = () => {
                                           {...input}
                                           id="firstName"
                                           invalid={meta.invalid && meta.touched}
-                                          placeholder="FirstName"
+                                          placeholder="First Name"
                                         />
                                         {meta.touched && meta.error && (
                                           <CInvalidFeedback className="help-block">
@@ -346,7 +321,10 @@ const Profile = () => {
                                 rounded
                                 width={200}
                                 height={200}
-                                src={"avatars/profile_photo.png"}
+                                src={
+                                  values.profileImg ||
+                                  "avatars/profile_photo.png"
+                                }
                                 // className="c-avatar-img"
                                 alt={user.email}
                               />
@@ -360,10 +338,22 @@ const Profile = () => {
                                         Change Image
                                       </CLabel>
                                       <CInputFile
+                                        // {...input}
+                                        onChange={(e) => {
+                                          const reader = new FileReader();
+                                          reader.readAsDataURL(
+                                            e.target.files[0]
+                                          );
+                                          reader.onload = () => {
+                                            input.onChange(reader.result);
+                                            //resolve(reader.result);
+                                          };
+                                          reader.onerror = (error) => {
+                                            //reject(error);
+                                          };
+                                        }}
                                         className="text-center"
-                                        {...input}
                                         id="profileImg"
-                                        placeholder="profileImg"
                                         name="file-input"
                                       />
                                     </CFormGroup>
@@ -425,21 +415,21 @@ const Profile = () => {
                   <CNavItem>
                     <CNavLink>Personal Information</CNavLink>
                   </CNavItem>
-                  <CNavItem>
+                  {/* <CNavItem>
                     <CNavLink>Time Cards</CNavLink>
                   </CNavItem>
                   <CNavItem>
                     <CNavLink>Material Requisitions</CNavLink>
-                  </CNavItem>
+                  </CNavItem> */}
                 </CNav>
                 <CTabContent>
                   <CTabPane>
                     <PersonalInformation />
                   </CTabPane>
-                  <CTabPane>{`2. test`}</CTabPane>
+                  {/* <CTabPane>{`2. test`}</CTabPane>
                   <CTabPane>
                     <MaterialRequisitions />
-                  </CTabPane>
+                  </CTabPane> */}
                 </CTabContent>
               </CTabs>
             </CCardBody>

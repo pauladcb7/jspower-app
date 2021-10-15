@@ -37,5 +37,5 @@ export const CIRCUIT_DIRECTORY = "circuit-directory";
 /* Safety Sheets */
 
 /* Users */
-
 export const USERS_GET = "users/get";
+export const USER_UPDATE = "users/update";
