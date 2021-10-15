@@ -42,27 +42,29 @@ const Login = () => {
   function onSubmit(e) {
     api
       .post(LOG_IN, {
-        user_email: e.username,
+        user_email: e.username.toLowerCase(),
         user_passwd: e.password,
       })
       .then((token) => {
-        console.log("Logged In!!");
         api
           .get(TEST, { headers: { "x-access-token": token.token } })
           .then((data) => {
             console.log("data return ", data);
-            dispatch({
-              type: "SET_USER",
-              user: {
-                first_name: data.first_name,
-                last_name: data.last_name,
-                email: data.email,
-                phone_number: data.phone_number,
-                address: data.address,
-                rol: data.role === "admin" ? "admin" : "employee",
-                token: token.token,
-              },
-            });
+            if (data) {
+              console.log("Logged In!!");
+              dispatch({
+                type: "SET_USER",
+                user: {
+                  first_name: data.first_name,
+                  last_name: data.last_name,
+                  email: data.email,
+                  phone_number: data.phone_number,
+                  address: data.address,
+                  rol: data.role === "admin" ? "admin" : "employee",
+                  token: token.token,
+                },
+              });
+            }
           });
       })
       .catch((err) => {
