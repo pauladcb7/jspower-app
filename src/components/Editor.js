@@ -3,6 +3,10 @@ import React, { Component, useEffect, useRef, useState } from 'react';
 import htmlToPdfmake from 'html-to-pdfmake';
 import {getPDfInstance} from '../utils/pdf';
 import { Editor as ReactEditor } from '@tinymce/tinymce-react';
+import CRegular from 'src/assets/fonts/Calibri Regular.ttf';
+import Book from 'src/assets/fonts/BOOKOS.TTF';
+import BookBold from 'src/assets/fonts/BOOKOSB.TTF';
+import CBold from 'src/assets/fonts/Calibri Bold.TTF';
 
 //const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 export function Editor () {
@@ -15,6 +19,9 @@ export function Editor () {
       var document2 = htmlToPdfmake(html, {
         imagesByReference:true
       });
+      document2.pageMargins = [15,22,15,5]
+
+      console.log(document2)
       
       getPDfInstance().then((pdfMake) => {
         pdfMake.createPdf(document2).getBase64((res) => {
@@ -28,7 +35,6 @@ export function Editor () {
       <ReactEditor
         apiKey="04sk0dy11ji2i19mnnw44qiugeik3ozm6c4k763hzuofvfrg"
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue="<p>This is the initial content of the editor.</p>"
         init={{
           height: 500,
           menubar: false,
@@ -56,16 +62,36 @@ export function Editor () {
         
             input.click();
           }, 
+          fontsize_formats: "8pt 10pt 12pt 16pt 14pt 18pt 24pt 36pt",
+          font_formats:"Calibri=Calibri; Book Style=BookOS",
           plugins: [
-            'advlist autolink lists link image charmap print preview anchor',
+            'advlist autolink lists  link image charmap print preview anchor',
             'searchreplace visualblocks code fullscreen',
             'insertdatetime media table paste code help imagetools  wordcount'
           ],
-          toolbar: 'undo redo | formatselect | ' +
+          toolbar: 'undo redo | formatselect | fontsizeselect  | fontselect | ' +
           'bold italic underline backcolor | alignleft aligncenter ' +
           'alignright alignjustify | bullist numlist outdent indent | image | ' +
           'removeformat | help',
-          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+          
+          //CBold
+          content_style: `body { font-family:Calibri; font-size:14px } 
+            @font-face {
+              font-family: 'Calibri';
+              src: url(${CRegular}) format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+            }
+            @font-face {
+              font-family: 'BookOS';
+              src: url(${Book}) format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+            }
+            @font-face {
+              font-family: 'BookOS';
+              src: url(${BookBold}) format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+              font-weight: bold;
+            }
+            
+
+          `
         }}
       />
       <button onClick={log}>Log editor content</button>

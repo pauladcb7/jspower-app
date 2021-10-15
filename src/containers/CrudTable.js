@@ -24,7 +24,6 @@ import ESignature from "src/components/SiganturePadPaula";
 import { FieldArray, mu } from "react-final-form-arrays";
 import arrayMutators from "final-form-arrays";
 import moment from "moment";
-import ButtonGroups from "src/views/buttons/button-groups/ButtonGroups";
 
 function uuid() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
@@ -64,7 +63,8 @@ const CrudTable = ({
   loading,
   disableDelete,
   disableEdit,
-  customAddForm,
+  customAddForm: AddForm,
+  onAddRow
 }) => {
   const [modal, setModal] = useState(false);
   const [reRender, setRerender] = useState(uuid());
@@ -150,6 +150,7 @@ const CrudTable = ({
         onClick={() => {
           setSelectedData(null);
           setModal(true);
+          onAddRow && onAddRow()
         }}
       >
         <CIcon size="lg" name="cil-plus" /> Add Row
@@ -293,8 +294,11 @@ const CrudTable = ({
           <CModalTitle>{title}</CModalTitle>
         </CModalHeader>
         {
-          !!customAddForm ?
-          customAddForm
+          !!AddForm ?
+          <AddForm closeModal={()=> {
+            setModal(false);
+          }}
+            />
           :
           <Form
           onSubmit={onSubmit}

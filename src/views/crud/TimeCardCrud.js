@@ -480,6 +480,7 @@ const TimeCardCrud = () => {
       filter: false,
       hide: true,
       custom: (item, indexLevel1) => {
+        const itemWeek = item;
         return (
           <CCollapse show={details.includes(indexLevel1)}>
             <CCardBody>
@@ -579,71 +580,6 @@ const TimeCardCrud = () => {
                                   >
                                     <CButtonGroup size="sm">
                                       <CButton
-                                        color="info"
-                                        size="sm"
-                                        onClick={() => {
-                                          setMetadataCustom([
-                                            {
-                                              key: "jobName",
-                                              label: "Job Name",
-                                              type: "text",
-                                              sorter: false,
-                                              filter: false,
-                                              _style: { minWidth: "120px" },
-                                            },
-                                            {
-                                              key: "jobDescription",
-                                              label: "Job Description",
-                                              type: "text",
-                                              sorter: false,
-                                              filter: false,
-                                            },
-                                            {
-                                              key: "clockIn",
-                                              label: "Clock In",
-                                              type: "time",
-                                              sorter: false,
-                                              filter: false,
-                                              _style: { minWidth: "190px" },
-                                            },
-                                            {
-                                              key: "clockInGps",
-                                              label: "Clock In GPS",
-                                              type: "text",
-                                              sorter: false,
-                                              filter: false,
-                                              _style: { minWidth: "190px" },
-                                            },
-                                            {
-                                              key: "clockOut",
-                                              label: "Clock Out",
-                                              type: "time",
-                                              sorter: false,
-                                              filter: false,
-                                              _style: { minWidth: "190px" },
-                                            },
-                                            {
-                                              key: "clockOutGps",
-                                              label: "Clock Out GPS",
-                                              type: "text",
-                                              sorter: false,
-                                              filter: false,
-                                              _style: { minWidth: "190px" },
-                                            },
-                                          ]);
-                                          setSelectedData({
-                                            ...itemsecondLevel,
-                                            entryDate: moment(
-                                              item.entryDate
-                                            ).format("YYYY-MM-DD"),
-                                            isTimeEntry: false,
-                                          });
-                                          setModal(true);
-                                        }}
-                                      >
-                                        <CIcon width={24} name="cil-pencil" />
-                                      </CButton>
-                                      <CButton
                                         color="danger"
                                         size="sm"
                                         onClick={async () => {
@@ -677,7 +613,127 @@ const TimeCardCrud = () => {
                             color="info"
                             size="sm"
                             onClick={() => {
-                              setMetadataCustom([
+                              console.log(itemWeek)
+                              setInitialData({
+                                ...item,
+                                date: moment(item.entryDate).format("YYYY-MM-DD"),
+                                id: item.id,
+                                user: users.find((user) => {
+                                  return user.return === itemWeek.employee?.id 
+                                }),
+                                lunch_in: item.lunchIn,
+                                lunch_out: item.lunchOut,
+                                timecards: item.timecard.map(
+                                  (tc) => {
+                                    return {
+                                      jobName: tc.jobName,
+                                      jobDescription:
+                                        tc.jobDescription,
+                                      clockIn: tc.clockIn,
+                                      clockInGps: tc.clockInGps,
+                                      clockOut: tc.clockOut,
+                                      clockOutGps: tc.clockOutGps,
+                                      jobLocations:
+                                        tc.otherLocation
+                                          ? [
+                                              {
+                                                label:
+                                                  tc.otherLocation,
+                                                value:
+                                                  tc.otherLocation,
+                                                __isNew__: true,
+                                              },
+                                              ...locations.filter(
+                                                (value) => {
+                                                  return tc.location.find(
+                                                    (lc) => {
+                                                      return (
+                                                        value.id ==
+                                                        lc.id
+                                                      );
+                                                    }
+                                                  );
+                                                }
+                                              ),
+                                            ]
+                                          : [
+                                              ...locations.filter(
+                                                (value) => {
+                                                  return tc.location.find(
+                                                    (lc) => {
+                                                      return (
+                                                        value.id ==
+                                                        lc.id
+                                                      );
+                                                    }
+                                                  );
+                                                }
+                                              ),
+                                            ],
+                                    };
+                                  }
+                                )
+                                /* user: values.user,
+                                date: values.date,
+                                lunch_in: re.timeEntryLunchIn,
+                                lunch_out: re.timeEntryLunchOut,
+                                timecards: re.timecard.map(
+                                  (tc) => {
+                                    return {
+                                      jobName: tc.jobName,
+                                      jobDescription:
+                                        tc.jobDescription,
+                                      clockIn: tc.clockIn,
+                                      clockInGps: tc.clockInGps,
+                                      clockOut: tc.clockOut,
+                                      clockOutGps: tc.clockOutGps,
+                                      jobLocations:
+                                        tc.otherLocation
+                                          ? [
+                                              {
+                                                label:
+                                                  tc.otherLocation,
+                                                value:
+                                                  tc.otherLocation,
+                                                __isNew__: true,
+                                              },
+                                              ...locations.filter(
+                                                (value) => {
+                                                  return tc.location.find(
+                                                    (lc) => {
+                                                      return (
+                                                        value.id ==
+                                                        lc.id
+                                                      );
+                                                    }
+                                                  );
+                                                }
+                                              ),
+                                            ]
+                                          : [
+                                              ...locations.filter(
+                                                (value) => {
+                                                  return tc.location.find(
+                                                    (lc) => {
+                                                      return (
+                                                        value.id ==
+                                                        lc.id
+                                                      );
+                                                    }
+                                                  );
+                                                }
+                                              ),
+                                            ],
+                                    };
+                                  }
+                                ), */
+                                /* entryDate: moment(item.entryDate).format(
+                                  "YYYY-MM-DD"
+                                ),
+                                isTimeEntry: true, */
+                              })
+                              setModal(true); 
+                              /* setMetadataCustom([
                                 {
                                   key: "entryDate",
                                   label: "Date",
@@ -709,7 +765,7 @@ const TimeCardCrud = () => {
                                 ),
                                 isTimeEntry: true,
                               });
-                              setModal(true);
+                              setModal(true); */
                             }}
                           >
                             <CIcon width={24} name="cil-pencil" />
@@ -879,8 +935,422 @@ const TimeCardCrud = () => {
   ];
 
   const onCreateTimeEntry = (e) => {
-    debugger;
+    let promise;
+    if(  e.id ) {
+      promise = api.post("time-card/update", 
+        {
+          "timeEntry":{
+            "id": e.id,
+            "userId": e.user.return,
+            "entry_date": e.date,
+            "lunch_in": e.lunch_in,
+            "lunch_out": e.lunch_out,
+            "timecards": e.timecards.map((tc) => {
+              const jls = tc.jobLocations.filter((jlT) =>  {
+                return jlT.id && !jlT.__isNew__
+              })
+              const other =  tc.jobLocations.find((jlT) =>  {
+                return jlT.__isNew__
+              })
+              return {
+              "jobName": tc.jobName,
+              "job_locations": jls.map((jlsT) => {
+                  return jlsT.id
+              }),
+              "jobDescription": tc.jobDescription,
+              "clock_in": tc.clockIn,
+              "clock_out": tc.clockOut,
+              clock_in_gps: tc.clockInGps,
+              clock_out_gps: tc.clockOutGps,
+              "other": other ? other.value : ""
+              }
+            })
+        }}).then(() => {
+          fetchTable()
+        })
+    } else {
+      promise = api.post("time-card/create", 
+        {
+          "timeEntry":{
+            "id": e.id,
+            "userId": e.user.return,
+            "entry_date": e.date,
+            "lunch_in": e.lunch_in,
+            "lunch_out": e.lunch_out,
+            "timecards": e.timecards.map((tc) => {
+              const jls = tc.jobLocations.filter((jlT) =>  {
+                return jlT.id && !jlT.__isNew__
+              })
+              const other =  tc.jobLocations.find((jlT) =>  {
+                return jlT.__isNew__
+              })
+              return {
+              "jobName": tc.jobName,
+              "job_locations": jls.map((jlsT) => {
+                  return jlsT.id
+              }),
+              "jobDescription": tc.jobDescription,
+              "clock_in": tc.clockIn,
+              "clock_out": tc.clockOut,
+              clock_in_gps: tc.clockInGps,
+              clock_out_gps: tc.clockOutGps,
+              "other": other ? other.value : ""
+              }
+            })
+        }}).then(() => {
+          fetchTable()
+        })
+    }
+    promise.then(() => {
+      
+      addToast("Time Entry Submitted.", {
+        appearance: "success",
+        autoDismiss: true,
+      });
+      api
+      .get(GET_TIME_SHEETS_BY_DAY, {
+        params: {
+          user_id: e.user.return,
+          entry_date: e.date,
+        },
+      })
+      .then(([re]) => {
+        if (re) {
+          setInitialData({
+            user: e.user,
+            date: e.date,
+            id: re.timeEntryId,
+            lunch_in: re.timeEntryLunchIn,
+            lunch_out: re.timeEntryLunchOut,
+            timecards: re.timecard.map(
+              (tc) => {
+                return {
+                  jobName: tc.jobName,
+                  jobDescription:
+                    tc.jobDescription,
+                  clockIn: tc.clockIn,
+                  clockInGps: tc.clockInGps,
+                  clockOut: tc.clockOut,
+                  clockOutGps: tc.clockOutGps,
+                  jobLocations:
+                    tc.otherLocation
+                      ? [
+                          {
+                            label:
+                              tc.otherLocation,
+                            value:
+                              tc.otherLocation,
+                            __isNew__: true,
+                          },
+                          ...locations.filter(
+                            (value) => {
+                              return tc.location.find(
+                                (lc) => {
+                                  return (
+                                    value.id ==
+                                    lc.id
+                                  );
+                                }
+                              );
+                            }
+                          ),
+                        ]
+                      : [
+                          ...locations.filter(
+                            (value) => {
+                              return tc.location.find(
+                                (lc) => {
+                                  return (
+                                    value.id ==
+                                    lc.id
+                                  );
+                                }
+                              );
+                            }
+                          ),
+                        ],
+                };
+              }
+            ),
+          });
+        } else {
+          setInitialData({
+            user: e.user,
+            date: e.date,
+          });
+        }
+      });
+    })
   };
+
+  const AddForm = ({closeModal}) => {
+  return (<Form
+    onSubmit={onCreateTimeEntry}
+    initialValues={initialData || {}}
+    mutators={{
+      ...arrayMutators,
+    }}
+    validate={validate}
+    render={({
+      handleSubmit,
+      form: {
+        mutators: { push, pop },
+      },
+      values,
+    }) => (
+      <>
+        <form onSubmit={handleSubmit}>
+          <CModalBody>
+            <Field name="date">
+              {({ input, meta }) => (
+                <>
+                  <CFormGroup>
+                    <CLabel>Pick Date</CLabel>
+                    <CInput
+                      {...input}
+                      type="date"
+                      disabled={!!values.id}
+                      invalid={meta.invalid && meta.touched}
+                    />
+                  </CFormGroup>
+                </>
+              )}
+            </Field>
+            <Field name="user">
+              {({ input, meta }) => (
+                <>
+                  <CFormGroup>
+                    <CLabel>Select User</CLabel>
+                    <Select
+                      options={users}
+                      isDisabled={!!values.id}
+                      onChange={input.onChange}
+                      getOptionLabel={(option) => {
+                        return option.display;
+                      }}
+                      value={input.value}
+                    />
+                    {meta.touched && meta.error && (
+                      <CInvalidFeedback className="help-block">
+                        Please provide a valid information
+                      </CInvalidFeedback>
+                    )}
+                  </CFormGroup>
+                </>
+              )}
+            </Field>
+            {!values.id &&
+              <CButton
+                color="primary"
+                onClick={() => {
+                  if (values.date && values.user) {
+                    api
+                      .get(GET_TIME_SHEETS_BY_DAY, {
+                        params: {
+                          user_id: values.user.return,
+                          entry_date: values.date,
+                        },
+                      })
+                      .then(([re]) => {
+                        if (re) {
+                          setInitialData({
+                            user: values.user,
+                            date: values.date,
+                            id: re.timeEntryId,
+                            lunch_in: re.timeEntryLunchIn,
+                            lunch_out: re.timeEntryLunchOut,
+                            timecards: re.timecard.map(
+                              (tc) => {
+                                return {
+                                  jobName: tc.jobName,
+                                  jobDescription:
+                                    tc.jobDescription,
+                                  clockIn: tc.clockIn,
+                                  clockInGps: tc.clockInGps,
+                                  clockOut: tc.clockOut,
+                                  clockOutGps: tc.clockOutGps,
+                                  jobLocations:
+                                    tc.otherLocation
+                                      ? [
+                                          {
+                                            label:
+                                              tc.otherLocation,
+                                            value:
+                                              tc.otherLocation,
+                                            __isNew__: true,
+                                          },
+                                          ...locations.filter(
+                                            (value) => {
+                                              return tc.location.find(
+                                                (lc) => {
+                                                  return (
+                                                    value.id ==
+                                                    lc.id
+                                                  );
+                                                }
+                                              );
+                                            }
+                                          ),
+                                        ]
+                                      : [
+                                          ...locations.filter(
+                                            (value) => {
+                                              return tc.location.find(
+                                                (lc) => {
+                                                  return (
+                                                    value.id ==
+                                                    lc.id
+                                                  );
+                                                }
+                                              );
+                                            }
+                                          ),
+                                        ],
+                                };
+                              }
+                            ),
+                          });
+                        } else {
+                          setInitialData({
+                            user: values.user,
+                            date: values.date,
+                          });
+                        }
+                      });
+                  }
+                }}
+              >
+                Search
+              </CButton>
+            }
+            {((!!values.date && !!values.user) || !!values.id) &&
+              <TimeEntry
+                locations={locations}
+                push={push}
+              />
+            }
+            {/* {metadata.map(function (metadataRow) {
+            return (
+              <Field name={metadataRow.key} key={metadataRow.key}>
+                {({ input, meta }) => (
+                  <>
+                    <CFormGroup>
+                      <CLabel htmlFor={metadataRow.key}
+                        style={{
+                          fontWeight:  metadataRow.type === 'separator' ? 'bolder': 'normal',
+                          width:  metadataRow.type === 'separator' ? '100%': 'auto'
+                        }}
+                      >
+                        {metadataRow.label}
+                        {
+                          metadataRow.type === 'separator' &&
+                          <hr
+                            style={{
+                              borderColor: "red",
+                              borderTop: "2px solid red",
+                              marginTop: "8px",
+                              marginBottom: '1px'
+                            }}
+                          ></hr>
+                        }
+                      </CLabel>
+                      {metadataRow.type === "signature" ? (
+                        <ESignature
+                          svg={input.value}
+                          disableEdit={!!selectedData && metadataRow.disableEdit}
+                          onChange={input.onChange}
+                        ></ESignature>
+                      ) : null}
+                      {metadataRow.type === "text" ? (
+                        <CInput
+                          {...input}
+                          id={metadataRow.key}
+                          invalid={meta.invalid && meta.touched}
+                        />
+                      ) : null}
+                      {metadataRow.type === "date" ? (
+                        <CInput
+                          {...input}
+                          type="date"
+                          id={metadataRow.key}
+                          invalid={meta.invalid && meta.touched}
+                        />
+                      ) : null}
+                      {metadataRow.type === "datetime" ? (
+                        <CInput
+                          {...input}
+                          type="datetime-local"
+                          id={metadataRow.key}
+                          invalid={meta.invalid && meta.touched}
+                        />
+                      ) : null}
+
+                      {metadataRow.type === "time" ? (
+                        <CInput
+                          {...input}
+                          type="time"
+                          id={metadataRow.key}
+                          invalid={meta.invalid && meta.touched}
+                        />
+                      ) : null}
+                      {metadataRow.type === "textarea" ? (
+                        <CTextarea
+                          {...input}
+                          type="time"
+                          id={metadataRow.key}
+                          rows="9"
+                          invalid={meta.invalid && meta.touched}
+                        />
+                      ) : null}
+
+                      {meta.touched && meta.error && (
+                        <CInvalidFeedback className="help-block">
+                          Please provide a valid information
+                        </CInvalidFeedback>
+                      )}
+                    </CFormGroup>
+                  </>
+                )}
+              </Field>
+            );
+          })} */}
+          </CModalBody>
+          <CModalFooter>
+            <CButton color="primary" type="submit">
+              {!values.id ? "Create" : "Update"}
+            </CButton>{" "}
+            {!!values.id && (
+              <>
+                <CButton
+                  color="danger"
+                  onClick={() => {
+                    //onDelete(selectedData);
+                    setModal(false);
+                  }}
+                >
+                  Delete
+                </CButton>{" "}
+              </>
+            )}
+            <CButton
+              color="secondary"
+              onClick={() => {
+                setModal(false);
+                setSelectedData(null);
+                if(closeModal ) {
+                  closeModal()
+                }
+              }}
+            >
+              Cancel
+            </CButton>
+          </CModalFooter>
+        </form>
+      </>
+    )}
+  />
+  );
+  }
 
   return (
     <>
@@ -907,260 +1377,14 @@ const TimeCardCrud = () => {
                   <CrudTable
                     title="Time Card"
                     rows={rows}
+                    onAddRow={() => {
+                      setInitialData({})
+                    }}
                     customAddForm={
-                      <Form
-                        onSubmit={onCreateTimeEntry}
-                        initialValues={initialData || {}}
-                        mutators={{
-                          ...arrayMutators,
-                        }}
-                        validate={validate}
-                        render={({
-                          handleSubmit,
-                          form: {
-                            mutators: { push, pop },
-                          },
-                          values,
-                        }) => (
-                          <>
-                            <form onSubmit={handleSubmit}>
-                              <CModalBody>
-                                <Field name="date">
-                                  {({ input, meta }) => (
-                                    <>
-                                      <CFormGroup>
-                                        <CLabel>Pick Date</CLabel>
-                                        <CInput
-                                          {...input}
-                                          type="date"
-                                          invalid={meta.invalid && meta.touched}
-                                        />
-                                      </CFormGroup>
-                                    </>
-                                  )}
-                                </Field>
-                                <Field name="user">
-                                  {({ input, meta }) => (
-                                    <>
-                                      <CFormGroup>
-                                        <CLabel>Select User</CLabel>
-                                        <Select
-                                          options={users}
-                                          onChange={input.onChange}
-                                          getOptionLabel={(option) => {
-                                            return option.display;
-                                          }}
-                                        />
-                                        {meta.touched && meta.error && (
-                                          <CInvalidFeedback className="help-block">
-                                            Please provide a valid information
-                                          </CInvalidFeedback>
-                                        )}
-                                      </CFormGroup>
-                                    </>
-                                  )}
-                                </Field>
-                                <CButton
-                                  color="primary"
-                                  onClick={() => {
-                                    if (values.date && values.user) {
-                                      api
-                                        .get(GET_TIME_SHEETS_BY_DAY, {
-                                          params: {
-                                            user_id: values.user.return,
-                                            entry_date: values.date,
-                                          },
-                                        })
-                                        .then(([re]) => {
-                                          if (re) {
-                                            setInitialData({
-                                              user: values.user,
-                                              date: values.date,
-                                              lunch_in: re.timeEntryLunchIn,
-                                              lunch_out: re.timeEntryLunchOut,
-                                              timecards: re.timecard.map(
-                                                (tc) => {
-                                                  return {
-                                                    jobName: tc.jobName,
-                                                    jobDescription:
-                                                      tc.jobDescription,
-                                                    clockIn: tc.clockIn,
-                                                    clockInGps: tc.clockInGps,
-                                                    clockOut: tc.clockOut,
-                                                    clockOutGps: tc.clockOutGps,
-                                                    jobLocations:
-                                                      tc.otherLocation
-                                                        ? [
-                                                            {
-                                                              label:
-                                                                tc.otherLocation,
-                                                              value:
-                                                                tc.otherLocation,
-                                                              __isNew__: true,
-                                                            },
-                                                            ...locations.filter(
-                                                              (value) => {
-                                                                return tc.location.find(
-                                                                  (lc) => {
-                                                                    return (
-                                                                      value.id ==
-                                                                      lc.id
-                                                                    );
-                                                                  }
-                                                                );
-                                                              }
-                                                            ),
-                                                          ]
-                                                        : [
-                                                            ...locations.filter(
-                                                              (value) => {
-                                                                return tc.location.find(
-                                                                  (lc) => {
-                                                                    return (
-                                                                      value.id ==
-                                                                      lc.id
-                                                                    );
-                                                                  }
-                                                                );
-                                                              }
-                                                            ),
-                                                          ],
-                                                  };
-                                                }
-                                              ),
-                                            });
-                                          } else {
-                                            setInitialData({});
-                                          }
-                                        });
-                                    }
-                                  }}
-                                >
-                                  Search
-                                </CButton>
-                                {!!values.date && !!values.user && (
-                                  <TimeEntry
-                                    locations={locations}
-                                    push={push}
-                                  />
-                                )}
-                                {/* {metadata.map(function (metadataRow) {
-                                return (
-                                  <Field name={metadataRow.key} key={metadataRow.key}>
-                                    {({ input, meta }) => (
-                                      <>
-                                        <CFormGroup>
-                                          <CLabel htmlFor={metadataRow.key}
-                                            style={{
-                                              fontWeight:  metadataRow.type === 'separator' ? 'bolder': 'normal',
-                                              width:  metadataRow.type === 'separator' ? '100%': 'auto'
-                                            }}
-                                          >
-                                            {metadataRow.label}
-                                            {
-                                              metadataRow.type === 'separator' &&
-                                              <hr
-                                                style={{
-                                                  borderColor: "red",
-                                                  borderTop: "2px solid red",
-                                                  marginTop: "8px",
-                                                  marginBottom: '1px'
-                                                }}
-                                              ></hr>
-                                            }
-                                          </CLabel>
-                                          {metadataRow.type === "signature" ? (
-                                            <ESignature
-                                              svg={input.value}
-                                              disableEdit={!!selectedData && metadataRow.disableEdit}
-                                              onChange={input.onChange}
-                                            ></ESignature>
-                                          ) : null}
-                                          {metadataRow.type === "text" ? (
-                                            <CInput
-                                              {...input}
-                                              id={metadataRow.key}
-                                              invalid={meta.invalid && meta.touched}
-                                            />
-                                          ) : null}
-                                          {metadataRow.type === "date" ? (
-                                            <CInput
-                                              {...input}
-                                              type="date"
-                                              id={metadataRow.key}
-                                              invalid={meta.invalid && meta.touched}
-                                            />
-                                          ) : null}
-                                          {metadataRow.type === "datetime" ? (
-                                            <CInput
-                                              {...input}
-                                              type="datetime-local"
-                                              id={metadataRow.key}
-                                              invalid={meta.invalid && meta.touched}
-                                            />
-                                          ) : null}
-            
-                                          {metadataRow.type === "time" ? (
-                                            <CInput
-                                              {...input}
-                                              type="time"
-                                              id={metadataRow.key}
-                                              invalid={meta.invalid && meta.touched}
-                                            />
-                                          ) : null}
-                                          {metadataRow.type === "textarea" ? (
-                                            <CTextarea
-                                              {...input}
-                                              type="time"
-                                              id={metadataRow.key}
-                                              rows="9"
-                                              invalid={meta.invalid && meta.touched}
-                                            />
-                                          ) : null}
-            
-                                          {meta.touched && meta.error && (
-                                            <CInvalidFeedback className="help-block">
-                                              Please provide a valid information
-                                            </CInvalidFeedback>
-                                          )}
-                                        </CFormGroup>
-                                      </>
-                                    )}
-                                  </Field>
-                                );
-                              })} */}
-                              </CModalBody>
-                              <CModalFooter>
-                                <CButton color="primary" type="submit">
-                                  {selectedData === null ? "Create" : "Update"}
-                                </CButton>{" "}
-                                {!!selectedData && (
-                                  <>
-                                    <CButton
-                                      color="danger"
-                                      onClick={() => {
-                                        //onDelete(selectedData);
-                                        setModal(false);
-                                      }}
-                                    >
-                                      Delete
-                                    </CButton>{" "}
-                                  </>
-                                )}
-                                <CButton
-                                  color="secondary"
-                                  onClick={() => {
-                                    setModal(false);
-                                    setSelectedData(null);
-                                  }}
-                                >
-                                  Cancel
-                                </CButton>
-                              </CModalFooter>
-                            </form>
-                          </>
-                        )}
-                      />
+                      ({closeModal}) => {
+
+                        return <AddForm closeModal={closeModal}/>
+                      }
                     }
                     onRefreshTable={fetchTable}
                     onDelete={(row) => {
@@ -1177,16 +1401,13 @@ const TimeCardCrud = () => {
                             color="secondary"
                             size="sm"
                             onClick={() => {
-                              debugger;
                               timecardPrint({
-                                //rows:
                                 employeeName: row.employeeName,
                                 jobName: row.jobName,
                                 jobLocations: row.jobLocation,
                                 employeeSignature: row.signature,
                                 timeEntries: row.timeEntry,
                               });
-                              //toggleDetails(index)
                             }}
                           >
                             <CIcon width={24} name="cil-print" />
@@ -1223,329 +1444,7 @@ const TimeCardCrud = () => {
         <CModalHeader closeButton>
           <CModalTitle>{"title"}</CModalTitle>
         </CModalHeader>
-        <Form
-          onSubmit={onSubmit}
-          initialValues={selectedData || {}}
-          mutators={{
-            ...arrayMutators,
-          }}
-          validate={validate}
-          render={({
-            handleSubmit,
-            form: {
-              mutators: { push, pop },
-            },
-          }) => (
-            <>
-              <form onSubmit={handleSubmit}>
-                <CModalBody>
-                  {metadataCustom.map(function (metadataRow) {
-                    return (
-                      <Field name={metadataRow.key} key={metadataRow.key}>
-                        {({ input, meta }) => (
-                          <>
-                            <CFormGroup>
-                              <CLabel
-                                htmlFor={metadataRow.key}
-                                style={{
-                                  fontWeight:
-                                    metadataRow.type === "separator"
-                                      ? "bolder"
-                                      : "normal",
-                                  width:
-                                    metadataRow.type === "separator"
-                                      ? "100%"
-                                      : "auto",
-                                }}
-                              >
-                                {metadataRow.label}
-                                {metadataRow.type === "separator" && (
-                                  <hr
-                                    style={{
-                                      borderColor: "red",
-                                      borderTop: "2px solid red",
-                                      marginTop: "8px",
-                                      marginBottom: "1px",
-                                    }}
-                                  ></hr>
-                                )}
-                              </CLabel>
-                              {metadataRow.type === "signature" ? (
-                                <ESignature
-                                  svg={input.value}
-                                  disableEdit={
-                                    !!selectedData && metadataRow.disableEdit
-                                  }
-                                  onChange={input.onChange}
-                                ></ESignature>
-                              ) : null}
-                              {metadataRow.type === "text" ? (
-                                <CInput
-                                  {...input}
-                                  id={metadataRow.key}
-                                  invalid={meta.invalid && meta.touched}
-                                />
-                              ) : null}
-                              {metadataRow.type === "date" ? (
-                                <CInput
-                                  {...input}
-                                  type="date"
-                                  id={metadataRow.key}
-                                  invalid={meta.invalid && meta.touched}
-                                />
-                              ) : null}
-                              {metadataRow.type === "datetime" ? (
-                                <CInput
-                                  {...input}
-                                  type="datetime-local"
-                                  id={metadataRow.key}
-                                  invalid={meta.invalid && meta.touched}
-                                />
-                              ) : null}
-
-                              {metadataRow.type === "time" ? (
-                                <CInput
-                                  {...input}
-                                  type="time"
-                                  id={metadataRow.key}
-                                  invalid={meta.invalid && meta.touched}
-                                />
-                              ) : null}
-                              {metadataRow.type === "textarea" ? (
-                                <CTextarea
-                                  {...input}
-                                  type="time"
-                                  id={metadataRow.key}
-                                  rows="9"
-                                  invalid={meta.invalid && meta.touched}
-                                />
-                              ) : null}
-
-                              {metadataRow.type === "currency" ? (
-                                <div className="controls">
-                                  <CInputGroup className="input-prepend">
-                                    <CInputGroupPrepend>
-                                      <CInputGroupText>$</CInputGroupText>
-                                    </CInputGroupPrepend>
-                                    <CInput
-                                      {...input}
-                                      placeholder="00.00"
-                                      type="number"
-                                      min="0.00"
-                                      step="0.01"
-                                    />
-                                  </CInputGroup>
-                                </div>
-                              ) : null}
-
-                              {metadataRow.type === "array" ? (
-                                <>
-                                  <FieldArray name={metadataRow.key}>
-                                    {({ fields: items }) => (
-                                      <div>
-                                        <CDataTable
-                                          items={items.value}
-                                          fields={[
-                                            ...metadataRow.shape.filter(
-                                              function (m) {
-                                                return !m.hide;
-                                              }
-                                            ),
-                                          ]}
-                                          striped
-                                          scopedSlots={metadataRow.shape.reduce(
-                                            function (prev, curr) {
-                                              prev[curr.key] = (
-                                                item,
-                                                index
-                                              ) => {
-                                                return (
-                                                  <Field
-                                                    name={`${metadataRow.key}.${index}.${curr.key}`}
-                                                  >
-                                                    {({
-                                                      input: inputArray,
-                                                      meta,
-                                                    }) => (
-                                                      <>
-                                                        <td
-                                                          className="py-2"
-                                                          style={{
-                                                            minWidth: 120,
-                                                          }}
-                                                        >
-                                                          <CFormGroup>
-                                                            {curr.type ===
-                                                              "idNumeric" &&
-                                                              index + 1}
-                                                            {curr.type ===
-                                                            "text" ? (
-                                                              <CInput
-                                                                {...inputArray}
-                                                                id={
-                                                                  metadataRow.key
-                                                                }
-                                                                invalid={
-                                                                  meta.invalid &&
-                                                                  meta.touched
-                                                                }
-                                                              />
-                                                            ) : null}
-                                                          </CFormGroup>
-                                                        </td>
-                                                      </>
-                                                    )}
-                                                  </Field>
-                                                );
-                                              };
-                                              return prev;
-                                            },
-                                            {}
-                                          )}
-                                        />
-                                        <CButton
-                                          block
-                                          color="dark"
-                                          type="button"
-                                          onClick={() => {
-                                            push(metadataRow.key, {});
-                                          }}
-                                        >
-                                          <CIcon size="lg" name="cil-plus" />{" "}
-                                          Add Row
-                                        </CButton>
-                                      </div>
-                                    )}
-                                  </FieldArray>
-                                </>
-                              ) : null}
-                              {metadataRow.type === "radius" ? (
-                                <>
-                                  {metadataRow.options?.map(function (option) {
-                                    return (
-                                      <Field
-                                        name={metadataRow.key}
-                                        type="radio"
-                                        value={option.value}
-                                      >
-                                        {({
-                                          input: inputOption,
-                                          meta,
-                                          values,
-                                        }) => (
-                                          <>
-                                            <CFormGroup variant="checkbox">
-                                              <CInputRadio
-                                                className="form-check-input"
-                                                id={option.value}
-                                                value={option.value}
-                                                name={inputOption.name}
-                                                checked={
-                                                  inputOption.checked ||
-                                                  (option.otherOption &&
-                                                    !metadataRow.options.find(
-                                                      (option) => {
-                                                        return (
-                                                          option.value ===
-                                                          input.value
-                                                        );
-                                                      }
-                                                    ))
-                                                }
-                                                onChange={inputOption.onChange}
-                                              />
-                                              <CLabel
-                                                variant="checkbox"
-                                                htmlFor={option.value}
-                                              >
-                                                {option.label}
-                                              </CLabel>
-                                              {option.otherOption &&
-                                                !metadataRow.options.find(
-                                                  (option) => {
-                                                    return (
-                                                      option.value ===
-                                                        input.value &&
-                                                      !option.otherOption
-                                                    );
-                                                  }
-                                                ) && (
-                                                  <div>
-                                                    <Field
-                                                      name={
-                                                        metadataRow.otherKey
-                                                      }
-                                                    >
-                                                      {({
-                                                        input,
-                                                        meta,
-                                                        values,
-                                                      }) => (
-                                                        <>
-                                                          <CInput
-                                                            {...input}
-                                                            invalid={
-                                                              meta.invalid &&
-                                                              meta.touched
-                                                            }
-                                                          />
-                                                        </>
-                                                      )}
-                                                    </Field>
-                                                  </div>
-                                                )}
-                                            </CFormGroup>
-                                          </>
-                                        )}
-                                      </Field>
-                                    );
-                                  })}
-                                </>
-                              ) : null}
-
-                              {meta.touched && meta.error && (
-                                <CInvalidFeedback className="help-block">
-                                  Please provide a valid information
-                                </CInvalidFeedback>
-                              )}
-                            </CFormGroup>
-                          </>
-                        )}
-                      </Field>
-                    );
-                  })}
-                </CModalBody>
-                <CModalFooter>
-                  <CButton color="primary" type="submit">
-                    {selectedData === null ? "Create" : "Update"}
-                  </CButton>{" "}
-                  {!!selectedData && (
-                    <>
-                      <CButton
-                        color="danger"
-                        onClick={() => {
-                          //onDelete(selectedData);
-                          setModal(false);
-                        }}
-                      >
-                        Delete
-                      </CButton>{" "}
-                    </>
-                  )}
-                  <CButton
-                    color="secondary"
-                    onClick={() => {
-                      setModal(false);
-                      setSelectedData(null);
-                    }}
-                  >
-                    Cancel
-                  </CButton>
-                </CModalFooter>
-              </form>
-            </>
-          )}
-        />
+        <AddForm />
       </CModal>
     </>
   );
