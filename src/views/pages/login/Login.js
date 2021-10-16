@@ -61,6 +61,7 @@ const Login = () => {
                   phone_number: data.phone_number,
                   address: data.address,
                   rol: data.role === "admin" ? "admin" : "employee",
+                  profile_img: e.profile_img,
                   token: token.token,
                 },
               });
