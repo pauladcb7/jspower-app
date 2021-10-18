@@ -58,6 +58,7 @@ const MaterialRequisitionForm = () => {
   const [rows, setRow] = useState([{}, {}, {}, {}]);
   const { addToast } = useToasts();
   const [initialValues, setInitialValue] = useState({});
+  const [materialReqId, setMaterialReqId] = useState(null);
   const user = useSelector((state) => {
     return state.user;
   });
@@ -84,6 +85,42 @@ const MaterialRequisitionForm = () => {
 
   const Required = () => {
     return <span style={{ color: "red" }}>*</span>;
+  };
+
+  const MeterialRequisitionsList = () => {
+    return (
+      <>
+        {/* <CDataTable
+          items={usersData}
+          fields={[
+            { key: "name", _classes: "font-weight-bold" },
+            "registered",
+            "role",
+            "status",
+          ]}
+          hover
+          striped
+          itemsPerPage={5}
+          activePage={page}
+          clickableRows
+          onRowClick={(item) => history.push(`/users/${item.id}`)}
+          scopedSlots={{
+            status: (item) => (
+              <td>
+                <CBadge color={getBadge(item.status)}>{item.status}</CBadge>
+              </td>
+            ),
+          }}
+        />
+        <CPagination
+          activePage={page}
+          onActivePageChange={pageChange}
+          pages={5}
+          doubleArrows={false}
+          align="center"
+        /> */}
+      </>
+    );
   };
 
   const toggleDetails = (index) => {
@@ -121,6 +158,7 @@ const MaterialRequisitionForm = () => {
         },
       })
       .then((result) => {
+        setMaterialReqId(result?.id);
         addToast("Material Requisition Submitted.", {
           appearance: "success",
           autoDismiss: true,
@@ -334,7 +372,30 @@ const MaterialRequisitionForm = () => {
                             </Field>
 
                             <CCard>
-                              <CCardHeader>Items</CCardHeader>
+                              <CCardHeader>
+                                Items
+                                <div className="card-header-actions">
+                                  <CButton
+                                    color="success"
+                                    className=" btn-minimize"
+                                    size="sm"
+                                    type="submit"
+                                    onClick={() => {
+                                      if (!valid) {
+                                        addToast(
+                                          "Please complete empty fields.",
+                                          {
+                                            appearance: "error",
+                                            autoDismiss: true,
+                                          }
+                                        );
+                                      }
+                                    }}
+                                  >
+                                    Save
+                                  </CButton>
+                                </div>
+                              </CCardHeader>
                               <CCardBody>
                                 <FieldArray name="materialRequisitionDetails">
                                   {({ fields: items }) => (
