@@ -33,15 +33,14 @@ const required = (value) => (value ? undefined : "Required");
 
 const ListSheet = () => {
   const [collapsed, setCollapsed] = React.useState(true);
-  const [signatureCustomer,setSignatureCustomer] = useState(null)
-  const [signatureEmployee,setSignatureEmployee] = useState(null)
+  const [signatureCustomer, setSignatureCustomer] = useState(null);
+  const [signatureEmployee, setSignatureEmployee] = useState(null);
   const [showElements, setShowElements] = React.useState(true);
   const [document, setDocument] = React.useState(null);
-  const [b64, setB64] = useState("")
+  const [b64, setB64] = useState("");
 
   const onSubmit = function (e) {
-    if( !signatureCustomer.isEmpty() && !signatureEmployee.isEmpty()) {
-      debugger
+    if (!signatureCustomer.isEmpty() && !signatureEmployee.isEmpty()) {
       workOrderPrint({
         date: e.date,
         workType: e.workType,
@@ -53,7 +52,7 @@ const ListSheet = () => {
         jobDetails: e.jobDetails,
         customerSignature: signatureCustomer.toDataURL(),
         employeeSignature: signatureEmployee.toDataURL(),
-        customerInformation: e.clientName
+        customerInformation: e.clientName,
       });
     }
   };
@@ -62,31 +61,30 @@ const ListSheet = () => {
   };
   const onReadyCustomerSignature = function (signaturePad) {
     setSignatureCustomer(signaturePad);
-  }
+  };
   const onReadyEmployeeSignature = function (signaturePad) {
     setSignatureEmployee(signaturePad);
-  }
-  const params = useParams()
+  };
+  const params = useParams();
   useEffect(() => {
-
     const document = documents.find((d) => {
-      return d.id === params.idFile
-    })
-    if(document) {
+      return d.id === params.idFile;
+    });
+    if (document) {
       axios.get(`/pdfs/${document.filePath}`).then((response) => {
-        var html = response.data
+        var html = response.data;
         var document2 = htmlToPdfmake(html, {
-          imagesByReference:true
+          imagesByReference: true,
         });
-        
+
         getPDfInstance().then((pdfMake) => {
           pdfMake.createPdf(document2).getBase64((res) => {
-            setB64(res)
-          })
-        })
-      })
+            setB64(res);
+          });
+        });
+      });
     }
-  },[])
+  }, []);
   return (
     <>
       <CRow>
@@ -96,12 +94,15 @@ const ListSheet = () => {
               onSubmit={onSubmit}
               validate={validate}
               mutators={{
-                ...arrayMutators
+                ...arrayMutators,
               }}
-
-              render={({ handleSubmit , form: {
-                mutators: { push, pop }
-              },valid }) => (
+              render={({
+                handleSubmit,
+                form: {
+                  mutators: { push, pop },
+                },
+                valid,
+              }) => (
                 <form onSubmit={handleSubmit}>
                   <CCard>
                     <CCardHeader>
@@ -112,7 +113,9 @@ const ListSheet = () => {
                           onClick={() => setCollapsed(!collapsed)}
                         >
                           <CIcon
-                            name={collapsed ? "cil-arrow-top" : "cil-arrow-bottom"}
+                            name={
+                              collapsed ? "cil-arrow-top" : "cil-arrow-bottom"
+                            }
                           />
                         </CButton>
                       </div>
@@ -125,7 +128,9 @@ const ListSheet = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="jobLocation">Job Location</CLabel>
+                                    <CLabel htmlFor="jobLocation">
+                                      Job Location
+                                    </CLabel>
                                     <CInput
                                       type="text"
                                       id="jobLocation"
@@ -146,7 +151,9 @@ const ListSheet = () => {
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="timeStarted">Time Started</CLabel>
+                                    <CLabel htmlFor="timeStarted">
+                                      Time Started
+                                    </CLabel>
                                     <CInput
                                       type="time"
                                       id="timeStarted"
@@ -163,12 +170,14 @@ const ListSheet = () => {
                                 </>
                               )}
                             </Field>
-                            
+
                             <Field name="timeFinished" validate={required}>
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="timeFinished">Time Finished</CLabel>
+                                    <CLabel htmlFor="timeFinished">
+                                      Time Finished
+                                    </CLabel>
                                     <CInput
                                       type="time"
                                       id="timeFinished"
@@ -188,15 +197,24 @@ const ListSheet = () => {
                             {/* <object className="pdf-viewer" data={`/pdfs/${document?.filePath}`} type="application/pdf">
                                 <embed src="/pdfs/01. PPE.docx.pdf" type="application/pdf" />
                             </object> */}
-                            
-                            <object className="pdf-viewer" data={"data:application/pdf;base64,"+ b64} type="application/pdf">
-                                <embed src={"data:image/png;base64,"+ b64} type="application/pdf" />
+
+                            <object
+                              className="pdf-viewer"
+                              data={"data:application/pdf;base64," + b64}
+                              type="application/pdf"
+                            >
+                              <embed
+                                src={"data:image/png;base64," + b64}
+                                type="application/pdf"
+                              />
                             </object>
                             <Field name="safetySuggestion" validate={required}>
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="safetySuggestion">Work-Site Hazards and Safety Suggestion</CLabel>
+                                    <CLabel htmlFor="safetySuggestion">
+                                      Work-Site Hazards and Safety Suggestion
+                                    </CLabel>
                                     <CInput
                                       type="text"
                                       id="safetySuggestion"
@@ -213,11 +231,16 @@ const ListSheet = () => {
                                 </>
                               )}
                             </Field>
-                            <Field name="personalSafetyViolations" validate={required}>
+                            <Field
+                              name="personalSafetyViolations"
+                              validate={required}
+                            >
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
-                                    <CLabel htmlFor="personalSafetyViolations">Personnel Safety Violations</CLabel>
+                                    <CLabel htmlFor="personalSafetyViolations">
+                                      Personnel Safety Violations
+                                    </CLabel>
                                     <CInput
                                       type="text"
                                       id="personalSafetyViolations"
@@ -234,32 +257,38 @@ const ListSheet = () => {
                                 </>
                               )}
                             </Field>
-                            
+
                             <FieldArray name="employeeSignature">
-                              {({ fields:items }) => (
+                              {({ fields: items }) => (
                                 <>
                                   {items.map((name, index) => (
                                     <div key={name}>
-                                      <Field name={`${name}.name`} validate={required}>
-                                        {({ input:inputArray, meta }) => (
+                                      <Field
+                                        name={`${name}.name`}
+                                        validate={required}
+                                      >
+                                        {({ input: inputArray, meta }) => (
                                           <>
                                             <CLabel htmlFor="employeeName">
                                               Employee Name
                                             </CLabel>
                                             <CInput
                                               {...inputArray}
-                                              invalid={meta.invalid && meta.touched}
+                                              invalid={
+                                                meta.invalid && meta.touched
+                                              }
                                             />
                                             {meta.touched && meta.error && (
                                               <CInvalidFeedback className="help-block">
-                                                Please provide a valid information
+                                                Please provide a valid
+                                                information
                                               </CInvalidFeedback>
                                             )}
                                           </>
                                         )}
                                       </Field>
                                       <Field name={`${name}.signature`}>
-                                        {({ input:inputArray, meta }) => (
+                                        {({ input: inputArray, meta }) => (
                                           <>
                                             <CLabel htmlFor="employeeName">
                                               Employee Signature
@@ -277,11 +306,12 @@ const ListSheet = () => {
                                         type="button"
                                         className="my-3"
                                         onClick={() => {
-                                          items.remove(index)
+                                          items.remove(index);
                                         }}
                                       >
-                                        <CIcon size="lg" name="cil-minus" /> Remove Employee
-                                      </CButton> 
+                                        <CIcon size="lg" name="cil-minus" />{" "}
+                                        Remove Employee
+                                      </CButton>
                                     </div>
                                   ))}
                                   {/* 
@@ -297,11 +327,12 @@ const ListSheet = () => {
                                     color="dark"
                                     type="button"
                                     onClick={() => {
-                                      push("employeeSignature", {})
+                                      push("employeeSignature", {});
                                     }}
                                   >
-                                    <CIcon size="lg" name="cil-plus" /> Add Employee
-                                  </CButton> 
+                                    <CIcon size="lg" name="cil-plus" /> Add
+                                    Employee
+                                  </CButton>
                                 </>
                               )}
                             </FieldArray>
@@ -318,7 +349,6 @@ const ListSheet = () => {
                 </form>
               )}
             />
-            
           </CFade>
         </CCol>
       </CRow>

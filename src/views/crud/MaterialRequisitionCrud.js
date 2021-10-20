@@ -45,9 +45,7 @@ const MaterialRequisitionCrud = () => {
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState([]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
-  useEffect(() => {
-    console.log("checked items: ", checkedJobLocations);
-  }, [checkedJobLocations]);
+  useEffect(() => {}, [checkedJobLocations]);
 
   const handleChange = (event) => {
     // updating an object instead of a Map

@@ -33,6 +33,8 @@ export const GET_MATERIAL_REQUISITION = "material-requisition/get";
 
 /* Circuit Directory */
 export const CIRCUIT_DIRECTORY = "circuit-directory";
+export const SAVE_CIRCUIT_DIRECTORY = "circuit-directory/save";
+export const GET_CIRCUIT_DIRECTORY = "circuit-directory/get";
 
 /* Safety Sheets */
 

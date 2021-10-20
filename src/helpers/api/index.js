@@ -27,6 +27,7 @@ api.interceptors.response.use(
     if (e.response?.status === 401) {
       store.dispatch({ type: "LOG_OUT" });
     }
+    return Promise.reject(e);
   }
 );
 

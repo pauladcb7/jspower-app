@@ -41,6 +41,9 @@ import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 import { circuitPrint } from "src/utils/circuitPrint";
+import { useToasts } from "react-toast-notifications";
+import { api } from "../../helpers/api";
+import { SAVE_CIRCUIT_DIRECTORY } from "../../helpers/urls/index";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -59,9 +62,10 @@ const CircuitDirectoryBusiness208 = () => {
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
   const [rows, setRow] = useState(initialArray);
-  useEffect(() => {
-    console.log("checked items: ", checkedJobLocations);
-  }, [checkedJobLocations]);
+  const [circuitDirectoryId, setCircuitDirectoryId] = useState("-1");
+  const circuitDirectoryType = "BUSINESS_208V";
+  const { addToast } = useToasts();
+  useEffect(() => {}, [checkedJobLocations]);
 
   const handleChange = (event) => {
     // updating an object instead of a Map
@@ -89,12 +93,38 @@ const CircuitDirectoryBusiness208 = () => {
     }
     setCollapseMulti(newCollapse);
   };
-  const onSubmit = function (e) {
-    circuitPrint({
-      date: e.date,
-      voltage: e.voltage,
-      rows,
-    });
+  const onSubmit = async function (e) {
+    try {
+      let details = [];
+      rows.forEach((row) => {
+        details.push({ ckt: row.ckt, load: row.load });
+        details.push({ ckt: row.ckt1, load: row.load1 });
+      });
+      const circuitDirectoryID = await api.post(SAVE_CIRCUIT_DIRECTORY, {
+        circuit_directory_id: "-1",
+        entry_date: e.date,
+        circuit_type_rc: circuitDirectoryType,
+        voltage: e.voltage,
+        circuit_directory_details: details,
+      });
+      setCircuitDirectoryId(circuitDirectoryID.id);
+
+      addToast("Circuit Directory Submitted.", {
+        appearance: "success",
+        autoDismiss: true,
+      });
+      circuitPrint({
+        date: e.date,
+        voltage: e.voltage,
+        rows,
+      });
+    } catch (error) {
+      console.log(error);
+      addToast("Something went wrong creating Circuit Directory. Try again.", {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
   };
   const validate = function () {};
   return (

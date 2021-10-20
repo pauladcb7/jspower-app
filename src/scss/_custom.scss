@@ -162,10 +162,10 @@ body {
 }
 
 /* Broen Orange Yellow Striped*/
-.brown-orange-yellow-striped > tbody > tr:nth-child(1n) {
+.brown-orange-yellow-striped > tbody > tr:nth-child(3n-2) {
   background-color: #3d2506b4;
 }
-.brown-orange-yellow-striped > tbody > tr:nth-child(2n) {
+.brown-orange-yellow-striped > tbody > tr:nth-child(3n-1) {
   background-color: #ee940db4;
 }
 .brown-orange-yellow-striped > tbody > tr:nth-child(3n) {

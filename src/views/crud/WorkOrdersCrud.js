@@ -43,7 +43,12 @@ import { FieldArray } from "react-final-form-arrays";
 import { circuitPrint } from "src/utils/circuitPrint";
 import CrudTable from "src/containers/CrudTable";
 import { workOrderPrint } from "src/utils/workOrder";
-import { DELETE_WORK_ORDER, GET_WORK_ORDER, SAVE_WORK_ORDER, WORK_TYPES } from "src/helpers/urls";
+import {
+  DELETE_WORK_ORDER,
+  GET_WORK_ORDER,
+  SAVE_WORK_ORDER,
+  WORK_TYPES,
+} from "src/helpers/urls";
 import { api } from "src/helpers/api";
 import { useToasts } from "react-toast-notifications";
 import { useSelector } from "react-redux";
@@ -66,7 +71,7 @@ const WorkOrdersCrud = () => {
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
   const [loading, setLoading] = useState(false);
-  const [metadata,setMetaData] = useState([
+  const [metadata, setMetaData] = useState([
     {
       key: "entryDate",
       label: "Date",
@@ -196,7 +201,7 @@ const WorkOrdersCrud = () => {
       filter: false,
       _style: { minWidth: "150px" },
       hide: true,
-      disableEdit: true
+      disableEdit: true,
     },
     {
       key: "employeeSignature",
@@ -206,7 +211,7 @@ const WorkOrdersCrud = () => {
       filter: false,
       _style: { minWidth: "150px" },
       hide: true,
-      disableEdit: true
+      disableEdit: true,
     },
   ]);
   useEffect(() => {
@@ -214,7 +219,7 @@ const WorkOrdersCrud = () => {
   }, [checkedJobLocations]);
 
   const { addToast } = useToasts();
-  
+
   const user = useSelector((state) => {
     return state.user;
   });
@@ -253,21 +258,19 @@ const WorkOrdersCrud = () => {
   };
   const validate = function () {};
 
-  const [rows,setRows] = useState([]);
+  const [rows, setRows] = useState([]);
   //const [rows, setRow] = useState(rowsInitial);
 
-
-
-  function onDelete (row, close){
+  function onDelete(row, close) {
     return api
-    .delete(DELETE_WORK_ORDER,{
-      data: {
-        id:row.id
-      }
-    })
-    .then((data) => {
-      console.log("data return ", data);
-    });
+      .delete(DELETE_WORK_ORDER, {
+        data: {
+          id: row.id,
+        },
+      })
+      .then((data) => {
+        console.log("data return ", data);
+      });
   }
 
   const [workTypes, setWorkTypes] = useState([
@@ -289,55 +292,52 @@ const WorkOrdersCrud = () => {
   ]);
 
   function parseData(row) {
-    
     return {
       entryDate: moment(row.entry_date).format("YYYY-MM-DD"),
       workTypeRc: String(row.work_type_rc || "other"),
       employeeName: row.user_name,
-      startTime:row.start_time,
+      startTime: row.start_time,
       endTime: row.end_time,
       jobLocation: row.job_location,
       jobDetails: row.job_details,
       totalCost: row.total_cost,
       customerName: row.customer_name,
-      customerPhone: row.customer_phone_number, 
+      customerPhone: row.customer_phone_number,
       customerAddress: row.customer_address,
       customer_email: row.customer_email,
       customerSignature: row.customer_signature,
       employeeSignature: row.employee_signature,
       workTypeOther: row.other,
-      id:row.id
-    }
+      id: row.id,
+    };
   }
-  function fetchTable () {
+  function fetchTable() {
     setLoading(true);
-    return api
-    .get(GET_WORK_ORDER).then((workOrders) => {
+    return api.get(GET_WORK_ORDER).then((workOrders) => {
       setRows(workOrders.map(parseData));
-      setLoading(false)
-    })
+      setLoading(false);
+    });
   }
   useEffect(() => {
     api
       .get(WORK_TYPES)
       .then((data) => {
-        
         const newMetadata = [...metadata];
         newMetadata[1].options = [
           ...data.map((e) => {
             return {
               ...e,
               value: String(e.id),
-              label: e.value
-            }
+              label: e.value,
+            };
           }),
           {
             label: "Other",
             value: "other",
             otherOption: true,
-          }
+          },
         ];
-        setMetaData(newMetadata)
+        setMetaData(newMetadata);
         //setWorkTypes(data);
       })
       .catch((error) => {
@@ -350,10 +350,9 @@ const WorkOrdersCrud = () => {
           }
         );
       });
-      fetchTable()
-      
+    fetchTable();
   }, []);
-  
+
   return (
     <>
       <CRow>
@@ -400,8 +399,10 @@ const WorkOrdersCrud = () => {
                             customer_address: e.customerAddress,
                             customer_phone_number: e.customerPhone,
                             customer_signature: e.customerSignature,
-                            work_type: e.workTypeRc === 'other' ? null: e.workTypeRc,
-                            other: e.workTypeRc === 'other' ? e.workTypeOther: null,
+                            work_type:
+                              e.workTypeRc === "other" ? null : e.workTypeRc,
+                            other:
+                              e.workTypeRc === "other" ? e.workTypeOther : null,
                             customer_email: e.customer_email,
                           },
                         })
@@ -410,14 +411,17 @@ const WorkOrdersCrud = () => {
                             appearance: "success",
                             autoDismiss: true,
                           });
-                          fetchTable()
+                          fetchTable();
                         })
                         .catch((error) => {
-                          addToast("Something went wrong creating Work Order. Try again.", {
-                            appearance: "error",
-                            autoDismiss: true,
-                          });
-                          throw error
+                          addToast(
+                            "Something went wrong creating Work Order. Try again.",
+                            {
+                              appearance: "error",
+                              autoDismiss: true,
+                            }
+                          );
+                          throw error;
                         });
                     }}
                     onCreate={(row) => {
@@ -439,8 +443,10 @@ const WorkOrdersCrud = () => {
                             customer_phone_number: e.customerPhone,
                             customer_signature: e.customerSignature,
 
-                            work_type: e.workTypeRc === 'other' ? null: e.workTypeRc,
-                            other: e.workTypeRc === 'other' ? e.workTypeOther: null,
+                            work_type:
+                              e.workTypeRc === "other" ? null : e.workTypeRc,
+                            other:
+                              e.workTypeRc === "other" ? e.workTypeOther : null,
                             customer_email: e.customer_email,
                           },
                         })
@@ -451,11 +457,14 @@ const WorkOrdersCrud = () => {
                           });
                         })
                         .catch((error) => {
-                          addToast("Something went wrong creating Work Order. Try again.", {
-                            appearance: "error",
-                            autoDismiss: true,
-                          });
-                          throw error
+                          addToast(
+                            "Something went wrong creating Work Order. Try again.",
+                            {
+                              appearance: "error",
+                              autoDismiss: true,
+                            }
+                          );
+                          throw error;
                         });
                     }}
                     onDelete={onDelete}
@@ -466,12 +475,20 @@ const WorkOrdersCrud = () => {
                             color="secondary"
                             size="sm"
                             onClick={() => {
-                              const optionFound = metadata[1].options.find((option) => {
-                                return row.workTypeRc === option.value && !option.otherOption
-                              })
+                              const optionFound = metadata[1].options.find(
+                                (option) => {
+                                  return (
+                                    row.workTypeRc === option.value &&
+                                    !option.otherOption
+                                  );
+                                }
+                              );
                               workOrderPrint({
                                 date: row.entryDate,
-                                workType: row.workTypeRc === 'other' ? row.workTypeOther: optionFound?.label,
+                                workType:
+                                  row.workTypeRc === "other"
+                                    ? row.workTypeOther
+                                    : optionFound?.label,
                                 employeeName: row.employeeName,
                                 startTime: row.startTime,
                                 endTime: row.endTime,

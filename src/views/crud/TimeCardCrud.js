@@ -380,9 +380,8 @@ const TimeCardCrud = () => {
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
-  useEffect(() => {
-    console.log("checked items: ", checkedJobLocations);
-  }, [checkedJobLocations]);
+  useEffect(() => {}, [checkedJobLocations]);
+  const nullValue = "-";
 
   const handleChange = (event) => {
     // updating an object instead of a Map
@@ -613,66 +612,48 @@ const TimeCardCrud = () => {
                             color="info"
                             size="sm"
                             onClick={() => {
-                              console.log(itemWeek)
+                              console.log(itemWeek);
                               setInitialData({
                                 ...item,
-                                date: moment(item.entryDate).format("YYYY-MM-DD"),
+                                date: moment(item.entryDate).format(
+                                  "YYYY-MM-DD"
+                                ),
                                 id: item.id,
                                 user: users.find((user) => {
-                                  return user.return === itemWeek.employee?.id 
+                                  return user.return === itemWeek.employee?.id;
                                 }),
                                 lunch_in: item.lunchIn,
                                 lunch_out: item.lunchOut,
-                                timecards: item.timecard.map(
-                                  (tc) => {
-                                    return {
-                                      jobName: tc.jobName,
-                                      jobDescription:
-                                        tc.jobDescription,
-                                      clockIn: tc.clockIn,
-                                      clockInGps: tc.clockInGps,
-                                      clockOut: tc.clockOut,
-                                      clockOutGps: tc.clockOutGps,
-                                      jobLocations:
-                                        tc.otherLocation
-                                          ? [
-                                              {
-                                                label:
-                                                  tc.otherLocation,
-                                                value:
-                                                  tc.otherLocation,
-                                                __isNew__: true,
-                                              },
-                                              ...locations.filter(
-                                                (value) => {
-                                                  return tc.location.find(
-                                                    (lc) => {
-                                                      return (
-                                                        value.id ==
-                                                        lc.id
-                                                      );
-                                                    }
-                                                  );
-                                                }
-                                              ),
-                                            ]
-                                          : [
-                                              ...locations.filter(
-                                                (value) => {
-                                                  return tc.location.find(
-                                                    (lc) => {
-                                                      return (
-                                                        value.id ==
-                                                        lc.id
-                                                      );
-                                                    }
-                                                  );
-                                                }
-                                              ),
-                                            ],
-                                    };
-                                  }
-                                )
+                                timecards: item.timecard.map((tc) => {
+                                  return {
+                                    jobName: tc.jobName,
+                                    jobDescription: tc.jobDescription,
+                                    clockIn: tc.clockIn,
+                                    clockInGps: tc.clockInGps,
+                                    clockOut: tc.clockOut,
+                                    clockOutGps: tc.clockOutGps,
+                                    jobLocations: tc.otherLocation
+                                      ? [
+                                          {
+                                            label: tc.otherLocation,
+                                            value: tc.otherLocation,
+                                            __isNew__: true,
+                                          },
+                                          ...locations.filter((value) => {
+                                            return tc.location.find((lc) => {
+                                              return value.id == lc.id;
+                                            });
+                                          }),
+                                        ]
+                                      : [
+                                          ...locations.filter((value) => {
+                                            return tc.location.find((lc) => {
+                                              return value.id == lc.id;
+                                            });
+                                          }),
+                                        ],
+                                  };
+                                }),
                                 /* user: values.user,
                                 date: values.date,
                                 lunch_in: re.timeEntryLunchIn,
@@ -731,8 +712,8 @@ const TimeCardCrud = () => {
                                   "YYYY-MM-DD"
                                 ),
                                 isTimeEntry: true, */
-                              })
-                              setModal(true); 
+                              });
+                              setModal(true);
                               /* setMetadataCustom([
                                 {
                                   key: "entryDate",
@@ -875,12 +856,36 @@ const TimeCardCrud = () => {
         }
       ]
     } */
-    debugger;
   }
   function fetchTable() {
     setLoading(true);
     return api.get(GET_TIME_CARD).then((timecards) => {
       //timecards.map(parseData)
+      timecards?.forEach((week) => {
+        week.timeEntry?.forEach((te) => {
+          let formattedDate = te.entryDate;
+          formattedDate = moment(te.entryDate).format("YYYY-MM-DD");
+          te.entryDate = formattedDate;
+
+          te.lunchIn = te.lunchIn
+            ? moment(te.lunchIn, ["HH:mm"]).format("h:mm A")
+            : nullValue;
+          te.lunchOut = te.lunchOut
+            ? moment(te.lunchOut, ["HH:mm"]).format("h:mm A")
+            : nullValue;
+
+          te.timecard?.forEach((tc) => {
+            tc.clockIn = tc.clockIn
+              ? moment(tc.clockIn, ["HH:mm"]).format("h:mm A")
+              : nullValue;
+            tc.clockOut = tc.clockOut
+              ? moment(tc.clockOut, ["HH:mm"]).format("h:mm A")
+              : nullValue;
+            tc.clockOutGps = tc.clockOutGps ? tc.clockOutGps : nullValue;
+            tc.clockInGps = tc.clockInGps ? tc.clockInGps : nullValue;
+          });
+        });
+      });
       setRows(parseData(timecards));
       setLoading(false);
     });
@@ -916,13 +921,10 @@ const TimeCardCrud = () => {
       })
       .catch((error) => {
         console.log(error);
-        addToast(
-          "Something went wrong loading Job Locations. Refresh the page.",
-          {
-            appearance: "error",
-            autoDismiss: true,
-          }
-        );
+        addToast("Something went wrong loading Users. Refresh the page.", {
+          appearance: "error",
+          autoDismiss: true,
+        });
       });
 
     fetchTable();
@@ -936,300 +938,261 @@ const TimeCardCrud = () => {
 
   const onCreateTimeEntry = (e) => {
     let promise;
-    if(  e.id ) {
-      promise = api.post("time-card/update", 
-        {
-          "timeEntry":{
-            "id": e.id,
-            "userId": e.user.return,
-            "entry_date": e.date,
-            "lunch_in": e.lunch_in,
-            "lunch_out": e.lunch_out,
-            "timecards": e.timecards.map((tc) => {
-              const jls = tc.jobLocations.filter((jlT) =>  {
-                return jlT.id && !jlT.__isNew__
-              })
-              const other =  tc.jobLocations.find((jlT) =>  {
-                return jlT.__isNew__
-              })
+    if (e.id) {
+      promise = api
+        .post("time-card/update", {
+          timeEntry: {
+            id: e.id,
+            userId: e.user.return,
+            entry_date: e.date,
+            lunch_in: e.lunch_in,
+            lunch_out: e.lunch_out,
+            timecards: e.timecards.map((tc) => {
+              const jls = tc.jobLocations.filter((jlT) => {
+                return jlT.id && !jlT.__isNew__;
+              });
+              const other = tc.jobLocations.find((jlT) => {
+                return jlT.__isNew__;
+              });
               return {
-              "jobName": tc.jobName,
-              "job_locations": jls.map((jlsT) => {
-                  return jlsT.id
-              }),
-              "jobDescription": tc.jobDescription,
-              "clock_in": tc.clockIn,
-              "clock_out": tc.clockOut,
-              clock_in_gps: tc.clockInGps,
-              clock_out_gps: tc.clockOutGps,
-              "other": other ? other.value : ""
-              }
-            })
-        }}).then(() => {
-          fetchTable()
+                jobName: tc.jobName,
+                job_locations: jls.map((jlsT) => {
+                  return jlsT.id;
+                }),
+                jobDescription: tc.jobDescription,
+                clock_in: tc.clockIn,
+                clock_out: tc.clockOut,
+                clock_in_gps: tc.clockInGps,
+                clock_out_gps: tc.clockOutGps,
+                other: other ? other.value : "",
+              };
+            }),
+          },
         })
+        .then(() => {
+          fetchTable();
+        });
     } else {
-      promise = api.post("time-card/create", 
-        {
-          "timeEntry":{
-            "id": e.id,
-            "userId": e.user.return,
-            "entry_date": e.date,
-            "lunch_in": e.lunch_in,
-            "lunch_out": e.lunch_out,
-            "timecards": e.timecards.map((tc) => {
-              const jls = tc.jobLocations.filter((jlT) =>  {
-                return jlT.id && !jlT.__isNew__
-              })
-              const other =  tc.jobLocations.find((jlT) =>  {
-                return jlT.__isNew__
-              })
+      promise = api
+        .post("time-card/create", {
+          timeEntry: {
+            id: e.id,
+            userId: e.user.return,
+            entry_date: e.date,
+            lunch_in: e.lunch_in,
+            lunch_out: e.lunch_out,
+            timecards: e.timecards.map((tc) => {
+              const jls = tc.jobLocations.filter((jlT) => {
+                return jlT.id && !jlT.__isNew__;
+              });
+              const other = tc.jobLocations.find((jlT) => {
+                return jlT.__isNew__;
+              });
               return {
-              "jobName": tc.jobName,
-              "job_locations": jls.map((jlsT) => {
-                  return jlsT.id
-              }),
-              "jobDescription": tc.jobDescription,
-              "clock_in": tc.clockIn,
-              "clock_out": tc.clockOut,
-              clock_in_gps: tc.clockInGps,
-              clock_out_gps: tc.clockOutGps,
-              "other": other ? other.value : ""
-              }
-            })
-        }}).then(() => {
-          fetchTable()
+                jobName: tc.jobName,
+                job_locations: jls.map((jlsT) => {
+                  return jlsT.id;
+                }),
+                jobDescription: tc.jobDescription,
+                clock_in: tc.clockIn,
+                clock_out: tc.clockOut,
+                clock_in_gps: tc.clockInGps,
+                clock_out_gps: tc.clockOutGps,
+                other: other ? other.value : "",
+              };
+            }),
+          },
         })
+        .then(() => {
+          fetchTable();
+        });
     }
     promise.then(() => {
-      
       addToast("Time Entry Submitted.", {
         appearance: "success",
         autoDismiss: true,
       });
       api
-      .get(GET_TIME_SHEETS_BY_DAY, {
-        params: {
-          user_id: e.user.return,
-          entry_date: e.date,
-        },
-      })
-      .then(([re]) => {
-        if (re) {
-          setInitialData({
-            user: e.user,
-            date: e.date,
-            id: re.timeEntryId,
-            lunch_in: re.timeEntryLunchIn,
-            lunch_out: re.timeEntryLunchOut,
-            timecards: re.timecard.map(
-              (tc) => {
+        .get(GET_TIME_SHEETS_BY_DAY, {
+          params: {
+            user_id: e.user.return,
+            entry_date: e.date,
+          },
+        })
+        .then(([re]) => {
+          if (re) {
+            setInitialData({
+              user: e.user,
+              date: e.date,
+              id: re.timeEntryId,
+              lunch_in: re.timeEntryLunchIn,
+              lunch_out: re.timeEntryLunchOut,
+              timecards: re.timecard.map((tc) => {
                 return {
                   jobName: tc.jobName,
-                  jobDescription:
-                    tc.jobDescription,
+                  jobDescription: tc.jobDescription,
                   clockIn: tc.clockIn,
                   clockInGps: tc.clockInGps,
                   clockOut: tc.clockOut,
                   clockOutGps: tc.clockOutGps,
-                  jobLocations:
-                    tc.otherLocation
-                      ? [
-                          {
-                            label:
-                              tc.otherLocation,
-                            value:
-                              tc.otherLocation,
-                            __isNew__: true,
-                          },
-                          ...locations.filter(
-                            (value) => {
-                              return tc.location.find(
-                                (lc) => {
-                                  return (
-                                    value.id ==
-                                    lc.id
-                                  );
-                                }
-                              );
-                            }
-                          ),
-                        ]
-                      : [
-                          ...locations.filter(
-                            (value) => {
-                              return tc.location.find(
-                                (lc) => {
-                                  return (
-                                    value.id ==
-                                    lc.id
-                                  );
-                                }
-                              );
-                            }
-                          ),
-                        ],
+                  jobLocations: tc.otherLocation
+                    ? [
+                        {
+                          label: tc.otherLocation,
+                          value: tc.otherLocation,
+                          __isNew__: true,
+                        },
+                        ...locations.filter((value) => {
+                          return tc.location.find((lc) => {
+                            return value.id == lc.id;
+                          });
+                        }),
+                      ]
+                    : [
+                        ...locations.filter((value) => {
+                          return tc.location.find((lc) => {
+                            return value.id == lc.id;
+                          });
+                        }),
+                      ],
                 };
-              }
-            ),
-          });
-        } else {
-          setInitialData({
-            user: e.user,
-            date: e.date,
-          });
-        }
-      });
-    })
+              }),
+            });
+          } else {
+            setInitialData({
+              user: e.user,
+              date: e.date,
+            });
+          }
+        });
+    });
   };
 
-  const AddForm = ({closeModal}) => {
-  return (<Form
-    onSubmit={onCreateTimeEntry}
-    initialValues={initialData || {}}
-    mutators={{
-      ...arrayMutators,
-    }}
-    validate={validate}
-    render={({
-      handleSubmit,
-      form: {
-        mutators: { push, pop },
-      },
-      values,
-    }) => (
-      <>
-        <form onSubmit={handleSubmit}>
-          <CModalBody>
-            <Field name="date">
-              {({ input, meta }) => (
-                <>
-                  <CFormGroup>
-                    <CLabel>Pick Date</CLabel>
-                    <CInput
-                      {...input}
-                      type="date"
-                      disabled={!!values.id}
-                      invalid={meta.invalid && meta.touched}
-                    />
-                  </CFormGroup>
-                </>
-              )}
-            </Field>
-            <Field name="user">
-              {({ input, meta }) => (
-                <>
-                  <CFormGroup>
-                    <CLabel>Select User</CLabel>
-                    <Select
-                      options={users}
-                      isDisabled={!!values.id}
-                      onChange={input.onChange}
-                      getOptionLabel={(option) => {
-                        return option.display;
-                      }}
-                      value={input.value}
-                    />
-                    {meta.touched && meta.error && (
-                      <CInvalidFeedback className="help-block">
-                        Please provide a valid information
-                      </CInvalidFeedback>
-                    )}
-                  </CFormGroup>
-                </>
-              )}
-            </Field>
-            {!values.id &&
-              <CButton
-                color="primary"
-                onClick={() => {
-                  if (values.date && values.user) {
-                    api
-                      .get(GET_TIME_SHEETS_BY_DAY, {
-                        params: {
-                          user_id: values.user.return,
-                          entry_date: values.date,
-                        },
-                      })
-                      .then(([re]) => {
-                        if (re) {
-                          setInitialData({
-                            user: values.user,
-                            date: values.date,
-                            id: re.timeEntryId,
-                            lunch_in: re.timeEntryLunchIn,
-                            lunch_out: re.timeEntryLunchOut,
-                            timecards: re.timecard.map(
-                              (tc) => {
-                                return {
-                                  jobName: tc.jobName,
-                                  jobDescription:
-                                    tc.jobDescription,
-                                  clockIn: tc.clockIn,
-                                  clockInGps: tc.clockInGps,
-                                  clockOut: tc.clockOut,
-                                  clockOutGps: tc.clockOutGps,
-                                  jobLocations:
-                                    tc.otherLocation
+  const AddForm = ({ closeModal }) => {
+    return (
+      <Form
+        onSubmit={onCreateTimeEntry}
+        initialValues={initialData || {}}
+        mutators={{
+          ...arrayMutators,
+        }}
+        validate={validate}
+        render={({
+          handleSubmit,
+          form: {
+            mutators: { push, pop },
+          },
+          values,
+        }) => (
+          <>
+            <form onSubmit={handleSubmit}>
+              <CModalBody>
+                <Field name="date">
+                  {({ input, meta }) => (
+                    <>
+                      <CFormGroup>
+                        <CLabel>Pick Date</CLabel>
+                        <CInput
+                          {...input}
+                          type="date"
+                          disabled={!!values.id}
+                          invalid={meta.invalid && meta.touched}
+                        />
+                      </CFormGroup>
+                    </>
+                  )}
+                </Field>
+                <Field name="user">
+                  {({ input, meta }) => (
+                    <>
+                      <CFormGroup>
+                        <CLabel>Select User</CLabel>
+                        <Select
+                          options={users}
+                          isDisabled={!!values.id}
+                          onChange={input.onChange}
+                          getOptionLabel={(option) => {
+                            return option.display;
+                          }}
+                          value={input.value}
+                        />
+                        {meta.touched && meta.error && (
+                          <CInvalidFeedback className="help-block">
+                            Please provide a valid information
+                          </CInvalidFeedback>
+                        )}
+                      </CFormGroup>
+                    </>
+                  )}
+                </Field>
+                {!values.id && (
+                  <CButton
+                    color="primary"
+                    onClick={() => {
+                      if (values.date && values.user) {
+                        api
+                          .get(GET_TIME_SHEETS_BY_DAY, {
+                            params: {
+                              user_id: values.user.return,
+                              entry_date: values.date,
+                            },
+                          })
+                          .then(([re]) => {
+                            if (re) {
+                              setInitialData({
+                                user: values.user,
+                                date: values.date,
+                                id: re.timeEntryId,
+                                lunch_in: re.timeEntryLunchIn,
+                                lunch_out: re.timeEntryLunchOut,
+                                timecards: re.timecard.map((tc) => {
+                                  return {
+                                    jobName: tc.jobName,
+                                    jobDescription: tc.jobDescription,
+                                    clockIn: tc.clockIn,
+                                    clockInGps: tc.clockInGps,
+                                    clockOut: tc.clockOut,
+                                    clockOutGps: tc.clockOutGps,
+                                    jobLocations: tc.otherLocation
                                       ? [
                                           {
-                                            label:
-                                              tc.otherLocation,
-                                            value:
-                                              tc.otherLocation,
+                                            label: tc.otherLocation,
+                                            value: tc.otherLocation,
                                             __isNew__: true,
                                           },
-                                          ...locations.filter(
-                                            (value) => {
-                                              return tc.location.find(
-                                                (lc) => {
-                                                  return (
-                                                    value.id ==
-                                                    lc.id
-                                                  );
-                                                }
-                                              );
-                                            }
-                                          ),
+                                          ...locations.filter((value) => {
+                                            return tc.location.find((lc) => {
+                                              return value.id == lc.id;
+                                            });
+                                          }),
                                         ]
                                       : [
-                                          ...locations.filter(
-                                            (value) => {
-                                              return tc.location.find(
-                                                (lc) => {
-                                                  return (
-                                                    value.id ==
-                                                    lc.id
-                                                  );
-                                                }
-                                              );
-                                            }
-                                          ),
+                                          ...locations.filter((value) => {
+                                            return tc.location.find((lc) => {
+                                              return value.id == lc.id;
+                                            });
+                                          }),
                                         ],
-                                };
-                              }
-                            ),
+                                  };
+                                }),
+                              });
+                            } else {
+                              setInitialData({
+                                user: values.user,
+                                date: values.date,
+                              });
+                            }
                           });
-                        } else {
-                          setInitialData({
-                            user: values.user,
-                            date: values.date,
-                          });
-                        }
-                      });
-                  }
-                }}
-              >
-                Search
-              </CButton>
-            }
-            {((!!values.date && !!values.user) || !!values.id) &&
-              <TimeEntry
-                locations={locations}
-                push={push}
-              />
-            }
-            {/* {metadata.map(function (metadataRow) {
+                      }
+                    }}
+                  >
+                    Search
+                  </CButton>
+                )}
+                {((!!values.date && !!values.user) || !!values.id) && (
+                  <TimeEntry locations={locations} push={push} />
+                )}
+                {/* {metadata.map(function (metadataRow) {
             return (
               <Field name={metadataRow.key} key={metadataRow.key}>
                 {({ input, meta }) => (
@@ -1314,43 +1277,43 @@ const TimeCardCrud = () => {
               </Field>
             );
           })} */}
-          </CModalBody>
-          <CModalFooter>
-            <CButton color="primary" type="submit">
-              {!values.id ? "Create" : "Update"}
-            </CButton>{" "}
-            {!!values.id && (
-              <>
+              </CModalBody>
+              <CModalFooter>
+                <CButton color="primary" type="submit">
+                  {!values.id ? "Create" : "Update"}
+                </CButton>{" "}
+                {!!values.id && (
+                  <>
+                    <CButton
+                      color="danger"
+                      onClick={() => {
+                        //onDelete(selectedData);
+                        setModal(false);
+                      }}
+                    >
+                      Delete
+                    </CButton>{" "}
+                  </>
+                )}
                 <CButton
-                  color="danger"
+                  color="secondary"
                   onClick={() => {
-                    //onDelete(selectedData);
                     setModal(false);
+                    setSelectedData(null);
+                    if (closeModal) {
+                      closeModal();
+                    }
                   }}
                 >
-                  Delete
-                </CButton>{" "}
-              </>
-            )}
-            <CButton
-              color="secondary"
-              onClick={() => {
-                setModal(false);
-                setSelectedData(null);
-                if(closeModal ) {
-                  closeModal()
-                }
-              }}
-            >
-              Cancel
-            </CButton>
-          </CModalFooter>
-        </form>
-      </>
-    )}
-  />
-  );
-  }
+                  Cancel
+                </CButton>
+              </CModalFooter>
+            </form>
+          </>
+        )}
+      />
+    );
+  };
 
   return (
     <>
@@ -1378,17 +1341,13 @@ const TimeCardCrud = () => {
                     title="Time Card"
                     rows={rows}
                     onAddRow={() => {
-                      setInitialData({})
+                      setInitialData({});
                     }}
-                    customAddForm={
-                      ({closeModal}) => {
-
-                        return <AddForm closeModal={closeModal}/>
-                      }
-                    }
+                    customAddForm={({ closeModal }) => {
+                      return <AddForm closeModal={closeModal} />;
+                    }}
                     onRefreshTable={fetchTable}
                     onDelete={(row) => {
-                      //debugger
                       //deleteTimeEntry
                     }}
                     metadata={metadata}
