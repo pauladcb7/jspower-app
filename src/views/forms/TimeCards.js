@@ -63,6 +63,9 @@ const TimeCards = () => {
   const state = useSelector((state) => {
     return state.state;
   });
+  const gps = useSelector((state) => {
+    return state.gps;
+  });
   const { addToast } = useToasts();
   const [initialValues, setInitialValue] = useState({});
 
@@ -234,17 +237,33 @@ const TimeCards = () => {
   };
 
   const logTime = (type) => {
+    console.log(gps);
     let pos = null;
     if (type == "clockIn") pos = 0;
     else if (type == "lunchIn") pos = 1;
     else if (type == "lunchOut") pos = 2;
     else if (type == "clockOut") pos = 3;
     if (timeEntryId) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        var lng = position.coords.longitude;
-        var lat = position.coords.latitude;
+      async function askPermissions() {
+        const result = await navigator.permissions.query({
+          name: "geolocation",
+        });
+        if (result.state == "denied") {
+          addToast("Location access is required to log Time.", {
+            appearance: "warning",
+            autoDismiss: true,
+          });
+        }
+      }
+      askPermissions();
+      if (gps) {
+        // navigator.geolocation.getCurrentPosition(
+        //   function (position) {
+        var lng = gps.lng;
+        var lat = gps.lat;
+        console.log("end", Date.now());
         fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${process.env.REACT_APP_API_KEY}`,
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_KEY}`,
           {
             method: "GET",
             headers: {},
@@ -390,7 +409,13 @@ const TimeCards = () => {
             }
           })
           .catch((err) => console.log(err));
-      });
+      } else {
+        return;
+      }
+      //   },
+      //   () => {},
+      //   { enableHighAccuracy: true }
+      // );
     } else {
       addToast("Fill the Time Card information and Save it before Clock In.", {
         appearance: "warning",
@@ -623,9 +648,9 @@ const TimeCards = () => {
           esignature: e.signature,
         },
       })
-      .then(async (result) => {
-        const timeEntry = await setTimeEntryId(result.timeEntryId);
-        const timeCard = await setTimeCardId(result.timeCardId);
+      .then((result) => {
+        setTimeEntryId(result.time_entry_id);
+        setTimeCardId(result.time_card_id);
         addToast("Time Card Saved.", {
           appearance: "success",
           autoDismiss: true,

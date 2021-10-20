@@ -1,11 +1,11 @@
 import { createStore } from "redux";
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-}
+};
 
 const initialState = {
   sidebarShow: "responsive",
@@ -57,12 +57,17 @@ const changeState = (state = initialState, { type, ...action }) => {
         ...state,
         user: null,
       };
+    case "SET_GPS":
+      return {
+        ...state,
+        gps: action.gps,
+      };
     default:
       return state;
   }
 };
-const persistedReducer = persistReducer(persistConfig, changeState)
+const persistedReducer = persistReducer(persistConfig, changeState);
 
 const store = createStore(persistedReducer);
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
 export default store;
