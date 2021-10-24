@@ -1,0 +1,946 @@
+{
+    "content": [
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "HAND TOOLS / SAFETY TRAINING",
+                                    "nodeName": "STRONG",
+                                    "alignment": "center",
+                                    "decoration": [
+                                        "underline"
+                                    ],
+                                    "font": "Bookos",
+                                    "fontSize": 16,
+                                    "bold": true,
+                                    "style": [
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "SPAN",
+                            "alignment": "center",
+                            "decoration": [
+                                "underline"
+                            ],
+                            "font": "Bookos",
+                            "fontSize": 16,
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "alignment": "center",
+                    "decoration": [
+                        "underline"
+                    ],
+                    "font": "Bookos",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "\n",
+                    "nodeName": "BR"
+                },
+                {
+                    "text": "\n",
+                    "nodeName": "BR"
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": "\n",
+                            "nodeName": "BR"
+                        },
+                        {
+                            "text": "Some of the typical hand tools include hammers, spanners, screwdrivers, chainsaws hand, axes, saw blades, shovels, rakes, pulley hoists, spades, sledgehammers, wheelbarrows, levels, tappets, chisels, pliers / tweezers, among others. Each of them does a particular job, and it is your responsibility to use it as and how the manufacturer designed it. ",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Using hand tools:",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Keep all hand tools in good condition. ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Check and make sure that the monitoring devices security are in place and in perfect working order. ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Lubricate your tools regularly. ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Keep them sharp and help you do your job safely.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Safety precautions:",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Using the wrong tool to save yourself some time usually will cause an accident. A perfect example of this is using a screwdriver to pry when the correct tool is the crowbar.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "When using hand tools remember to wear proper personal protective equipment.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "If there is any possibility of eye injury, safety glasses are mandatory. ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Protect your hands by using gloves. ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Be careful using sharp tools, as well as watch out for sharp edges on saws - both can cause nasty cuts if handled incorrectly. ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Important",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "If you have any questions about how use protection devices consult your supervisor.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "After you have finished using a hand tool, return it to where it belongs.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "This place it can be your own toolbox or belt, or it can be behind in the tool trailer or in the community box. ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "When you return it to your site, position it in the right way so that the next worker that you are going to use it has no risk of injury. If a tool is damaged, remove it from service to",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "repair, and if it cannot be repaired, discard it. Defective tools are dangerous and should not be used.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": "Reviews",
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Replace hand tools such as chisels and punches that have deformed heads.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Replace hammers, axes, and similar tools with broken or cracked handles.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Make sure the tool handles are securely attached to the heads of the tools.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Make sure the cutting edges of the tools stay sharp.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Conclusion:",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        },
+                        {
+                            "text": " Be sure to wear appropriate safety glasses, face shields, and other items when operating with power tools or with equipment that can produce flying particles or is subject to breaks.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "Hand tools make your job easier. Take care of them properly and use them in a way smart.",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        }
+    ],
+    "images": {},
+    "customHtml": "<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><span style=\"text-decoration: underline; font-family: BookOS;\"><span style=\"font-size: 16pt;\"><strong>HAND TOOLS / SAFETY TRAINING</strong></span></span></p>\n<p><br /><br /></p>\n<p><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"><br />Some of the typical hand tools include hammers, spanners, screwdrivers, chainsaws hand, axes, saw blades, shovels, rakes, pulley hoists, spades, sledgehammers, wheelbarrows, levels, tappets, chisels, pliers / tweezers, among others. Each of them does a particular job, and it is your responsibility to use it as and how the manufacturer designed it.&nbsp;</span></p>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Using hand tools:</em></strong></span></p>\n<ul>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Keep all hand tools in good condition.&nbsp;</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Check and make sure that the monitoring devices security are in place and in perfect working order.&nbsp;</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Lubricate your tools regularly.&nbsp;</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Keep them sharp and help you do your job safely.</span></li>\n</ul>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Safety precautions:</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Using the wrong tool to save yourself some time usually will cause an accident. A perfect example of this is using a screwdriver to pry when the correct tool is the crowbar.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">When using hand tools remember to wear proper personal protective equipment.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">If there is any possibility of eye injury, safety glasses are mandatory.&nbsp;</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Protect your hands by using gloves.&nbsp;</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Be careful using sharp tools, as well as watch out for sharp edges on saws - both can cause nasty cuts if handled incorrectly.&nbsp;</span></li>\n</ul>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Important</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">If you have any questions about how use protection devices consult your supervisor.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">After you have finished using a hand tool, return it to where it belongs.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">This place it can be your own toolbox or belt, or it can be behind in the tool trailer or in the community box.&nbsp;</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">When you return it to your site, position it in the right way so that the next worker that you are going to use it has no risk of injury. If a tool is damaged, remove it from service to</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">repair, and if it cannot be repaired, discard it. Defective tools are dangerous and should not be used.</span></li>\n</ul>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong>Reviews</strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Replace hand tools such as chisels and punches that have deformed heads.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Replace hammers, axes, and similar tools with broken or cracked handles.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Make sure the tool handles are securely attached to the heads of the tools.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Make sure the cutting edges of the tools stay sharp.</span></li>\n</ul>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Conclusion:</em></strong><span style=\"font-weight: 400;\"> Be sure to wear appropriate safety glasses, face shields, and other items when operating with power tools or with equipment that can produce flying particles or is subject to breaks.</span></span></p>\n<p><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Hand tools make your job easier. Take care of them properly and use them in a way smart.</span></p>\n<p>&nbsp;</p>"
+}

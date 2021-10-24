@@ -1,0 +1,1485 @@
+{
+    "content": [
+        {
+            "text": " ",
+            "nodeName": "H1",
+            "fontSize": 16,
+            "bold": true,
+            "marginBottom": 5,
+            "font": "Bookos",
+            "alignment": "center",
+            "style": [
+                "html-h1",
+                "heading"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": "PERSONAL PROTECTIVE EQUIPMENT / SAFETY TRAINING",
+                            "nodeName": "STRONG",
+                            "fontSize": 16,
+                            "bold": true,
+                            "font": "Bookos",
+                            "alignment": "center",
+                            "decoration": [
+                                "underline"
+                            ],
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-h1",
+                                "heading"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "fontSize": 16,
+                    "bold": true,
+                    "font": "Bookos",
+                    "alignment": "center",
+                    "decoration": [
+                        "underline"
+                    ],
+                    "style": [
+                        "html-span",
+                        "html-h1",
+                        "heading"
+                    ]
+                }
+            ],
+            "nodeName": "H1",
+            "fontSize": 16,
+            "bold": true,
+            "marginBottom": 5,
+            "font": "Bookos",
+            "alignment": "center",
+            "marginLeft": 80,
+            "style": [
+                "html-h1",
+                "heading"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "            ",
+                    "nodeName": "SPAN",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "Selecting the right PPE minimize exposure to hazards that cause serious workplace injuries, that may result from contact with chemical, radiological, physical, electrical, mechanical, or other workplace hazards.",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "OL",
+            "ol": [
+                {
+                    "nodeName": "LI",
+                    "stack": [
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "SAFETY GLASSES",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "bold": true,
+                                                    "decoration": [
+                                                        "underline"
+                                                    ],
+                                                    "style": [
+                                                        "html-strong",
+                                                        "html-span",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                },
+                                                {
+                                                    "text": "\n",
+                                                    "nodeName": "BR"
+                                                }
+                                            ],
+                                            "nodeName": "STRONG",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": "Must be used if employees are exposed to eye or face hazards from flying particles, molten metal, liquid chemicals, acids or caustic liquids, chemical gases or vapors, potentially infected material, or potentially harmful light radiation.",
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Examples of potential eye or face injuries include: ",
+                                                    "nodeName": "EM",
+                                                    "font": "Calibri",
+                                                    "bold": true,
+                                                    "italics": true,
+                                                    "style": [
+                                                        "html-em",
+                                                        "html-strong",
+                                                        "html-span",
+                                                        "html-p",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "STRONG",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-p",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "nodeName": "UL",
+                            "marginBottom": 5,
+                            "marginLeft": 5,
+                            "style": [
+                                "html-ul",
+                                "html-li",
+                                "html-ol"
+                            ],
+                            "ul": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": "Dust, dirt, metal, or wood chips entering the eye from activities such as chipping, grinding, sawing, hammering, the use of power tools or even strong wind forces. ",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "style": [
+                                                "html-span",
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "LI",
+                                    "style": [
+                                        "html-ul",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                },
+                                {
+                                    "text": [
+                                        {
+                                            "text": "Chemical splashes from corrosive substances, hot liquids, solvents, or other hazardous solutions. ",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "style": [
+                                                "html-span",
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "LI",
+                                    "style": [
+                                        "html-ul",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                },
+                                {
+                                    "text": [
+                                        {
+                                            "text": "Objects swinging into the eye or face, such as tree limbs, chains, tools, or ropes. ",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "style": [
+                                                "html-span",
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "LI",
+                                    "style": [
+                                        "html-ul",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                },
+                                {
+                                    "text": [
+                                        {
+                                            "text": "Radiant energy from welding, harmful rays from the use of lasers or other radiant light (heat, glare, sparks, splash and flying particles).",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "style": [
+                                                "html-span",
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "LI",
+                                    "style": [
+                                        "html-ul",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nodeName": "LI",
+                    "stack": [
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "HARD HATS",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "bold": true,
+                                                    "decoration": [
+                                                        "underline"
+                                                    ],
+                                                    "style": [
+                                                        "html-strong",
+                                                        "html-span",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                },
+                                                {
+                                                    "text": "\n",
+                                                    "nodeName": "BR"
+                                                }
+                                            ],
+                                            "nodeName": "STRONG",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": "Wearing a hard hat is one of the easiest ways to protect an employee’s head from injury, and they can protect from impact and penetration hazards as well as from electrical shock and burn hazards.",
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": "Head protection that is either too large or too small is inappropriate for use, even if it meets all other requirements. Hard hats must fit appropriately.",
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Wear head protection if any of the following apply: ",
+                                                    "nodeName": "EM",
+                                                    "font": "Calibri",
+                                                    "bold": true,
+                                                    "italics": true,
+                                                    "style": [
+                                                        "html-em",
+                                                        "html-strong",
+                                                        "html-span",
+                                                        "html-p",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "STRONG",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-p",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "nodeName": "UL",
+                            "marginBottom": 5,
+                            "marginLeft": 5,
+                            "style": [
+                                "html-ul",
+                                "html-li",
+                                "html-ol"
+                            ],
+                            "ul": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": "Objects might fall from above and strike them on the head. ",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "style": [
+                                                "html-span",
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "LI",
+                                    "style": [
+                                        "html-ul",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                },
+                                {
+                                    "text": [
+                                        {
+                                            "text": "They might bump their heads against fixed objects, such as exposed pipes or beams.  ",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "style": [
+                                                "html-span",
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "LI",
+                                    "style": [
+                                        "html-ul",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                },
+                                {
+                                    "text": [
+                                        {
+                                            "text": "There is a possibility of accidental head contact with electrical hazards.",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "style": [
+                                                "html-span",
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "LI",
+                                    "style": [
+                                        "html-ul",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Hard hats should do the following: ",
+                                                    "nodeName": "EM",
+                                                    "font": "Calibri",
+                                                    "bold": true,
+                                                    "italics": true,
+                                                    "style": [
+                                                        "html-em",
+                                                        "html-strong",
+                                                        "html-span",
+                                                        "html-p",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "STRONG",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-p",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        },
+                                        {
+                                            "text": "Resist penetration by objects, absorb the shock of a blow and being slow burning. ",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "style": [
+                                                "html-span",
+                                                "html-p",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": "Hard hats with any of the following defects should be removed from service and replaced: ",
+                                            "nodeName": "STRONG",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-p",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "nodeName": "UL",
+                            "ul": [
+                                {
+                                    "nodeName": "UL",
+                                    "marginBottom": 5,
+                                    "marginLeft": 5,
+                                    "style": [
+                                        "html-ul",
+                                        "html-li",
+                                        "html-ol"
+                                    ],
+                                    "ul": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Perforation, cracking, or deformity of the brim or shell.",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "style": [
+                                                        "html-span",
+                                                        "html-ul",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "LI",
+                                            "style": [
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        },
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Indication of exposure of the brim or shell to heat, chemicals, or ultraviolet light and other.",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "style": [
+                                                        "html-span",
+                                                        "html-ul",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "LI",
+                                            "style": [
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        },
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Always replace a hard hat if it sustains an impact, even if damage is not noticeable.",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "style": [
+                                                        "html-span",
+                                                        "html-ul",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "LI",
+                                            "style": [
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "marginBottom": 5,
+                            "marginLeft": 5,
+                            "style": [
+                                "html-ul",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": "\n",
+                                            "nodeName": "BR"
+                                        }
+                                    ],
+                                    "nodeName": "STRONG",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "style": [
+                                        "html-strong",
+                                        "html-span",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nodeName": "LI",
+                    "stack": [
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "SAFETY SHOES",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "bold": true,
+                                                    "decoration": [
+                                                        "underline"
+                                                    ],
+                                                    "style": [
+                                                        "html-strong",
+                                                        "html-span",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                },
+                                                {
+                                                    "text": "\n",
+                                                    "nodeName": "BR"
+                                                }
+                                            ],
+                                            "nodeName": "STRONG",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Safety shoes prevent: ",
+                                                    "nodeName": "EM",
+                                                    "font": "Calibri",
+                                                    "bold": true,
+                                                    "italics": true,
+                                                    "style": [
+                                                        "html-em",
+                                                        "html-strong",
+                                                        "html-span",
+                                                        "html-p",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "STRONG",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-p",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        },
+                                        {
+                                            "text": "The buildup of static electricity in areas with the potential for explosive atmospheres or nonconductive to protect employees from workplace electrical hazards. ",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "style": [
+                                                "html-span",
+                                                "html-p",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Examples of situations in which an employee should wear foot protection include: ",
+                                                    "nodeName": "EM",
+                                                    "font": "Calibri",
+                                                    "bold": true,
+                                                    "italics": true,
+                                                    "style": [
+                                                        "html-em",
+                                                        "html-strong",
+                                                        "html-span",
+                                                        "html-p",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "STRONG",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-p",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "nodeName": "UL",
+                            "ul": [
+                                {
+                                    "nodeName": "UL",
+                                    "marginBottom": 5,
+                                    "marginLeft": 5,
+                                    "style": [
+                                        "html-ul",
+                                        "html-li",
+                                        "html-ol"
+                                    ],
+                                    "ul": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "When heavy objects such as barrels or tools might roll onto or fall on the employee’s feet.",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "style": [
+                                                        "html-span",
+                                                        "html-ul",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "LI",
+                                            "style": [
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        },
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Working with sharp objects such as nails or spikes that could pierce the soles or uppers of ordinary shoes.",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "style": [
+                                                        "html-span",
+                                                        "html-ul",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "LI",
+                                            "style": [
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        },
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Exposure to molten metal that might splash on feet or legs.",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "style": [
+                                                        "html-span",
+                                                        "html-ul",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "LI",
+                                            "style": [
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        },
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Working on or around hot, wet, or slippery surfaces.",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "style": [
+                                                        "html-span",
+                                                        "html-ul",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "LI",
+                                            "style": [
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        },
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "Working when electrical hazards are present.",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "style": [
+                                                        "html-span",
+                                                        "html-ul",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "LI",
+                                            "style": [
+                                                "html-ul",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "marginBottom": 5,
+                            "marginLeft": 5,
+                            "style": [
+                                "html-ul",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": "\n",
+                                            "nodeName": "BR"
+                                        }
+                                    ],
+                                    "nodeName": "STRONG",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "style": [
+                                        "html-strong",
+                                        "html-span",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nodeName": "LI",
+                    "stack": [
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "PROTECTIVE GLOVESSAFETY SHOES",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "bold": true,
+                                                    "decoration": [
+                                                        "underline"
+                                                    ],
+                                                    "style": [
+                                                        "html-strong",
+                                                        "html-span",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                },
+                                                {
+                                                    "text": "\n",
+                                                    "nodeName": "BR"
+                                                }
+                                            ],
+                                            "nodeName": "STRONG",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": "Gloves provide protection from amputations, abrasions, cuts, bruises, friction blisters, splinters, burns, chemicals, and disease. Studies have shown that workers who wear gloves are 60% less likely to experience hand injuries. ",
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": [
+                                                {
+                                                    "text": "The most common gloves worn are: ",
+                                                    "nodeName": "SPAN",
+                                                    "font": "Calibri",
+                                                    "italics": true,
+                                                    "style": [
+                                                        "html-em",
+                                                        "html-span",
+                                                        "html-p",
+                                                        "html-li",
+                                                        "html-ol"
+                                                    ]
+                                                }
+                                            ],
+                                            "nodeName": "EM",
+                                            "font": "Calibri",
+                                            "italics": true,
+                                            "style": [
+                                                "html-em",
+                                                "html-span",
+                                                "html-p",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        },
+                                        {
+                                            "text": "Leather gloves and coated fabric gloves.",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "style": [
+                                                "html-span",
+                                                "html-p",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        }
+                                    ],
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-p",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "P",
+                            "margin": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "marginTop": 0,
+                            "marginBottom": 0,
+                            "style": [
+                                "html-p",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        },
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": "\n",
+                                            "nodeName": "BR"
+                                        }
+                                    ],
+                                    "nodeName": "STRONG",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "style": [
+                                        "html-strong",
+                                        "html-span",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": [
+                                        {
+                                            "text": "HEARING PROTECTION- EARPLUGS",
+                                            "nodeName": "SPAN",
+                                            "font": "Calibri",
+                                            "bold": true,
+                                            "decoration": [
+                                                "underline"
+                                            ],
+                                            "style": [
+                                                "html-strong",
+                                                "html-span",
+                                                "html-li",
+                                                "html-ol"
+                                            ]
+                                        },
+                                        {
+                                            "text": "\n",
+                                            "nodeName": "BR"
+                                        }
+                                    ],
+                                    "nodeName": "STRONG",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "style": [
+                                        "html-strong",
+                                        "html-span",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                },
+                                {
+                                    "text": "If the noise level reaches 115 dB hearing protection is required if the anticipated exposure exceeds 15 minutes.",
+                                    "nodeName": "SPAN",
+                                    "font": "Calibri",
+                                    "style": [
+                                        "html-span",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                },
+                                {
+                                    "text": [
+                                        {
+                                            "text": "\n",
+                                            "nodeName": "BR"
+                                        }
+                                    ],
+                                    "nodeName": "STRONG",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "style": [
+                                        "html-strong",
+                                        "html-span",
+                                        "html-li",
+                                        "html-ol"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                }
+            ],
+            "style": [
+                "html-ol"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        }
+    ],
+    "images": {},
+    "customHtml": "<h1 class=\"heading\" style=\"font-size: 16pt; font-family: BookOS; text-align: center;\">&nbsp;</h1>\n<h1 class=\"heading\" style=\"font-size: 16pt; font-family: BookOS; text-align: center; margin-left: 80pt;\"><span style=\"text-decoration: underline;\"><strong>PERSONAL PROTECTIVE EQUIPMENT / SAFETY TRAINING</strong></span></h1>\n<p><span style=\"font-weight: 400;\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></p>\n<p>&nbsp;</p>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">Selecting the right&nbsp;PPE&nbsp;minimize exposure to hazards that cause serious workplace injuries, that may result from contact with chemical, radiological, physical, electrical, mechanical, or other workplace hazards.</span></p>\n<ol>\n<li><span style=\"font-family: Calibri;\"><span style=\"font-family: Calibri;\"><strong><span style=\"text-decoration: underline;\">SAFETY GLASSES</span><br /></strong></span></span>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">Must be used if employees are exposed to eye or face hazards from flying particles, molten metal, liquid chemicals, acids or caustic liquids, chemical gases or vapors, potentially infected material, or potentially harmful light radiation.</span></p>\n<p><span style=\"font-family: Calibri;\"><strong><em>Examples of potential eye or face injuries include:&nbsp;</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Dust, dirt, metal, or wood chips entering the eye from activities such as chipping, grinding, sawing, hammering, the use of power tools or even strong wind forces.&nbsp;</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Chemical splashes from corrosive substances, hot liquids, solvents, or other hazardous solutions.&nbsp;</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Objects swinging into the eye or face, such as tree limbs, chains, tools, or ropes.&nbsp;</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Radiant energy from welding, harmful rays from the use of lasers or other radiant light (heat, glare, sparks, splash and flying particles).</span></li>\n</ul>\n</li>\n<li><span style=\"font-family: Calibri;\"><span style=\"font-family: Calibri;\"><strong><span style=\"text-decoration: underline;\">HARD HATS</span><br /></strong></span></span>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">Wearing a hard hat is one of the easiest ways to protect an employee&rsquo;s head from injury, and they can protect from impact and penetration hazards as well as from electrical shock and burn hazards.</span></p>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">Head protection that is either too large or too small is inappropriate for use, even if it meets all other requirements. Hard hats must fit appropriately.</span></p>\n<p><span style=\"font-family: Calibri;\"><strong><em>Wear head protection if any of the following apply:&nbsp;</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Objects might fall from above and strike them on the head.&nbsp;</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">They might bump their heads against fixed objects, such as exposed pipes or beams.&nbsp;&nbsp;</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">There is a possibility of accidental head contact with electrical hazards.</span></li>\n</ul>\n<p><span style=\"font-family: Calibri;\"><strong><em>Hard hats should do the following: </em></strong><span style=\"font-weight: 400;\">Resist penetration by objects, absorb the shock of a blow and being slow burning.&nbsp;</span></span></p>\n<p><span style=\"font-family: Calibri;\"><strong>Hard hats with any of the following defects should be removed from service and replaced:&nbsp;</strong></span></p>\n<ul>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Perforation, cracking, or deformity of the brim or shell.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Indication of exposure of the brim or shell to heat, chemicals, or ultraviolet light and other.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Always replace a hard hat if it sustains an impact, even if damage is not noticeable.</span></li>\n</ul>\n</ul>\n<span style=\"font-family: Calibri;\"><strong><br /></strong></span></li>\n<li><span style=\"font-family: Calibri;\"><span style=\"font-family: Calibri;\"><strong><span style=\"text-decoration: underline;\">SAFETY SHOES</span><br /></strong></span></span>\n<p><span style=\"font-family: Calibri;\"><strong><em>Safety shoes prevent: </em></strong><span style=\"font-weight: 400;\">The buildup of static electricity in areas with the potential for explosive atmospheres or nonconductive to protect employees from workplace electrical hazards.&nbsp;</span></span></p>\n<p><span style=\"font-family: Calibri;\"><strong><em>Examples of situations in which an employee should wear foot protection include:&nbsp;</em></strong></span></p>\n<ul>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">When heavy objects such as barrels or tools might roll onto or fall on the employee&rsquo;s feet.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Working with sharp objects such as nails or spikes that could pierce the soles or uppers of ordinary shoes.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Exposure to molten metal that might splash on feet or legs.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Working on or around hot, wet, or slippery surfaces.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Working when electrical hazards are present.</span></li>\n</ul>\n</ul>\n<span style=\"font-family: Calibri;\"><strong><br /></strong></span></li>\n<li><span style=\"font-family: Calibri;\"><span style=\"font-family: Calibri;\"><strong><span style=\"text-decoration: underline;\">PROTECTIVE GLOVESSAFETY SHOES</span><br /></strong></span></span>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">Gloves provide&nbsp;protection from amputations, abrasions, cuts, bruises, friction blisters, splinters, burns, chemicals, and disease. Studies have shown that workers who wear gloves are 60% less likely to experience hand injuries.&nbsp;</span></p>\n<p><span style=\"font-family: Calibri;\"><em><span style=\"font-weight: 400;\">The most common gloves worn are: </span></em><span style=\"font-weight: 400;\">Leather gloves and coated fabric gloves.</span></span></p>\n<span style=\"font-family: Calibri;\"><strong><br /></strong></span></li>\n<li><span style=\"font-family: Calibri;\"><strong><span style=\"text-decoration: underline;\">HEARING PROTECTION- EARPLUGS</span><br /></strong><span style=\"font-family: Calibri;\">If the noise level reaches 115 dB hearing protection is required if the anticipated exposure exceeds 15 minutes.</span><strong><br /></strong></span></li>\n</ol>\n<p>&nbsp;</p>"
+}

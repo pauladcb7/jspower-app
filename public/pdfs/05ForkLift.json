@@ -1,0 +1,882 @@
+{
+    "content": [
+        {
+            "text": " ",
+            "nodeName": "H1",
+            "fontSize": 16,
+            "bold": true,
+            "marginBottom": 5,
+            "font": "Bookos",
+            "alignment": "center",
+            "style": [
+                "html-h1",
+                "heading"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": "FORKLIFT / SAFETY TRAINING",
+                            "nodeName": "STRONG",
+                            "fontSize": 16,
+                            "bold": true,
+                            "font": "Bookos",
+                            "alignment": "center",
+                            "decoration": [
+                                "underline"
+                            ],
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-h1",
+                                "heading"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "fontSize": 16,
+                    "bold": true,
+                    "font": "Bookos",
+                    "alignment": "center",
+                    "decoration": [
+                        "underline"
+                    ],
+                    "style": [
+                        "html-span",
+                        "html-h1",
+                        "heading"
+                    ]
+                }
+            ],
+            "nodeName": "H1",
+            "fontSize": 16,
+            "bold": true,
+            "marginBottom": 5,
+            "font": "Bookos",
+            "alignment": "center",
+            "style": [
+                "html-h1",
+                "heading"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "            ",
+                    "nodeName": "SPAN",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "\n",
+                    "nodeName": "BR"
+                },
+                {
+                    "text": "\n",
+                    "nodeName": "BR"
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "Only trained and certified forklift operators are authorized to operate this vehicle. The employer must create and implement a written forklift operator program and conduct in-house training (operating rules must be published and enforced). Operator re-certification is required every three years.",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Lifting a load",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "\"Hang the forklift\" to the center of the load and approach it in a straight direction with the tongs in the scrolling position; Stop when the tips of the tongs are about one foot from the load.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Level the tongs and drive slowly to the front until the load is located against backside of backrest mast. ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Lift the load enough to clear what's underneath it.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Step back around one foot, then gently and evenly tilt the mast back to stabilize the load.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Decreased a load",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "\"Hang the forklift\" and stop at about a foot from the desired location.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Level the tongs and drive to the unloading site; slowly lower the load towards the floor.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Tilt the tongs slightly forward so that you do not engage in the load.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "When the space behind you is free of obstructions, go back until the tongs have left the load free on the platform.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Stacking one load on another",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Stop at one foot from the loading area and lift the mast as high as necessary to clear the part top of the pilaster.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Slowly advance to the front until the charge is directly over the top of the pilaster.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Level the tongs and lower the mast until the tongs have left the load free.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Look over both shoulders for obstacles and step back if the road is clear.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Hoists",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Do not exceed the load capacity of the forklift; read the sheet of load capacity in the forklift if you are not sure. Follow the manufacturer's recommendations regarding changes in load capacity before adding an accessory.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Lift the load one or two inches to do a stability test, if the rear wheels are not in firm contact with the ground take a lighter load or use a forklift with a higher load capacity.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Loading and unloading areas",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Keep the forklift away from the edge of the dock while vehicles are reversing towards this.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Do not start loading or unloading until the supply truck has stopped completely, the engine has been shut down, the dock lock occupied, and wheels secured.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Do not take the forklift to the truck until the bridge or dock plate has been secured.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Do not mount the forklift on a truck's bed or on a trailer that has laminate floors \"soft,\" loose, or other unstable surfaces.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Drive straight through the bridge plates as you enter or exit the trailer and use lights to spring or headlights when working in a trailer in the dark.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": "NOTE: ",
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        },
+                        {
+                            "text": "When turning with the forklift do it broadly and the horn sounds to alert other operators and pedestrians as they approach blind corners, entrances or corridors to alert other operators and pedestrians.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        }
+    ],
+    "images": {},
+    "customHtml": "<h1 class=\"heading\" style=\"font-size: 16pt; font-family: BookOS; text-align: center;\">&nbsp;</h1>\n<h1 class=\"heading\" style=\"font-size: 16pt; font-family: BookOS; text-align: center;\"><span style=\"text-decoration: underline;\"><strong>FORKLIFT / SAFETY TRAINING</strong></span></h1>\n<p><span style=\"font-weight: 400;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>\n<p><br /><br /></p>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">Only trained and certified forklift operators are authorized to operate this vehicle. The employer must create and implement a written forklift operator program and conduct in-house training (operating rules must be published and enforced). Operator re-certification is required every three years.</span></p>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri;\"><strong><em>Lifting a load</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">\"Hang the forklift\" to the center of the load and approach it in a straight direction with the tongs in the scrolling position; Stop when the tips of the tongs are about one foot from the load.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Level the tongs and drive slowly to the front until the load is located against backside of backrest mast.&nbsp;</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Lift the load enough to clear what's underneath it.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Step back around one foot, then gently and evenly tilt the mast back to stabilize the load.</span></li>\n</ul>\n<p><span style=\"font-family: Calibri;\"><strong><em>Decreased a load</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">\"Hang the forklift\" and stop at about a foot from the desired location.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Level the tongs and drive to the unloading site; slowly lower the load towards the floor.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Tilt the tongs slightly forward so that you do not engage in the load.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">When the space behind you is free of obstructions, go back until the tongs have left the load free on the platform.</span></li>\n</ul>\n<p><span style=\"font-family: Calibri;\"><strong><em>Stacking one load on another</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Stop at one foot from the loading area and lift the mast as high as necessary to clear the part top of the pilaster.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Slowly advance to the front until the charge is directly over the top of the pilaster.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Level the tongs and lower the mast until the tongs have left the load free.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Look over both shoulders for obstacles and step back if the road is clear.</span></li>\n</ul>\n<p><span style=\"font-family: Calibri;\"><strong><em>Hoists</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Do not exceed the load capacity of the forklift; read the sheet of load capacity in the forklift if you are not sure. Follow the manufacturer's recommendations regarding changes in load capacity before adding an accessory.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Lift the load one or two inches to do a stability test, if the rear wheels are not in firm contact with the ground take a lighter load or use a forklift with a higher load capacity.</span></li>\n</ul>\n<p><span style=\"font-family: Calibri;\"><strong><em>Loading and unloading areas</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Keep the forklift away from the edge of the dock while vehicles are reversing towards this.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Do not start loading or unloading until the supply truck has stopped completely, the engine has been shut down, the dock lock occupied, and wheels secured.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Do not take the forklift to the truck until the bridge or dock plate has been secured.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Do not mount the forklift on a truck's bed or on a trailer that has laminate floors \"soft,\" loose, or other unstable surfaces.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Drive straight through the bridge plates as you enter or exit the trailer and use lights to spring or headlights when working in a trailer in the dark.</span></li>\n</ul>\n<p><span style=\"font-family: Calibri;\"><strong>NOTE: </strong><span style=\"font-weight: 400;\">When turning with the forklift do it broadly and the horn sounds to alert other operators and pedestrians as they approach blind corners, entrances or corridors to alert other operators and pedestrians.</span></span></p>\n<p>&nbsp;</p>"
+}

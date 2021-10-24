@@ -1,0 +1,900 @@
+{
+    "content": [
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": "FALL PROTECTION / SAFETY TRAINING",
+                            "nodeName": "STRONG",
+                            "alignment": "center",
+                            "decoration": [
+                                "underline"
+                            ],
+                            "font": "Bookos",
+                            "fontSize": 16,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "alignment": "center",
+                    "decoration": [
+                        "underline"
+                    ],
+                    "font": "Bookos",
+                    "fontSize": 16,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "            ",
+                    "nodeName": "SPAN",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "\n",
+                    "nodeName": "BR"
+                },
+                {
+                    "text": "\n",
+                    "nodeName": "BR"
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Introduction:",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        },
+                        {
+                            "text": " Falls on construction projects are one of the most devastating injuries. When protection fall protection is present in your construction projects and is used correctly, the injuries associated with\\ falls can be prevented. There are many different types of fall protection equipment.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Systems: ",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "Handrails and guardrails also aid in the prevention of falls.",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Fall Prevention Practices",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Before starting work, evaluate the job site to determine if the work surfaces or traffic have the strength and structural integrity to safely support workers.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Workers exposed to falls from heights of six feet or more, from a work site or edge without protection, they must be protected by a guardrail or handrail system, safety net or a system fall arrest personnel.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "A personal fall arrest system consists of an anchor, connecting rope (rope) and full body harnesses. This kit may include a rope (rope) of different length (depending on the work to be done), a deceleration device, rescue or a appropriate combination.",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Who needs to use protection",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Workers in elevated areas exposed to falls of six feet or more must be protected by a handrail system or a fall arrest system.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Employees exposed to openings in the ground with the potential for falling from heights greater than six feet",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "high above the lower levels, shall be protected by handrails or personal safety systems.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "fall arrest.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Employees using ramps, platforms shall be protected against falls from heights of six feet or more by a railing or handrail system.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Employees engaged in activities on slightly sloped roofs with unprotected sides and edges located at heights of six feet or more.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Alternate methods of fall protection include: ",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        },
+                        {
+                            "text": "A combination of a drop line system warning, controlled access zone system or using a security monitor.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Railings: ",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        },
+                        {
+                            "text": "Guardrails protect you from falls that could seriously injure and even kill you. The protection that railings can be offered depends on how they are constructed and how well they are maintained. Most of the guardrails are constructed of rigid materials and are usually solid when mounted. However, with guardrails are often battered, weakened, or broken and are not removed from service or replaced. The weakened guardrails are sometimes more dangerous than the fact that there are no guardrails since they give a false sense of security.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "While working",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Get into the habit of checking the railings.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "If you discover a deteriorated portion, correct the situation if you can, or report it so that the risk be eliminated.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "If you hit a railing with any material or equipment, check it to see if it has been weakened.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "If you discover a broken railing, post, or baseboard, repair it if you can. Otherwise report it to be repaired.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "When repairing or replacing guardrails, exercise caution, as you are exposed to the great risk for which you are providing protection.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        }
+    ],
+    "images": {},
+    "customHtml": "<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><span style=\"text-decoration: underline; font-family: BookOS; font-size: 16pt;\"><strong>FALL PROTECTION / SAFETY TRAINING</strong></span></p>\n<p><span style=\"font-weight: 400;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>\n<p><br /><br /></p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Introduction:</em></strong><span style=\"font-weight: 400;\"> Falls on construction projects are one of the most devastating injuries. When protection fall protection is present in your construction projects and is used correctly, the injuries associated with\\ falls can be prevented. There are many different types of fall protection equipment.</span></span></p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Systems:&nbsp;</em></strong></span></p>\n<p><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Handrails and guardrails also aid in the prevention of falls.</span></p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Fall Prevention Practices</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Before starting work, evaluate the job site to determine if the work surfaces or traffic have the strength and structural integrity to safely support workers.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Workers exposed to falls from heights of six feet or more, from a work site or edge without protection, they must be protected by a guardrail or handrail system, safety net or a system fall arrest personnel.</span></li>\n</ul>\n<p><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">A personal fall arrest system consists of an anchor, connecting rope (rope) and full body harnesses. This kit may include a rope (rope) of different length (depending on the work to be done), a deceleration device, rescue or a appropriate combination.</span></p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Who needs to use protection</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Workers in elevated areas exposed to falls of six feet or more must be protected by a handrail system or a fall arrest system.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Employees exposed to openings in the ground with the potential for falling from heights greater than six feet</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">high above the lower levels, shall be protected by handrails or personal safety systems.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">fall arrest.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Employees using ramps, platforms shall be protected against falls from heights of six feet or more by a railing or handrail system.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Employees engaged in activities on slightly sloped roofs with unprotected sides and edges located at heights of six feet or more.</span></li>\n</ul>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Alternate methods of fall protection include: </em></strong><span style=\"font-weight: 400;\">A combination of a drop line system warning, controlled access zone system or using a security monitor.</span></span></p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Railings: </em></strong><span style=\"font-weight: 400;\">Guardrails protect you from falls that could seriously injure and even kill you. The protection that railings can be offered depends on how they are constructed and how well they are maintained. Most of the guardrails are constructed of rigid materials and are usually solid when mounted. However, with guardrails are often battered, weakened, or broken and are not removed from service or replaced. The weakened guardrails are sometimes more dangerous than the fact that there are no guardrails since they give a false sense of security.</span></span></p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>While working</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Get into the habit of checking the railings.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">If you discover a deteriorated portion, correct the situation if you can, or report it so that the risk be eliminated.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">If you hit a railing with any material or equipment, check it to see if it has been weakened.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">If you discover a broken railing, post, or baseboard, repair it if you can. Otherwise report it to be repaired.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">When repairing or replacing guardrails, exercise caution, as you are exposed to the great risk for which you are providing protection.</span></li>\n</ul>"
+}

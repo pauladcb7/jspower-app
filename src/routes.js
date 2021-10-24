@@ -42,13 +42,13 @@ const routes = [
     component: WorkOrder,
   },
   {
-    path: "/sign-sheet/list",
+    path: "/safety-sheets/list",
     exact: true,
     name: "List Sheet",
     component: ListSheet,
   },
   {
-    path: "/sign-sheet/sign/:idFile",
+    path: "/safety-sheets/sign/:idFile",
     exact: true,
     name: "Sign Sheet",
     component: SignSheet,

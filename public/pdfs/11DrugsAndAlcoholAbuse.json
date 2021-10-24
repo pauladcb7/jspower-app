@@ -1,0 +1,600 @@
+{
+    "content": [
+        {
+            "text": " ",
+            "nodeName": "H1",
+            "fontSize": 16,
+            "bold": true,
+            "marginBottom": 5,
+            "font": "Bookos",
+            "alignment": "center",
+            "style": [
+                "html-h1",
+                "heading"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": "DRUGS AND ALCOHOL ABUSE AT WORKPLACE / ",
+                            "nodeName": "STRONG",
+                            "fontSize": 16,
+                            "bold": true,
+                            "font": "Bookos",
+                            "alignment": "center",
+                            "decoration": [
+                                "underline"
+                            ],
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-h1",
+                                "heading"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "fontSize": 16,
+                    "bold": true,
+                    "font": "Bookos",
+                    "alignment": "center",
+                    "decoration": [
+                        "underline"
+                    ],
+                    "style": [
+                        "html-span",
+                        "html-h1",
+                        "heading"
+                    ]
+                }
+            ],
+            "nodeName": "H1",
+            "fontSize": 16,
+            "bold": true,
+            "marginBottom": 5,
+            "font": "Bookos",
+            "alignment": "center",
+            "marginLeft": 40,
+            "style": [
+                "html-h1",
+                "heading"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": "SAFETY TRAINING",
+                            "nodeName": "STRONG",
+                            "fontSize": 16,
+                            "bold": true,
+                            "font": "Bookos",
+                            "alignment": "center",
+                            "decoration": [
+                                "underline"
+                            ],
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-h1",
+                                "heading"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "fontSize": 16,
+                    "bold": true,
+                    "font": "Bookos",
+                    "alignment": "center",
+                    "decoration": [
+                        "underline"
+                    ],
+                    "style": [
+                        "html-span",
+                        "html-h1",
+                        "heading"
+                    ]
+                }
+            ],
+            "nodeName": "H1",
+            "fontSize": 16,
+            "bold": true,
+            "marginBottom": 5,
+            "font": "Bookos",
+            "alignment": "center",
+            "style": [
+                "html-h1",
+                "heading"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "\n",
+                    "nodeName": "BR"
+                },
+                {
+                    "text": "\n",
+                    "nodeName": "BR"
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "The use of drugs and alcohol abuse at the workplace can have a negative impact on productivity and wellbeing. Not only may it hinder the performance of the person who is under the influence, but it may also jeopardize the individuals and other colleagues. It is also expensive for organizations. Each year, alcohol misuse costs the workplace around $33 billion to $68 billion, while drug addiction at work is predicted to cost $81 billion.",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Impact of Drug and Alcohol Abuse: ",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        },
+                        {
+                            "text": "According to NCADI statistics, alcohol, and drug users:",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Are far less productive.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Use three times as many sick days.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Are more likely to injure themselves or someone else.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Are five times more likely to file a worker's compensation claim.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Effects of Alcohol on the Body:",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        },
+                        {
+                            "text": " ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Alcohol acts as a depressant in the body.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Alcohol slows reaction and the ability to reason and make decisions.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Alcohol can be addictive.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Alcohol causes the stomach to produce excess acids, which can destroy the inner lining of the stomach and cause permanent damage to the liver and other important organs.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "There are no “good” forms of alcohol. Alcohol in beer is equally destructive than that found in stronger liquors.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "The effects of alcohol vary from person to person. Some people are They are violently indisposed, while others seem to \"hold\" liquor very well. ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Conclusion:",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        },
+                        {
+                            "text": " Workers with a drug or alcohol problem may seek help. Several million more adults engage in risky drinking patterns that could lead to alcohol problems. The costs to society in terms of lost productivity, health care costs, traffic accidents, and personal tragedies are staggering. Numerous studies and reports have been issued on the workplace costs of alcoholism and alcohol abuse, and they report costs that range from $33 billion to $68 billion per year. Alcohol is a major factor in injuries, both at home, at work, and on the road.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        }
+    ],
+    "images": {},
+    "customHtml": "<h1 class=\"heading\" style=\"font-size: 16pt; font-family: BookOS; text-align: center;\">&nbsp;</h1>\n<h1 class=\"heading\" style=\"font-size: 16pt; font-family: BookOS; text-align: center; margin-left: 40pt;\"><span style=\"text-decoration: underline;\"><strong>DRUGS AND ALCOHOL ABUSE AT WORKPLACE /&nbsp;</strong></span></h1>\n<h1 class=\"heading\" style=\"font-size: 16pt; font-family: BookOS; text-align: center;\"><span style=\"text-decoration: underline;\"><strong>SAFETY TRAINING</strong></span></h1>\n<p><br /><br /></p>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">The use of drugs and alcohol abuse at the workplace can have a negative impact on productivity and wellbeing. Not only may it hinder the performance of the person who is under the influence, but it may also jeopardize the individuals and other colleagues. It is also expensive for organizations. Each year, alcohol misuse costs the workplace around $33 billion to $68 billion, while drug addiction at work is predicted to cost $81 billion.</span></p>\n<p><span style=\"font-family: Calibri;\"><strong><em>Impact of Drug and Alcohol Abuse: </em></strong><span style=\"font-weight: 400;\">According to NCADI statistics, alcohol, and drug users:</span></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Are far less productive.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Use three times as many sick days.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Are more likely to injure themselves or someone else.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Are five times more likely to file a worker's compensation claim.</span></li>\n</ul>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri;\"><strong><em>Effects of Alcohol on the Body:</em></strong><span style=\"font-weight: 400;\">&nbsp;</span></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Alcohol acts as a depressant in the body.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Alcohol slows reaction and the ability to reason and make decisions.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Alcohol can be addictive.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Alcohol causes the stomach to produce excess acids, which can destroy the inner lining of the stomach and cause permanent damage to the liver and other important organs.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">There are no &ldquo;good&rdquo; forms of alcohol. Alcohol in beer is equally destructive than that found in stronger liquors.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">The effects of alcohol vary from person to person. Some people are They are violently indisposed, while others seem to \"hold\" liquor very well.&nbsp;</span></li>\n</ul>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri;\"><strong><em>Conclusion:</em></strong><span style=\"font-weight: 400;\"> Workers with a drug or alcohol problem may seek help. Several million more adults engage in risky drinking patterns that could lead to alcohol problems. The costs to society in terms of lost productivity, health care costs, traffic accidents, and personal tragedies are staggering. Numerous studies and reports have been issued on the workplace costs of alcoholism and alcohol abuse, and they report costs that range from $33 billion to $68 billion per year. Alcohol is a major factor in injuries, both at home, at work, and on the road.</span></span></p>\n<p>&nbsp;</p>"
+}

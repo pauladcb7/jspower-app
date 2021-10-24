@@ -127,7 +127,6 @@ export function timecardPrint ({
       })),
     ]
   })
-  debugger
   var merged = [].concat.apply([], mergedTimeEntries);
   var dd =  {
     content: [

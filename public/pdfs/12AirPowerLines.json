@@ -1,0 +1,693 @@
+{
+    "content": [
+        {
+            "text": " ",
+            "nodeName": "H1",
+            "fontSize": 16,
+            "bold": true,
+            "marginBottom": 5,
+            "font": "Bookos",
+            "alignment": "center",
+            "style": [
+                "html-h1",
+                "heading"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "H1",
+            "fontSize": 16,
+            "bold": true,
+            "marginBottom": 5,
+            "font": "Bookos",
+            "alignment": "center",
+            "style": [
+                "html-h1",
+                "heading"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": "AIR POWER LINES / SAFETY TRAINING",
+                            "nodeName": "STRONG",
+                            "fontSize": 16,
+                            "bold": true,
+                            "font": "Bookos",
+                            "alignment": "center",
+                            "decoration": [
+                                "underline"
+                            ],
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-h1",
+                                "heading"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "fontSize": 16,
+                    "bold": true,
+                    "font": "Bookos",
+                    "alignment": "center",
+                    "decoration": [
+                        "underline"
+                    ],
+                    "style": [
+                        "html-span",
+                        "html-h1",
+                        "heading"
+                    ]
+                }
+            ],
+            "nodeName": "H1",
+            "fontSize": 16,
+            "bold": true,
+            "marginBottom": 5,
+            "font": "Bookos",
+            "alignment": "center",
+            "style": [
+                "html-h1",
+                "heading"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": "            ",
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        },
+                        {
+                            "text": "\n",
+                            "nodeName": "BR"
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "Contact between a crane and power lines causes more fatalities per year than any other type of",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "electrical accident in the construction industry. ",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Examples of this type of accident are:",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "A carpenter of structures (framer) was standing on a bundle of stored material under a power line, while he signals to the crane operator to guide the load. He came into contact with the power line and killed the carpenter by electrocution.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "A foreman walking backwards pulling the hook when the load line met an overhead power line.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "A worker was leaning against the side of the crane when it came into contact with a line electrical, causing the current to find ground through its body.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "It is difficult for the crane operator to be sure of the exact location of the upper tip of the crane. The operator does not have a good estimate of distance when looking up along the mast of the crane and he is generally paying attention to the load.",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "The best way to avoid contact is to keep the lift mast at least 10 feet away from any overhead power line. A good option would be to store the material in a less convenient location than the floor below overhead power lines, or someone must be assigned to observe the mast of the crane when the job requires that it be close to a power line or that the power company disconnect the power supply from an overhead power line or protect the line with rubber sleeves.",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Safe practices",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Browse the site for overhead power lines - LOOK UP!",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Locate and identify overhead power lines.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Be alert when using a crane or work equipment at high altitudes, near power lines electrical power of 50,000 volts (50 kilovolts) or more.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Remember that the minimum distance between the lines.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Overhead power lines and any parts of the crane / equipment should be kept away from overhead power lines.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "at least 10 feet plus 1⁄2 inch for every 1,000 volts over 50,000 volts.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Have someone watch when you don't have a clear view of the power line from your station of the operation. The only job of the observer should be to make sure that the crane operator it is kept at a safe distance from overhead power lines.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Always treat overhead power lines as if they are charged with energy.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "When in doubt, contact the power company to determine what voltage the lines are.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Always ask the power company to cut power to the lines or install insulation while you are working near them.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Even with insulation, a minimum safe distance from power lines must be maintained.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Always make sure ladders and tools you use near power lines are of the correct type (wood or fiberglass).",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        }
+    ],
+    "images": {},
+    "customHtml": "<h1 class=\"heading\" style=\"font-size: 16pt; font-family: BookOS; text-align: center;\">&nbsp;</h1>\n<h1 class=\"heading\" style=\"font-size: 16pt; font-family: BookOS; text-align: center;\">&nbsp;</h1>\n<h1 class=\"heading\" style=\"font-size: 16pt; font-family: BookOS; text-align: center;\"><span style=\"text-decoration: underline;\"><strong>AIR POWER LINES / SAFETY TRAINING</strong></span></h1>\n<p><span style=\"font-weight: 400;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></span></p>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">Contact between a crane and power lines causes more fatalities per year than any other type of</span></p>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">electrical accident in the construction industry.&nbsp;</span></p>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri;\"><strong><em>Examples of this type of accident are:</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">A carpenter of structures (framer) was standing on a bundle of stored material under a power line, while he signals to the crane operator to guide the load. He came into contact with the power line and killed the carpenter by electrocution.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">A foreman walking backwards pulling the hook when the load line met an overhead power line.</span></li>\n</ul>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">A worker was leaning against the side of the crane when it came into contact with a line electrical, causing the current to find ground through its body.</span></li>\n</ul>\n<p>&nbsp;</p>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">It is difficult for the crane operator to be sure of the exact location of the upper tip of the crane. The operator does not have a good estimate of distance when looking up along the mast of the crane and he is generally paying attention to the load.</span></p>\n<p>&nbsp;</p>\n<p><span style=\"font-weight: 400; font-family: Calibri;\">The best way to avoid contact is to keep the lift mast at least 10 feet away from any overhead power line. A good option would be to store the material in a less convenient location than the floor below overhead power lines, or someone must be assigned to observe the mast of the crane when the job requires that it be close to a power line or that the power company disconnect the power supply from an overhead power line or protect the line with rubber sleeves.</span></p>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri;\"><strong><em>Safe practices</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Browse the site for overhead power lines - LOOK UP!</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Locate and identify overhead power lines.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Be alert when using a crane or work equipment at high altitudes, near power lines electrical power of 50,000 volts (50 kilovolts) or more.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Remember that the minimum distance between the lines.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Overhead power lines and any parts of the crane / equipment should be kept away from overhead power lines.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">at least 10 feet plus 1&frasl;2 inch for every 1,000 volts over 50,000 volts.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Have someone watch when you don't have a clear view of the power line from your station of the operation. The only job of the observer should be to make sure that the crane operator it is kept at a safe distance from overhead power lines.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Always treat overhead power lines as if they are charged with energy.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">When in doubt, contact the power company to determine what voltage the lines are.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Always ask the power company to cut power to the lines or install insulation while you are working near them.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Even with insulation, a minimum safe distance from power lines must be maintained.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri;\">Always make sure ladders and tools you use near power lines are of the correct type (wood or fiberglass).</span></li>\n</ul>"
+}

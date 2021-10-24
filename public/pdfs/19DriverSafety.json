@@ -1,0 +1,773 @@
+{
+    "content": [
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "DRIVER SAFETY / SAFETY TRAINING",
+                                    "nodeName": "STRONG",
+                                    "alignment": "center",
+                                    "decoration": [
+                                        "underline"
+                                    ],
+                                    "fontSize": 16,
+                                    "font": "Bookos",
+                                    "bold": true,
+                                    "style": [
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "SPAN",
+                            "alignment": "center",
+                            "decoration": [
+                                "underline"
+                            ],
+                            "fontSize": 16,
+                            "font": "Bookos",
+                            "style": [
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "alignment": "center",
+                    "decoration": [
+                        "underline"
+                    ],
+                    "fontSize": 16,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "alignment": "center",
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "            ",
+                    "nodeName": "SPAN",
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "\n",
+                                    "nodeName": "BR"
+                                },
+                                {
+                                    "text": "Introduction:",
+                                    "nodeName": "SPAN",
+                                    "bold": true,
+                                    "italics": true,
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "style": [
+                                        "html-span",
+                                        "html-em",
+                                        "html-strong",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "EM",
+                            "bold": true,
+                            "italics": true,
+                            "style": [
+                                "html-em",
+                                "html-strong",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "STRONG",
+                    "bold": true,
+                    "style": [
+                        "html-strong",
+                        "html-p"
+                    ]
+                },
+                {
+                    "text": " Many motorists mistakenly assume that truckers have a better perspective of the road because they sit at a height what is twice of the driver in a common car. Unlike cars, trucks have wide blind spots behind them. In this position the truck driver cannot see cars passing behind his truck, and his visibility of the traffic flow decreases. Following trucks too closely increases chances of hitting the rear of the truck.",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Side blind spots",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "Trucks have longer blind spots on both sides that are much wider than truck vehicles. When you drive in these blind spots during any period of time, truckers can't see you. Motorists traveling in these blind spots increase the chances of an accident. An excellent rule of thumb for motorists who share the road with a truck is “if you can't see the truck driver or the truck's side mirrors, he can't see you to you\".",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "Truck and van drivers",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "UL",
+            "marginBottom": 5,
+            "marginLeft": 5,
+            "style": [
+                "html-ul"
+            ],
+            "ul": [
+                {
+                    "text": [
+                        {
+                            "text": "Check that your mirrors are properly adjusted and clean before you leave. Ask for help if deems necessary.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "Where possible add mirrors for blind spots.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": "When backing up always get out of the car and look around ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ul"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ul"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": "the area for obstructions, pedestrians, etc. Again, ask for help when needed. Try not to rely solely on your mirrors.",
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "text": [
+                {
+                    "text": [
+                        {
+                            "text": [
+                                {
+                                    "text": "The ten recommendations for drivers in work zones:",
+                                    "nodeName": "EM",
+                                    "font": "Calibri",
+                                    "fontSize": 12,
+                                    "bold": true,
+                                    "italics": true,
+                                    "style": [
+                                        "html-em",
+                                        "html-strong",
+                                        "html-span",
+                                        "html-p"
+                                    ]
+                                }
+                            ],
+                            "nodeName": "STRONG",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "bold": true,
+                            "style": [
+                                "html-strong",
+                                "html-span",
+                                "html-p"
+                            ]
+                        }
+                    ],
+                    "nodeName": "SPAN",
+                    "font": "Calibri",
+                    "fontSize": 12,
+                    "style": [
+                        "html-span",
+                        "html-p"
+                    ]
+                }
+            ],
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        },
+        {
+            "nodeName": "OL",
+            "style": [
+                "html-ol"
+            ],
+            "ol": [
+                {
+                    "text": [
+                        {
+                            "text": " Slow down! Low speeds save lives. ",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": " Turn on your lights.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": " Do not use your cell phone while driving.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": " Turn off your radio.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": " Do not eat or drink while driving.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": " Keep both hands on the wheel.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": " Don't drive aggressively.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": " Follow directions in the work area and react promptly to directions.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": " Be on the lookout for activity going on in the work zone.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                },
+                {
+                    "text": [
+                        {
+                            "text": " Pay extra attention while driving your vehicle in work zones at night.",
+                            "nodeName": "SPAN",
+                            "font": "Calibri",
+                            "fontSize": 12,
+                            "style": [
+                                "html-span",
+                                "html-li",
+                                "html-ol"
+                            ]
+                        }
+                    ],
+                    "nodeName": "LI",
+                    "style": [
+                        "html-li",
+                        "html-ol"
+                    ]
+                }
+            ]
+        },
+        {
+            "text": " ",
+            "nodeName": "P",
+            "margin": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "marginTop": 0,
+            "marginBottom": 0,
+            "style": [
+                "html-p"
+            ]
+        }
+    ],
+    "images": {},
+    "customHtml": "<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><span style=\"text-decoration: underline; font-size: 16pt;\"><span style=\"font-family: BookOS;\"><strong>DRIVER SAFETY / SAFETY TRAINING</strong></span></span></p>\n<p><span style=\"font-weight: 400;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>\n<p>&nbsp;</p>\n<p><strong><em><br /><span style=\"font-family: Calibri; font-size: 12pt;\">Introduction:</span></em></strong><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Many motorists mistakenly assume that truckers have a better perspective of the road because they sit at a height what is twice of the driver in a common car. Unlike cars, trucks have wide blind spots behind them. In this position the truck driver cannot see cars passing behind his truck, and his visibility of the traffic flow decreases. Following trucks too closely increases chances of hitting the rear of the truck.</span></p>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Side blind spots</em></strong></span></p>\n<p><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Trucks have longer blind spots on both sides that are much wider than truck vehicles. When you drive in these blind spots during any period of time, truckers can't see you. Motorists traveling in these blind spots increase the chances of an accident. An excellent rule of thumb for motorists who share the road with a truck is &ldquo;if you can't see the truck driver or the truck's side mirrors, he can't see you to you\".</span></p>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>Truck and van drivers</em></strong></span></p>\n<ul>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Check that your mirrors are properly adjusted and clean before you leave. Ask for help if deems necessary.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">Where possible add mirrors for blind spots.</span></li>\n<li style=\"font-weight: 400;\" aria-level=\"1\"><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">When backing up always get out of the car and look around&nbsp;</span></li>\n</ul>\n<p><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\">the area for obstructions, pedestrians, etc. Again, ask for help when needed. Try not to rely solely on your mirrors.</span></p>\n<p>&nbsp;</p>\n<p><span style=\"font-family: Calibri; font-size: 12pt;\"><strong><em>The ten recommendations for drivers in work zones:</em></strong></span></p>\n<ol>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Slow down! Low speeds save lives.&nbsp;</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Turn on your lights.</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Do not use your cell phone while driving.</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Turn off your radio.</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Do not eat or drink while driving.</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Keep both hands on the wheel.</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Don't drive aggressively.</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Follow directions in the work area and react promptly to directions.</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Be on the lookout for activity going on in the work zone.</span></li>\n<li><span style=\"font-weight: 400; font-family: Calibri; font-size: 12pt;\"> Pay extra attention while driving your vehicle in work zones at night.</span></li>\n</ol>\n<p>&nbsp;</p>"
+}

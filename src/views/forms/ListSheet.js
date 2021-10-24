@@ -94,11 +94,10 @@ const ListSheet = () => {
     }
     setCollapseMulti(newCollapse);
   };
-  const [signatureCustomer, setSignatureCustomer] = useState(null)
-  const [signatureEmployee, setSignatureEmployee] = useState(null)
+  const [signatureCustomer, setSignatureCustomer] = useState(null);
+  const [signatureEmployee, setSignatureEmployee] = useState(null);
   const onSubmit = function (e) {
     if (!signatureCustomer.isEmpty() && !signatureEmployee.isEmpty()) {
-      debugger
       workOrderPrint({
         date: e.date,
         workType: e.workType,
@@ -110,7 +109,7 @@ const ListSheet = () => {
         jobDetails: e.jobDetails,
         customerSignature: signatureCustomer.toDataURL(),
         employeeSignature: signatureEmployee.toDataURL(),
-        customerInformation: e.clientName
+        customerInformation: e.clientName,
       });
     }
   };
@@ -119,7 +118,7 @@ const ListSheet = () => {
   };
 
   const history = useHistory();
-  
+
   return (
     <>
       <CRow>
@@ -128,7 +127,6 @@ const ListSheet = () => {
             <Form
               onSubmit={onSubmit}
               validate={validate}
-
               render={({ handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
                   <CCard>
@@ -141,7 +139,9 @@ const ListSheet = () => {
                           onClick={() => setCollapsed(!collapsed)}
                         >
                           <CIcon
-                            name={collapsed ? "cil-arrow-top" : "cil-arrow-bottom"}
+                            name={
+                              collapsed ? "cil-arrow-top" : "cil-arrow-bottom"
+                            }
                           />
                         </CButton>
                       </div>
@@ -154,27 +154,30 @@ const ListSheet = () => {
                               items={documents}
                               fields={[
                                 {
-                                  key: 'view',
-                                  label: ' ',
+                                  key: "view",
+                                  label: " ",
                                   sorter: false,
                                   filter: false,
-                                  _style: { minWidth: '120px'},
+                                  _style: { minWidth: "120px" },
                                 },
                                 {
-                                  key: 'fileName',
-                                  label: 'File Name',
+                                  key: "fileName",
+                                  label: "File Name",
                                   sorter: false,
                                   filter: false,
-                                  _style: { minWidth: '120px'},
-                                }
+                                  _style: { minWidth: "120px" },
+                                },
                               ]}
                               striped
-                              scopedSlots={
-                                {
-                                  'view': (row) => {
-                                    return <td className="py-2" style={{
-                                      minWidth: 100
-                                    }}>
+                              scopedSlots={{
+                                view: (row) => {
+                                  return (
+                                    <td
+                                      className="py-2"
+                                      style={{
+                                        minWidth: 100,
+                                      }}
+                                    >
                                       <CButton
                                         color="primary"
                                         variant="outline"
@@ -182,15 +185,17 @@ const ListSheet = () => {
                                         size="sm"
                                         onClick={() => {
                                           //toggleDetails(index)
-                                          history.push(`/sign-sheet/sign/${row.id}`)
+                                          history.push(
+                                            `/safety-sheets/sign/${row.id}`
+                                          );
                                         }}
                                       >
                                         <CIcon width={24} name="cil-pencil" />
                                       </CButton>
                                     </td>
-                                  }
-                                }
-                              }
+                                  );
+                                },
+                              }}
                             />
                           </CCol>
                         </CRow>
@@ -205,7 +210,6 @@ const ListSheet = () => {
                 </form>
               )}
             />
-
           </CFade>
         </CCol>
       </CRow>

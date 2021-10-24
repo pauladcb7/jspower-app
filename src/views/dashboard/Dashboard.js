@@ -91,7 +91,7 @@ const Dashboard = () => {
             }}
           ></CWidgetSimple>
         </CCol>
-        {/* <CCol sm="4" md="6" lg="4" style={{ cursor: "pointer" }}>
+        <CCol sm="4" md="6" lg="4" style={{ cursor: "pointer" }}>
           <CWidgetSimple
             header={
               <div style={{ color: "white", fontSize: "14px" }}>
@@ -104,8 +104,11 @@ const Dashboard = () => {
               color: "white",
             }}
             text={<CIcon height="44" name="cil-task" />}
+            onClick={() => {
+              history.push("/safety-sheets/list");
+            }}
           ></CWidgetSimple>
-        </CCol> */}
+        </CCol>
       </CRow>
     </>
   );
