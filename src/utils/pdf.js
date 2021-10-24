@@ -7,6 +7,7 @@ import CalibriItalic from "src/assets/fonts/Calibri Italic.ttf";
 import CalibriBoldItalic from "src/assets/fonts/Calibri Bold Italic.ttf";
 import BookOS from "src/assets/fonts/BOOKOS.TTF";
 import BookOSB from "src/assets/fonts/BOOKOSB.TTF";
+import BookOSBI from "src/assets/fonts/BOOKOSBI.TTF";
 
 let pdfInstance;
 export async function getPDfInstance() {
@@ -27,6 +28,8 @@ export async function getPDfInstance() {
     ["Bookos"]: {
       normal: path + BookOS,
       bold: path + BookOSB,
+      bolditalics: path + BookOSBI,
+      
     },
 
     Roboto: {

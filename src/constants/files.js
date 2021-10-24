@@ -1,5 +1,10 @@
 export const documents = [
   {
+    filePath: 'test.json',
+    fileName: 'TEST',
+    id: "test"
+  },
+  {
     filePath: '01. PPE.html',
     fileName: 'PPE',
     id: "01"

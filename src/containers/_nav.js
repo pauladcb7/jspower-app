@@ -40,18 +40,18 @@ const _nav = [
     to: "/circuit-directory/selector",
     icon: "cil-spreadsheet",
   },
-  // {
-  //   _tag: "CSidebarNavItem",
-  //   name: "Safety Sheets",
-  //   to: "/sign-sheet/list",
-  //   icon: "cil-task",
-  // },
-  // {
-  //   _tag: "CSidebarNavItem",
-  //   name: "Safety Sheets Creation",
-  //   to: "/sheet/create",
-  //   icon: "cil-task",
-  // },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Safety Sheets",
+    to: "/sign-sheet/list",
+    icon: "cil-task",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Safety Sheets Creation",
+    to: "/sheet/create",
+    icon: "cil-task",
+  },
 ];
 
 export default _nav;
