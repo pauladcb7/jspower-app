@@ -30,6 +30,7 @@ import htmlToPdfmake from "html-to-pdfmake";
 import { getPDfInstance } from "src/utils/pdf";
 import { getBase64ImageFromURL } from "src/utils";
 import moment from "moment";
+import { useSelector } from "react-redux";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -41,10 +42,13 @@ const ListSheet = () => {
   const [document, setDocument] = React.useState(null);
   const [b64, setB64] = useState("");
   const [currentDocument, setCurrentDocument] = useState("");
- 
+  const user = useSelector((state) => {
+    return state.user;
+  });
+
   const onSubmit = async function (e) {
-    let document2 = currentDocument;
-    const companyName = "JSPOWEREELECTRICINC"
+    let document2 = { ...currentDocument };
+    const companyName = "JSPOWEREELECTRICINC";
     const {
       jobLocation,
       personalSafetyViolations,
@@ -52,40 +56,39 @@ const ListSheet = () => {
       timeFinished,
       timeStarted,
       employeeSignature,
-      supervisorSignature
+      supervisorSignature,
     } = e;
-    debugger
-    document2.pageMargins = [15, 22, 15, 5]
+    document2.pageMargins = [25, 22, 25, 5];
     document2.styles = {
-      'html-p': {
+      "html-p": {
         marginTop: 0,
         marginBottom: 0,
-        margin: [0, 0, 0, 0] // it will add a yellow background to all <STRONG> elements
+        margin: [0, 0, 0, 0], // it will add a yellow background to all <STRONG> elements
       },
-      'html-strong': {
-        margin: [0, 0, 0, 0] // it will add a yellow background to all <STRONG> elements
+      "html-strong": {
+        margin: [0, 0, 0, 0], // it will add a yellow background to all <STRONG> elements
       },
-      'html-span': {
-        margin: [0, 0, 0, 0] // it will add a yellow background to all <STRONG> elements
+      "html-span": {
+        margin: [0, 0, 0, 0], // it will add a yellow background to all <STRONG> elements
       },
-      'html-ul': {
-        margin: [0, 0, 0, 0]
-      }
-    }
-    const logo = (await import('../../assets/logopdf.png')).default;
-    const logo2 = (await import('../../assets/logoBg.png')).default;
+      "html-ul": {
+        margin: [0, 0, 0, 0],
+      },
+    };
+    const logo = (await import("../../assets/logopdf.png")).default;
+    const logo2 = (await import("../../assets/logoBg.png")).default;
     document2.images.logo = await getBase64ImageFromURL(logo);
     document2.images.logo2 = await getBase64ImageFromURL(logo2);
-    employeeSignature.forEach((es,index) => {
-      document2.images['sign' + index] = es.signature  
+    employeeSignature.forEach((es, index) => {
+      document2.images["sign" + index] = es.signature;
     });
-    document2.images.supervisorSignature= supervisorSignature  
-    
-    document2.content.unshift(
+    document2.images.supervisorSignature = supervisorSignature;
+    const t1 = [...document2.content];
+    t1.unshift(
       {
-        image: 'logo',
+        image: "logo",
         fit: [80, 80],
-        absolutePosition: { x: 15, y: 65 }
+        absolutePosition: { x: 15, y: 65 },
       },
       {
         //layout: 'lightHorizontalLines', // optional
@@ -93,35 +96,42 @@ const ListSheet = () => {
           // headers are automatically repeated if the table spans over multiple pages
           // you can declare how many rows should be treated as headers
           headerRows: 0,
-          widths: ['*'],
+          widths: ["*"],
 
           body: [
             [
               {
-                text: `Company Name:____${companyName}        Job Location: __${jobLocation}___       Date: ___${moment().format("YYYY-MM-DD")}________`,
-                font: "Calibri"
-              }
+                text: `Company Name: ${companyName}        Job Location: ${jobLocation}       Date: ${moment().format(
+                  "YYYY-MM-DD"
+                )}`,
+                font: "Calibri",
+              },
             ],
             [
               {
-                text: `Time Started: _${moment(timeStarted, "HH:mm").format('hh:mm a')}_ Time Finished: _${moment(timeFinished, "HH:mm").format('hh:mm a')}_ Foreman/Supervisor:___Nose____`,
-                font: "Calibri"
-              }]
-          ]
+                text: `Time Started: ${moment(timeStarted, "HH:mm").format(
+                  "hh:mm a"
+                )} Time Finished: ${moment(timeFinished, "HH:mm").format(
+                  "hh:mm a"
+                )} Foreman/Supervisor: ${user.first_name} ${user.last_name}`,
+                font: "Calibri",
+              },
+            ],
+          ],
         },
 
         layout: {
           hLineWidth: function (i, node) {
-            return (i === 0 || i === node.table.body.length) ? 1 : 0;
+            return i === 0 || i === node.table.body.length ? 1 : 0;
           },
           vLineWidth: function (i, node) {
-            return (i === 0 || i === node.table.widths.length) ? 1 : 0;
+            return i === 0 || i === node.table.widths.length ? 1 : 0;
           },
           hLineColor: function (i, node) {
-            return 'black';
+            return "black";
           },
           vLineColor: function (i, node) {
-            return 'black';
+            return "black";
           },
           hLineStyle: function (i, node) {
             if (i === 0 || i === node.table.body.length) {
@@ -140,319 +150,91 @@ const ListSheet = () => {
           // paddingTop: function(i, node) { return 2; },
           // paddingBottom: function(i, node) { return 2; },
           // fillColor: function (i, node) { return null; }
-        }
-      })
-      
-      
-    document2.content.push(
-      {
-        text: `Work-Site Hazards and Safety Suggestions: _____________${personalSafetyViolations}________.`,
-        font: "Calibri"
-      },
-      {
-        text: `Personnel Safety Violations: ____________${safetySuggestion}_________________________.`,
-        font: "Calibri"
-      },
-      {
-        text: 'Employee Signatures:                  (My signature attests and verifies my understanding of and agreement to comply with company safety regulations).',
-        font: "Calibri"
-      },
-      {
-        columns: [{
-          // auto-sized columns have their widths based on their content
-          width: '*',
-          columns: [
-            {
-              width: 12,
-              text: '1. ',
-              font: "Calibri"
-            },
-            {
-              ...(
-                employeeSignature[0] ? {
-                image:'sign0',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
         },
-        {
-          // star-sized columns fill the remaining space
-          // if there's more than one star-column, available width is divided equally
-          width: '*',
-          columns: [
-            {
-              width: 12,
-              text: '2. ',
-              font: "Calibri"
-            },
-            {
-              ...(
-                employeeSignature[1] ? {
-                image:'sign1',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        {
-          // fixed width
-          width: '*',
-          columns: [
-            {
-              width: 12,
-              text: '3. ',
-              font: "Calibri"
-            },
-            {
-              ...(
-                employeeSignature[2] ? {
-                image:'sign2',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        ],
-        width: '100%'
-      },
-      {
-        columns: [{
-          // auto-sized columns have their widths based on their content
-          width: '*',
-          columns: [
-            {
-              width: 12,
-              text: '4. ',
-              font: "Calibri"
-            },
-            {
-              ...(
-                employeeSignature[3] ? {
-                image:'sign3',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        {
-          // star-sized columns fill the remaining space
-          // if there's more than one star-column, available width is divided equally
-          width: '*',
-          columns: [
-            {
-              width: 12,
-              text: '5. ',
-              font: "Calibri"
-            },
-            {
+      }
+    );
 
-              ...(
-                employeeSignature[4] ? {
-                image:'sign4',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        {
-          // fixed width
-          width: '*',
-          columns: [
-            {
-              width: 12,
-              text: '6. ',
-              font: "Calibri"
-            },
-            {
-
-              ...(
-                employeeSignature[5] ? {
-                image:'sign5',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        ],
-        width: '100%'
-      },
-      {
-        columns: [{
-          // auto-sized columns have their widths based on their content
-          width: '*',
-          columns: [
-            {
-              width: 12,
-              text: '7. ',
-              font: "Calibri"
-            },
-            {
-
-              ...(
-                employeeSignature[6] ? {
-                image:'sign6',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        {
-          // star-sized columns fill the remaining space
-          // if there's more than one star-column, available width is divided equally
-          width: '*',
-          columns: [
-            {
-              width: 12,
-              text: '8. ',
-              font: "Calibri"
-            },
-            {
-
-              ...(
-                employeeSignature[7] ? {
-                image:'sign7',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        {
-          // fixed width
-          width: '*',
-          columns: [
-            {
-              width: 12,
-              text: '9. ',
-              font: "Calibri"
-            },
-            {
-
-              ...(
-                employeeSignature[8] ? {
-                image:'sign8',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        ],
-        width: '100%'
-      },
-      {
-        columns: [{
-          // auto-sized columns have their widths based on their content
-          width: '*',
-
-          columns: [
-            {
-              width: 12,
-              text: '10. ',
-              font: "Calibri"
-            },
-            {
-
-              ...(
-                employeeSignature[9] ? {
-                image:'sign9',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        {
-          // star-sized columns fill the remaining space
-          // if there's more than one star-column, available width is divided equally
-          width: '*',
-
-          columns: [
-            {
-              width: 12,
-              text: '11. ',
-              font: "Calibri"
-            },
-            {
-
-              ...(
-                employeeSignature[10] ? {
-                image:'sign10',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        {
-          // fixed width
-          width: '*',
-
-          columns: [
-            {
-              width: 12,
-              text: '12. ',
-              font: "Calibri"
-            },
-            {
-
-              ...(
-                employeeSignature[11] ? {
-                image:'sign11',
-                fit: [150, 40],
-              }: {
-              }),
-            }
-          ]
-        },
-        ],
-        width: '100%'
-      },
-      {
-        
+    var result = [];
+    employeeSignature.forEach((employtee, index) => {
+      let dEmployee = {
+        // auto-sized columns have their widths based on their content
+        width: "*",
         columns: [
           {
-            width: '*',
-            alignment: 'right',
-            text: 'Foreman/Supervisor’s Signature:',
-            font: "Calibri"
+            width: 12,
+            text: `${index + 1}. `,
+            font: "Calibri",
+          },
+          {
+            image: "sign" + index,
+            fit: [150, 40],
+          },
+        ],
+      };
+      if (result[Math.floor(index / 3)]) {
+        result[Math.floor(index / 3)].columns.push(dEmployee);
+      } else {
+        result[Math.floor(index / 3)] = {
+          columns: [],
+          width: "100%",
+        };
+        result[Math.floor(index / 3)].columns.push(dEmployee);
+      }
+    });
+
+    t1.push(
+      {
+        text: `Work-Site Hazards and Safety Suggestions: ${personalSafetyViolations}.`,
+        font: "Calibri",
+      },
+      {
+        text: `Personnel Safety Violations: ${safetySuggestion}.`,
+        font: "Calibri",
+      },
+      {
+        text: "Employee Signatures:        (My signature attests and verifies my understanding of and agreement to comply with company safety regulations).",
+        font: "Calibri",
+      },
+      ...result,
+      {
+        columns: [
+          {
+            width: "*",
+            alignment: "right",
+            text: "Foreman/Supervisor’s Signature:",
+            font: "Calibri",
           },
           {
             width: 150,
-            
-            ...(
-              supervisorSignature ? {
-              image:'supervisorSignature',
-              fit: [150, 150],
-            }: {
-            }),
-          }
-        ]
-      })
+
+            ...(supervisorSignature
+              ? {
+                  image: "supervisorSignature",
+                  fit: [150, 150],
+                }
+              : {}),
+          },
+        ],
+      }
+    );
+
+    document2.content = t1;
     document2.background = [
       {
-        image: 'logo2',
+        image: "logo2",
         width: 420,
         fit: [420, 420],
         marginTop: 120,
-        alignment: 'center',
-      }
-    ]
+        alignment: "center",
+      },
+    ];
 
     getPDfInstance().then((pdfMake) => {
       pdfMake.createPdf(document2).download();
       /* getBase64((res) => {
         setB64(res)
       }) */
-    })
+    });
   };
   const validate = function (e) {
     //signaturePad.isEmpty()
@@ -471,7 +253,7 @@ const ListSheet = () => {
     if (document) {
       axios.get(`/pdfs/${document.filePath}`).then((response) => {
         var html = response.data;
-        setCurrentDocument(html)
+        setCurrentDocument(html);
         /* var document2 = htmlToPdfmake(html, {
           imagesByReference: true,
         }); */
@@ -742,9 +524,7 @@ const ListSheet = () => {
                             <Field name={`supervisorSignature`}>
                               {({ input: inputArray, meta }) => (
                                 <>
-                                  <CLabel >
-                                    Supervisor signature
-                                  </CLabel>
+                                  <CLabel>Supervisor signature</CLabel>
                                   <ESignature
                                     svg={inputArray.value}
                                     onChange={inputArray.onChange}
