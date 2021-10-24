@@ -29,6 +29,7 @@ import axios from "axios";
 import htmlToPdfmake from "html-to-pdfmake";
 import { getPDfInstance } from "src/utils/pdf";
 import { getBase64ImageFromURL } from "src/utils";
+import moment from "moment";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -40,12 +41,20 @@ const ListSheet = () => {
   const [document, setDocument] = React.useState(null);
   const [b64, setB64] = useState("");
   const [currentDocument, setCurrentDocument] = useState("");
-
+ 
   const onSubmit = async function (e) {
     let document2 = currentDocument;
+    const companyName = "JSPOWEREELECTRICINC"
     const {
-      companyName 
+      jobLocation,
+      personalSafetyViolations,
+      safetySuggestion,
+      timeFinished,
+      timeStarted,
+      employeeSignature,
+      supervisorSignature
     } = e;
+    debugger
     document2.pageMargins = [15, 22, 15, 5]
     document2.styles = {
       'html-p': {
@@ -63,10 +72,15 @@ const ListSheet = () => {
         margin: [0, 0, 0, 0]
       }
     }
-    const logo = (await import('../../assets/logoBg.png')).default;
-    const logo2 = (await import('../../assets/logopdf.png')).default;
+    const logo = (await import('../../assets/logopdf.png')).default;
+    const logo2 = (await import('../../assets/logoBg.png')).default;
     document2.images.logo = await getBase64ImageFromURL(logo);
     document2.images.logo2 = await getBase64ImageFromURL(logo2);
+    employeeSignature.forEach((es,index) => {
+      document2.images['sign' + index] = es.signature  
+    });
+    document2.images.supervisorSignature= supervisorSignature  
+    
     document2.content.unshift(
       {
         image: 'logo',
@@ -84,13 +98,13 @@ const ListSheet = () => {
           body: [
             [
               {
-                text: `Company Name:____${companyName}        Job Location: _____________________       Date: ___________`,
+                text: `Company Name:____${companyName}        Job Location: __${jobLocation}___       Date: ___${moment().format("YYYY-MM-DD")}________`,
                 font: "Calibri"
               }
             ],
             [
               {
-                text: 'Time Started: __:__ Time Finished: __:__ Foreman/Supervisor:_______',
+                text: `Time Started: _${moment(timeStarted, "HH:mm").format('hh:mm a')}_ Time Finished: _${moment(timeFinished, "HH:mm").format('hh:mm a')}_ Foreman/Supervisor:___Nose____`,
                 font: "Calibri"
               }]
           ]
@@ -128,13 +142,15 @@ const ListSheet = () => {
           // fillColor: function (i, node) { return null; }
         }
       })
+      
+      
     document2.content.push(
       {
-        text: 'Work-Site Hazards and Safety Suggestions: ______________________________________________________.',
+        text: `Work-Site Hazards and Safety Suggestions: _____________${personalSafetyViolations}________.`,
         font: "Calibri"
       },
       {
-        text: 'Personnel Safety Violations: __________________________________________________________________.',
+        text: `Personnel Safety Violations: ____________${safetySuggestion}_________________________.`,
         font: "Calibri"
       },
       {
@@ -152,9 +168,12 @@ const ListSheet = () => {
               font: "Calibri"
             },
             {
-
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[0] ? {
+                image:'sign0',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -165,13 +184,16 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '2. ',
               font: "Calibri"
             },
             {
-
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[1] ? {
+                image:'sign1',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -181,13 +203,16 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '3. ',
               font: "Calibri"
             },
             {
-
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[2] ? {
+                image:'sign2',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -201,13 +226,16 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '4. ',
               font: "Calibri"
             },
             {
-
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[3] ? {
+                image:'sign3',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -218,13 +246,17 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '5. ',
               font: "Calibri"
             },
             {
 
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[4] ? {
+                image:'sign4',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -234,13 +266,17 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '6. ',
               font: "Calibri"
             },
             {
 
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[5] ? {
+                image:'sign5',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -254,13 +290,17 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '7. ',
               font: "Calibri"
             },
             {
 
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[6] ? {
+                image:'sign6',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -271,13 +311,17 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '8. ',
               font: "Calibri"
             },
             {
 
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[7] ? {
+                image:'sign7',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -287,13 +331,17 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '9. ',
               font: "Calibri"
             },
             {
 
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[8] ? {
+                image:'sign8',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -308,13 +356,17 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '10. ',
               font: "Calibri"
             },
             {
 
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[9] ? {
+                image:'sign9',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -326,13 +378,17 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '11. ',
               font: "Calibri"
             },
             {
 
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[10] ? {
+                image:'sign10',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -343,13 +399,17 @@ const ListSheet = () => {
           columns: [
             {
               width: 12,
-              text: '1. ',
+              text: '12. ',
               font: "Calibri"
             },
             {
 
-              image: 'logo',
-              fit: [150, 40],
+              ...(
+                employeeSignature[11] ? {
+                image:'sign11',
+                fit: [150, 40],
+              }: {
+              }),
             }
           ]
         },
@@ -367,8 +427,13 @@ const ListSheet = () => {
           },
           {
             width: 150,
-            image: 'logo',
-            fit: [150, 150],
+            
+            ...(
+              supervisorSignature ? {
+              image:'supervisorSignature',
+              fit: [150, 150],
+            }: {
+            }),
           }
         ]
       })
@@ -381,12 +446,12 @@ const ListSheet = () => {
         alignment: 'center',
       }
     ]
-    console.log(document2)
 
     getPDfInstance().then((pdfMake) => {
-      pdfMake.createPdf(document2).getBase64((res) => {
+      pdfMake.createPdf(document2).download();
+      /* getBase64((res) => {
         setB64(res)
-      })
+      }) */
     })
   };
   const validate = function (e) {
@@ -542,6 +607,10 @@ const ListSheet = () => {
                                 type="application/pdf"
                               />
                             </object>
+                            {/* <div dangerouslySetInnerHTML={{
+                               __html: currentDocument.customHtml
+                            }}></div> */}
+                            {/* {JSON.stringify(currentDocument.customHtml)} */}
                             <Field name="safetySuggestion" validate={required}>
                               {({ input, meta }) => (
                                 <>
@@ -670,6 +739,19 @@ const ListSheet = () => {
                                 </>
                               )}
                             </FieldArray>
+                            <Field name={`supervisorSignature`}>
+                              {({ input: inputArray, meta }) => (
+                                <>
+                                  <CLabel >
+                                    Supervisor signature
+                                  </CLabel>
+                                  <ESignature
+                                    svg={inputArray.value}
+                                    onChange={inputArray.onChange}
+                                  ></ESignature>
+                                </>
+                              )}
+                            </Field>
                           </CCol>
                         </CRow>
                       </CCardBody>

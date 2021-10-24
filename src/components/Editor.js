@@ -50,8 +50,8 @@ export function Editor() {
           margin: [0, 0, 0, 0]
         }
       }
-      const logo = (await import('../assets/logoBg.png')).default;
-      const logo2 = (await import('../assets/logopdf.png')).default;
+      const logo = (await import('../assets/logopdf.png')).default;
+      const logo2 = (await import('../assets/logoBg.png')).default;
       document2.images.logo = await getBase64ImageFromURL(logo);
       document2.images.logo2 = await getBase64ImageFromURL(logo2);
       document2.content.unshift(
