@@ -39,6 +39,9 @@ export const SAVE_CIRCUIT_DIRECTORY = "circuit-directory/save";
 export const GET_CIRCUIT_DIRECTORY = "circuit-directory/get";
 
 /* Safety Sheets */
+export const SAVE_SAFETY_SHEET = "safety-sheet/save";
+export const SAFETY_SHEET = "safety-sheet";
+export const GET_SAFETY_SHEET = "safety-sheet/get";
 
 /* Users */
 export const USERS_GET = "users/get";

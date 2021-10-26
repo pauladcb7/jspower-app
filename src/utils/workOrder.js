@@ -234,26 +234,7 @@ export function workOrderPrint({
       },
     },
   };
-  // api
-  //   .post(SEND_WORK_ORDER, {
-  //     date: moment(date).format("dddd, MMMM DD, YYYY"),
-  //     workType: workType,
-  //     employeeName: employeeName,
-  //     startTime: startTime,
-  //     endTime: endTime,
-  //     jobLocation: jobLocation,
-  //     jobDetails: jobDetails,
-  //     customerInformation: customerInformation,
-  //     totalCost: totalCost,
-  //     customerSignature: customerSignature,
-  //     employeeSignature: employeeSignature,
-  //   })
-  //   .then((result) => {
-  //     console.log(result);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
+
   getPDfInstance().then((pdfMake) => {
     pdfMake.createPdf(dd).download();
   });

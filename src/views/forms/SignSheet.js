@@ -31,6 +31,9 @@ import { getPDfInstance } from "src/utils/pdf";
 import { getBase64ImageFromURL } from "src/utils";
 import moment from "moment";
 import { useSelector } from "react-redux";
+import { useToasts } from "react-toast-notifications";
+import { api } from "../../helpers/api";
+import { SAVE_SAFETY_SHEET } from "../../helpers/urls/index";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -45,7 +48,7 @@ const ListSheet = () => {
   const user = useSelector((state) => {
     return state.user;
   });
-
+  const { addToast } = useToasts();
   const onSubmit = async function (e) {
     let document2 = { ...currentDocument };
     const companyName = "JSPOWEREELECTRICINC";
@@ -228,6 +231,30 @@ const ListSheet = () => {
         alignment: "center",
       },
     ];
+    try {
+      const safetySheet = await api.post(SAVE_SAFETY_SHEET, {
+        safety_sheet_id: e.id || "-1",
+        job_location: jobLocation,
+        entry_date: moment().format("YYYY-MM-DD"),
+        start_time: timeStarted,
+        end_time: timeFinished,
+        safety_suggestions: safetySuggestion,
+        safety_violations: personalSafetyViolations,
+        safety_sheet_type: params.idFile,
+        supervisor_signature: supervisorSignature,
+        employee_signatures: employeeSignature,
+      });
+      addToast("Safety Sheet Submitted.", {
+        appearance: "success",
+        autoDismiss: true,
+      });
+    } catch (error) {
+      console.log(error);
+      addToast("Something went wrong creating Safety Sheet. Try again.", {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
 
     getPDfInstance().then((pdfMake) => {
       pdfMake.createPdf(document2).download();

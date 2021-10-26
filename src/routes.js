@@ -8,10 +8,12 @@ import CircuitDirectorySelector from "./views/forms/CircuitDirectorySelector";
 import WorkOrdersCrud from "./views/crud/WorkOrdersCrud";
 import TimeCardCrud from "./views/crud/TimeCardCrud";
 import MaterialRequisitionCrud from "./views/crud/MaterialRequisitionCrud";
+import SafetySheetsCrud from "./views/crud/SafetySheetsCrud";
 import CircuitDirectoryCrud from "./views/crud/CircuitDirectoryCrud";
 import SignSheet from "./views/forms/SignSheet";
 import ListSheet from "./views/forms/ListSheet";
 import SheetCreate from "./views/forms/SheetCreate";
+
 import Profile from "./views/pages/profile/Profile";
 import CircuitDirectoryBusiness208 from "./views/forms/CircuitDirectoryBusiness208";
 import CircuitDirectoryBusiness480 from "./views/forms/CircuitDirectoryBusiness480";
@@ -54,6 +56,12 @@ const routes = [
     component: SignSheet,
   },
   {
+    path: "/safety-sheets/",
+    exact: true,
+    name: "Safety Sheets",
+    component: SafetySheetsCrud,
+  },
+  {
     path: "/report/work-order",
     exact: true,
     name: "Report Work Order",
@@ -62,7 +70,7 @@ const routes = [
   {
     path: "/report/time-card",
     exact: true,
-    name: "Time Card Order",
+    name: "Time Cards",
     component: TimeCardCrud,
   },
   {

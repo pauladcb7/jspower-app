@@ -64,9 +64,7 @@ const ListSheet = () => {
   ];
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
 
-  useEffect(() => {
-    console.log("checked items: ", checkedJobLocations);
-  }, [checkedJobLocations]);
+  useEffect(() => {}, [checkedJobLocations]);
 
   const handleChange = (event) => {
     // updating an object instead of a Map
@@ -158,7 +156,7 @@ const ListSheet = () => {
                                   label: " ",
                                   sorter: false,
                                   filter: false,
-                                  _style: { minWidth: "120px" },
+                                  _style: { width: "20px" },
                                 },
                                 {
                                   key: "fileName",
@@ -190,7 +188,8 @@ const ListSheet = () => {
                                           );
                                         }}
                                       >
-                                        <CIcon width={24} name="cil-pencil" />
+                                        <CIcon width={24} name="cil-pencil" />{" "}
+                                        Sign
                                       </CButton>
                                     </td>
                                   );

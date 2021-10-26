@@ -43,13 +43,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Safety Sheets",
-    to: "/sign-sheet/list",
-    icon: "cil-task",
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Safety Sheets Creation",
-    to: "/sheet/create",
+    to: "/safety_sheets/list",
     icon: "cil-task",
   },
 ];
