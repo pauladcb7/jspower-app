@@ -406,7 +406,7 @@ const ListSheet = () => {
                                 <embed src="/pdfs/01. PPE.docx.pdf" type="application/pdf" />
                             </object> */}
 
-                            <object
+                            {/* <object
                               className="pdf-viewer"
                               data={"data:application/pdf;base64," + b64}
                               type="application/pdf"
@@ -415,10 +415,10 @@ const ListSheet = () => {
                                 src={"data:image/png;base64," + b64}
                                 type="application/pdf"
                               />
-                            </object>
-                            {/* <div dangerouslySetInnerHTML={{
+                            </object> */}
+                            <div dangerouslySetInnerHTML={{
                                __html: currentDocument.customHtml
-                            }}></div> */}
+                            }}></div>
                             {/* {JSON.stringify(currentDocument.customHtml)} */}
                             <Field name="safetySuggestion" validate={required}>
                               {({ input, meta }) => (
