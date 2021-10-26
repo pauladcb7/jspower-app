@@ -248,6 +248,13 @@ const ListSheet = () => {
         appearance: "success",
         autoDismiss: true,
       });
+
+      getPDfInstance().then((pdfMake) => {
+        pdfMake.createPdf(document2).download();
+        /* getBase64((res) => {
+          setB64(res)
+        }) */
+      });
     } catch (error) {
       console.log(error);
       addToast("Something went wrong creating Safety Sheet. Try again.", {
@@ -255,13 +262,6 @@ const ListSheet = () => {
         autoDismiss: true,
       });
     }
-
-    getPDfInstance().then((pdfMake) => {
-      pdfMake.createPdf(document2).download();
-      /* getBase64((res) => {
-        setB64(res)
-      }) */
-    });
   };
   const validate = function (e) {
     //signaturePad.isEmpty()

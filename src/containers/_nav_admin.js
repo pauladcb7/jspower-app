@@ -74,12 +74,12 @@ const _nav_admin = [
     to: "/report/circuit-directory",
     icon: "cil-spreadsheet",
   },
-  // {
-  //   _tag: "CSidebarNavItem",
-  //   name: "Safety Sheets",
-  //   to: "/safety-sheets",
-  //   icon: "cil-task",
-  // },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Safety Sheets",
+    to: "/safety-sheets",
+    icon: "cil-task",
+  },
 ];
 
 export default _nav_admin;
