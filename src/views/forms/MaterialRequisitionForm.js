@@ -197,7 +197,13 @@ const MaterialRequisitionForm = () => {
                   className=" btn-minimize"
                   size="sm"
                   //type="submit"
-                  onClick={() => setVisible(!visible)}
+                  onClick={() => {
+                    setInitialValue({
+                      requestedBy: fullName,
+                      entryDate: moment().format("YYYY-MM-DD"),
+                    });
+                    setVisible(!visible);
+                  }}
                 >
                   Create
                 </CButton>
@@ -298,7 +304,11 @@ const MaterialRequisitionForm = () => {
                                     {...input}
                                     placeholder="Job Name"
                                     disabled={
-                                      values.status == "OPEN" ? false : true
+                                      values.status == "OPEN"
+                                        ? false
+                                        : !values.id
+                                        ? false
+                                        : true
                                     }
                                   />
                                   {meta.touched && meta.error && (
@@ -327,7 +337,11 @@ const MaterialRequisitionForm = () => {
                                     {...input}
                                     placeholder="Job Location"
                                     disabled={
-                                      values.status == "OPEN" ? false : true
+                                      values.status == "OPEN"
+                                        ? false
+                                        : !values.id
+                                        ? false
+                                        : true
                                     }
                                   />
                                   {meta.touched && meta.error && (
@@ -383,7 +397,11 @@ const MaterialRequisitionForm = () => {
                                     {...input}
                                     placeholder="Today's Date"
                                     disabled={
-                                      values.status == "OPEN" ? false : true
+                                      values.status == "OPEN"
+                                        ? false
+                                        : !values.id
+                                        ? false
+                                        : true
                                     }
                                   />
                                   {meta.touched && meta.error && (
@@ -412,7 +430,11 @@ const MaterialRequisitionForm = () => {
                                 {...input}
                                 placeholder="Need by"
                                 disabled={
-                                  values.status == "OPEN" ? false : true
+                                  values.status == "OPEN"
+                                    ? false
+                                    : !values.id
+                                    ? false
+                                    : true
                                 }
                               />
                               {meta.touched && meta.error && (
@@ -442,7 +464,11 @@ const MaterialRequisitionForm = () => {
                                   rows="3"
                                   placeholder="Enter the type of work in progress..."
                                   disabled={
-                                    values.status == "OPEN" ? false : true
+                                    values.status == "OPEN"
+                                      ? false
+                                      : !values.id
+                                      ? false
+                                      : true
                                   }
                                 />
                               </CCol>
@@ -520,6 +546,8 @@ const MaterialRequisitionForm = () => {
                                                       disabled={
                                                         values.status == "OPEN"
                                                           ? false
+                                                          : !values.id
+                                                          ? false
                                                           : true
                                                       }
                                                     />
@@ -558,6 +586,8 @@ const MaterialRequisitionForm = () => {
                                                       }
                                                       disabled={
                                                         values.status == "OPEN"
+                                                          ? false
+                                                          : !values.id
                                                           ? false
                                                           : true
                                                       }
@@ -598,6 +628,8 @@ const MaterialRequisitionForm = () => {
                                                       disabled={
                                                         values.status == "OPEN"
                                                           ? false
+                                                          : !values.id
+                                                          ? false
                                                           : true
                                                       }
                                                     />
@@ -637,6 +669,8 @@ const MaterialRequisitionForm = () => {
                                                       disabled={
                                                         values.status == "OPEN"
                                                           ? false
+                                                          : !values.id
+                                                          ? false
                                                           : true
                                                       }
                                                     />
@@ -650,7 +684,7 @@ const MaterialRequisitionForm = () => {
                                     },
                                   }}
                                 />
-                                {values.status == "OPEN" && (
+                                {(values.status == "OPEN" || !values.id) && (
                                   <CButton
                                     block
                                     color="dark"
@@ -667,32 +701,6 @@ const MaterialRequisitionForm = () => {
                           </FieldArray>
                         </CCardBody>
                       </CCard>
-
-                      {/* <CCard>
-                              <CCardHeader>Items</CCardHeader>
-                              <CCardBody>
-                                <CDataTable
-                                  items={rows}
-                                  fields={fields}
-                                  striped
-                                  itemsPerPage={50}
-                                  pagination
-                                  scopedSlots={}
-                                />
-                                <CButton
-                                  block
-                                  color="dark"
-                                  type="button"
-                                  onClick={() => {
-                                    const rowsT = [...rows];
-                                    rowsT.push({});
-                                    setRow(rowsT);
-                                  }}
-                                >
-                                  <CIcon size="lg" name="cil-plus" /> Add Row
-                                </CButton>
-                              </CCardBody>
-                            </CCard> */}
                     </CCol>
                   </CRow>
                 </CModalBody>
@@ -705,7 +713,7 @@ const MaterialRequisitionForm = () => {
                   >
                     Close
                   </CButton>
-                  {values.status == "OPEN" && (
+                  {(values.status == "OPEN" || !values.id) && (
                     <>
                       <CButton
                         color="success"
