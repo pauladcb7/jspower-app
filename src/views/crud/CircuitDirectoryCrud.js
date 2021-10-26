@@ -163,7 +163,7 @@ const CircuitDirectoryCrud = () => {
     setLoading(true);
     return api.get(GET_CIRCUIT_DIRECTORY).then((circuitDirectory) => {
       setRows(
-        circuitDirectory?.map((cd) => {
+        (circuitDirectory || [])?.map((cd) => {
           return {
             ...cd,
             date: moment(cd.entryDate).format("YYYY-MM-DD"),

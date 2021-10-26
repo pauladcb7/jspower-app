@@ -193,7 +193,9 @@ const SafetySheetCrud = () => {
   function onDelete(row, close) {
     api
       .delete(SAFETY_SHEET, {
-        id: row.id,
+        data: {
+          id: row.id,
+        }
       })
       .then((data) => {
         console.log("data return ", data);

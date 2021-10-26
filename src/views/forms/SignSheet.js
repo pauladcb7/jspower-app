@@ -416,9 +416,11 @@ const ListSheet = () => {
                                 type="application/pdf"
                               />
                             </object> */}
-                            <div dangerouslySetInnerHTML={{
-                               __html: currentDocument.customHtml
-                            }}></div>
+                            <div 
+                              className="pdfHtml"
+                              dangerouslySetInnerHTML={{
+                                __html: currentDocument.customHtml
+                              }}></div>
                             {/* {JSON.stringify(currentDocument.customHtml)} */}
                             <Field name="safetySuggestion" validate={required}>
                               {({ input, meta }) => (

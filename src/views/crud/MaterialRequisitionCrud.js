@@ -218,7 +218,9 @@ const MaterialRequisitionCrud = () => {
   function onDelete(row, close) {
     api
       .delete(MATERIAL_REQUISITION, {
-        id: row.id,
+        data:{
+          id: row.id,
+        }
       })
       .then((data) => {
         console.log("data return ", data);

@@ -201,9 +201,6 @@ const ListSheet = () => {
                       </CCardBody>
                     </CCollapse>
                     <CCardFooter>
-                      <CButton block color="danger" type="submit" size="lg">
-                        <CIcon size="lg" name="cil-save" /> Save
-                      </CButton>
                     </CCardFooter>
                   </CCard>
                 </form>
