@@ -30,6 +30,8 @@ export const WORK_TYPES = "work-order/getWorkOrderTypes/";
 export const MATERIAL_REQUISITION = "material-requisition";
 export const SAVE_MATERIAL_REQUISITION = "material-requisition/save";
 export const GET_MATERIAL_REQUISITION = "material-requisition/get";
+export const GET_MATERIAL_REQUISITION_BY_EMPLOYEE =
+  "material-requisition/getByEmployee";
 
 /* Circuit Directory */
 export const CIRCUIT_DIRECTORY = "circuit-directory";

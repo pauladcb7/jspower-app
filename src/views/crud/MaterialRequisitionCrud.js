@@ -9,6 +9,7 @@ import {
   CCollapse,
   CFade,
   CRow,
+  CBadge,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
@@ -28,7 +29,16 @@ import { api } from "src/helpers/api";
 import moment from "moment";
 
 const required = (value) => (value ? undefined : "Required");
-
+const getBadge = (status) => {
+  switch (status) {
+    case "OPEN":
+      return "success";
+    case "CLOSED":
+      return "danger";
+    default:
+      return "primary";
+  }
+};
 const fieldsTable = ["ckt", "load", "ckt1", "load1"];
 const initialArray = [];
 for (let index = 1; index < 43; index++) {
@@ -135,7 +145,7 @@ const MaterialRequisitionCrud = () => {
     {
       key: "entryDate",
       label: "Entry Date",
-      type: "datetime",
+      type: "date",
       sorter: false,
       filter: false,
       _style: { minWidth: "100px" },
@@ -143,7 +153,7 @@ const MaterialRequisitionCrud = () => {
     {
       key: "needBy",
       label: "Need By",
-      type: "datetime",
+      type: "date",
       sorter: false,
       filter: false,
       _style: { minWidth: "100px" },
@@ -154,6 +164,19 @@ const MaterialRequisitionCrud = () => {
       type: "textarea",
       sorter: false,
       filter: false,
+      _style: { minWidth: "160px" },
+    },
+    {
+      key: "status",
+      label: "Status",
+      type: "text",
+      sorter: false,
+      filter: false,
+      custom: (item) => (
+        <td>
+          <CBadge color={getBadge(item.status)}>{item.status}</CBadge>
+        </td>
+      ),
       _style: { minWidth: "160px" },
     },
     {
@@ -209,8 +232,8 @@ const MaterialRequisitionCrud = () => {
         materialRequisition?.map((mr) => {
           return {
             ...mr,
-            entryDate: moment(mr.entryDate).format("YYYY-MM-DDTHH:mm"),
-            needBy: moment(mr.needBy).format("YYYY-MM-DDTHH:mm"),
+            entryDate: moment(mr.entryDate).format("YYYY-MM-DD"),
+            needBy: moment(mr.needBy).format("YYYY-MM-DD"),
             description: mr.description || "",
             employeeName:
               mr.requestedBy?.firstName + " " + mr.requestedBy?.lastName,
