@@ -813,7 +813,7 @@ const TimeCards = () => {
                                     </CLabel>
                                   </CCol>
 
-                                  {jobLocations?.map((jobLocation) => (
+                                  {(jobLocations || [])?.map((jobLocation) => (
                                     <CCol md="6" sm="6">
                                       <Field
                                         name="jobLocations"

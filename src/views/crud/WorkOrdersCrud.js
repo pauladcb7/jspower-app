@@ -314,7 +314,7 @@ const WorkOrdersCrud = () => {
   function fetchTable() {
     setLoading(true);
     return api.get(GET_WORK_ORDER).then((workOrders) => {
-      setRows(workOrders.map(parseData));
+      setRows((workOrders || []).map(parseData));
       setLoading(false);
     });
   }

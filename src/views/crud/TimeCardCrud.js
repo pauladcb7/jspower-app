@@ -886,7 +886,7 @@ const TimeCardCrud = () => {
           });
         });
       });
-      setRows(parseData(timecards));
+      setRows(parseData(timecards || []));
       setLoading(false);
     });
   }

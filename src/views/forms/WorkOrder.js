@@ -228,7 +228,7 @@ const WorkOrder = () => {
                                 Type of work
                                 <Required />
                               </CLabel>
-                              {workTypes?.map((wt) => (
+                              {(workTypes || [])?.map((wt) => (
                                 <CCol md="6" sm="6">
                                   <Field
                                     name="workType"

@@ -6,6 +6,11 @@
       "src": "./jspower-icon.png",
       "sizes": "144x144",
       "type": "image/png"
+    },
+    {
+      "src": "./180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ],
   "start_url": ".",

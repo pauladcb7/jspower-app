@@ -35,9 +35,7 @@ const Login = () => {
   const total = useSelector(getBasketTotal);
   const { addToast } = useToasts();
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  useEffect(() => {}, []);
 
   function onSubmit(e) {
     api
@@ -49,7 +47,6 @@ const Login = () => {
         api
           .get(TEST, { headers: { "x-access-token": token.token } })
           .then((data) => {
-            console.log("data return ", data);
             if (data) {
               console.log("Logged In!!");
               dispatch({

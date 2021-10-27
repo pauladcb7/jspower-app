@@ -59,7 +59,7 @@ const SafetySheetCrud = () => {
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState([]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
-  useEffect(() => { }, [checkedJobLocations]);
+  useEffect(() => {}, [checkedJobLocations]);
 
   const handleChange = (event) => {
     // updating an object instead of a Map
@@ -94,7 +94,7 @@ const SafetySheetCrud = () => {
       rows,
     });
   };
-  const validate = function () { };
+  const validate = function () {};
 
   const metadata = [
     {
@@ -195,7 +195,7 @@ const SafetySheetCrud = () => {
       .delete(SAFETY_SHEET, {
         data: {
           id: row.id,
-        }
+        },
       })
       .then((data) => {
         console.log("data return ", data);
@@ -206,7 +206,7 @@ const SafetySheetCrud = () => {
     setLoading(true);
     return api.get(GET_SAFETY_SHEET).then((safetySheet) => {
       setRows(
-        safetySheet?.map((ss) => {
+        (safetySheet || [])?.map((ss) => {
           return {
             ...ss,
             entryDate: moment(ss.entryDate).format("YYYY-MM-DD"),
@@ -255,7 +255,7 @@ const SafetySheetCrud = () => {
                     }}
                     disableEdit
                     onRefreshTable={fetchTable}
-                    onCreate={(row) => { }}
+                    onCreate={(row) => {}}
                     onDelete={onDelete}
                     addOption={(row) => {
                       return (
@@ -264,207 +264,241 @@ const SafetySheetCrud = () => {
                             color="secondary"
                             size="sm"
                             onClick={async () => {
-
-
                               const document = documents.find((d) => {
                                 return d.id === row.safetySheetType;
                               });
                               if (document) {
-                                axios.get(`/pdfs/${document.filePath}`).then(async (response) => {
-                                  var html = response.data;
+                                axios
+                                  .get(`/pdfs/${document.filePath}`)
+                                  .then(async (response) => {
+                                    var html = response.data;
 
-                                  let document2 = { ...html };
-                                  const companyName = "JSPOWEREELECTRICINC";
-                                  const {
-                                    jobLocation,
-                                    personalSafetyViolations,
-                                    safetySuggestion,
-                                    endTime:timeFinished,
-                                    startTime:timeStarted,
-                                    employees:employeeSignature,
-                                    supervisorSignature,
-                                    supervisor
-                                  } = row;
-                                  
-                                  document2.pageMargins = [25, 22, 25, 5];
-                                  document2.styles = {
-                                    "html-p": {
-                                      marginTop: 0,
-                                      marginBottom: 0,
-                                      margin: [0, 0, 0, 0], // it will add a yellow background to all <STRONG> elements
-                                    },
-                                    "html-strong": {
-                                      margin: [0, 0, 0, 0], // it will add a yellow background to all <STRONG> elements
-                                    },
-                                    "html-span": {
-                                      margin: [0, 0, 0, 0], // it will add a yellow background to all <STRONG> elements
-                                    },
-                                    "html-ul": {
-                                      margin: [0, 0, 0, 0],
-                                    },
-                                  };
-                                  const logo = (await import("../../assets/logopdf.png")).default;
-                                  const logo2 = (await import("../../assets/logoBg.png")).default;
+                                    let document2 = { ...html };
+                                    const companyName = "JSPOWEREELECTRICINC";
+                                    const {
+                                      jobLocation,
+                                      personalSafetyViolations,
+                                      safetySuggestion,
+                                      endTime: timeFinished,
+                                      startTime: timeStarted,
+                                      employees: employeeSignature,
+                                      supervisorSignature,
+                                      supervisor,
+                                    } = row;
 
-                                  document2.images.logo = await getBase64ImageFromURL(logo);
-                                  document2.images.logo2 = await getBase64ImageFromURL(logo2);
-                                  employeeSignature.forEach((es, index) => {
-                                    document2.images["sign" + index] = es.signature;
-                                  });
-                                  document2.images.supervisorSignature = supervisorSignature;
-                                  const t1 = [...document2.content];
-                                  t1.unshift(
-                                    {
-                                      image: "logo",
-                                      fit: [80, 80],
-                                      absolutePosition: { x: 15, y: 65 },
-                                    },
-                                    {
-                                      //layout: 'lightHorizontalLines', // optional
-                                      table: {
-                                        // headers are automatically repeated if the table spans over multiple pages
-                                        // you can declare how many rows should be treated as headers
-                                        headerRows: 0,
-                                        widths: ["*"],
-
-                                        body: [
-                                          [
-                                            {
-                                              text: `Company Name: ${companyName}        Job Location: ${jobLocation}       Date: ${moment().format(
-                                                "YYYY-MM-DD"
-                                              )}`,
-                                              font: "Calibri",
-                                            },
-                                          ],
-                                          [
-                                            {
-                                              text: `Time Started: ${moment(timeStarted, "HH:mm").format(
-                                                "hh:mm a"
-                                              )} Time Finished: ${moment(timeFinished, "HH:mm").format(
-                                                "hh:mm a"
-                                              )} Foreman/Supervisor: ${supervisor}`,
-                                              font: "Calibri",
-                                            },
-                                          ],
-                                        ],
+                                    document2.pageMargins = [25, 22, 25, 5];
+                                    document2.styles = {
+                                      "html-p": {
+                                        marginTop: 0,
+                                        marginBottom: 0,
+                                        margin: [0, 0, 0, 0], // it will add a yellow background to all <STRONG> elements
                                       },
-
-                                      layout: {
-                                        hLineWidth: function (i, node) {
-                                          return i === 0 || i === node.table.body.length ? 1 : 0;
-                                        },
-                                        vLineWidth: function (i, node) {
-                                          return i === 0 || i === node.table.widths.length ? 1 : 0;
-                                        },
-                                        hLineColor: function (i, node) {
-                                          return "black";
-                                        },
-                                        vLineColor: function (i, node) {
-                                          return "black";
-                                        },
-                                        hLineStyle: function (i, node) {
-                                          if (i === 0 || i === node.table.body.length) {
-                                            return null;
-                                          }
-                                          return { dash: { length: 10, space: 4 } };
-                                        },
-                                        vLineStyle: function (i, node) {
-                                          if (i === 0 || i === node.table.widths.length) {
-                                            return null;
-                                          }
-                                          return { dash: { length: 4 } };
-                                        },
-                                        // paddingLeft: function(i, node) { return 4; },
-                                        // paddingRight: function(i, node) { return 4; },
-                                        // paddingTop: function(i, node) { return 2; },
-                                        // paddingBottom: function(i, node) { return 2; },
-                                        // fillColor: function (i, node) { return null; }
+                                      "html-strong": {
+                                        margin: [0, 0, 0, 0], // it will add a yellow background to all <STRONG> elements
                                       },
-                                    }
-                                  );
-
-                                  var result = [];
-                                  employeeSignature.forEach((employtee, index) => {
-                                    let dEmployee = {
-                                      // auto-sized columns have their widths based on their content
-                                      width: "*",
-                                      columns: [
-                                        {
-                                          width: 12,
-                                          text: `${index + 1}. `,
-                                          font: "Calibri",
-                                        },
-                                        {
-                                          image: "sign" + index,
-                                          fit: [150, 40],
-                                        },
-                                      ],
+                                      "html-span": {
+                                        margin: [0, 0, 0, 0], // it will add a yellow background to all <STRONG> elements
+                                      },
+                                      "html-ul": {
+                                        margin: [0, 0, 0, 0],
+                                      },
                                     };
-                                    if (result[Math.floor(index / 3)]) {
-                                      result[Math.floor(index / 3)].columns.push(dEmployee);
-                                    } else {
-                                      result[Math.floor(index / 3)] = {
-                                        columns: [],
-                                        width: "100%",
-                                      };
-                                      result[Math.floor(index / 3)].columns.push(dEmployee);
-                                    }
-                                  });
+                                    const logo = (
+                                      await import("../../assets/logopdf.png")
+                                    ).default;
+                                    const logo2 = (
+                                      await import("../../assets/logoBg.png")
+                                    ).default;
 
-                                  t1.push(
-                                    {
-                                      text: `Work-Site Hazards and Safety Suggestions: ${personalSafetyViolations}.`,
-                                      font: "Calibri",
-                                    },
-                                    {
-                                      text: `Personnel Safety Violations: ${safetySuggestion}.`,
-                                      font: "Calibri",
-                                    },
-                                    {
-                                      text: "Employee Signatures:        (My signature attests and verifies my understanding of and agreement to comply with company safety regulations).",
-                                      font: "Calibri",
-                                    },
-                                    ...result,
-                                    {
-                                      columns: [
-                                        {
-                                          width: "*",
-                                          alignment: "right",
-                                          text: "Foreman/Supervisor’s Signature:",
-                                          font: "Calibri",
+                                    document2.images.logo =
+                                      await getBase64ImageFromURL(logo);
+                                    document2.images.logo2 =
+                                      await getBase64ImageFromURL(logo2);
+                                    employeeSignature.forEach((es, index) => {
+                                      document2.images["sign" + index] =
+                                        es.signature;
+                                    });
+                                    document2.images.supervisorSignature =
+                                      supervisorSignature;
+                                    const t1 = [...document2.content];
+                                    t1.unshift(
+                                      {
+                                        image: "logo",
+                                        fit: [80, 80],
+                                        absolutePosition: { x: 15, y: 65 },
+                                      },
+                                      {
+                                        //layout: 'lightHorizontalLines', // optional
+                                        table: {
+                                          // headers are automatically repeated if the table spans over multiple pages
+                                          // you can declare how many rows should be treated as headers
+                                          headerRows: 0,
+                                          widths: ["*"],
+
+                                          body: [
+                                            [
+                                              {
+                                                text: `Company Name: ${companyName}        Job Location: ${jobLocation}       Date: ${moment().format(
+                                                  "YYYY-MM-DD"
+                                                )}`,
+                                                font: "Calibri",
+                                              },
+                                            ],
+                                            [
+                                              {
+                                                text: `Time Started: ${moment(
+                                                  timeStarted,
+                                                  "HH:mm"
+                                                ).format(
+                                                  "hh:mm a"
+                                                )} Time Finished: ${moment(
+                                                  timeFinished,
+                                                  "HH:mm"
+                                                ).format(
+                                                  "hh:mm a"
+                                                )} Foreman/Supervisor: ${supervisor}`,
+                                                font: "Calibri",
+                                              },
+                                            ],
+                                          ],
                                         },
-                                        {
-                                          width: 150,
 
-                                          ...(supervisorSignature
-                                            ? {
-                                              image: "supervisorSignature",
-                                              fit: [150, 150],
+                                        layout: {
+                                          hLineWidth: function (i, node) {
+                                            return i === 0 ||
+                                              i === node.table.body.length
+                                              ? 1
+                                              : 0;
+                                          },
+                                          vLineWidth: function (i, node) {
+                                            return i === 0 ||
+                                              i === node.table.widths.length
+                                              ? 1
+                                              : 0;
+                                          },
+                                          hLineColor: function (i, node) {
+                                            return "black";
+                                          },
+                                          vLineColor: function (i, node) {
+                                            return "black";
+                                          },
+                                          hLineStyle: function (i, node) {
+                                            if (
+                                              i === 0 ||
+                                              i === node.table.body.length
+                                            ) {
+                                              return null;
                                             }
-                                            : {}),
+                                            return {
+                                              dash: { length: 10, space: 4 },
+                                            };
+                                          },
+                                          vLineStyle: function (i, node) {
+                                            if (
+                                              i === 0 ||
+                                              i === node.table.widths.length
+                                            ) {
+                                              return null;
+                                            }
+                                            return { dash: { length: 4 } };
+                                          },
+                                          // paddingLeft: function(i, node) { return 4; },
+                                          // paddingRight: function(i, node) { return 4; },
+                                          // paddingTop: function(i, node) { return 2; },
+                                          // paddingBottom: function(i, node) { return 2; },
+                                          // fillColor: function (i, node) { return null; }
                                         },
-                                      ],
-                                    }
-                                  );
+                                      }
+                                    );
 
-                                  document2.content = t1;
-                                  document2.background = [
-                                    {
-                                      image: "logo2",
-                                      width: 420,
-                                      fit: [420, 420],
-                                      marginTop: 120,
-                                      alignment: "center",
-                                    },
-                                  ];
+                                    var result = [];
+                                    employeeSignature.forEach(
+                                      (employtee, index) => {
+                                        let dEmployee = {
+                                          // auto-sized columns have their widths based on their content
+                                          width: "*",
+                                          columns: [
+                                            {
+                                              width: 12,
+                                              text: `${index + 1}. `,
+                                              font: "Calibri",
+                                            },
+                                            {
+                                              image: "sign" + index,
+                                              fit: [150, 40],
+                                            },
+                                          ],
+                                        };
+                                        if (result[Math.floor(index / 3)]) {
+                                          result[
+                                            Math.floor(index / 3)
+                                          ].columns.push(dEmployee);
+                                        } else {
+                                          result[Math.floor(index / 3)] = {
+                                            columns: [],
+                                            width: "100%",
+                                          };
+                                          result[
+                                            Math.floor(index / 3)
+                                          ].columns.push(dEmployee);
+                                        }
+                                      }
+                                    );
 
-                                  getPDfInstance().then((pdfMake) => {
-                                    pdfMake.createPdf(document2).download();
-                                    /* getBase64((res) => {
+                                    t1.push(
+                                      {
+                                        text: `Work-Site Hazards and Safety Suggestions: ${personalSafetyViolations}.`,
+                                        font: "Calibri",
+                                      },
+                                      {
+                                        text: `Personnel Safety Violations: ${safetySuggestion}.`,
+                                        font: "Calibri",
+                                      },
+                                      {
+                                        text: "Employee Signatures:        (My signature attests and verifies my understanding of and agreement to comply with company safety regulations).",
+                                        font: "Calibri",
+                                      },
+                                      ...result,
+                                      {
+                                        columns: [
+                                          {
+                                            width: "*",
+                                            alignment: "right",
+                                            text: "Foreman/Supervisor’s Signature:",
+                                            font: "Calibri",
+                                          },
+                                          {
+                                            width: 150,
+
+                                            ...(supervisorSignature
+                                              ? {
+                                                  image: "supervisorSignature",
+                                                  fit: [150, 150],
+                                                }
+                                              : {}),
+                                          },
+                                        ],
+                                      }
+                                    );
+
+                                    document2.content = t1;
+                                    document2.background = [
+                                      {
+                                        image: "logo2",
+                                        width: 420,
+                                        fit: [420, 420],
+                                        marginTop: 120,
+                                        alignment: "center",
+                                      },
+                                    ];
+
+                                    getPDfInstance().then((pdfMake) => {
+                                      pdfMake.createPdf(document2).download();
+                                      /* getBase64((res) => {
                                       setB64(res)
                                     }) */
+                                    });
                                   });
-                                })
                               }
                             }}
                           >

@@ -43,7 +43,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Safety Sheets",
-    to: "/safety_sheets/list",
+    to: "/safety-sheets/list",
     icon: "cil-task",
   },
 ];

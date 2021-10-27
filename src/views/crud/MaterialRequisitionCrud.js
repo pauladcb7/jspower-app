@@ -218,9 +218,9 @@ const MaterialRequisitionCrud = () => {
   function onDelete(row, close) {
     api
       .delete(MATERIAL_REQUISITION, {
-        data:{
+        data: {
           id: row.id,
-        }
+        },
       })
       .then((data) => {
         console.log("data return ", data);
@@ -231,7 +231,7 @@ const MaterialRequisitionCrud = () => {
     setLoading(true);
     return api.get(GET_MATERIAL_REQUISITION).then((materialRequisition) => {
       setRows(
-        materialRequisition?.map((mr) => {
+        (materialRequisition || [])?.map((mr) => {
           return {
             ...mr,
             entryDate: moment(mr.entryDate).format("YYYY-MM-DD"),

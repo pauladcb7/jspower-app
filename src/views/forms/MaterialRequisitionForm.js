@@ -86,8 +86,8 @@ const MaterialRequisitionForm = () => {
   const [materialReqList, setmaterialReqList] = useState([]);
   const fullName =
     user.first_name && user.last_name
-      ? user.first_name || "" + " " + user.last_name || ""
-      : user.email
+      ? user?.first_name || "" + " " + user?.last_name || ""
+      : user?.email
           .split("@")
           .shift()
           .split(".")
