@@ -59,9 +59,7 @@ const SheetCreate = () => {
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
   const [rows, setRow] = useState(initialArray);
-  useEffect(() => {
-    console.log("checked items: ", checkedJobLocations);
-  }, [checkedJobLocations]);
+  useEffect(() => {}, [checkedJobLocations]);
 
   const handleChange = (event) => {
     // updating an object instead of a Map

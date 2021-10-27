@@ -229,7 +229,6 @@ const CircuitDirectoryCrud = () => {
                     onEdit={async (row, edittedRow) => {
                       try {
                         const e = edittedRow;
-                        console.log(e);
                         await api.post(SAVE_CIRCUIT_DIRECTORY, {
                           circuit_directory_id: e.id,
                           entry_date: moment(e.entryDate).format("YYYY-MM-DD"),
@@ -257,7 +256,6 @@ const CircuitDirectoryCrud = () => {
                     onCreate={async (row) => {
                       try {
                         const e = row;
-                        console.log(e);
                         await api.post(SAVE_CIRCUIT_DIRECTORY, {
                           circuit_directory_id: "-1",
                           entry_date: moment(e.entryDate).format("YYYY-MM-DD"),

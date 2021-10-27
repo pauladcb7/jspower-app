@@ -27,7 +27,7 @@ import {
 } from "src/helpers/urls";
 import { api } from "src/helpers/api";
 import moment from "moment";
-
+import { useToasts } from "react-toast-notifications";
 const required = (value) => (value ? undefined : "Required");
 const getBadge = (status) => {
   switch (status) {
@@ -54,6 +54,7 @@ const MaterialRequisitionCrud = () => {
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState([]);
+  const { addToast } = useToasts();
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
   useEffect(() => {}, [checkedJobLocations]);
 
@@ -223,7 +224,18 @@ const MaterialRequisitionCrud = () => {
         },
       })
       .then((data) => {
-        console.log("data return ", data);
+        addToast("Material Requisition Removed.", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        fetchTable();
+      })
+      .catch((err) => {
+        console.log(err);
+        addToast("Something went wrong. Try again.", {
+          appearance: "error",
+          autoDismiss: true,
+        });
       });
   }
 

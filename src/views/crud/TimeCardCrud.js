@@ -452,19 +452,49 @@ const TimeCardCrud = () => {
   };
 
   function deleteTimeEntry(timeEntry) {
-    return api.delete(DELETE_TIME_ENTRY, {
-      data: {
-        id: timeEntry.id,
-      },
-    });
+    return api
+      .delete(DELETE_TIME_ENTRY, {
+        data: {
+          id: timeEntry.id,
+        },
+      })
+      .then(() => {
+        addToast("Time Entry Removed.", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        fetchTable();
+      })
+      .catch((err) => {
+        console.log(err);
+        addToast("Something went wrong. Try again.", {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      });
   }
 
   function deleteTimeCard(timeCard) {
-    return api.delete(DELETE_TIME_CARD, {
-      data: {
-        id: timeCard.id,
-      },
-    });
+    return api
+      .delete(DELETE_TIME_CARD, {
+        data: {
+          id: timeCard.id,
+        },
+      })
+      .then(() => {
+        addToast("Time Card Removed.", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        fetchTable();
+      })
+      .catch((err) => {
+        console.log(err);
+        addToast("Something went wrong. Try again.", {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      });
   }
 
   const metadata = [
@@ -612,7 +642,6 @@ const TimeCardCrud = () => {
                             color="info"
                             size="sm"
                             onClick={() => {
-                              console.log(itemWeek);
                               setInitialData({
                                 ...item,
                                 date: moment(item.entryDate).format(

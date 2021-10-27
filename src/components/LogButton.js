@@ -55,9 +55,7 @@ const LogButton = () => {
   ];
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
 
-  useEffect(() => {
-    console.log("checked items: ", checkedJobLocations);
-  }, [checkedJobLocations]);
+  useEffect(() => {}, [checkedJobLocations]);
 
   const handleChange = (event) => {
     // updating an object instead of a Map

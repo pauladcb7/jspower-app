@@ -106,7 +106,6 @@ const MaterialRequisitionForm = () => {
   }, []);
   const fetchTable = () => {
     api.get(GET_MATERIAL_REQUISITION_BY_EMPLOYEE).then((materialReq) => {
-      console.log(materialReq);
       materialReq?.forEach((mr) => {
         mr.entryDate = moment(mr.entryDate).format("YYYY-MM-DD");
         mr.needBy = moment(mr.needBy).format("YYYY-MM-DD");

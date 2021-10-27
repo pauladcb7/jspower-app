@@ -261,7 +261,6 @@ const TimeCards = () => {
         //   function (position) {
         var lng = gps.lng;
         var lat = gps.lat;
-        console.log("end", Date.now());
         fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_KEY}`,
           {

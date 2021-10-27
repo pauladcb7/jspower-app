@@ -8,6 +8,7 @@ import {
   CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import AddToHomeScreen from "@ideasio/add-to-homescreen-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 const TheHeaderDropdown = () => {
@@ -41,7 +42,7 @@ const TheHeaderDropdown = () => {
         <div className="c-avatar">
           <CImg
             src={user.profile_img || "avatars/profile_photo.png"}
-            className="c-avatar-img"
+            className="c-avatar-img rounded-circle p-1 img-fluid"
             alt={user.email}
           />
         </div>
@@ -54,10 +55,10 @@ const TheHeaderDropdown = () => {
           <CIcon name="cil-user" className="mfe-2" />
           Profile
         </CDropdownItem>
-        {/* <CDropdownItem>
-          <CIcon name="cil-settings" className="mfe-2" />
-          Settings
-        </CDropdownItem> */}
+        <CDropdownItem>
+          <CIcon name="cil-mobile" className="mfe-2" />
+          Install App <AddToHomeScreen />
+        </CDropdownItem>
         <CDropdownItem onClick={logout}>
           <CIcon name="cil-account-logout" className="mfe-2" />
           Log out

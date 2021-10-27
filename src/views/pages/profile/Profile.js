@@ -53,7 +53,6 @@ import { useSelector, useStore, useDispatch } from "react-redux";
 import { Field, Form } from "react-final-form";
 import { workOrderPrint } from "src/utils/workOrder";
 import { logo } from "src/utils/logo";
-
 const required = (value) => (value ? undefined : "Required");
 
 const Profile = () => {
@@ -70,7 +69,6 @@ const Profile = () => {
 
   const refreshUserData = () => {
     api.get(TEST).then((data) => {
-      console.log("data return ", data);
       dispatch({
         type: "SET_USER",
         user: {
@@ -85,7 +83,6 @@ const Profile = () => {
         },
       });
     });
-    console.log(user);
   };
   useEffect(() => {
     refreshUserData();
@@ -318,7 +315,8 @@ const Profile = () => {
                             <div className="text-center">
                               <CImg
                                 align="center"
-                                rounded
+                                fluid
+                                className="rounded-circle img-fluid"
                                 width={200}
                                 height={200}
                                 src={

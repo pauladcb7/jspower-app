@@ -214,9 +214,7 @@ const WorkOrdersCrud = () => {
       disableEdit: true,
     },
   ]);
-  useEffect(() => {
-    console.log("checked items: ", checkedJobLocations);
-  }, [checkedJobLocations]);
+  useEffect(() => {}, [checkedJobLocations]);
 
   const { addToast } = useToasts();
 
@@ -268,8 +266,18 @@ const WorkOrdersCrud = () => {
           id: row.id,
         },
       })
-      .then((data) => {
-        console.log("data return ", data);
+      .then(() => {
+        addToast("Work Order Removed.", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        addToast("Something went wrong. Try again.", {
+          appearance: "error",
+          autoDismiss: true,
+        });
       });
   }
 

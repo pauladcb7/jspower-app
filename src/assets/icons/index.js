@@ -25,7 +25,7 @@ import {
   cibPaypal,
   cibGooglePay,
   cibCcAmex,
-  cilAccountLogout
+  cilAccountLogout,
 } from "@coreui/icons";
 import { cifUs, cifBr, cifIn, cifFr, cifEs, cifPl } from "@coreui/icons";
 import {
@@ -127,7 +127,8 @@ import {
   cilClock,
   cilBuilding,
   cilSync,
-  cilDescription
+  cilDescription,
+  cilMobile,
 } from "@coreui/icons";
 
 export const icons = Object.assign(
@@ -136,6 +137,7 @@ export const icons = Object.assign(
     sygnet,
   },
   {
+    cilMobile,
     cilAlignCenter,
     cilClock,
     cilDescription,

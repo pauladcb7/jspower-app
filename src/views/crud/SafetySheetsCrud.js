@@ -21,6 +21,7 @@ import { circuitPrint } from "src/utils/circuitPrint";
 import { getPDfInstance } from "src/utils/pdf";
 import { getBase64ImageFromURL } from "src/utils";
 import CrudTable from "src/containers/CrudTable";
+import { useToasts } from "react-toast-notifications";
 import { materialRequisitionPrint } from "src/utils/materialRequisitionPrint";
 import {
   SAVE_SAFETY_SHEET,
@@ -58,6 +59,7 @@ const SafetySheetCrud = () => {
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState([]);
+  const { addToast } = useToasts();
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
   useEffect(() => {}, [checkedJobLocations]);
 
@@ -197,8 +199,19 @@ const SafetySheetCrud = () => {
           id: row.id,
         },
       })
-      .then((data) => {
-        console.log("data return ", data);
+      .then(() => {
+        addToast("Safety Sheet Removed.", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        fetchTable();
+      })
+      .catch((err) => {
+        console.log(err);
+        addToast("Something went wrong. Try again.", {
+          appearance: "error",
+          autoDismiss: true,
+        });
       });
   }
 
@@ -213,7 +226,9 @@ const SafetySheetCrud = () => {
             safetySuggestions: ss.safetySuggestions || "",
             safetyViolations: ss.safetyViolations || "",
             supervisor:
-              ss.supervisor?.firstName + " " + ss.supervisor?.lastName,
+              ss.supervisor?.firstName ||
+              "" + " " + ss.supervisor?.lastName ||
+              "",
           };
         })
       );
