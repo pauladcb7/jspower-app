@@ -74,11 +74,6 @@ const TheHeader = () => {
         {/* <TheHeaderDropdownNotif/>
         <TheHeaderDropdownTasks/>
         <TheHeaderDropdownMssg/> */}
-        {show && (
-          <div style={{ cursor: "pointer" }} id="installButton">
-            Install
-          </div>
-        )}
         <AddToHomeScreen
           appId="add-to-homescreen-jspowerapp"
           startAutomatically={true}
