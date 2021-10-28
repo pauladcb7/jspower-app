@@ -397,21 +397,25 @@ const WorkOrdersCrud = () => {
                             work_order_id: row.id,
                             user_id: user.email,
                             entry_date: row.entryDate,
-                            start_time: e.startTime,
-                            end_time: e.endTime,
-                            job_location: e.jobLocation,
-                            job_details: e.jobDetails,
-                            total_cost: e.totalCost,
-                            employee_signature: e.employeeSignature,
-                            customer_name: e.customerName,
-                            customer_address: e.customerAddress,
-                            customer_phone_number: e.customerPhone,
-                            customer_signature: e.customerSignature,
+                            start_time: edittedRow.startTime,
+                            end_time: edittedRow.endTime,
+                            job_location: edittedRow.jobLocation,
+                            job_details: edittedRow.jobDetails,
+                            total_cost: edittedRow.totalCost,
+                            employee_signature: edittedRow.employeeSignature,
+                            customer_name: edittedRow.customerName,
+                            customer_address: edittedRow.customerAddress,
+                            customer_phone_number: edittedRow.customerPhone,
+                            customer_signature: edittedRow.customerSignature,
                             work_type:
-                              e.workTypeRc === "other" ? null : e.workTypeRc,
+                              edittedRow.workTypeRc === "other"
+                                ? null
+                                : edittedRow.workTypeRc,
                             other:
-                              e.workTypeRc === "other" ? e.workTypeOther : null,
-                            customer_email: e.customer_email,
+                              edittedRow.workTypeRc === "other"
+                                ? edittedRow.workTypeOther
+                                : null,
+                            customer_email: edittedRow.customer_email,
                           },
                         })
                         .then((result) => {

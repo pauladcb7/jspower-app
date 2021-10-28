@@ -46,6 +46,16 @@ const _nav = [
     to: "/safety-sheets/list",
     icon: "cil-task",
   },
+  {
+    _tag: "CSidebarNavTitle",
+    _children: ["Lists"],
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Jobs",
+    to: "/jobs",
+    icon: "cil-list",
+  },
 ];
 
 export default _nav;

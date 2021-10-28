@@ -304,11 +304,13 @@ const MaterialRequisitionCrud = () => {
                                 jobName: row.jobName,
                                 description: row.description,
                                 jobLocation: row.jobLocation,
-                                requestedBy: row.requestedBy,
+                                requestedBy:
+                                  (row.requestedBy.firstName || "") +
+                                  " " +
+                                  (row.requestedBy.lastName || ""),
                                 todayDate: row.entryDate,
                                 needBy: row.needBy,
-                                materialRequisitionDetails:
-                                  row.materialRequisitionDetails,
+                                materialRequisitionDetails: row.materialDetails,
                               });
                               //toggleDetails(index)
                             }}

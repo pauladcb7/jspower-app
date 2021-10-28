@@ -109,6 +109,22 @@ const Dashboard = () => {
             }}
           ></CWidgetSimple>
         </CCol>
+        <CCol sm="4" md="6" lg="4" style={{ cursor: "pointer" }}>
+          <CWidgetSimple
+            header={
+              <div style={{ color: "white", fontSize: "14px" }}>Jobs</div>
+            }
+            style={{
+              borderColor: "#c77979",
+              backgroundColor: "#e55353a1",
+              color: "white",
+            }}
+            text={<CIcon height="44" name="cil-list" />}
+            onClick={() => {
+              history.push("/jobs");
+            }}
+          ></CWidgetSimple>
+        </CCol>
       </CRow>
     </>
   );

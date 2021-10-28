@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   CButton,
   CCard,
@@ -83,6 +83,7 @@ const MaterialRequisitionForm = () => {
   const user = useSelector((state) => {
     return state.user;
   });
+  const ref = useRef(null);
   const [materialReqList, setmaterialReqList] = useState([]);
   const fullName =
     user.first_name && user.last_name
@@ -149,8 +150,17 @@ const MaterialRequisitionForm = () => {
           entry_date: e.entryDate,
           need_by: e.needBy,
           description: e.description,
-          material_requisition_details: e.materialDetails,
+          material_requisition_details: e.materialDetails?.map((md) => {
+            return {
+              ...md,
+              quantity: md.quantity ? md.quantity : "",
+              size: md.size || "",
+              partNumber: md.partNumber || "",
+              itemDescription: md.itemDescription || "",
+            };
+          }),
           status: e.status,
+          header_date: moment(e.entryDate).format("dddd, MMMM DD, YYYY"),
         },
       })
       .then((result) => {
@@ -229,7 +239,7 @@ const MaterialRequisitionForm = () => {
                 itemsPerPage={5}
                 clickableRows
                 onRowClick={(item) => {
-                  setInitialValue(item);
+                  setInitialValue({ ...item, test: Symbol() });
                   setVisible(true);
                 }}
                 scopedSlots={{
@@ -273,6 +283,7 @@ const MaterialRequisitionForm = () => {
                 changeValue(state, field, () => value);
               },
             }}
+            keepDirtyOnReinitialize={false}
             render={({
               handleSubmit,
               values,
@@ -716,7 +727,7 @@ const MaterialRequisitionForm = () => {
                     <>
                       <CButton
                         color="success"
-                        type="submit"
+                        type="button"
                         onClick={() => {
                           if (!valid) {
                             addToast("Please complete empty fields.", {
@@ -726,6 +737,7 @@ const MaterialRequisitionForm = () => {
                           } else {
                             setValue("status", "CLOSED");
                           }
+                          handleSubmit();
                         }}
                       >
                         Ready to Order{" "}

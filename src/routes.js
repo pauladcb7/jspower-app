@@ -13,7 +13,8 @@ import CircuitDirectoryCrud from "./views/crud/CircuitDirectoryCrud";
 import SignSheet from "./views/forms/SignSheet";
 import ListSheet from "./views/forms/ListSheet";
 import SheetCreate from "./views/forms/SheetCreate";
-
+import Jobs from "./views/forms/Jobs";
+import JobsCrud from "./views/crud/JobsCrud";
 import Profile from "./views/pages/profile/Profile";
 import CircuitDirectoryBusiness208 from "./views/forms/CircuitDirectoryBusiness208";
 import CircuitDirectoryBusiness480 from "./views/forms/CircuitDirectoryBusiness480";
@@ -134,12 +135,18 @@ const routes = [
     name: "Profile",
     component: Profile,
   },
-
-  { path: "/icons", exact: true, name: "Icons", component: CoreUIIcons },
-  { path: "/icons/coreui-icons", name: "CoreUI Icons", component: CoreUIIcons },
-  { path: "/icons/brands", name: "Brands", component: Brands },
-  { path: "/users", exact: true, name: "Users", component: Users },
-  { path: "/users/:id", exact: true, name: "User Details", component: User },
+  {
+    path: "/jobs/edition",
+    exact: true,
+    name: "Jobs Edit",
+    component: JobsCrud,
+  },
+  {
+    path: "/jobs",
+    exact: true,
+    name: "Jobs",
+    component: Jobs,
+  },
 ];
 
 export default routes;

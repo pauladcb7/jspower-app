@@ -43,6 +43,11 @@ export const SAVE_SAFETY_SHEET = "safety-sheet/save";
 export const SAFETY_SHEET = "safety-sheet";
 export const GET_SAFETY_SHEET = "safety-sheet/get";
 
+/* Jobs */
+export const SAVE_JOB = "job/save";
+export const JOB = "job";
+export const GET_JOB = "job/get";
+
 /* Users */
 export const USERS_GET = "users/get";
 export const USER_UPDATE = "users/update";

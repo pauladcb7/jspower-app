@@ -48,6 +48,16 @@ const _nav_admin = [
   },
   {
     _tag: "CSidebarNavTitle",
+    _children: ["Lists"],
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Jobs",
+    to: "/jobs",
+    icon: "cil-list",
+  },
+  {
+    _tag: "CSidebarNavTitle",
     _children: ["Reports"],
   },
   {
@@ -79,6 +89,16 @@ const _nav_admin = [
     name: "Safety Sheets",
     to: "/safety-sheets",
     icon: "cil-task",
+  },
+  {
+    _tag: "CSidebarNavTitle",
+    _children: ["Management"],
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Jobs Edition",
+    to: "/jobs/edition",
+    icon: "cil-list",
   },
 ];
 
