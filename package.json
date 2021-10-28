@@ -1,27 +1,8 @@
 {
-  "name": "JSPowerApp",
-  "version": "0.0.1",
-  "description": "JS Power Electric Inc App",
-  "author": {
-    "name": "JS Power APP",
-    "url": "https://coreui.io",
-    "github": "https://github.com/coreui",
-    "twitter": "https://twitter.com/core_ui"
-  },
-  "contributors": [
-    {
-      "name": "CoreUI Team",
-      "url": "https://github.com/orgs/coreui/people"
-    }
-  ],
-  "proxy": "http://localhost:3000",
-  "copyright": "Copyright 2017-2020 creativeLabs Łukasz Holeczek",
-  "license": "MIT",
+  "name": "jspower-app",
+  "version": "0.1.0",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:coreui/coreui-free-react-admin-template.git"
-  },
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@coreui/chartjs": "^2.0.0",
     "@coreui/coreui": "^3.4.0",
@@ -31,6 +12,9 @@
     "@coreui/react-chartjs": "^1.1.0",
     "@coreui/utils": "^1.3.1",
     "@ideasio/add-to-homescreen-react": "^1.0.7",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "@tinymce/tinymce-react": "^3.12.6",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
     "axios": "^0.21.4",
@@ -47,6 +31,7 @@
     "moment": "^2.29.1",
     "pdfmake": "^0.2.2",
     "prop-types": "^15.7.2",
+    "pwa-install-handler": "^2.1.6",
     "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
     "react-dom": "^17.0.2",
@@ -54,6 +39,7 @@
     "react-final-form-arrays": "^3.1.3",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
     "react-select": "^5.1.0",
     "react-toast-notifications": "^2.5.1",
     "redux": "^4.0.5",
@@ -62,6 +48,19 @@
     "signature_pad": "^3.0.0-beta.4",
     "source-map-explorer": "^2.5.2",
     "tinymce": "^5.9.2",
+    "web-vitals": "^0.2.4",
+    "workbox-background-sync": "^5.1.3",
+    "workbox-broadcast-update": "^5.1.3",
+    "workbox-cacheable-response": "^5.1.3",
+    "workbox-core": "^5.1.3",
+    "workbox-expiration": "^5.1.3",
+    "workbox-google-analytics": "^5.1.3",
+    "workbox-navigation-preload": "^5.1.3",
+    "workbox-precaching": "^5.1.3",
+    "workbox-range-requests": "^5.1.3",
+    "workbox-routing": "^5.1.3",
+    "workbox-strategies": "^5.1.3",
+    "workbox-streams": "^5.1.3",
     "xlsx": "^0.17.1"
   },
   "devDependencies": {
@@ -71,35 +70,28 @@
     "react-scripts": "^4.0.3"
   },
   "scripts": {
-    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build-ci": "CI=false && react-scripts build",
     "test": "react-scripts test",
-    "test:cov": "npm test -- --coverage --watchAll=false",
-    "test:debug": "react-scripts --inspect-brk test --runInBand",
-    "eject": "react-scripts eject",
-    "changelog": "auto-changelog --starting-version 3.0.0 --commit-limit false --hide-credit"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 10",
-    "not op_mini all"
-  ],
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
-      "!**/*index.js",
-      "!src/serviceWorker.js",
-      "!src/polyfill.js"
+    "extends": [
+      "react-app",
+      "react-app/jest"
     ]
   },
-  "engines": {
-    "node": ">=10",
-    "npm": ">=6"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

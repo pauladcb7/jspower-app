@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   CHeader,
@@ -12,7 +12,8 @@ import {
   CLink,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-
+import AddToHomeScreen from "@ideasio/add-to-homescreen-react";
+import pwaInstallHandler from "pwa-install-handler";
 // routes config
 import routes from "../routes";
 
@@ -73,6 +74,23 @@ const TheHeader = () => {
         {/* <TheHeaderDropdownNotif/>
         <TheHeaderDropdownTasks/>
         <TheHeaderDropdownMssg/> */}
+        {show && (
+          <div style={{ cursor: "pointer" }} id="installButton">
+            Install
+          </div>
+        )}
+        <AddToHomeScreen
+          appId="add-to-homescreen-jspowerapp"
+          startAutomatically={true}
+          startDelay={0}
+          customPromptContent={{
+            title: "Install app on your homescreen?",
+            cancelMsg: "No",
+            installMsg: "Yes",
+            src: "/20x20.png",
+          }}
+        />
+
         <TheHeaderDropdown />
       </CHeaderNav>
 

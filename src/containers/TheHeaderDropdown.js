@@ -55,10 +55,11 @@ const TheHeaderDropdown = () => {
           <CIcon name="cil-user" className="mfe-2" />
           Profile
         </CDropdownItem>
-        <CDropdownItem>
-          <CIcon name="cil-mobile" className="mfe-2" />
-          Install App <AddToHomeScreen />
-        </CDropdownItem>
+        {/* <CDropdownItem>
+          <CIcon name="cil-user" className="mfe-2" />
+          Install App
+          
+        </CDropdownItem> */}
         <CDropdownItem onClick={logout}>
           <CIcon name="cil-account-logout" className="mfe-2" />
           Log out
