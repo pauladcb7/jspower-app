@@ -22,6 +22,7 @@ import {
   TheHeaderDropdownMssg,
   TheHeaderDropdownNotif,
   TheHeaderDropdownTasks,
+  TheHeaderDropdownSettings,
 } from "./index";
 
 const TheHeader = () => {
@@ -71,9 +72,10 @@ const TheHeader = () => {
       </CHeaderNav>
 
       <CHeaderNav className="px-3">
-        {/* <TheHeaderDropdownNotif/>
-        <TheHeaderDropdownTasks/>
-        <TheHeaderDropdownMssg/> */}
+        {/* <TheHeaderDropdownNotif />
+        <TheHeaderDropdownTasks />
+        <TheHeaderDropdownMssg /> */}
+        <TheHeaderDropdownSettings />
         <AddToHomeScreen
           appId="add-to-homescreen-jspowerapp"
           startAutomatically={true}

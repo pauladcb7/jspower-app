@@ -18,6 +18,7 @@ import JobsCrud from "./views/crud/JobsCrud";
 import Profile from "./views/pages/profile/Profile";
 import CircuitDirectoryBusiness208 from "./views/forms/CircuitDirectoryBusiness208";
 import CircuitDirectoryBusiness480 from "./views/forms/CircuitDirectoryBusiness480";
+import InstallIOs from "./views/pages/ios/Install";
 
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const CoreUIIcons = React.lazy(() =>
@@ -146,6 +147,12 @@ const routes = [
     exact: true,
     name: "Jobs",
     component: Jobs,
+  },
+  {
+    path: "/install-ios",
+    exact: true,
+    name: "Install App on IOs",
+    component: InstallIOs,
   },
 ];
 

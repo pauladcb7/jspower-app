@@ -22,19 +22,15 @@ const TheHeaderDropdown = () => {
     return state.user;
   });
   const history = useHistory();
+
+  let [first_name, last_name = ""] = user.email.split("@")[0].split(".");
+  first_name = first_name.charAt(0).toUpperCase() + first_name.slice(1);
+  last_name = last_name.charAt(0).toUpperCase() + last_name.slice(1);
+
   const fullName =
     user.first_name && user.last_name
-      ? user.first_name + " " + user.last_name
-      : user?.email
-          ?.split("@")
-          .shift()
-          .split(".")
-          .map((i) => {
-            return i.charAt(0).toUpperCase() + i.slice(1) + " ";
-          })
-          .toString()
-          .replace(",", "")
-          .trim() || user.email;
+      ? user?.first_name || "" + " " + user?.last_name || ""
+      : first_name + " " + last_name;
 
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
