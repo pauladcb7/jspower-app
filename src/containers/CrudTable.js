@@ -25,6 +25,7 @@ import { FieldArray, mu } from "react-final-form-arrays";
 import arrayMutators from "final-form-arrays";
 import moment from "moment";
 
+const required = (value) => (value ? undefined : "Required");
 function uuid() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
     var r = (Math.random() * 16) | 0,
@@ -305,8 +306,15 @@ const CrudTable = ({
                 <form onSubmit={handleSubmit}>
                   <CModalBody>
                     {metadata.map(function (metadataRow) {
+                      let validate = metadataRow.required
+                        ? { validate: required }
+                        : {};
                       return (
-                        <Field name={metadataRow.key} key={metadataRow.key}>
+                        <Field
+                          name={metadataRow.key}
+                          key={metadataRow.key}
+                          {...validate}
+                        >
                           {({ input, meta }) => (
                             <>
                               <CFormGroup>

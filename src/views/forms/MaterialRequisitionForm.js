@@ -85,19 +85,14 @@ const MaterialRequisitionForm = () => {
   });
   const ref = useRef(null);
   const [materialReqList, setmaterialReqList] = useState([]);
+  let [first_name, last_name = ""] = user.email.split("@")[0].split(".");
+  first_name = first_name.charAt(0).toUpperCase() + first_name.slice(1);
+  last_name = last_name.charAt(0).toUpperCase() + last_name.slice(1);
+
   const fullName =
     user.first_name && user.last_name
       ? user?.first_name || "" + " " + user?.last_name || ""
-      : user?.email
-          .split("@")
-          .shift()
-          .split(".")
-          .map((i) => {
-            return i.charAt(0).toUppersCase() + i.slice(1) + " ";
-          })
-          .toString()
-          .replace(",", "")
-          .trim();
+      : first_name + " " + last_name;
   useEffect(() => {
     fetchTable();
     setInitialValue({
@@ -111,7 +106,7 @@ const MaterialRequisitionForm = () => {
         mr.entryDate = moment(mr.entryDate).format("YYYY-MM-DD");
         mr.needBy = moment(mr.needBy).format("YYYY-MM-DD");
         mr.requestedBy =
-          mr.requestedBy.firstName + " " + mr.requestedBy.lastName;
+          mr.requestedBy?.firstName + " " + mr.requestedBy?.lastName;
       });
       setmaterialReqList(materialReq);
     });

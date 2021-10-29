@@ -416,13 +416,14 @@ const ListSheet = () => {
                                 type="application/pdf"
                               />
                             </object> */}
-                            <div 
+                            <div
                               className="pdfHtml"
                               dangerouslySetInnerHTML={{
-                                __html: currentDocument.customHtml
-                              }}></div>
+                                __html: currentDocument.customHtml,
+                              }}
+                            ></div>
                             {/* {JSON.stringify(currentDocument.customHtml)} */}
-                            <Field name="safetySuggestion" validate={required}>
+                            <Field name="safetySuggestion">
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>
@@ -445,10 +446,7 @@ const ListSheet = () => {
                                 </>
                               )}
                             </Field>
-                            <Field
-                              name="personalSafetyViolations"
-                              validate={required}
-                            >
+                            <Field name="personalSafetyViolations">
                               {({ input, meta }) => (
                                 <>
                                   <CFormGroup>

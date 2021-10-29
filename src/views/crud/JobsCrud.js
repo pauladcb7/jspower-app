@@ -74,6 +74,7 @@ const JobsCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "120px" },
+      required: true,
     },
     {
       key: "jobName",

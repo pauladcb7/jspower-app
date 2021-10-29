@@ -93,31 +93,6 @@ const MaterialRequisitionCrud = () => {
   };
   const validate = function () {};
 
-  /*   const rows = [
-    {
-      id: 1,
-      jobName: "2002-12-12",
-      jobLocation: "quepaso ",
-      requestedBy: "Eric Vargas",
-      entryDate: "12:00",
-      needBy: "13:33",
-      description: "Anywhere",
-      materialRequisitionDetails: Array.from(Array(50).keys()).map(function (
-        m,
-        i
-      ) {
-        return {
-          id: i + 1,
-          quantity: 2,
-          size: "L",
-          partNumber: "23",
-          itemDescription: "ID",
-        };
-      }),
-    },
-  ]; */
-  //const [rows, setRow] = useState(rowsInitial);
-
   const metadata = [
     {
       key: "jobName",
@@ -126,6 +101,7 @@ const MaterialRequisitionCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "120px" },
+      required: true,
     },
     {
       key: "jobLocation",
@@ -134,6 +110,7 @@ const MaterialRequisitionCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "120px" },
+      required: true,
     },
     {
       key: "employeeName",
@@ -142,6 +119,7 @@ const MaterialRequisitionCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "190px" },
+      required: true,
     },
     {
       key: "entryDate",
@@ -150,6 +128,7 @@ const MaterialRequisitionCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "100px" },
+      required: true,
     },
     {
       key: "needBy",
@@ -158,6 +137,7 @@ const MaterialRequisitionCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "100px" },
+      required: true,
     },
     {
       key: "description",
@@ -287,9 +267,7 @@ const MaterialRequisitionCrud = () => {
                     title="Material Requisition"
                     rows={rows}
                     metadata={metadata}
-                    onEdit={(row, edittedRow) => {
-                      console.log(edittedRow);
-                    }}
+                    onEdit={(row, edittedRow) => {}}
                     onRefreshTable={fetchTable}
                     onCreate={(row) => {}}
                     onDelete={onDelete}

@@ -81,19 +81,7 @@ const Jobs = () => {
   });
   const ref = useRef(null);
   const [jobs, setJobs] = useState([]);
-  const fullName =
-    user.first_name && user.last_name
-      ? user?.first_name || "" + " " + user?.last_name || ""
-      : user?.email
-          .split("@")
-          .shift()
-          .split(".")
-          .map((i) => {
-            return i.charAt(0).toUppersCase() + i.slice(1) + " ";
-          })
-          .toString()
-          .replace(",", "")
-          .trim();
+
   useEffect(() => {
     fetchTable();
   }, []);
@@ -101,7 +89,6 @@ const Jobs = () => {
     api
       .get(GET_JOB)
       .then((jobs) => {
-        console.log(jobs);
         jobs?.map((job) => {
           return {
             ...job,
@@ -110,7 +97,6 @@ const Jobs = () => {
             // percentage: job.percentage || ""
           };
         });
-        console.log(jobs);
         setJobs(jobs);
       })
       .catch((error) => {

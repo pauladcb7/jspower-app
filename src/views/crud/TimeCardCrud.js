@@ -175,7 +175,10 @@ function TimeEntry({ push, locations }) {
                 jobName: (item, index) => {
                   return (
                     <td>
-                      <Field name={`timecards.${index}.jobName`}>
+                      <Field
+                        name={`timecards.${index}.jobName`}
+                        validate={required}
+                      >
                         {({ input, meta }) => (
                           <>
                             <CFormGroup>
@@ -199,7 +202,10 @@ function TimeEntry({ push, locations }) {
                 jobDescription: (item, index) => {
                   return (
                     <td>
-                      <Field name={`timecards.${index}.jobDescription`}>
+                      <Field
+                        name={`timecards.${index}.jobDescription`}
+                        validate={required}
+                      >
                         {({ input, meta }) => (
                           <>
                             <CFormGroup>
@@ -232,6 +238,7 @@ function TimeEntry({ push, locations }) {
                                 type="time"
                                 invalid={meta.invalid && meta.touched}
                               />
+                              {input.value}
                               {meta.touched && meta.error && (
                                 <CInvalidFeedback className="help-block">
                                   Please provide a valid information
@@ -319,7 +326,10 @@ function TimeEntry({ push, locations }) {
                 jobLocations: (item, index) => {
                   return (
                     <td>
-                      <Field name={`timecards.${index}.jobLocations`}>
+                      <Field
+                        name={`timecards.${index}.jobLocations`}
+                        validate={required}
+                      >
                         {({ input, meta }) => (
                           <CreatableSelect
                             isMulti
@@ -622,6 +632,49 @@ const TimeCardCrud = () => {
                                   </td>
                                 );
                               },
+
+                              clockIn: (itemsecondLevel, index2) => {
+                                return (
+                                  <td
+                                    className="py-2"
+                                    style={{
+                                      minWidth: 85,
+                                      width: 85,
+                                    }}
+                                  >
+                                    {moment(
+                                      itemsecondLevel.clockIn,
+                                      "HH:mm"
+                                    ).isValid()
+                                      ? moment(
+                                          itemsecondLevel.clockIn,
+                                          "HH:mm"
+                                        ).format("hh:mm A")
+                                      : nullValue}
+                                  </td>
+                                );
+                              },
+                              clockOut: (itemsecondLevel, index2) => {
+                                return (
+                                  <td
+                                    className="py-2"
+                                    style={{
+                                      minWidth: 85,
+                                      width: 85,
+                                    }}
+                                  >
+                                    {moment(
+                                      itemsecondLevel.clockOut,
+                                      "HH:mm"
+                                    ).isValid()
+                                      ? moment(
+                                          itemsecondLevel.clockOut,
+                                          "HH:mm"
+                                        ).format("hh:mm A")
+                                      : nullValue}
+                                  </td>
+                                );
+                              },
                             }}
                           />
                         </CCardBody>
@@ -809,6 +862,28 @@ const TimeCardCrud = () => {
                       </td>
                     );
                   },
+                  lunchIn: (itemsecondLevel, index2) => {
+                    return (
+                      <td className="py-2">
+                        {moment(itemsecondLevel.lunchIn, "HH:mm").isValid()
+                          ? moment(itemsecondLevel.lunchIn, "HH:mm").format(
+                              "hh:mm A"
+                            )
+                          : nullValue}
+                      </td>
+                    );
+                  },
+                  lunchOut: (itemsecondLevel, index2) => {
+                    return (
+                      <td className="py-2">
+                        {moment(itemsecondLevel.lunchOut, "HH:mm").isValid()
+                          ? moment(itemsecondLevel.lunchOut, "HH:mm").format(
+                              "hh:mm A"
+                            )
+                          : nullValue}
+                      </td>
+                    );
+                  },
                 }}
               />
             </CCardBody>
@@ -846,10 +921,20 @@ const TimeCardCrud = () => {
 
   function parseData(array) {
     return array.map((ar) => {
+      let [first_name, last_name = ""] = ar.employee.email
+        .split("@")[0]
+        .split(".");
+      first_name = first_name.charAt(0).toUpperCase() + first_name.slice(1);
+      last_name = last_name.charAt(0).toUpperCase() + last_name.slice(1);
+
+      const fullName =
+        ar.employee.firstName && ar.employee.lastName
+          ? ar.employee.firstName || "" + " " + ar.employee.lastName || ""
+          : first_name + " " + last_name;
       return {
         ...ar,
         dateRange: ar.week,
-        employeeName: ar.employee.email,
+        employeeName: fullName,
         timecards: ar.timeEntry.length,
       };
     });
@@ -896,20 +981,20 @@ const TimeCardCrud = () => {
           formattedDate = moment(te.entryDate).format("YYYY-MM-DD");
           te.entryDate = formattedDate;
 
-          te.lunchIn = te.lunchIn
-            ? moment(te.lunchIn, ["HH:mm"]).format("h:mm A")
-            : nullValue;
-          te.lunchOut = te.lunchOut
-            ? moment(te.lunchOut, ["HH:mm"]).format("h:mm A")
-            : nullValue;
+          // te.lunchIn = te.lunchIn
+          //   ? moment(te.lunchIn, ["HH:mm"]).format("h:mm A")
+          //   : nullValue;
+          // te.lunchOut = te.lunchOut
+          //   ? moment(te.lunchOut, ["HH:mm"]).format("h:mm A")
+          //   : nullValue;
 
           te.timecard?.forEach((tc) => {
-            tc.clockIn = tc.clockIn
-              ? moment(tc.clockIn, ["HH:mm"]).format("h:mm A")
-              : nullValue;
-            tc.clockOut = tc.clockOut
-              ? moment(tc.clockOut, ["HH:mm"]).format("h:mm A")
-              : nullValue;
+            // tc.clockIn = tc.clockIn
+            //   ? moment(tc.clockIn, ["HH:mm"]).format("h:mm A")
+            //   : nullValue;
+            // tc.clockOut = tc.clockOut
+            //   ? moment(tc.clockOut, ["HH:mm"]).format("h:mm A")
+            //   : nullValue;
             tc.clockOutGps = tc.clockOutGps ? tc.clockOutGps : nullValue;
             tc.clockInGps = tc.clockInGps ? tc.clockInGps : nullValue;
           });
@@ -967,6 +1052,7 @@ const TimeCardCrud = () => {
 
   const onCreateTimeEntry = (e) => {
     let promise;
+
     if (e.id) {
       promise = api
         .post("time-card/update", {
@@ -1430,7 +1516,7 @@ const TimeCardCrud = () => {
         size="lg"
       >
         <CModalHeader closeButton>
-          <CModalTitle>{"title"}</CModalTitle>
+          <CModalTitle>{"Time Entry"}</CModalTitle>
         </CModalHeader>
         <AddForm />
       </CModal>

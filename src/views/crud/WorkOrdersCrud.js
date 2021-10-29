@@ -79,6 +79,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "120px" },
+      required: true,
     },
     {
       key: "workTypeRc",
@@ -103,6 +104,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "120px" },
+      required: true,
     },
     {
       key: "employeeName",
@@ -111,6 +113,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "190px" },
+      required: true,
     },
     {
       key: "startTime",
@@ -119,6 +122,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "100px" },
+      required: true,
     },
     {
       key: "endTime",
@@ -127,6 +131,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "100px" },
+      required: true,
     },
     {
       key: "jobLocation",
@@ -135,6 +140,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "160px" },
+      required: true,
     },
     {
       key: "jobDetails",
@@ -143,6 +149,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "160px" },
+      required: true,
     },
     {
       key: "totalCost",
@@ -168,6 +175,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "150px" },
+      required: true,
     },
     {
       key: "customerAddress",
@@ -176,6 +184,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "150px" },
+      required: true,
     },
     {
       key: "customerPhone",
@@ -184,6 +193,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "150px" },
+      required: true,
     },
     {
       key: "customer_email",
@@ -192,6 +202,7 @@ const WorkOrdersCrud = () => {
       sorter: false,
       filter: false,
       _style: { minWidth: "150px" },
+      required: true,
     },
     {
       key: "customerSignature",
@@ -300,10 +311,17 @@ const WorkOrdersCrud = () => {
   ]);
 
   function parseData(row) {
+    let [first_name, last_name] = row.user_email.split("@")[0].split(".");
+    first_name = first_name.charAt(0).toUpperCase() + first_name.slice(1);
+    last_name = last_name.charAt(0).toUpperCase() + last_name.slice(1);
+
+    const fullName = row.user_name
+      ? row.user_name
+      : first_name + " " + last_name;
     return {
       entryDate: moment(row.entry_date).format("YYYY-MM-DD"),
       workTypeRc: String(row.work_type_rc || "other"),
-      employeeName: row.user_name,
+      employeeName: row.user_name ? row.user_name : fullName,
       startTime: row.start_time,
       endTime: row.end_time,
       jobLocation: row.job_location,
