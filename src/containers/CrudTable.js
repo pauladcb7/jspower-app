@@ -218,7 +218,13 @@ const CrudTable = ({
                 );
               };
             }
-
+            if (curr.type === "time") {
+              prev[curr.key] = (item, index) => {
+                return (
+                  <td>{moment(item[curr.key], "HH:mm").format("hh:mm A")}</td>
+                );
+              };
+            }
             if (curr.custom) {
               prev[curr.key] = curr.custom;
             }
@@ -382,6 +388,7 @@ const CrudTable = ({
                                     type="time"
                                     id={metadataRow.key}
                                     invalid={meta.invalid && meta.touched}
+                                    validate={required}
                                   />
                                 ) : null}
                                 {metadataRow.type === "textarea" ? (

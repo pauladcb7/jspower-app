@@ -238,7 +238,7 @@ function TimeEntry({ push, locations }) {
                                 type="time"
                                 invalid={meta.invalid && meta.touched}
                               />
-                              {input.value}
+
                               {meta.touched && meta.error && (
                                 <CInvalidFeedback className="help-block">
                                   Please provide a valid information
