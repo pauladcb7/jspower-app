@@ -11,9 +11,19 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { Provider } from "react-redux";
 import store, { persistor } from "./store";
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
 
 React.icons = icons;
 
+Sentry.init({
+  dsn: "https://bf381effb7584f9ebd21b6872c0ef1b7@o1052603.ingest.sentry.io/6036380",
+  integrations: [new Integrations.BrowserTracing()],
+
+  // We recommend adjusting this value in production, or using tracesSampler
+  // for finer control
+  tracesSampleRate: 1.0,
+});
 window.localStorage.removeItem("add-to-homescreen-jspowerapp");
 ReactDOM.render(
   <React.StrictMode>
