@@ -37,6 +37,7 @@ import {
   CListGroup,
   CListGroupItem,
   CBadge,
+  CModal,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
@@ -68,6 +69,7 @@ const TimeCards = () => {
   });
   const { addToast } = useToasts();
   const [initialValues, setInitialValue] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const [currentDate, setCurrentDate] = useState(
     moment().format("dddd, MMMM Do, YYYY")
@@ -236,7 +238,7 @@ const TimeCards = () => {
     });
   };
 
-  const logTime = (type) => {
+  const logTime = async (type) => {
     console.log(gps);
     let pos = null;
     if (type == "clockIn") pos = 0;
@@ -244,18 +246,25 @@ const TimeCards = () => {
     else if (type == "lunchOut") pos = 2;
     else if (type == "clockOut") pos = 3;
     if (timeEntryId) {
-      async function askPermissions() {
-        const result = await navigator.permissions.query({
-          name: "geolocation",
-        });
-        if (result.state == "denied") {
-          addToast("Location access is required to log Time.", {
-            appearance: "warning",
-            autoDismiss: true,
-          });
-        }
-      }
-      askPermissions();
+      
+      setLoading(true)
+      const getCurrentLocation = new Promise((resolve,reject) => {
+
+        navigator.geolocation.getCurrentPosition(
+          (e) => {
+            resolve({ lat: e.coords.latitude, lng: e.coords.longitude })
+          },
+          (e) => {
+            addToast("Location access is required to log Time.", {
+              appearance: "warning",
+              autoDismiss: true,
+            });
+            reject(e)
+          },
+          { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }
+        );
+      })
+      const gps = await getCurrentLocation;
       if (gps) {
         // navigator.geolocation.getCurrentPosition(
         //   function (position) {
@@ -299,6 +308,8 @@ const TimeCards = () => {
                     appearance: "error",
                     autoDismiss: true,
                   });
+                }).finally(() => {
+                  setLoading(false)
                 });
               setClockInAddress(address);
               setClockInLatitude(lat);
@@ -338,6 +349,9 @@ const TimeCards = () => {
                     appearance: "error",
                     autoDismiss: true,
                   });
+                })
+                .finally(() => {
+                  setLoading(false)
                 });
               setClockOutAddress(address);
               setClockOutLatitude(lat);
@@ -369,6 +383,9 @@ const TimeCards = () => {
                     appearance: "error",
                     autoDismiss: true,
                   });
+                })
+                .finally(() => {
+                  setLoading(false)
                 });
               setLunchInAddress(address);
               setLunchInLatitude(lat);
@@ -400,6 +417,9 @@ const TimeCards = () => {
                     appearance: "error",
                     autoDismiss: true,
                   });
+                })
+                .finally(() => {
+                  setLoading(false)
                 });
               setLunchOutAddress(address);
               setLunchOutLatitude(lat);
@@ -1011,6 +1031,18 @@ const TimeCards = () => {
           </CCol>
         </CRow>
       )}
+      <CModal 
+      className="modal-loading"
+       alignment="center" 
+       closeOnBackdrop={false}
+       centered
+       show={loading}
+       
+       >
+       
+         <CSpinner color="white" />
+ 
+     </CModal>
     </>
   );
 };

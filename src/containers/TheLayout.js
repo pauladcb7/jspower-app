@@ -5,7 +5,7 @@ import { TheContent, TheSidebar, TheFooter, TheHeader } from "./index";
 const TheLayout = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  /* useEffect(() => {
     const i = setInterval(() => {
       navigator.geolocation.getCurrentPosition(
         (e) => {
@@ -21,7 +21,7 @@ const TheLayout = () => {
     return () => {
       clearInterval(i);
     };
-  }, []);
+  }, []); */
   return (
     <div className="c-app c-default-layout">
       <TheSidebar />

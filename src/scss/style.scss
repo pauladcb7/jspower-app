@@ -19,3 +19,12 @@
     margin: 0
   }
 }
+.modal-loading  {
+  .modal-content {
+    background-color: transparent;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
