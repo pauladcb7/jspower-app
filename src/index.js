@@ -17,7 +17,7 @@ import { Integrations } from "@sentry/tracing";
 React.icons = icons;
 
 Sentry.init({
-  dsn: "https://bf381effb7584f9ebd21b6872c0ef1b7@o1052603.ingest.sentry.io/6036380",
+  dsn: "https://f16dd9eb70d14af8853651577cd7c49b@o1056168.ingest.sentry.io/6044908",
   integrations: [new Integrations.BrowserTracing()],
 
   // We recommend adjusting this value in production, or using tracesSampler

@@ -977,9 +977,7 @@ const TimeCardCrud = () => {
       //timecards.map(parseData)
       timecards?.forEach((week) => {
         week.timeEntry?.forEach((te) => {
-          let formattedDate = te.entryDate;
-          formattedDate = moment(te.entryDate).format("YYYY-MM-DD");
-          te.entryDate = formattedDate;
+          te.entryDate = moment(te.entryDate).format("YYYY-MM-DD");
 
           // te.lunchIn = te.lunchIn
           //   ? moment(te.lunchIn, ["HH:mm"]).format("h:mm A")

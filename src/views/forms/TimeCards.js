@@ -37,6 +37,8 @@ import {
   CListGroup,
   CListGroupItem,
   CBadge,
+  CProgress,
+  CProgressBar,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
@@ -88,6 +90,7 @@ const TimeCards = () => {
     false,
     false,
   ]);
+  const [loggingTime, setLoggingTime] = useState([false, false, false, false]);
   const [jobLocations, setJobLocations] = React.useState([
     {
       id: 1,
@@ -138,6 +141,10 @@ const TimeCards = () => {
           }
         );
       });
+    fetchTimeCardByDay();
+  }, [timeEntryId, timeCardId, timeCardStatus]);
+
+  const fetchTimeCardByDay = () => {
     api
       .get(GET_TIME_CARD_BY_DAY, {
         params: {
@@ -153,14 +160,15 @@ const TimeCards = () => {
         setEmployeeSignature(result.time_card_info?.esignature);
         setTimeCardsLogged(result.time_cards_logged);
         setWeekClosed(result.week_closed_ind);
+        setTimeCardStatus(timeCardInfo?.status || undefined);
+        let showTime = [false, false, false, false];
+        let cardState = [true, true, true, true];
         if (timeCardInfo && result.week_closed_ind == "OPEN") {
           setTimeCardId(timeCardInfo.time_card_id);
-          setTimeCardStatus(timeCardInfo.status);
+          setTimeCardStatus(timeCardInfo.status || undefined);
           setJobName(timeCardInfo.job_name);
-          setJobDescription(timeCardInfo.job_desription);
+          setJobDescription(timeCardInfo.job_description);
 
-          let showTime = [false, false, false, false];
-          let cardState = [true, true, true, true];
           // Clock In
           let time = timeCardInfo.clock_in;
           if (time != undefined) {
@@ -194,22 +202,44 @@ const TimeCards = () => {
             //Lunch In
             let time = timeEntryInfo.lunch_in;
             if (time != undefined) {
-              //  showTime[1] = true;
-              //  cardState[1] = false;
+              showTime[1] = true;
+              cardState[1] = false;
               setLunchInTime(time);
             }
             setLunchInAddress(timeEntryInfo.lunch_in_gps);
             time = timeEntryInfo.lunch_out;
             if (time != undefined) {
-              //  showTime[2] = true;
-              //  cardState[2] = false;
+              showTime[2] = true;
+              cardState[2] = false;
+
               setLunchOutTime(time);
             }
             // Lunch Out
             setLunchOutAddress(timeEntryInfo.lunch_out_gps);
-            // setCollapseMulti(showTime);
-            // setEnableLogs(cardState);
+            setCollapseMulti(showTime);
+            setEnableLogs(cardState);
+            setTimeCardId("-1");
           }
+        }
+        if (timeEntryInfo) {
+          //Lunch In
+          let time = timeEntryInfo.lunch_in;
+          if (time != undefined) {
+            showTime[1] = true;
+            cardState[1] = false;
+            setLunchInTime(time);
+          }
+          setLunchInAddress(timeEntryInfo.lunch_in_gps);
+          time = timeEntryInfo.lunch_out;
+          if (time != undefined) {
+            showTime[2] = true;
+            cardState[2] = false;
+            setLunchOutTime(time);
+          }
+          // Lunch Out
+          setLunchOutAddress(timeEntryInfo.lunch_out_gps);
+          setCollapseMulti(showTime);
+          setEnableLogs(cardState);
         }
       })
 
@@ -220,7 +250,7 @@ const TimeCards = () => {
         });
         console.error(error);
       });
-  }, [timeEntryId, timeCardId, timeCardStatus]);
+  };
 
   const Required = () => {
     return <span style={{ color: "red" }}>*</span>;
@@ -235,192 +265,236 @@ const TimeCards = () => {
       [event.target.name]: event.target.checked,
     });
   };
+  const clearLogValues = () => {
+    setClockInAddress(null);
+    setClockInLatitude(null);
+    setClockInLongitude(null);
+    setClockInTime(null);
 
+    setClockOutAddress(null);
+    setClockOutLatitude(null);
+    setClockOutLongitude(null);
+    setClockOutTime(null);
+  };
   const logTime = (type) => {
-    console.log(gps);
+    setEnableLogs([false, false, false, false]);
+
     let pos = null;
-    if (type == "clockIn") pos = 0;
-    else if (type == "lunchIn") pos = 1;
-    else if (type == "lunchOut") pos = 2;
-    else if (type == "clockOut") pos = 3;
-    if (timeEntryId) {
-      async function askPermissions() {
-        const result = await navigator.permissions.query({
-          name: "geolocation",
-        });
-        if (result.state == "denied") {
-          addToast("Location access is required to log Time.", {
+    if (type == "clockIn") {
+      pos = 0;
+      setLoggingTime([true, false, false, true]);
+    } else if (type == "lunchIn") {
+      pos = 1;
+      setLoggingTime([false, true, true, false]);
+    } else if (type == "lunchOut") {
+      pos = 2;
+      setLoggingTime([false, true, true, false]);
+    } else if (type == "clockOut") {
+      pos = 3;
+      setLoggingTime([true, false, false, true]);
+    }
+
+    //if (timeEntryId) {
+
+    if (gps) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          const lng = position.coords.longitude;
+          const lat = position.coords.latitude;
+          fetch(
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_KEY}`,
+            {
+              method: "GET",
+              headers: {},
+            }
+          )
+            .then((response) => response.json())
+            .then((response) => {
+              let address = response.results[0]?.formatted_address;
+              let currentTime = moment().format("HH:mm");
+
+              if (type == "clockIn" && collapseMulti[0] == false) {
+                api
+                  .post(CLOCK_IN, {
+                    data: {
+                      time_card_id: timeCardId || "-1",
+                      time_entry_id: timeEntryId || "-1",
+                      entry_date: moment().format("YYYY-MM-DD"),
+                      clock_in_time: currentTime,
+                      clock_in_gps: address,
+                      clock_in_lat: lat,
+                      clock_in_lng: lng,
+                    },
+                  })
+                  .then((result) => {
+                    toggleMulti(type);
+                    setTimeCardStatus(result.time_card_status);
+                    setClockInAddress(address);
+                    setClockInLatitude(lat);
+                    setClockInLongitude(lng);
+                    setClockInTime(currentTime);
+                    fetchTimeCardByDay();
+                    setLoggingTime(false);
+                    setEnableLogs([true, true, true, true]);
+                    addToast("Clock In Time Registered", {
+                      appearance: "success",
+                      autoDismiss: true,
+                    });
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                    addToast("Something went wrong while Clocking In", {
+                      appearance: "error",
+                      autoDismiss: true,
+                    });
+                  });
+              } else if (type == "clockOut" && collapseMulti[3] == false) {
+                api
+                  .post(CLOCK_OUT, {
+                    data: {
+                      time_card_id: timeCardId || "-1",
+                      time_entry_id: timeEntryId || "-1",
+                      entry_date: moment().format("YYYY-MM-DD"),
+                      clock_out_time: currentTime,
+                      clock_out_gps: address,
+                      clock_out_lat: lat,
+                      clock_out_lng: lng,
+                    },
+                  })
+                  .then((result) => {
+                    toggleMulti(type);
+                    setTimeCardStatus(result.time_card_status);
+                    setClockOutAddress(address);
+                    setClockOutLatitude(lat);
+                    setClockOutLongitude(lng);
+                    setClockOutTime(currentTime);
+                    clearLogValues();
+                    fetchTimeCardByDay();
+                    setLoggingTime(false);
+                    setEnableLogs([true, true, true, true]);
+                    addToast("Clock Out Time Registered", {
+                      appearance: "success",
+                      autoDismiss: true,
+                    });
+                    setInitialValue({
+                      jobName: null,
+                      jobLocations: [],
+                      jobDescription: null,
+                      otherJobLocation: null,
+                      otherCheckbox: null,
+                    });
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                    addToast("Something went wrong while Clocking Out", {
+                      appearance: "error",
+                      autoDismiss: true,
+                    });
+                  });
+              } else if (type == "lunchIn" && collapseMulti[1] == false) {
+                api
+                  .post(LUNCH_IN, {
+                    data: {
+                      time_card_id: timeCardId || "-1",
+                      time_entry_id: timeEntryId || "-1",
+                      entry_date: moment().format("YYYY-MM-DD"),
+                      lunch_in_time: currentTime,
+                      lunch_in_gps: address,
+                      lunch_in_lat: lat,
+                      lunch_in_lng: lng,
+                    },
+                  })
+                  .then(() => {
+                    toggleMulti(type);
+                    setLunchInAddress(address);
+                    setLunchInLatitude(lat);
+                    setLunchInLongitude(lng);
+                    setLunchInTime(currentTime);
+                    fetchTimeCardByDay();
+                    setLoggingTime(false);
+                    setEnableLogs([true, true, true, true]);
+                    addToast("Lunch In Time Registered", {
+                      appearance: "success",
+                      autoDismiss: true,
+                    });
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                    addToast("Something went wrong while Lunching In", {
+                      appearance: "error",
+                      autoDismiss: true,
+                    });
+                  });
+              } else if (type == "lunchOut" && collapseMulti[2] == false) {
+                api
+                  .post(LUNCH_OUT, {
+                    data: {
+                      time_card_id: timeCardId || "-1",
+                      time_entry_id: timeEntryId || "-1",
+                      entry_date: moment().format("YYYY-MM-DD"),
+                      lunch_out_time: currentTime,
+                      lunch_out_gps: address,
+                      lunch_out_lat: lat,
+                      lunch_out_lng: lng,
+                    },
+                  })
+                  .then(() => {
+                    toggleMulti(type);
+                    setLunchOutAddress(address);
+                    setLunchOutLatitude(lat);
+                    setLunchOutLongitude(lng);
+                    setLunchOutTime(currentTime);
+                    fetchTimeCardByDay();
+                    setLoggingTime(false);
+                    setEnableLogs([true, true, true, true]);
+                    addToast("Lunch Out Time Registered", {
+                      appearance: "success",
+                      autoDismiss: true,
+                    });
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                    addToast("Something went wrong while Lunching Out", {
+                      appearance: "error",
+                      autoDismiss: true,
+                    });
+                  });
+              }
+            })
+            .catch((err) => console.log(err));
+        },
+        function (error) {
+          console.log(error);
+          addToast("Location access is required to Log Time.", {
             appearance: "warning",
             autoDismiss: true,
           });
+
+          // const result = await navigator.permissions.query({
+          //   name: "geolocation",
+          // });
+          // if (result.state == "denied") {
+          //   addToast("Location access is required to log Time.", {
+          //     appearance: "warning",
+          //     autoDismiss: true,
+          //   });
+          // }
         }
-      }
-      askPermissions();
-      if (gps) {
-        // navigator.geolocation.getCurrentPosition(
-        //   function (position) {
-        var lng = gps.lng;
-        var lat = gps.lat;
-        fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_KEY}`,
-          {
-            method: "GET",
-            headers: {},
-          }
-        )
-          .then((response) => response.json())
-          .then((response) => {
-            let address = response.results[0]?.formatted_address;
-            let currentTime = moment().format("HH:mm");
-
-            if (type == "clockIn" && collapseMulti[0] == false) {
-              api
-                .post(CLOCK_IN, {
-                  data: {
-                    time_card_id: timeCardId || "-1",
-                    entry_date: moment().format("YYYY-MM-DD"),
-                    clock_in_time: currentTime,
-                    clock_in_gps: address,
-                    clock_in_lat: lat,
-                    clock_in_lng: lng,
-                  },
-                })
-                .then((result) => {
-                  toggleMulti(type);
-                  setTimeCardStatus(result.time_card_status);
-                  addToast("Clock In Time Registered", {
-                    appearance: "success",
-                    autoDismiss: true,
-                  });
-                })
-                .catch((error) => {
-                  console.log(error);
-                  addToast("Something went wrong while Clocking In", {
-                    appearance: "error",
-                    autoDismiss: true,
-                  });
-                });
-              setClockInAddress(address);
-              setClockInLatitude(lat);
-              setClockInLongitude(lng);
-              setClockInTime(currentTime);
-            } else if (type == "clockOut" && collapseMulti[3] == false) {
-              api
-                .post(CLOCK_OUT, {
-                  data: {
-                    time_card_id: timeCardId || "-1",
-                    entry_date: moment().format("YYYY-MM-DD"),
-                    clock_out_time: currentTime,
-                    clock_out_gps: address,
-                    clock_out_lat: lat,
-                    clock_out_lng: lng,
-                  },
-                })
-                .then((result) => {
-                  toggleMulti(type);
-                  setTimeCardStatus(result.time_card_status);
-
-                  addToast("Clock Out Time Registered", {
-                    appearance: "success",
-                    autoDismiss: true,
-                  });
-                  setInitialValue({
-                    jobName: null,
-                    jobLocations: [],
-                    jobDescription: null,
-                    otherJobLocation: null,
-                    otherCheckbox: null,
-                  });
-                })
-                .catch((error) => {
-                  console.log(error);
-                  addToast("Something went wrong while Clocking Out", {
-                    appearance: "error",
-                    autoDismiss: true,
-                  });
-                });
-              setClockOutAddress(address);
-              setClockOutLatitude(lat);
-              setClockOutLongitude(lng);
-              setClockOutTime(currentTime);
-            } else if (type == "lunchIn" && collapseMulti[1] == false) {
-              api
-                .post(LUNCH_IN, {
-                  data: {
-                    time_card_id: timeCardId || "-1",
-                    time_entry_id: timeEntryId || "-1",
-                    entry_date: moment().format("YYYY-MM-DD"),
-                    lunch_in_time: currentTime,
-                    lunch_in_gps: address,
-                    lunch_in_lat: lat,
-                    lunch_in_lng: lng,
-                  },
-                })
-                .then(() => {
-                  toggleMulti(type);
-                  addToast("Lunch In Time Registered", {
-                    appearance: "success",
-                    autoDismiss: true,
-                  });
-                })
-                .catch((error) => {
-                  console.log(error);
-                  addToast("Something went wrong while Lunching In", {
-                    appearance: "error",
-                    autoDismiss: true,
-                  });
-                });
-              setLunchInAddress(address);
-              setLunchInLatitude(lat);
-              setLunchInLongitude(lng);
-              setLunchInTime(currentTime);
-            } else if (type == "lunchOut" && collapseMulti[2] == false) {
-              api
-                .post(LUNCH_OUT, {
-                  data: {
-                    time_card_id: timeCardId || "-1",
-                    time_entry_id: timeEntryId || "-1",
-                    entry_date: moment().format("YYYY-MM-DD"),
-                    lunch_out_time: currentTime,
-                    lunch_out_gps: address,
-                    lunch_out_lat: lat,
-                    lunch_out_lng: lng,
-                  },
-                })
-                .then(() => {
-                  toggleMulti(type);
-                  addToast("Lunch Out Time Registered", {
-                    appearance: "success",
-                    autoDismiss: true,
-                  });
-                })
-                .catch((error) => {
-                  console.log(error);
-                  addToast("Something went wrong while Lunching Out", {
-                    appearance: "error",
-                    autoDismiss: true,
-                  });
-                });
-              setLunchOutAddress(address);
-              setLunchOutLatitude(lat);
-              setLunchOutLongitude(lng);
-              setLunchOutTime(currentTime);
-            }
-          })
-          .catch((err) => console.log(err));
-      } else {
-        return;
-      }
-      //   },
-      //   () => {},
-      //   { enableHighAccuracy: true }
-      // );
+      );
     } else {
-      addToast("Fill the Time Card information and Save it before Clock In.", {
-        appearance: "warning",
-        autoDismiss: true,
-      });
+      return;
     }
+
+    //   },
+    //   () => {},
+    //   { enableHighAccuracy: true }
+    // );
+    // } else {
+    //   addToast("Fill the Time Card information and Save it before Clock In.", {
+    //     appearance: "warning",
+    //     autoDismiss: true,
+    //   });
+    // }
   };
 
   const handleotherJobLocationChange = (event) => {
@@ -454,87 +528,110 @@ const TimeCards = () => {
     setEnableLogs(newEnableLogs);
   };
   const LogCards = () => {
-    if (timeCardId) {
-      return (
-        <>
-          {(timeCardStatus == "NEW" || timeCardStatus == undefined) && (
-            <>
-              <CWidgetIcon
-                text={
-                  <div>
-                    {clockInAddress || (
-                      <div>
-                        <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
-                        Click to register Clock In time
-                      </div>
-                    )}
-                  </div>
-                }
-                header={
-                  <CCollapse timeout={2000} show={collapseMulti[0]}>
-                    {clockInTime}
-                  </CCollapse>
-                }
-                color="danger"
-                iconPadding={false}
-                id="clockInCard"
+    //if (timeCardId) {
+    return (
+      <>
+        {(timeCardStatus == "NEW" || timeCardStatus == undefined) && (
+          <>
+            <CWidgetIcon
+              text={
+                <div>
+                  {clockInAddress || (
+                    <div>
+                      <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
+                      Click to register Clock In time
+                    </div>
+                  )}
+                </div>
+              }
+              header={
+                <CCollapse timeout={2000} show={collapseMulti[0]}>
+                  {clockInTime}
+                </CCollapse>
+              }
+              color="danger"
+              iconPadding={false}
+              id="clockInCard"
+            >
+              <CCol
+                md="12"
+                className="timeLog"
+                onClick={() => {
+                  logTime("clockIn");
+                }}
               >
-                <CCol
-                  md="12"
-                  className="timeLog"
-                  onClick={() => {
-                    logTime("clockIn");
-                  }}
-                >
-                  <CIcon width={32} name="cil-clock" /> <p>Clock In</p>
-                </CCol>
-              </CWidgetIcon>
-            </>
-          )}
-          {timeCardStatus == "CLOCK_IN" && (
-            <>
-              <CWidgetIcon
-                text={
-                  <div>
-                    {clockOutAddress || (
-                      <div>
-                        <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
-                        Click to register Clock Out time
-                      </div>
-                    )}
-                  </div>
-                }
-                header={
-                  <CCollapse timeout={2000} show={collapseMulti[3]}>
-                    {clockOutTime}
-                  </CCollapse>
-                }
-                color="danger"
-                iconPadding={false}
+                {!loggingTime[0] ? (
+                  <>
+                    <CIcon width={32} name="cil-clock" />
+                    <p>Clock In</p>
+                  </>
+                ) : (
+                  <CSpinner
+                    component="div"
+                    size="lg"
+                    variant="grow"
+                    aria-hidden="true"
+                  />
+                )}
+              </CCol>
+            </CWidgetIcon>
+          </>
+        )}
+        {timeCardStatus == "CLOCK_IN" && (
+          <>
+            <CWidgetIcon
+              text={
+                <div>
+                  {clockOutAddress || (
+                    <div>
+                      <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
+                      Click to register Clock Out time
+                    </div>
+                  )}
+                </div>
+              }
+              header={
+                <CCollapse timeout={2000} show={collapseMulti[3]}>
+                  {clockOutTime}
+                </CCollapse>
+              }
+              color="danger"
+              iconPadding={false}
+            >
+              <CCol
+                md="12"
+                className="timeLog"
+                onClick={() => {
+                  logTime("clockOut");
+                }}
               >
-                <CCol
-                  md="12"
-                  className="timeLog"
-                  onClick={() => {
-                    logTime("clockOut");
-                  }}
-                >
-                  <CIcon iconPadding={false} width={32} name="cil-clock" />{" "}
-                  <p>Clock Out</p>
-                </CCol>
-              </CWidgetIcon>
-            </>
-          )}
-        </>
-      );
-    } else {
-      return null;
-    }
+                {!loggingTime[3] ? (
+                  <>
+                    <CIcon iconPadding={false} width={32} name="cil-clock" />{" "}
+                    <p>Clock Out </p>{" "}
+                  </>
+                ) : (
+                  <CSpinner
+                    component="div"
+                    size="lg"
+                    variant="grow"
+                    aria-hidden="true"
+                  />
+                )}
+              </CCol>
+            </CWidgetIcon>
+          </>
+        )}
+      </>
+    );
+    // } else {
+    //   return null;
+    // }
   };
   const onReadySignature = function (signaturePad) {
     setEmployeeSignature(signaturePad);
   };
-
+  const nothing = () => {};
   const RenderLogCards = () => {
     var format = "HH:mm:ss";
     var cIn = moment().isBetween(
@@ -545,82 +642,102 @@ const TimeCards = () => {
       moment("13:00:00", format),
       moment("17:59:00", format)
     );
-    var lIn = lunchInTime.length == 0;
-    var lOut = lunchOutTime.length == 0;
-
+    var lIn = lunchInTime?.length == 0;
+    var lOut = lunchOutTime?.length == 0;
     if (lIn || lOut) {
       return (
         <>
           {/* //
           <CCol xs="12" sm="12" lg="12"> */}
-          {lIn && (
-            <CCol xs="12" sm="6" lg="6">
-              <CWidgetIcon
-                text={
-                  <div>
-                    {lunchInAddress || (
-                      <div>
-                        <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
-                        Click to register Lunch In time
-                      </div>
-                    )}
-                  </div>
-                }
-                header={
-                  <CCollapse timeout={2000} show={collapseMulti[1]}>
-                    {lunchInTime}
-                  </CCollapse>
-                }
-                color="dark"
-                iconPadding={false}
+          {/* {lIn && ( */}
+          <CCol xs="12" sm="6" lg="6">
+            <CWidgetIcon
+              text={
+                <div>
+                  {lunchInAddress || (
+                    <div>
+                      <CIcon name="cil-arrow-left" className="clickArrow" />
+                      Click to register Lunch In time
+                    </div>
+                  )}
+                </div>
+              }
+              header={
+                <CCollapse timeout={2000} show={collapseMulti[1]}>
+                  {moment(lunchInTime, "HH:mm").format("hh:mm A")}
+                </CCollapse>
+              }
+              color="dark"
+              iconPadding={false}
+            >
+              <CCol
+                md="12"
+                className="timeLog"
+                onClick={() => {
+                  enableLogs[1] ? logTime("lunchIn") : nothing();
+                }}
               >
-                <CCol
-                  md="12"
-                  className="timeLog"
-                  onClick={() => {
-                    logTime("lunchIn");
-                  }}
-                >
-                  <CIcon width={32} name="cil-restaurant" />
-                  <p>Lunch In</p>
-                </CCol>
-              </CWidgetIcon>
-            </CCol>
-          )}
-          {lOut && (
-            <CCol xs="12" sm="6" lg="6">
-              <CWidgetIcon
-                text={
-                  <div>
-                    {lunchOutAddress || (
-                      <div>
-                        <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
-                        Click to register Lunch Out time
-                      </div>
-                    )}
-                  </div>
-                }
-                header={
-                  <CCollapse timeout={2000} show={collapseMulti[2]}>
-                    {lunchOutTime}
-                  </CCollapse>
-                }
-                color="dark"
-                iconPadding={false}
+                {!loggingTime[1] ? (
+                  <>
+                    <CIcon width={32} name="cil-restaurant" />
+                    <p>Lunch In</p>
+                  </>
+                ) : (
+                  <CSpinner
+                    component="div"
+                    size="lg"
+                    variant="grow"
+                    aria-hidden="true"
+                  />
+                )}
+              </CCol>
+            </CWidgetIcon>
+          </CCol>
+
+          {/* {lOut && ( */}
+          <CCol xs="12" sm="6" lg="6">
+            <CWidgetIcon
+              text={
+                <div>
+                  {lunchOutAddress || (
+                    <div>
+                      <CIcon name="cil-arrow-left" className="clickArrow" />{" "}
+                      Click to register Lunch Out time
+                    </div>
+                  )}
+                </div>
+              }
+              header={
+                <CCollapse timeout={2000} show={collapseMulti[2]}>
+                  {moment(lunchOutTime, "HH:mm").format("hh:mm A")}
+                </CCollapse>
+              }
+              color="dark"
+              iconPadding={false}
+            >
+              <CCol
+                md="12"
+                className="timeLog"
+                onClick={() => {
+                  enableLogs[2] ? logTime("lunchOut") : nothing();
+                }}
               >
-                <CCol
-                  md="12"
-                  className="timeLog"
-                  onClick={() => {
-                    logTime("lunchOut");
-                  }}
-                >
-                  <CIcon width={32} name="cil-restaurant" />
-                  <p>LunchOut</p>
-                </CCol>
-              </CWidgetIcon>
-            </CCol>
-          )}
+                {!loggingTime[2] ? (
+                  <>
+                    <CIcon width={32} name="cil-restaurant" />
+                    <p>LunchOut</p>
+                  </>
+                ) : (
+                  <CSpinner
+                    component="div"
+                    size="lg"
+                    variant="grow"
+                    aria-hidden="true"
+                  />
+                )}
+              </CCol>
+            </CWidgetIcon>
+          </CCol>
 
           {/* </CCol> */}
         </>
@@ -650,6 +767,7 @@ const TimeCards = () => {
       .then((result) => {
         setTimeEntryId(result.time_entry_id);
         setTimeCardId(result.time_card_id);
+        fetchTimeCardByDay();
         addToast("Time Card Saved.", {
           appearance: "success",
           autoDismiss: true,
@@ -670,13 +788,41 @@ const TimeCards = () => {
           <CRow>
             <CCol xs="12" md="12" lg="12">
               <CCard>
-                <CCardHeader>Time Logged</CCardHeader>
+                <CCardHeader>
+                  Time Logged
+                  <div className="card-header-actions">
+                    {lunchInTime && (
+                      <CBadge
+                        //className="float-right"
+                        shape="pill"
+                        color="warning"
+                      >
+                        <CIcon name="cil-restaurant" />
+                        {moment(lunchInTime, "HH:mm").format("h:mm A")}
+                      </CBadge>
+                    )}
+
+                    {!lunchOutTime ? <> </> : null}
+                    {lunchOutTime && (
+                      <CBadge shape="pill" color="warning">
+                        {moment(lunchOutTime, "HH:mm").format("h:mm A")}{" "}
+                        <CIcon name="cil-restaurant" />
+                      </CBadge>
+                    )}
+                  </div>
+                </CCardHeader>
                 <CListGroup>
                   {timeCardsLogged.map((tc) => {
                     return (
                       <CListGroup>
                         <CListGroupItem className="justify-content-between">
-                          {tc.job_name}
+                          {tc.job_name || (
+                            <>
+                              <span style={{ color: "red" }}>
+                                [Empty Job Name]
+                              </span>
+                            </>
+                          )}
                           <CBadge
                             className="float-right"
                             shape="pill"
@@ -780,6 +926,7 @@ const TimeCards = () => {
                             </CButton>
                           </div>
                         </CCardHeader>
+
                         <CCollapse show={collapsed} timeout={1000}>
                           <CCardBody>
                             <CRow>
