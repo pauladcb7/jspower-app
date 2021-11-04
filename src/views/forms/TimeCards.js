@@ -296,206 +296,202 @@ const TimeCards = () => {
 
     //if (timeEntryId) {
 
-    if (gps) {
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          const lng = position.coords.longitude;
-          const lat = position.coords.latitude;
-          fetch(
-            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_KEY}`,
-            {
-              method: "GET",
-              headers: {},
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        const lng = position.coords.longitude;
+        const lat = position.coords.latitude;
+        fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_API_KEY}`,
+          {
+            method: "GET",
+            headers: {},
+          }
+        )
+          .then((response) => response.json())
+          .then((response) => {
+            let address = response.results[0]?.formatted_address;
+            let currentTime = moment().format("HH:mm");
+
+            if (type == "clockIn" && collapseMulti[0] == false) {
+              api
+                .post(CLOCK_IN, {
+                  data: {
+                    time_card_id: timeCardId || "-1",
+                    time_entry_id: timeEntryId || "-1",
+                    entry_date: moment().format("YYYY-MM-DD"),
+                    clock_in_time: currentTime,
+                    clock_in_gps: address,
+                    clock_in_lat: lat,
+                    clock_in_lng: lng,
+                  },
+                })
+                .then((result) => {
+                  toggleMulti(type);
+                  setTimeCardStatus(result.time_card_status);
+                  setClockInAddress(address);
+                  setClockInLatitude(lat);
+                  setClockInLongitude(lng);
+                  setClockInTime(currentTime);
+                  fetchTimeCardByDay();
+
+                  addToast("Clock In Time Registered", {
+                    appearance: "success",
+                    autoDismiss: true,
+                  });
+                })
+                .catch((error) => {
+                  console.log(error);
+                  addToast("Something went wrong while Clocking In", {
+                    appearance: "error",
+                    autoDismiss: true,
+                  });
+                })
+                .finally(() => {
+                  setLoggingTime(false);
+                  setEnableLogs([true, true, true, true]);
+                });
+            } else if (type == "clockOut" && collapseMulti[3] == false) {
+              api
+                .post(CLOCK_OUT, {
+                  data: {
+                    time_card_id: timeCardId || "-1",
+                    time_entry_id: timeEntryId || "-1",
+                    entry_date: moment().format("YYYY-MM-DD"),
+                    clock_out_time: currentTime,
+                    clock_out_gps: address,
+                    clock_out_lat: lat,
+                    clock_out_lng: lng,
+                  },
+                })
+                .then((result) => {
+                  toggleMulti(type);
+                  setTimeCardStatus(result.time_card_status);
+                  setClockOutAddress(address);
+                  setClockOutLatitude(lat);
+                  setClockOutLongitude(lng);
+                  setClockOutTime(currentTime);
+                  clearLogValues();
+                  fetchTimeCardByDay();
+
+                  addToast("Clock Out Time Registered", {
+                    appearance: "success",
+                    autoDismiss: true,
+                  });
+                  setInitialValue({
+                    jobName: null,
+                    jobLocations: [],
+                    jobDescription: null,
+                    otherJobLocation: null,
+                    otherCheckbox: null,
+                  });
+                })
+                .catch((error) => {
+                  console.log(error);
+                  addToast("Something went wrong while Clocking Out", {
+                    appearance: "error",
+                    autoDismiss: true,
+                  });
+                })
+                .finally(() => {
+                  setLoggingTime(false);
+                  setEnableLogs([true, true, true, true]);
+                });
+            } else if (type == "lunchIn" && collapseMulti[1] == false) {
+              api
+                .post(LUNCH_IN, {
+                  data: {
+                    time_card_id: timeCardId || "-1",
+                    time_entry_id: timeEntryId || "-1",
+                    entry_date: moment().format("YYYY-MM-DD"),
+                    lunch_in_time: currentTime,
+                    lunch_in_gps: address,
+                    lunch_in_lat: lat,
+                    lunch_in_lng: lng,
+                  },
+                })
+                .then(() => {
+                  toggleMulti(type);
+                  setLunchInAddress(address);
+                  setLunchInLatitude(lat);
+                  setLunchInLongitude(lng);
+                  setLunchInTime(currentTime);
+                  fetchTimeCardByDay();
+
+                  addToast("Lunch In Time Registered", {
+                    appearance: "success",
+                    autoDismiss: true,
+                  });
+                })
+                .catch((error) => {
+                  console.log(error);
+                  addToast("Something went wrong while Lunching In", {
+                    appearance: "error",
+                    autoDismiss: true,
+                  });
+                })
+                .finally(() => {
+                  setLoggingTime(false);
+                  setEnableLogs([true, true, true, true]);
+                });
+            } else if (type == "lunchOut" && collapseMulti[2] == false) {
+              api
+                .post(LUNCH_OUT, {
+                  data: {
+                    time_card_id: timeCardId || "-1",
+                    time_entry_id: timeEntryId || "-1",
+                    entry_date: moment().format("YYYY-MM-DD"),
+                    lunch_out_time: currentTime,
+                    lunch_out_gps: address,
+                    lunch_out_lat: lat,
+                    lunch_out_lng: lng,
+                  },
+                })
+                .then(() => {
+                  toggleMulti(type);
+                  setLunchOutAddress(address);
+                  setLunchOutLatitude(lat);
+                  setLunchOutLongitude(lng);
+                  setLunchOutTime(currentTime);
+                  fetchTimeCardByDay();
+
+                  addToast("Lunch Out Time Registered", {
+                    appearance: "success",
+                    autoDismiss: true,
+                  });
+                })
+                .catch((error) => {
+                  console.log(error);
+                  addToast("Something went wrong while Lunching Out", {
+                    appearance: "error",
+                    autoDismiss: true,
+                  });
+                });
             }
-          )
-            .then((response) => response.json())
-            .then((response) => {
-              let address = response.results[0]?.formatted_address;
-              let currentTime = moment().format("HH:mm");
-
-              if (type == "clockIn" && collapseMulti[0] == false) {
-                api
-                  .post(CLOCK_IN, {
-                    data: {
-                      time_card_id: timeCardId || "-1",
-                      time_entry_id: timeEntryId || "-1",
-                      entry_date: moment().format("YYYY-MM-DD"),
-                      clock_in_time: currentTime,
-                      clock_in_gps: address,
-                      clock_in_lat: lat,
-                      clock_in_lng: lng,
-                    },
-                  })
-                  .then((result) => {
-                    toggleMulti(type);
-                    setTimeCardStatus(result.time_card_status);
-                    setClockInAddress(address);
-                    setClockInLatitude(lat);
-                    setClockInLongitude(lng);
-                    setClockInTime(currentTime);
-                    fetchTimeCardByDay();
-
-                    addToast("Clock In Time Registered", {
-                      appearance: "success",
-                      autoDismiss: true,
-                    });
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                    addToast("Something went wrong while Clocking In", {
-                      appearance: "error",
-                      autoDismiss: true,
-                    });
-                  })
-                  .finally(() => {
-                    setLoggingTime(false);
-                    setEnableLogs([true, true, true, true]);
-                  });
-              } else if (type == "clockOut" && collapseMulti[3] == false) {
-                api
-                  .post(CLOCK_OUT, {
-                    data: {
-                      time_card_id: timeCardId || "-1",
-                      time_entry_id: timeEntryId || "-1",
-                      entry_date: moment().format("YYYY-MM-DD"),
-                      clock_out_time: currentTime,
-                      clock_out_gps: address,
-                      clock_out_lat: lat,
-                      clock_out_lng: lng,
-                    },
-                  })
-                  .then((result) => {
-                    toggleMulti(type);
-                    setTimeCardStatus(result.time_card_status);
-                    setClockOutAddress(address);
-                    setClockOutLatitude(lat);
-                    setClockOutLongitude(lng);
-                    setClockOutTime(currentTime);
-                    clearLogValues();
-                    fetchTimeCardByDay();
-
-                    addToast("Clock Out Time Registered", {
-                      appearance: "success",
-                      autoDismiss: true,
-                    });
-                    setInitialValue({
-                      jobName: null,
-                      jobLocations: [],
-                      jobDescription: null,
-                      otherJobLocation: null,
-                      otherCheckbox: null,
-                    });
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                    addToast("Something went wrong while Clocking Out", {
-                      appearance: "error",
-                      autoDismiss: true,
-                    });
-                  })
-                  .finally(() => {
-                    setLoggingTime(false);
-                    setEnableLogs([true, true, true, true]);
-                  });
-              } else if (type == "lunchIn" && collapseMulti[1] == false) {
-                api
-                  .post(LUNCH_IN, {
-                    data: {
-                      time_card_id: timeCardId || "-1",
-                      time_entry_id: timeEntryId || "-1",
-                      entry_date: moment().format("YYYY-MM-DD"),
-                      lunch_in_time: currentTime,
-                      lunch_in_gps: address,
-                      lunch_in_lat: lat,
-                      lunch_in_lng: lng,
-                    },
-                  })
-                  .then(() => {
-                    toggleMulti(type);
-                    setLunchInAddress(address);
-                    setLunchInLatitude(lat);
-                    setLunchInLongitude(lng);
-                    setLunchInTime(currentTime);
-                    fetchTimeCardByDay();
-
-                    addToast("Lunch In Time Registered", {
-                      appearance: "success",
-                      autoDismiss: true,
-                    });
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                    addToast("Something went wrong while Lunching In", {
-                      appearance: "error",
-                      autoDismiss: true,
-                    });
-                  })
-                  .finally(() => {
-                    setLoggingTime(false);
-                    setEnableLogs([true, true, true, true]);
-                  });
-              } else if (type == "lunchOut" && collapseMulti[2] == false) {
-                api
-                  .post(LUNCH_OUT, {
-                    data: {
-                      time_card_id: timeCardId || "-1",
-                      time_entry_id: timeEntryId || "-1",
-                      entry_date: moment().format("YYYY-MM-DD"),
-                      lunch_out_time: currentTime,
-                      lunch_out_gps: address,
-                      lunch_out_lat: lat,
-                      lunch_out_lng: lng,
-                    },
-                  })
-                  .then(() => {
-                    toggleMulti(type);
-                    setLunchOutAddress(address);
-                    setLunchOutLatitude(lat);
-                    setLunchOutLongitude(lng);
-                    setLunchOutTime(currentTime);
-                    fetchTimeCardByDay();
-
-                    addToast("Lunch Out Time Registered", {
-                      appearance: "success",
-                      autoDismiss: true,
-                    });
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                    addToast("Something went wrong while Lunching Out", {
-                      appearance: "error",
-                      autoDismiss: true,
-                    });
-                  });
-              }
-            })
-            .catch((err) => console.log(err))
-            .finally(() => {
-              setLoggingTime(false);
-              setEnableLogs([true, true, true, true]);
-            });
-        },
-        function (error) {
-          console.log(error);
-          addToast("Location access is required to Log Time.", {
-            appearance: "warning",
-            autoDismiss: true,
+          })
+          .catch((err) => console.log(err))
+          .finally(() => {
+            setLoggingTime(false);
+            setEnableLogs([true, true, true, true]);
           });
+      },
+      function (error) {
+        console.log(error);
+        addToast("Location access is required to Log Time.", {
+          appearance: "warning",
+          autoDismiss: true,
+        });
 
-          // const result = await navigator.permissions.query({
-          //   name: "geolocation",
-          // });
-          // if (result.state == "denied") {
-          //   addToast("Location access is required to log Time.", {
-          //     appearance: "warning",
-          //     autoDismiss: true,
-          //   });
-          // }
-        }
-      );
-    } else {
-      return;
-    }
+        // const result = await navigator.permissions.query({
+        //   name: "geolocation",
+        // });
+        // if (result.state == "denied") {
+        //   addToast("Location access is required to log Time.", {
+        //     appearance: "warning",
+        //     autoDismiss: true,
+        //   });
+        // }
+      }
+    );
 
     //   },
     //   () => {},
