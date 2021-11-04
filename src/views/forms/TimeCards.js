@@ -37,8 +37,7 @@ import {
   CListGroup,
   CListGroupItem,
   CBadge,
-  CProgress,
-  CProgressBar,
+  CModal,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { DocsLink } from "src/reusable";
@@ -70,6 +69,7 @@ const TimeCards = () => {
   });
   const { addToast } = useToasts();
   const [initialValues, setInitialValue] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const [currentDate, setCurrentDate] = useState(
     moment().format("dddd, MMMM Do, YYYY")
@@ -334,8 +334,7 @@ const TimeCards = () => {
                     setClockInLongitude(lng);
                     setClockInTime(currentTime);
                     fetchTimeCardByDay();
-                    setLoggingTime(false);
-                    setEnableLogs([true, true, true, true]);
+
                     addToast("Clock In Time Registered", {
                       appearance: "success",
                       autoDismiss: true,
@@ -347,6 +346,10 @@ const TimeCards = () => {
                       appearance: "error",
                       autoDismiss: true,
                     });
+                  })
+                  .finally(() => {
+                    setLoggingTime(false);
+                    setEnableLogs([true, true, true, true]);
                   });
               } else if (type == "clockOut" && collapseMulti[3] == false) {
                 api
@@ -370,8 +373,7 @@ const TimeCards = () => {
                     setClockOutTime(currentTime);
                     clearLogValues();
                     fetchTimeCardByDay();
-                    setLoggingTime(false);
-                    setEnableLogs([true, true, true, true]);
+
                     addToast("Clock Out Time Registered", {
                       appearance: "success",
                       autoDismiss: true,
@@ -390,6 +392,10 @@ const TimeCards = () => {
                       appearance: "error",
                       autoDismiss: true,
                     });
+                  })
+                  .finally(() => {
+                    setLoggingTime(false);
+                    setEnableLogs([true, true, true, true]);
                   });
               } else if (type == "lunchIn" && collapseMulti[1] == false) {
                 api
@@ -411,8 +417,7 @@ const TimeCards = () => {
                     setLunchInLongitude(lng);
                     setLunchInTime(currentTime);
                     fetchTimeCardByDay();
-                    setLoggingTime(false);
-                    setEnableLogs([true, true, true, true]);
+
                     addToast("Lunch In Time Registered", {
                       appearance: "success",
                       autoDismiss: true,
@@ -424,6 +429,10 @@ const TimeCards = () => {
                       appearance: "error",
                       autoDismiss: true,
                     });
+                  })
+                  .finally(() => {
+                    setLoggingTime(false);
+                    setEnableLogs([true, true, true, true]);
                   });
               } else if (type == "lunchOut" && collapseMulti[2] == false) {
                 api
@@ -445,8 +454,7 @@ const TimeCards = () => {
                     setLunchOutLongitude(lng);
                     setLunchOutTime(currentTime);
                     fetchTimeCardByDay();
-                    setLoggingTime(false);
-                    setEnableLogs([true, true, true, true]);
+
                     addToast("Lunch Out Time Registered", {
                       appearance: "success",
                       autoDismiss: true,
@@ -461,7 +469,11 @@ const TimeCards = () => {
                   });
               }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err))
+            .finally(() => {
+              setLoggingTime(false);
+              setEnableLogs([true, true, true, true]);
+            });
         },
         function (error) {
           console.log(error);
@@ -1158,6 +1170,15 @@ const TimeCards = () => {
           </CCol>
         </CRow>
       )}
+      <CModal
+        className="modal-loading"
+        alignment="center"
+        closeOnBackdrop={false}
+        centered
+        show={loading}
+      >
+        <CSpinner color="white" />
+      </CModal>
     </>
   );
 };
