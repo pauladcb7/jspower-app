@@ -351,51 +351,58 @@ const TimeCards = () => {
                   setEnableLogs([true, true, true, true]);
                 });
             } else if (type == "clockOut" && collapseMulti[3] == false) {
-              api
-                .post(CLOCK_OUT, {
-                  data: {
-                    time_card_id: timeCardId || "-1",
-                    time_entry_id: timeEntryId || "-1",
-                    entry_date: moment().format("YYYY-MM-DD"),
-                    clock_out_time: currentTime,
-                    clock_out_gps: address,
-                    clock_out_lat: lat,
-                    clock_out_lng: lng,
-                  },
-                })
-                .then((result) => {
-                  toggleMulti(type);
-                  setTimeCardStatus(result.time_card_status);
-                  setClockOutAddress(address);
-                  setClockOutLatitude(lat);
-                  setClockOutLongitude(lng);
-                  setClockOutTime(currentTime);
-                  clearLogValues();
-                  fetchTimeCardByDay();
-
-                  addToast("Clock Out Time Registered", {
-                    appearance: "success",
-                    autoDismiss: true,
-                  });
-                  setInitialValue({
-                    jobName: null,
-                    jobLocations: [],
-                    jobDescription: null,
-                    otherJobLocation: null,
-                    otherCheckbox: null,
-                  });
-                })
-                .catch((error) => {
-                  console.log(error);
-                  addToast("Something went wrong while Clocking Out", {
-                    appearance: "error",
-                    autoDismiss: true,
-                  });
-                })
-                .finally(() => {
-                  setLoggingTime(false);
-                  setEnableLogs([true, true, true, true]);
+              if (!jobName) {
+                addToast("Fill the Form and Save Changes before Clock Out.", {
+                  appearance: "warning",
+                  autoDismiss: true,
                 });
+              } else {
+                api
+                  .post(CLOCK_OUT, {
+                    data: {
+                      time_card_id: timeCardId || "-1",
+                      time_entry_id: timeEntryId || "-1",
+                      entry_date: moment().format("YYYY-MM-DD"),
+                      clock_out_time: currentTime,
+                      clock_out_gps: address,
+                      clock_out_lat: lat,
+                      clock_out_lng: lng,
+                    },
+                  })
+                  .then((result) => {
+                    toggleMulti(type);
+                    setTimeCardStatus(result.time_card_status);
+                    setClockOutAddress(address);
+                    setClockOutLatitude(lat);
+                    setClockOutLongitude(lng);
+                    setClockOutTime(currentTime);
+                    clearLogValues();
+                    fetchTimeCardByDay();
+
+                    addToast("Clock Out Time Registered", {
+                      appearance: "success",
+                      autoDismiss: true,
+                    });
+                    setInitialValue({
+                      jobName: null,
+                      jobLocations: [],
+                      jobDescription: null,
+                      otherJobLocation: null,
+                      otherCheckbox: null,
+                    });
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                    addToast("Something went wrong while Clocking Out", {
+                      appearance: "error",
+                      autoDismiss: true,
+                    });
+                  })
+                  .finally(() => {
+                    setLoggingTime(false);
+                    setEnableLogs([true, true, true, true]);
+                  });
+              }
             } else if (type == "lunchIn" && collapseMulti[1] == false) {
               api
                 .post(LUNCH_IN, {
@@ -409,7 +416,7 @@ const TimeCards = () => {
                     lunch_in_lng: lng,
                   },
                 })
-                .then(() => {
+                .then((result) => {
                   toggleMulti(type);
                   setLunchInAddress(address);
                   setLunchInLatitude(lat);
@@ -652,7 +659,7 @@ const TimeCards = () => {
     );
     var lIn = lunchInTime?.length == 0;
     var lOut = lunchOutTime?.length == 0;
-    if (lIn || lOut) {
+    if ((lIn || lOut) && timeCardId) {
       return (
         <>
           {/* //
