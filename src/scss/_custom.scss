@@ -113,15 +113,15 @@
 }
 
 /* Black Red Striped*/
-.black-red-striped > tbody > tr:nth-child(even) {
+.black-red-striped > tbody > tr:nth-child(odd) {
   background-color: #636f83d6;
 }
 
-.black-red-striped > tbody > tr:nth-child(odd) {
+.black-red-striped > tbody > tr:nth-child(even) {
   background-color: #e55353b5;
 }
 
-.black-red-striped > thead,
+// .black-red-striped > thead,
 .black-red-blue-striped > thead,
 .brown-orange-yellow-striped > thead {
   background-color: #000000d7;
@@ -135,11 +135,11 @@
 }
 
 /* Black Red Blue Striped*/
-.black-red-blue-striped > tbody > tr:nth-child(1n) {
+.black-red-blue-striped > tbody > tr:nth-child(3n-2) {
   background-color: #636f83d6;
 }
 
-.black-red-blue-striped > tbody > tr:nth-child(2n) {
+.black-red-blue-striped > tbody > tr:nth-child(3n-1) {
   background-color: #e55353b5;
 }
 
@@ -166,4 +166,10 @@
 }
 .brown-orange-yellow-striped > tbody > tr:nth-child(3n) {
   background-color: #eeea10b4;
+}
+
+.black-red-striped > thead {
+  border-color: #e55353;
+  background-color: #ced2d854;
+  color: black;
 }

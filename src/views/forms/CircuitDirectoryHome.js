@@ -245,7 +245,7 @@ const CircuitDirectoryHome = () => {
                                     fields={fieldsTable}
                                     responsive
                                     striped
-                                    addTableClasses="black-red-striped"
+                                    addTableClasses="black-red-striped "
                                     itemsPerPage={50}
                                     scopedSlots={{
                                       ckt: (item, index) => {
