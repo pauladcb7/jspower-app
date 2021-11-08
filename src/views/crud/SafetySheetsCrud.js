@@ -324,14 +324,19 @@ const SafetySheetCrud = () => {
                                     const logo2 = (
                                       await import("../../assets/logoBg.png")
                                     ).default;
-
+                                    const blankImg = (
+                                      await import("../../assets/blank.png")
+                                    ).default;
                                     document2.images.logo =
                                       await getBase64ImageFromURL(logo);
                                     document2.images.logo2 =
                                       await getBase64ImageFromURL(logo2);
+                                    const blank = await getBase64ImageFromURL(
+                                      blankImg
+                                    );
                                     employeeSignature.forEach((es, index) => {
                                       document2.images["sign" + index] =
-                                        es.signature;
+                                        es.signature || blank;
                                     });
                                     document2.images.supervisorSignature =
                                       supervisorSignature;
