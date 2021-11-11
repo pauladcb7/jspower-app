@@ -696,7 +696,6 @@ const TimeCards = () => {
                 md="12"
                 className="timeLog"
                 onClick={() => {
-                  console.log(enableLogs[1]);
                   enableLogs[1] ? logTime("lunchIn") : nothing();
                 }}
               >
