@@ -1,7 +1,7 @@
 import moment from "moment";
 import { logo } from "./logo";
 import { getPDfInstance } from "./pdf";
-
+const nullValue = "";
 export function timecardPrint({
   todayDate,
   employeeName,
@@ -70,6 +70,12 @@ export function timecardPrint({
     ];
   });
   const mergedTimeEntries = timeEntries.map((timeEntry) => {
+    timeEntry.lunchIn = moment(timeEntry.lunchIn, "hh:mm").isValid()
+      ? moment(timeEntry.lunchIn, "HH:mm").format("hh:mm A")
+      : nullValue;
+    timeEntry.lunchOut = moment(timeEntry.lunchOut, "hh:mm").isValid()
+      ? moment(timeEntry.lunchOut, "HH:mm").format("hh:mm A")
+      : nullValue;
     return [
       [
         {
@@ -99,7 +105,9 @@ export function timecardPrint({
           style: "cell",
         },
         {
-          text: `${timeEntry.lunchIn} - ${timeEntry.lunchOut}`,
+          text: `${timeEntry.lunchIn || nullValue}   - ${
+            timeEntry.lunchOut || nullValue
+          }`,
           style: "cellResponse",
         },
       ],
@@ -110,6 +118,12 @@ export function timecardPrint({
           timeCard.location.forEach((loc) => {
             locations += loc.location;
           });
+          timeCard.clockIn = moment(timeCard.clockIn, "hh:mm").isValid()
+            ? moment(timeCard.clockIn, "HH:mm").format("hh:mm A")
+            : nullValue;
+          timeCard.clockOut = moment(timeCard.clockOut, "hh:mm").isValid()
+            ? moment(timeCard.clockOut, "HH:mm").format("hh:mm A")
+            : nullValue;
           return [
             [
               {
@@ -119,7 +133,7 @@ export function timecardPrint({
               },
 
               {
-                text: timeCard.jobDescription,
+                text: timeCard.jobName || nullValue,
                 style: "cellResponse",
                 italics: true,
               },
@@ -142,7 +156,9 @@ export function timecardPrint({
                 style: "cell",
               },
               {
-                text: `${timeCard.clockIn} - ${timeCard.clockOut}`,
+                text: `${timeCard.clockIn || nullValue} - ${
+                  timeCard.clockOut || nullValue
+                }`,
                 style: "cellResponse",
               },
             ],

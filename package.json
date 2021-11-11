@@ -31,6 +31,7 @@
     "google-maps-react": "^2.0.6",
     "html-to-pdfmake": "^2.3.4",
     "moment": "^2.29.1",
+    "moment-timezone": "^0.5.34",
     "pdfmake": "^0.2.2",
     "prop-types": "^15.7.2",
     "pwa-install-handler": "^2.1.6",

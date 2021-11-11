@@ -390,7 +390,7 @@ const TimeCardCrud = () => {
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
-  useEffect(() => {}, [checkedJobLocations]);
+  useEffect(() => {}, []);
   const nullValue = "-";
 
   const handleChange = (event) => {
