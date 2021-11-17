@@ -1,11 +1,21 @@
 import moment from "moment";
 import { logo } from "./logo";
+import { blank } from "./blank";
 import { getPDfInstance } from "./pdf";
+import { getBase64ImageFromURL } from "src/utils";
 const nullValue = "";
+// const blankImg = (
+//   import("../assets/blank.png")
+// ).default;
+
+// const blank = getBase64ImageFromURL(
+//  blankImg
+// );
 export function timecardPrint({
   todayDate,
   employeeName,
   jobName,
+  jobDescription,
   jobLocations,
   employeeSignature,
   timeEntries,
@@ -76,6 +86,8 @@ export function timecardPrint({
     timeEntry.lunchOut = moment(timeEntry.lunchOut, "hh:mm").isValid()
       ? moment(timeEntry.lunchOut, "HH:mm").format("hh:mm A")
       : nullValue;
+      
+      employeeSignature = employeeSignature || null;
     return [
       [
         {
@@ -136,6 +148,19 @@ export function timecardPrint({
                 text: timeCard.jobName || nullValue,
                 style: "cellResponse",
                 italics: true,
+              },
+            ],
+            [
+              {
+                text: "Job Description",
+                style: "cell",
+                
+              },
+
+              {
+                text: timeCard.jobDescription || nullValue,
+                style: "cellResponse",
+               
               },
             ],
             [
@@ -224,7 +249,7 @@ export function timecardPrint({
               },
             ],
             ...merged,
-            /* [
+             [
                 {
                   text: 'Employee Signature',
                   style:'cell'
@@ -232,7 +257,7 @@ export function timecardPrint({
                   image: 'employeeSignature',
                   fit: [200, 100],
                 }
-            ], */
+            ], 
           ],
         },
       },
@@ -241,7 +266,7 @@ export function timecardPrint({
     images: {
       logo: logo,
       //customerSignature:customerSignature,
-      //employeeSignature: employeeSignature
+      employeeSignature: employeeSignature || blank
     },
     styles: {
       cell: {

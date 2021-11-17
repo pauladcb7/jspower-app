@@ -339,7 +339,7 @@ const SafetySheetCrud = () => {
                                         es.signature || blank;
                                     });
                                     document2.images.supervisorSignature =
-                                      supervisorSignature;
+                                      supervisorSignature || blank;
                                     const t1 = [...document2.content];
                                     t1.unshift(
                                       {
