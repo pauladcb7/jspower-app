@@ -61,7 +61,7 @@ const SafetySheetCrud = () => {
   const [rows, setRows] = useState([]);
   const { addToast } = useToasts();
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
-  useEffect(() => {}, [checkedJobLocations]);
+  useEffect(() => {}, []);
 
   const handleChange = (event) => {
     // updating an object instead of a Map
@@ -339,7 +339,7 @@ const SafetySheetCrud = () => {
                                         es.signature || blank;
                                     });
                                     document2.images.supervisorSignature =
-                                      supervisorSignature;
+                                      supervisorSignature || blank;
                                     const t1 = [...document2.content];
                                     t1.unshift(
                                       {

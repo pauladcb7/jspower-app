@@ -41,6 +41,7 @@ import {
   CModalFooter,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { getBase64ImageFromURL } from "src/utils";
 import { DocsLink } from "src/reusable";
 import ESignature from "src/components/SiganturePadPaula";
 import { Form, Field } from "react-final-form";
@@ -390,8 +391,12 @@ const TimeCardCrud = () => {
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
-  useEffect(() => {}, []);
+  useEffect(() => {
+   
+    
+  }, []);
   const nullValue = "-";
+ 
 
   const handleChange = (event) => {
     // updating an object instead of a Map
@@ -973,34 +978,47 @@ const TimeCardCrud = () => {
   }
   function fetchTable() {
     setLoading(true);
-    return api.get(GET_TIME_CARD).then((timecards) => {
-      //timecards.map(parseData)
-      timecards?.forEach((week) => {
-        week.timeEntry?.forEach((te) => {
-          te.entryDate = moment(te.entryDate).format("YYYY-MM-DD");
-
-          // te.lunchIn = te.lunchIn
-          //   ? moment(te.lunchIn, ["HH:mm"]).format("h:mm A")
-          //   : nullValue;
-          // te.lunchOut = te.lunchOut
-          //   ? moment(te.lunchOut, ["HH:mm"]).format("h:mm A")
-          //   : nullValue;
-
-          te.timecard?.forEach((tc) => {
-            // tc.clockIn = tc.clockIn
-            //   ? moment(tc.clockIn, ["HH:mm"]).format("h:mm A")
+    try {
+      return api.get(GET_TIME_CARD).then((timecards) => {
+        //timecards.map(parseData)
+        timecards?.forEach((week) => {
+          week.timeEntry?.forEach((te) => {
+            te.entryDate = moment(te.entryDate).format("YYYY-MM-DD");
+  
+            // te.lunchIn = te.lunchIn
+            //   ? moment(te.lunchIn, ["HH:mm"]).format("h:mm A")
             //   : nullValue;
-            // tc.clockOut = tc.clockOut
-            //   ? moment(tc.clockOut, ["HH:mm"]).format("h:mm A")
+            // te.lunchOut = te.lunchOut
+            //   ? moment(te.lunchOut, ["HH:mm"]).format("h:mm A")
             //   : nullValue;
-            tc.clockOutGps = tc.clockOutGps ? tc.clockOutGps : nullValue;
-            tc.clockInGps = tc.clockInGps ? tc.clockInGps : nullValue;
+  
+            te.timecard?.forEach((tc) => {
+              // tc.clockIn = tc.clockIn
+              //   ? moment(tc.clockIn, ["HH:mm"]).format("h:mm A")
+              //   : nullValue;
+              // tc.clockOut = tc.clockOut
+              //   ? moment(tc.clockOut, ["HH:mm"]).format("h:mm A")
+              //   : nullValue;
+              tc.clockOutGps = tc.clockOutGps ? tc.clockOutGps : nullValue;
+              tc.clockInGps = tc.clockInGps ? tc.clockInGps : nullValue;
+            });
           });
         });
+        setRows(parseData(timecards || []));
+        setLoading(false);
       });
-      setRows(parseData(timecards || []));
-      setLoading(false);
-    });
+      
+    } catch (error) {
+      console.log(error);
+      addToast(
+        "Something went wrong loading Time Entires. Try again.",
+        {
+          appearance: "error",
+          autoDismiss: true,
+        }
+      );
+      
+    }
   }
 
   const [modal, setModal] = useState(false);
@@ -1009,7 +1027,8 @@ const TimeCardCrud = () => {
   const [initialData, setInitialData] = useState({});
   const [users, setUsers] = useState([]);
   const { addToast } = useToasts();
-  useEffect(() => {
+  let blank ="";
+  useEffect(async () => {
     api
       .get(JOB_LOCATIONS)
       .then((data) => {
@@ -1038,6 +1057,13 @@ const TimeCardCrud = () => {
           autoDismiss: true,
         });
       });
+      const blankImg = (
+        import("../../assets/blank.png")
+      ).default;
+      
+       blank = getBase64ImageFromURL(
+       blankImg
+      );
 
     fetchTable();
   }, []);
@@ -1473,11 +1499,13 @@ const TimeCardCrud = () => {
                             color="secondary"
                             size="sm"
                             onClick={() => {
+                              
                               timecardPrint({
                                 employeeName: row.employeeName,
                                 jobName: row.jobName,
+                                jobDescription: row.jobDescription,
                                 jobLocations: row.jobLocation,
-                                employeeSignature: row.signature,
+                                employeeSignature: row.esignature,
                                 timeEntries: row.timeEntry,
                               });
                             }}
