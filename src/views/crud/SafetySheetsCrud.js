@@ -61,7 +61,7 @@ const SafetySheetCrud = () => {
   const [rows, setRows] = useState([]);
   const { addToast } = useToasts();
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
-  useEffect(() => {}, [checkedJobLocations]);
+  useEffect(() => {}, []);
 
   const handleChange = (event) => {
     // updating an object instead of a Map
