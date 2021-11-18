@@ -936,16 +936,21 @@ const TimeCardCrud = () => {
         ar.employee.firstName && ar.employee.lastName
           ? ar.employee.firstName || "" + " " + ar.employee.lastName || ""
           : first_name + " " + last_name;
-      const esign =
-       ar.timeEntry?.map(te=> {
-         if(te.esignature?.length > 0) return te.esignature;
+          let esign = null;
+      const esignat =
+       ar.timeEntry?.map(te=> {     
+         if(te.esignature != undefined){
+           esign =te.esignature.toString();
+          return te.esignature.toString();
+         } 
        })
+       console.log('siganture is ' ,esign);
       return {
         ...ar,
         dateRange: ar.week,
         employeeName: fullName,
         timecards: ar.timeEntry.length,
-        esignature: esign[0],
+        esignature: esign,
       };
     });
     /* {
@@ -1504,7 +1509,6 @@ const TimeCardCrud = () => {
                             color="secondary"
                             size="sm"
                             onClick={() => {
-                              debugger
                               timecardPrint({
                                 employeeName: row.employeeName,
                                 jobName: row.jobName,
