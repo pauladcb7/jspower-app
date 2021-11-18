@@ -157,13 +157,13 @@ const TimeCards = () => {
         let timeCardInfo = result.time_card_info;
         let timeEntryInfo = result.time_entry_info;
         setTimeEntryId(timeEntryInfo.id);
-        setEmployeeSignature(result.time_card_info?.esignature);
+        setEmployeeSignature(result.time_entry_info?.esignature);
         setTimeCardsLogged(result.time_cards_logged);
         setWeekClosed(result.week_closed_ind);
         setTimeCardStatus(timeCardInfo?.status || undefined);
         let showTime = [false, false, false, false];
         let cardState = [true, true, true, true];
-        if (timeCardInfo && result.week_closed_ind == "OPEN") {
+        if (timeCardInfo /*&& result.week_closed_ind == "OPEN"*/) {
           setTimeCardId(timeCardInfo.time_card_id);
           setTimeCardStatus(timeCardInfo.status || undefined);
           setJobName(timeCardInfo.job_name);
@@ -198,7 +198,7 @@ const TimeCards = () => {
             signature: timeCardInfo.esignature,
           });
         } else {
-          if (result.week_closed_ind == "OPEN") {
+          //if (result.week_closed_ind == "OPEN") {
             //Lunch In
             let time = timeEntryInfo.lunch_in;
             if (time != undefined) {
@@ -219,7 +219,7 @@ const TimeCards = () => {
             setCollapseMulti(showTime);
             setEnableLogs(cardState);
             setTimeCardId("-1");
-          }
+          //}
         }
         if (timeEntryInfo) {
           //Lunch In
@@ -240,6 +240,8 @@ const TimeCards = () => {
           setLunchOutAddress(timeEntryInfo.lunch_out_gps);
           setCollapseMulti(showTime);
           setEnableLogs(cardState);
+
+          setEmployeeSignature(timeEntryInfo.esignature);
         }
       })
 
@@ -900,7 +902,7 @@ const TimeCards = () => {
 
   return (
     <>
-      {weekClosed != "CLOSED" ? (
+      
         <>
           <CRow>
             <CCol xs="12" sm="12" lg="12">
@@ -1131,9 +1133,9 @@ const TimeCards = () => {
                                   )}
                                 </Field>
 
-                                {moment().format("dddd") == "Friday" ||
+                                {(moment().format("dddd") == "Friday" ||
                                 moment().format("dddd") == "Saturday" ||
-                                moment().format("dddd") == "Sunday" ? (
+                                moment().format("dddd") == "Sunday") && weekClosed == "OPEN" ? (
                                   <Field name={"signature"}>
                                     {({ input, meta }) => (
                                       <>
@@ -1149,13 +1151,14 @@ const TimeCards = () => {
                                           metadataRow.disableEdit
                                         } */
                                             onChange={input.onChange}
+                                            
                                           ></ESignature>
                                         </CFormGroup>
                                       </>
                                     )}
                                   </Field>
                                 ) : (
-                                  <p></p>
+                                  <> <p><CIcon name="cil-pen-nib" style={{color: "#2eb85c"}}  /> Signature saved.</p></>
                                 )}
                               </CCol>
                             </CRow>
@@ -1173,7 +1176,7 @@ const TimeCards = () => {
           </CRow>
           <RenderTimeCardsLogged />
         </>
-      ) : (
+        {/* {weekClosed != "CLOSED" ? () : (
         <CRow>
           <CCol lg="12">
             <CCard>
@@ -1181,7 +1184,7 @@ const TimeCards = () => {
             </CCard>
           </CCol>
         </CRow>
-      )}
+      )} */}
       <CModal
         className="modal-loading"
         alignment="center"

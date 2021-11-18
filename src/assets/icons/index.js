@@ -129,6 +129,8 @@ import {
   cilSync,
   cilDescription,
   cilMobile,
+  cilPen,
+  cilPenNib,
 } from "@coreui/icons";
 
 export const icons = Object.assign(
@@ -138,6 +140,8 @@ export const icons = Object.assign(
   },
   {
     cilMobile,
+    cilPenNib,
+    cilPen,
     cilAlignCenter,
     cilClock,
     cilDescription,
