@@ -944,7 +944,6 @@ const TimeCardCrud = () => {
           return te.esignature.toString();
          } 
        })
-       console.log('siganture is ' ,esign);
       return {
         ...ar,
         dateRange: ar.week,
