@@ -938,7 +938,7 @@ const TimeCardCrud = () => {
           : first_name + " " + last_name;
       const esign =
        ar.timeEntry?.map(te=> {
-         if(te.esignature.length > 0) return te.esignature;
+         if(te.esignature?.length > 0) return te.esignature;
        })
       return {
         ...ar,

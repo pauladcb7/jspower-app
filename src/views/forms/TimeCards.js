@@ -1157,9 +1157,9 @@ const TimeCards = () => {
                                       </>
                                     )}
                                   </Field>
-                                ) : (
+                                ) : weekClosed != "OPEN" ? (
                                   <> <p><CIcon name="cil-pen-nib" style={{color: "#2eb85c"}}  /> Signature saved.</p></>
-                                )}
+                                ) : (<p></p>)}
                               </CCol>
                             </CRow>
                           </CCardBody>
