@@ -289,7 +289,7 @@ export function timecardPrint({
         },
       },
     ],
-    pageMargins: [0, 18, 0, 0],
+    pageMargins: [0, 20, 0, 26],
     images: {
       logo: logo,
       //customerSignature:customerSignature,
