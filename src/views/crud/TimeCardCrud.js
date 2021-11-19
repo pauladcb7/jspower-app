@@ -1087,6 +1087,7 @@ const TimeCardCrud = () => {
     let promise;
 
     if (e.id) {
+      
       promise = api
         .post("time-card/update", {
           timeEntry: {
@@ -1508,6 +1509,7 @@ const TimeCardCrud = () => {
                             color="secondary"
                             size="sm"
                             onClick={() => {
+                              
                               timecardPrint({
                                 employeeName: row.employeeName,
                                 jobName: row.jobName,

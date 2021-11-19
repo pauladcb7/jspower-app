@@ -124,7 +124,7 @@ export function materialRequisitionPrint ({
                        {text: 'PART #', style: 'cellHeader'}, 
                        {text: 'ITEM DESCRIPTION', style: 'cellHeader'}
                     ],
-                    ...materialRequisitionDetails.map((m,index) => {
+                    ...materialRequisitionDetails?.map((m,index) => {
                       return [
                         {text: String(index + 1), style: 'cellHeader'},
                         {text: String(m.quantity), style: 'cellCommon'},

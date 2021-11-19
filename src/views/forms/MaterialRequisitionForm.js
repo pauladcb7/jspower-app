@@ -219,9 +219,15 @@ const MaterialRequisitionForm = () => {
                 fields={[
                   {
                     key: "edit",
-                    _classes: "font-weight-bold",
+                    
                     label: " ",
-                    _style: { width: "20px" },
+                    _style: { width: "10px" },
+                  },
+                  {
+                    key: "print",
+                    
+                    label: " ",
+                    _style: { width: "10px" },
                   },
                   "jobName",
                   "jobLocation",
@@ -231,12 +237,12 @@ const MaterialRequisitionForm = () => {
                 ]}
                 hover
                 striped
-                itemsPerPage={5}
+                itemsPerPage={10}
                 clickableRows
-                onRowClick={(item) => {
-                  setInitialValue({ ...item, test: Symbol() });
-                  setVisible(true);
-                }}
+              //   onRowClick={(item) => {
+              //     setInitialValue({ ...item, test: Symbol() });
+              //     setVisible(true);
+              // }}
                 scopedSlots={{
                   status: (item) => (
                     <td>
@@ -247,11 +253,36 @@ const MaterialRequisitionForm = () => {
                   ),
                   edit: (item) => (
                     <td>
-                      <CButtonGroup size="sm">
-                        <CButton color="info" size="sm">
+                      
+                        <CButton 
+                        onClick={(items) => {
+                            setInitialValue({ ...item, test: Symbol() });
+                            setVisible(true);
+                        }}
+                        color="info" size="sm">
                           <CIcon width={24} name="cil-pencil" />
                         </CButton>
-                      </CButtonGroup>
+                     
+                    </td>
+                  ),
+                  print: (item) => (
+                    <td>
+                     
+                        <CButton 
+                           onClick={(items) => {
+                            materialRequisitionPrint({
+                              jobLocation: item.jobLocation,
+                              jobName: item.jobName,
+                              needBy: item.needBy,
+                              requestedBy: item.requestedBy,
+                              materialRequisitionDetails: item.materialDetails,
+                              todayDate: item.entryDate,
+                            });
+                        }}
+                          color="dark" size="sm">
+                          <CIcon width={24} name="cil-print" />
+                        </CButton>
+                     
                     </td>
                   ),
                 }}

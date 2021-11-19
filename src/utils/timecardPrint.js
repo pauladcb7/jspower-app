@@ -80,13 +80,26 @@ export function timecardPrint({
     ];
   });
   const mergedTimeEntries = timeEntries.map((timeEntry) => {
-    timeEntry.lunchIn = moment(timeEntry.lunchIn, "hh:mm").isValid()
+    let lunchHrs = 0;
+    let lunchMins = 0;
+    if (moment(timeEntry.lunchIn, "HH:mm").isValid() && 
+    moment(timeEntry.lunchOut, "HH:mm").isValid()) {
+      var startTime=moment(timeEntry.lunchIn, "HH:mm");
+      var endTime=moment(timeEntry.lunchOut, "HH:mm");
+      var duration = moment.duration(endTime.diff(startTime));
+      var hours = parseInt(duration.asHours());
+      var minutes = parseInt(duration.asMinutes())-hours*60;
+      lunchHrs = hours;
+      lunchMins = minutes;
+    }
+    
+    timeEntry.lunchIn = moment(timeEntry.lunchIn, "HH:mm").isValid()
       ? moment(timeEntry.lunchIn, "HH:mm").format("hh:mm A")
       : nullValue;
-    timeEntry.lunchOut = moment(timeEntry.lunchOut, "hh:mm").isValid()
+    timeEntry.lunchOut = moment(timeEntry.lunchOut, "HH:mm").isValid()
       ? moment(timeEntry.lunchOut, "HH:mm").format("hh:mm A")
       : nullValue;
-      
+    
       employeeSignature = employeeSignature || null;
     return [
       [
@@ -119,7 +132,7 @@ export function timecardPrint({
         {
           text: `${timeEntry.lunchIn || nullValue}   - ${
             timeEntry.lunchOut || nullValue
-          }`,
+          } (${lunchHrs}h${lunchMins != 0 ? ' ' + lunchMins + 'm' : ''})`,
           style: "cellResponse",
         },
       ],
@@ -127,16 +140,41 @@ export function timecardPrint({
         [],
         timeEntry.timecard.map((timeCard) => {
           let locations = "";
+          let clockHrs = 0;
+          let clockMins = 0;
+         if (moment(timeCard.clockIn, "HH:mm").isValid() && 
+          moment(timeCard.clockOut, "HH:mm").isValid()) {
+            var startTime=moment(timeCard.clockIn, "HH:mm");
+            var endTime=moment(timeCard.clockOut, "HH:mm");
+            var duration = moment.duration(endTime.diff(startTime));
+            var hours = parseInt(duration.asHours());
+            var minutes = parseInt(duration.asMinutes())-hours*60;
+            clockHrs = hours;
+            clockMins = minutes;
+          }
+   
           timeCard.location.forEach((loc) => {
             locations += loc.location;
           });
-          timeCard.clockIn = moment(timeCard.clockIn, "hh:mm").isValid()
+          timeCard.clockIn = moment(timeCard.clockIn, "HH:mm").isValid()
             ? moment(timeCard.clockIn, "HH:mm").format("hh:mm A")
             : nullValue;
-          timeCard.clockOut = moment(timeCard.clockOut, "hh:mm").isValid()
+          timeCard.clockOut = moment(timeCard.clockOut, "HH:mm").isValid()
             ? moment(timeCard.clockOut, "HH:mm").format("hh:mm A")
             : nullValue;
           return [
+            [
+              {
+                text: "Clock in/Clock out",
+                style: "cell",
+              },
+              {
+                text: `${timeCard.clockIn || nullValue} - ${
+                  timeCard.clockOut || nullValue
+                } (${clockHrs}h${clockMins != 0 ? ' ' + clockMins + 'm' : ''})`,
+                style: "cellResponse",
+              },
+            ],
             [
               {
                 text: "Job Name",
@@ -148,19 +186,6 @@ export function timecardPrint({
                 text: timeCard.jobName || nullValue,
                 style: "cellResponse",
                 italics: true,
-              },
-            ],
-            [
-              {
-                text: "Job Description",
-                style: "cell",
-                
-              },
-
-              {
-                text: timeCard.jobDescription || nullValue,
-                style: "cellResponse",
-               
               },
             ],
             [
@@ -177,16 +202,18 @@ export function timecardPrint({
             ],
             [
               {
-                text: "Clock in/Clock out",
+                text: "Job Description",
                 style: "cell",
+                
               },
+
               {
-                text: `${timeCard.clockIn || nullValue} - ${
-                  timeCard.clockOut || nullValue
-                }`,
+                text: timeCard.jobDescription || nullValue,
                 style: "cellResponse",
+               
               },
             ],
+            
           ];
         })
       ),
@@ -262,7 +289,7 @@ export function timecardPrint({
         },
       },
     ],
-    pageMargins: [0, 0, 0, 0],
+    pageMargins: [0, 18, 0, 0],
     images: {
       logo: logo,
       //customerSignature:customerSignature,
