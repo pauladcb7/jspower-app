@@ -8,6 +8,7 @@ import {
   CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { cilMail } from "@coreui/icons";
 import { useSelector, useStore, useDispatch } from "react-redux";
 
 const TheHeaderDropdownMssg = () => {
@@ -15,15 +16,23 @@ const TheHeaderDropdownMssg = () => {
     return state.user;
   });
   const itemsCount = 4;
+  const goToMail = () => {
+    console.log("open");
+    window.open(
+      "https://www.jspowerelectricinc.com/webmail"
+      // "sharer",
+      // "toolbar=0,status=0,width=548,height=325"
+    );
+  };
   return (
     <CDropdown inNav className="c-header-nav-item mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
-        <CIcon name="cil-envelope-open" />
-        <CBadge shape="pill" color="info">
+        <CIcon name="cil-envelope-closed" onClick={goToMail} />
+        {/* <CBadge shape="pill" color="info">
           {itemsCount}
-        </CBadge>
+        </CBadge> */}
       </CDropdownToggle>
-      <CDropdownMenu className="pt-0" placement="bottom-end">
+      {/* <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem header tag="div" color="light">
           <strong>You have {itemsCount} messages</strong>
         </CDropdownItem>
@@ -136,7 +145,7 @@ const TheHeaderDropdownMssg = () => {
         <CDropdownItem href="#" className="text-center border-top">
           <strong>View all messages</strong>
         </CDropdownItem>
-      </CDropdownMenu>
+      </CDropdownMenu> */}
     </CDropdown>
   );
 };
