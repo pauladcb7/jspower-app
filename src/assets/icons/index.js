@@ -89,6 +89,7 @@ import {
   cilLocationPin,
   cilLockLocked,
   cilMagnifyingGlass,
+  cisMail,
   cilMap,
   cilMoon,
   cilNotes,

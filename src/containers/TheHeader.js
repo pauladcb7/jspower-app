@@ -73,8 +73,8 @@ const TheHeader = () => {
 
       <CHeaderNav className="px-3">
         {/* <TheHeaderDropdownNotif />
-        <TheHeaderDropdownTasks />
-        <TheHeaderDropdownMssg /> */}
+        <TheHeaderDropdownTasks />*/}
+        <TheHeaderDropdownMssg />
         <TheHeaderDropdownSettings />
         <AddToHomeScreen
           appId="add-to-homescreen-jspowerapp"
