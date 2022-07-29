@@ -84,7 +84,7 @@ const ListSheet = () => {
     document2.images.logo = await getBase64ImageFromURL(logo);
     document2.images.logo2 = await getBase64ImageFromURL(logo2);
     const blank = await getBase64ImageFromURL(blankImg);
-    employeeSignature.forEach((es, index) => {
+    employeeSignature?.forEach((es, index) => {
       document2.images["sign" + index] = es.signature || blank;
     });
     document2.images.supervisorSignature = supervisorSignature;
@@ -160,7 +160,7 @@ const ListSheet = () => {
     );
 
     var result = [];
-    employeeSignature.forEach((employtee, index) => {
+    employeeSignature?.forEach((employtee, index) => {
       let dEmployee = {
         // auto-sized columns have their widths based on their content
         width: "*",
@@ -528,7 +528,7 @@ const ListSheet = () => {
                                       </CButton>
                                     </div>
                                   ))}
-                                  {/* 
+                                  {/*
                                   <CFormGroup>
                                     <CInput
                                       {...inputArray}

@@ -391,12 +391,8 @@ const TimeCardCrud = () => {
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
-  useEffect(() => {
-   
-    
-  }, []);
+  useEffect(() => {}, []);
   const nullValue = "-";
- 
 
   const handleChange = (event) => {
     // updating an object instead of a Map
@@ -936,20 +932,15 @@ const TimeCardCrud = () => {
         ar.employee.firstName && ar.employee.lastName
           ? ar.employee.firstName || "" + " " + ar.employee.lastName || ""
           : first_name + " " + last_name;
-          let esign = null;
-      const esignat =
-       ar.timeEntry?.map(te=> {     
-         if(te.esignature != undefined){
-           esign =te.esignature.toString();
-          return te.esignature.toString();
-         } 
-       })
+      const esign = ar.timeEntry?.map((te) => {
+        if (te.esignature?.length > 0) return te.esignature;
+      });
       return {
         ...ar,
         dateRange: ar.week,
         employeeName: fullName,
         timecards: ar.timeEntry.length,
-        esignature: esign,
+        esignature: esign[0],
       };
     });
     /* {
@@ -993,14 +984,14 @@ const TimeCardCrud = () => {
         timecards?.forEach((week) => {
           week.timeEntry?.forEach((te) => {
             te.entryDate = moment(te.entryDate).format("YYYY-MM-DD");
-  
+
             // te.lunchIn = te.lunchIn
             //   ? moment(te.lunchIn, ["HH:mm"]).format("h:mm A")
             //   : nullValue;
             // te.lunchOut = te.lunchOut
             //   ? moment(te.lunchOut, ["HH:mm"]).format("h:mm A")
             //   : nullValue;
-  
+
             te.timecard?.forEach((tc) => {
               // tc.clockIn = tc.clockIn
               //   ? moment(tc.clockIn, ["HH:mm"]).format("h:mm A")
@@ -1016,17 +1007,12 @@ const TimeCardCrud = () => {
         setRows(parseData(timecards || []));
         setLoading(false);
       });
-      
     } catch (error) {
       console.log(error);
-      addToast(
-        "Something went wrong loading Time Entires. Try again.",
-        {
-          appearance: "error",
-          autoDismiss: true,
-        }
-      );
-      
+      addToast("Something went wrong loading Time Entires. Try again.", {
+        appearance: "error",
+        autoDismiss: true,
+      });
     }
   }
 
@@ -1036,7 +1022,7 @@ const TimeCardCrud = () => {
   const [initialData, setInitialData] = useState({});
   const [users, setUsers] = useState([]);
   const { addToast } = useToasts();
-  let blank ="";
+  let blank = "";
   useEffect(async () => {
     api
       .get(JOB_LOCATIONS)
@@ -1066,13 +1052,9 @@ const TimeCardCrud = () => {
           autoDismiss: true,
         });
       });
-      const blankImg = (
-        import("../../assets/blank.png")
-      ).default;
-      
-       blank = getBase64ImageFromURL(
-       blankImg
-      );
+    const blankImg = import("../../assets/blank.png").default;
+
+    blank = getBase64ImageFromURL(blankImg);
 
     fetchTable();
   }, []);
@@ -1087,7 +1069,6 @@ const TimeCardCrud = () => {
     let promise;
 
     if (e.id) {
-      
       promise = api
         .post("time-card/update", {
           timeEntry: {
@@ -1509,7 +1490,7 @@ const TimeCardCrud = () => {
                             color="secondary"
                             size="sm"
                             onClick={() => {
-                              
+                              debugger;
                               timecardPrint({
                                 employeeName: row.employeeName,
                                 jobName: row.jobName,
