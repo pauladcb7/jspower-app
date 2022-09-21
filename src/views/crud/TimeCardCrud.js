@@ -933,7 +933,7 @@ const TimeCardCrud = () => {
         ar.employee.firstName && ar.employee.lastName
           ? ar.employee.firstName || "" + " " + ar.employee.lastName || ""
           : first_name + " " + last_name;
-      const esign = ar.timeEntry?.map((te) => {
+      const esign = ar.timeEntry?.find((te) => {
         if (te.esignature?.length > 0) return te.esignature;
       });
       return {
@@ -941,7 +941,7 @@ const TimeCardCrud = () => {
         dateRange: ar.week,
         employeeName: fullName,
         timecards: ar.timeEntry.length,
-        esignature: esign[0],
+        esignature: esign,
       };
     });
     /* {
