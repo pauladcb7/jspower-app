@@ -64,6 +64,7 @@ import { array } from "prop-types";
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { useToasts } from "react-toast-notifications";
+import { base64Blank } from "../../assets/blankBase64";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -1052,9 +1053,9 @@ const TimeCardCrud = () => {
           autoDismiss: true,
         });
       });
-    const blankImg = import("../../assets/blank.png").default;
+    //const blankImg = import("../../assets/blank.png").default;
 
-    blank = getBase64ImageFromURL(blankImg);
+    blank = base64Blank;
 
     fetchTable();
   }, []);
