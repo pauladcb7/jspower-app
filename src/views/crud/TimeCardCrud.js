@@ -941,7 +941,7 @@ const TimeCardCrud = () => {
         dateRange: ar.week,
         employeeName: fullName,
         timecards: ar.timeEntry.length,
-        esignature: esign,
+        esignature: esign.esignature,
       };
     });
     /* {
