@@ -1111,7 +1111,7 @@ const TimeCardCrud = () => {
             entry_date: e.date,
             lunch_in: e.lunch_in,
             lunch_out: e.lunch_out,
-            timecards: e.timecards.map((tc) => {
+            timecards: e.timecards?.map((tc) => {
               const jls = tc.jobLocations.filter((jlT) => {
                 return jlT.id && !jlT.__isNew__;
               });
