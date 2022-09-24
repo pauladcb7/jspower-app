@@ -65,6 +65,7 @@ import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { useToasts } from "react-toast-notifications";
 import { base64Blank } from "../../assets/blankBase64";
+import { useConfirmation } from "src/contexts/ConfirmationContext";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -1446,6 +1447,7 @@ const TimeCardCrud = () => {
     );
   };
 
+  const { openConfirmation } = useConfirmation();
   return (
     <>
       <CRow>
@@ -1478,8 +1480,16 @@ const TimeCardCrud = () => {
                       return <AddForm closeModal={closeModal} />;
                     }}
                     onRefreshTable={fetchTable}
-                    onDelete={(row) => {
-                      //deleteTimeEntry
+                    onDelete={async (row) => {
+                      const confirmed = await openConfirmation({
+                        title: "Delete confirmation",
+                        message: `Are you sure to proceed with the deletion - Timecard Employee ${row.employeeName}`,
+                      });
+                      if (confirmed) {
+                        //deleteTimeEntry
+                      } else {
+                        throw Error;
+                      }
                     }}
                     metadata={metadata}
                     loading={loading}

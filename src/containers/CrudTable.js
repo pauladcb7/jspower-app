@@ -68,7 +68,6 @@ const CrudTable = ({
   onAddRow,
 }) => {
   const [modal, setModal] = useState(false);
-  const [reRender, setRerender] = useState(uuid());
   const [selectedData, setSelectedData] = useState(null);
   async function onSubmit(newData) {
     if (selectedData) {
@@ -79,10 +78,6 @@ const CrudTable = ({
     await onRefreshTable();
     setModal(false);
   }
-
-  useEffect(() => {
-    setRerender(uuid());
-  }, [modal]);
 
   function validate() {}
 
@@ -281,7 +276,6 @@ const CrudTable = ({
           //setLarge(!large)
         }}
         closeOnBackdrop={false}
-        key={reRender}
         size="lg"
       >
         <CModalHeader closeButton>
