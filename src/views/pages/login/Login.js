@@ -57,7 +57,7 @@ const Login = () => {
                   email: data.email,
                   phone_number: data.phone_number,
                   address: data.address,
-                  rol: data.role === "admin" ? "admin" : "employee",
+                  rol: data.role || "employee",
                   profile_img: data.profile_img,
                   token: token.token,
                 },

@@ -78,7 +78,7 @@ const Profile = () => {
           phone_number: data.phone_number,
           address: data.address,
           profile_img: data.profile_img,
-          rol: data.role === "admin" ? "admin" : "employee",
+          rol: data.role || "employee",
           token: user.token,
         },
       });
