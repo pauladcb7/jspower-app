@@ -125,6 +125,22 @@ const Dashboard = () => {
             }}
           ></CWidgetSimple>
         </CCol>
+        <CCol sm="4" md="6" lg="4" style={{ cursor: "pointer" }}>
+          <CWidgetSimple
+            header={
+              <div style={{ color: "white", fontSize: "14px" }}>Motor Cheat Sheet 480V</div>
+            }
+            style={{
+              borderColor: "#2eb85c",
+              backgroundColor: "rgba(46, 184, 92, 0.88)",
+              color: "white",
+            }}
+            text={<CIcon height="44" name="cil-list" />}
+            onClick={() => {
+              history.push("/mcs");
+            }}
+          ></CWidgetSimple>
+        </CCol>
       </CRow>
     </>
   );

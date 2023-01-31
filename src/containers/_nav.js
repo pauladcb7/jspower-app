@@ -60,14 +60,13 @@ const _nav = [
     _tag: "CSidebarNavItem",
     name: "Motor Cheat Sheet 480V",
     to: "/mcs",
-    icon: "cil-list",
+    icon: <CIcon name="cil-list" customClasses="c-sidebar-nav-icon" />,
+    badge: {
+      color: "info",
+      text: "NEW",
+    },
   },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Motor Cheat Sheet 480V",
-    to: "/mcs",
-    icon: "cil-list",
-  },
+
 ];
 
 export default _nav;
