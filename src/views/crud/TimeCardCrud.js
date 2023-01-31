@@ -47,6 +47,7 @@ import ESignature from "src/components/SiganturePadPaula";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
+import { useDispatch, useSelector } from "react-redux";
 import { circuitPrint } from "src/utils/circuitPrint";
 import CrudTable from "src/containers/CrudTable";
 import { timecardPrint } from "src/utils/timecardPrint";
@@ -79,6 +80,7 @@ for (let index = 1; index < 43; index++) {
 initialArray.push();
 
 function TimeEntry({ push, locations }) {
+
   return (
     <div>
       <Field name="lunch_in">
@@ -388,13 +390,23 @@ function TimeEntry({ push, locations }) {
     </div>
   );
 }
+const useIsAdmin = () => {
+  const user = useSelector((state) => {
+    return state.user;
+  });
+  return user.rol === 'admin';
+}
+
 const TimeCardCrud = () => {
   const [collapsed, setCollapsed] = React.useState(true);
   const [showElements, setShowElements] = React.useState(true);
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
+
+  const isAdmin = useIsAdmin()
   useEffect(() => {}, []);
   const nullValue = "-";
+
 
   const handleChange = (event) => {
     // updating an object instead of a Map
@@ -465,6 +477,7 @@ const TimeCardCrud = () => {
   };
 
   function deleteTimeEntry(timeEntry) {
+
     return api
       .delete(DELETE_TIME_ENTRY, {
         data: {
@@ -621,16 +634,26 @@ const TimeCardCrud = () => {
                                     }}
                                   >
                                     <CButtonGroup size="sm">
+                                    {isAdmin ?
                                       <CButton
                                         color="danger"
                                         size="sm"
-                                        onClick={async () => {
-                                          await deleteTimeCard(itemsecondLevel);
-                                          fetchTable();
+                                        onClick={async (row) => {
+                                          const confirmed = await openConfirmation({
+                                            title: "Delete Time Card",
+                                            message: `Are you sure you want to continue? - Timecard Employee: ${row.employeeName}`,
+                                          });
+                                          if (confirmed) {
+                                            await deleteTimeCard(itemsecondLevel);
+                                            fetchTable();
+                                          } else {
+                                            throw Error;
+                                          }
                                         }}
                                       >
                                         <CIcon width={24} name="cil-trash" />
                                       </CButton>
+                                      : null}
                                     </CButtonGroup>
                                   </td>
                                 );
@@ -694,160 +717,175 @@ const TimeCardCrud = () => {
                         }}
                       >
                         <CButtonGroup size="sm">
-                          <CButton
-                            color="info"
-                            size="sm"
-                            onClick={() => {
-                              setInitialData({
-                                ...item,
-                                date: moment(item.entryDate).format(
-                                  "YYYY-MM-DD"
-                                ),
-                                id: item.id,
-                                user: users.find((user) => {
-                                  return user.return === itemWeek.employee?.id;
-                                }),
-                                lunch_in: item.lunchIn,
-                                lunch_out: item.lunchOut,
-                                timecards: item.timecard.map((tc) => {
-                                  return {
-                                    jobName: tc.jobName,
-                                    jobDescription: tc.jobDescription,
-                                    clockIn: tc.clockIn,
-                                    clockInGps: tc.clockInGps,
-                                    clockOut: tc.clockOut,
-                                    clockOutGps: tc.clockOutGps,
-                                    jobLocations: tc.otherLocation
-                                      ? [
-                                          {
-                                            label: tc.otherLocation,
-                                            value: tc.otherLocation,
-                                            __isNew__: true,
-                                          },
-                                          ...locations.filter((value) => {
-                                            return tc.location.find((lc) => {
-                                              return value.id == lc.id;
-                                            });
-                                          }),
-                                        ]
-                                      : [
-                                          ...locations.filter((value) => {
-                                            return tc.location.find((lc) => {
-                                              return value.id == lc.id;
-                                            });
-                                          }),
-                                        ],
-                                  };
-                                }),
-                                /* user: values.user,
-                                date: values.date,
-                                lunch_in: re.timeEntryLunchIn,
-                                lunch_out: re.timeEntryLunchOut,
-                                timecards: re.timecard.map(
-                                  (tc) => {
+                          {isAdmin ?
+                          <>
+                            <CButton
+                              color="info"
+                              size="sm"
+                              onClick={() => {
+                                setInitialData({
+                                  ...item,
+                                  date: moment(item.entryDate).format(
+                                    "YYYY-MM-DD"
+                                  ),
+                                  id: item.id,
+                                  user: users.find((user) => {
+                                    return user.return === itemWeek.employee?.id;
+                                  }),
+                                  lunch_in: item.lunchIn,
+                                  lunch_out: item.lunchOut,
+                                  timecards: item.timecard.map((tc) => {
                                     return {
                                       jobName: tc.jobName,
-                                      jobDescription:
-                                        tc.jobDescription,
+                                      jobDescription: tc.jobDescription,
                                       clockIn: tc.clockIn,
                                       clockInGps: tc.clockInGps,
                                       clockOut: tc.clockOut,
                                       clockOutGps: tc.clockOutGps,
-                                      jobLocations:
-                                        tc.otherLocation
-                                          ? [
-                                              {
-                                                label:
-                                                  tc.otherLocation,
-                                                value:
-                                                  tc.otherLocation,
-                                                __isNew__: true,
-                                              },
-                                              ...locations.filter(
-                                                (value) => {
-                                                  return tc.location.find(
-                                                    (lc) => {
-                                                      return (
-                                                        value.id ==
-                                                        lc.id
-                                                      );
-                                                    }
-                                                  );
-                                                }
-                                              ),
-                                            ]
-                                          : [
-                                              ...locations.filter(
-                                                (value) => {
-                                                  return tc.location.find(
-                                                    (lc) => {
-                                                      return (
-                                                        value.id ==
-                                                        lc.id
-                                                      );
-                                                    }
-                                                  );
-                                                }
-                                              ),
-                                            ],
+                                      jobLocations: tc.otherLocation
+                                        ? [
+                                            {
+                                              label: tc.otherLocation,
+                                              value: tc.otherLocation,
+                                              __isNew__: true,
+                                            },
+                                            ...locations.filter((value) => {
+                                              return tc.location.find((lc) => {
+                                                return value.id == lc.id;
+                                              });
+                                            }),
+                                          ]
+                                        : [
+                                            ...locations.filter((value) => {
+                                              return tc.location.find((lc) => {
+                                                return value.id == lc.id;
+                                              });
+                                            }),
+                                          ],
                                     };
-                                  }
-                                ), */
-                                /* entryDate: moment(item.entryDate).format(
-                                  "YYYY-MM-DD"
-                                ),
-                                isTimeEntry: true, */
-                              });
-                              setModal(true);
-                              /* setMetadataCustom([
-                                {
-                                  key: "entryDate",
-                                  label: "Date",
-                                  type: "date",
-                                  sorter: false,
-                                  filter: false,
-                                  _style: { minWidth: "120px" },
-                                },
-                                {
-                                  key: "lunchIn",
-                                  label: "Lunch In",
-                                  type: "time",
-                                  sorter: false,
-                                  filter: false,
-                                },
-                                {
-                                  key: "lunchOut",
-                                  label: "Lunch Out",
-                                  type: "time",
-                                  sorter: false,
-                                  filter: false,
-                                  _style: { minWidth: "190px" },
-                                },
-                              ]);
-                              setSelectedData({
-                                ...item,
-                                entryDate: moment(item.entryDate).format(
-                                  "YYYY-MM-DD"
-                                ),
-                                isTimeEntry: true,
-                              });
-                              setModal(true); */
-                            }}
-                          >
-                            <CIcon width={24} name="cil-pencil" />
-                          </CButton>
-                          <CButton
-                            color="danger"
-                            size="sm"
-                            onClick={async () => {
-                              await deleteTimeEntry(item);
-                              fetchTable();
-                              /* await onDelete(item);
-                              onRefreshTable() */
-                            }}
-                          >
-                            <CIcon width={24} name="cil-trash" />
-                          </CButton>
+                                  }),
+                                  /* user: values.user,
+                                  date: values.date,
+                                  lunch_in: re.timeEntryLunchIn,
+                                  lunch_out: re.timeEntryLunchOut,
+                                  timecards: re.timecard.map(
+                                    (tc) => {
+                                      return {
+                                        jobName: tc.jobName,
+                                        jobDescription:
+                                          tc.jobDescription,
+                                        clockIn: tc.clockIn,
+                                        clockInGps: tc.clockInGps,
+                                        clockOut: tc.clockOut,
+                                        clockOutGps: tc.clockOutGps,
+                                        jobLocations:
+                                          tc.otherLocation
+                                            ? [
+                                                {
+                                                  label:
+                                                    tc.otherLocation,
+                                                  value:
+                                                    tc.otherLocation,
+                                                  __isNew__: true,
+                                                },
+                                                ...locations.filter(
+                                                  (value) => {
+                                                    return tc.location.find(
+                                                      (lc) => {
+                                                        return (
+                                                          value.id ==
+                                                          lc.id
+                                                        );
+                                                      }
+                                                    );
+                                                  }
+                                                ),
+                                              ]
+                                            : [
+                                                ...locations.filter(
+                                                  (value) => {
+                                                    return tc.location.find(
+                                                      (lc) => {
+                                                        return (
+                                                          value.id ==
+                                                          lc.id
+                                                        );
+                                                      }
+                                                    );
+                                                  }
+                                                ),
+                                              ],
+                                      };
+                                    }
+                                  ), */
+                                  /* entryDate: moment(item.entryDate).format(
+                                    "YYYY-MM-DD"
+                                  ),
+                                  isTimeEntry: true, */
+                                });
+                                setModal(true);
+                                /* setMetadataCustom([
+                                  {
+                                    key: "entryDate",
+                                    label: "Date",
+                                    type: "date",
+                                    sorter: false,
+                                    filter: false,
+                                    _style: { minWidth: "120px" },
+                                  },
+                                  {
+                                    key: "lunchIn",
+                                    label: "Lunch In",
+                                    type: "time",
+                                    sorter: false,
+                                    filter: false,
+                                  },
+                                  {
+                                    key: "lunchOut",
+                                    label: "Lunch Out",
+                                    type: "time",
+                                    sorter: false,
+                                    filter: false,
+                                    _style: { minWidth: "190px" },
+                                  },
+                                ]);
+                                setSelectedData({
+                                  ...item,
+                                  entryDate: moment(item.entryDate).format(
+                                    "YYYY-MM-DD"
+                                  ),
+                                  isTimeEntry: true,
+                                });
+                                setModal(true); */
+                              }}
+                            >
+                              <CIcon width={24} name="cil-pencil" />
+                            </CButton>
+                            {isAdmin ?
+                            <CButton
+                              color="danger"
+                              size="sm"
+                              onClick={async () => {
+                                const confirmed = await openConfirmation({
+                                  title: "Delete Time Entry",
+                                  message: `Are you sure you want to continue? - Entry Date: ${item.entryDate}`,
+                                });
+                                if (confirmed) {
+                                  await deleteTimeEntry(item);
+                                  fetchTable();
+                                } else {
+
+                                }
+                              }}
+
+                            >
+                              <CIcon width={24} name="cil-trash" />
+                            </CButton>
+                            : null }
+                          </>
+                          :
+                          null
+                        }
                           <CButton
                             color="dark"
                             size="sm"
@@ -1471,6 +1509,7 @@ const TimeCardCrud = () => {
               <CCollapse show={collapsed} timeout={1000}>
                 <CCardBody>
                   <CrudTable
+                    disableDelete={!isAdmin}
                     title="Time Card"
                     rows={rows}
                     onAddRow={() => {
@@ -1482,11 +1521,14 @@ const TimeCardCrud = () => {
                     onRefreshTable={fetchTable}
                     onDelete={async (row) => {
                       const confirmed = await openConfirmation({
-                        title: "Delete confirmation",
-                        message: `Are you sure to proceed with the deletion - Timecard Employee ${row.employeeName}`,
+                        title: "Delete Time Entry",
+                        message: `Are you sure you want to continue? - Time Entry Employee: ${row.employeeName}`,
                       });
                       if (confirmed) {
-                        //deleteTimeEntry
+                        row.timeEntry.forEach(async (te) => {
+                          await deleteTimeEntry(te)
+                          fetchTable()
+                        })
                       } else {
                         throw Error;
                       }
@@ -1501,7 +1543,6 @@ const TimeCardCrud = () => {
                             color="secondary"
                             size="sm"
                             onClick={() => {
-                              debugger;
                               timecardPrint({
                                 employeeName: row.employeeName,
                                 jobName: row.jobName,

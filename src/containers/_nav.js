@@ -56,6 +56,18 @@ const _nav = [
     to: "/jobs",
     icon: "cil-list",
   },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Motor Cheat Sheet 480V",
+    to: "/mcs",
+    icon: "cil-list",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Motor Cheat Sheet 480V",
+    to: "/mcs",
+    icon: "cil-list",
+  },
 ];
 
 export default _nav;

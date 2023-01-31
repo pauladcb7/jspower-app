@@ -48,6 +48,11 @@ export const SAVE_JOB = "job/save";
 export const JOB = "job";
 export const GET_JOB = "job/get";
 
+/* Motor Cheat Sheet 480V */
+export const SAVE_MCS = "mcs/save";
+export const MCS = "mcs";
+export const GET_MCS = "mcs/get";
+
 /* Users */
 export const USERS_GET = "users/get";
 export const USER_UPDATE = "users/update";

@@ -57,6 +57,12 @@ const _nav_admin = [
     icon: "cil-list",
   },
   {
+    _tag: "CSidebarNavItem",
+    name: "Motor Cheat Sheet 480V",
+    to: "/mcs",
+    icon: "cil-list",
+  },
+  {
     _tag: "CSidebarNavTitle",
     _children: ["Reports"],
   },
@@ -98,6 +104,12 @@ const _nav_admin = [
     _tag: "CSidebarNavItem",
     name: "Jobs Edition",
     to: "/jobs/edition",
+    icon: "cil-list",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Motor Cheat Sheet Edition",
+    to: "/mcs/edition",
     icon: "cil-list",
   },
 ];

@@ -15,6 +15,8 @@ import ListSheet from "./views/forms/ListSheet";
 import SheetCreate from "./views/forms/SheetCreate";
 import Jobs from "./views/forms/Jobs";
 import JobsCrud from "./views/crud/JobsCrud";
+import MCS from "./views/forms/MotorCheatSheet480";
+import MCSCrud from "./views/crud/MCSCrud";
 import Profile from "./views/pages/profile/Profile";
 import CircuitDirectoryBusiness208 from "./views/forms/CircuitDirectoryBusiness208";
 import CircuitDirectoryBusiness480 from "./views/forms/CircuitDirectoryBusiness480";
@@ -147,6 +149,18 @@ const routes = [
     exact: true,
     name: "Jobs",
     component: Jobs,
+  },
+  {
+    path: "/mcs/edition",
+    exact: true,
+    name: "Motor Cheat Sheet 480V Edit",
+    component: MCSCrud,
+  },
+  {
+    path: "/mcs",
+    exact: true,
+    name: "Motor Cheat Sheet 480V",
+    component: MCS,
   },
   {
     path: "/install-ios",
