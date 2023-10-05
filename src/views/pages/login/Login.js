@@ -44,7 +44,6 @@ const Login = () => {
         user_passwd: e.password,
       })
       .then((token) => {
-        console.log('Retrv t...');
         api
           .get(TEST, { headers: { "x-access-token": token.token } })
           .then((data) => {
