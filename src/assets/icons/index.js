@@ -26,6 +26,7 @@ import {
   cibGooglePay,
   cibCcAmex,
   cilAccountLogout,
+  cilNoteAdd,
 } from "@coreui/icons";
 import { cifUs, cifBr, cifIn, cifFr, cifEs, cifPl } from "@coreui/icons";
 import {
@@ -251,6 +252,7 @@ export const icons = Object.assign(
     cifFr,
     cifEs,
     cifPl,
+    cilNoteAdd,
   },
   {
     cibSkype,

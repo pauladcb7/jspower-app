@@ -1,6 +1,6 @@
 import React from "react";
 import CIcon from "@coreui/icons-react";
-
+import { CNavItem, CNavTitle } from "@coreui/react";
 const _nav_admin = [
   {
     _tag: "CSidebarNavItem",
@@ -46,26 +46,50 @@ const _nav_admin = [
     to: "/safety-sheets/list",
     icon: "cil-task",
   },
+  // {
+  //   _tag: "CSidebarNavTitle",
+  //   _children: ["Lists"],
+  // },
   {
-    _tag: "CSidebarNavTitle",
-    _children: ["Lists"],
+    _tag: "CSidebarNavDropdown",
+    name: (
+      <>
+        <span
+         style={{"fontWeight":"700", "fontSize": "80%", "color": "rgba(255, 255, 255, 0.6)"}}
+        >
+          LISTS
+        </span>
+      </>
+    ),
+    route: "/dashboard",
+    //icon: "cil-list",
+    _show: true,
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        name: (
+          <>
+            {" "}
+            <CIcon name="cil-list" style={{ "margin-right": "10px" }} />
+            Jobs
+          </>
+        ),
+        to: "/jobs",
+        // icon: "cil-list",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Motor Cheat Sheet 480V",
+        to: "/mcs",
+        // icon: <CIcon name="cil-list" customClasses="c-sidebar-nav-icon" />,
+        badge: {
+          color: "info",
+          text: "NEW",
+        },
+      },
+    ],
   },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Jobs",
-    to: "/jobs",
-    icon: "cil-list",
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Motor Cheat Sheet 480V",
-    to: "/mcs",
-    icon: <CIcon name="cil-list" customClasses="c-sidebar-nav-icon" />,
-    badge: {
-      color: "info",
-      text: "NEW",
-    },
-  },
+
   {
     _tag: "CSidebarNavTitle",
     _children: ["Reports"],

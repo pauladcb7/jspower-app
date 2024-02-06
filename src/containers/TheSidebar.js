@@ -25,7 +25,8 @@ const TheSidebar = () => {
 
   return (
     <CSidebar
-      show={show}
+      show={true}
+      dropdownMode={"noAction"}
       onShowChange={(val) => dispatch({ type: "set", sidebarShow: val })}
     >
       <CSidebarBrand className="d-md-down-none brand-container" to="/">
@@ -38,7 +39,11 @@ const TheSidebar = () => {
       </CSidebarBrand>
       <CSidebarNav>
         <CCreateElement
-          items={user.rol === "admin" || user.rol === "viewer" ? navigationAdmin : navigation}
+          items={
+            user.rol === "admin" || user.rol === "viewer"
+              ? navigationAdmin
+              : navigation
+          }
           components={{
             CSidebarNavDivider,
             CSidebarNavDropdown,
