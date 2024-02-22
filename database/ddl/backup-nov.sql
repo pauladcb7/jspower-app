@@ -290,7 +290,7 @@ CREATE TABLE IF NOT EXISTS time_card_locations
         ON DELETE NO ACTION
 );
 
-COPY public.reference_code_values (id, reference_code_id, value, code, ) FROM stdin;
+COPY public.reference_code_values (id, reference_code_id, value, code ) FROM stdin;
 1	1	Ceres	CERES	\N
 3	1	Modesto	MODESTO	\N
 4	1	Lodi Bowling	LODI_BOWLING	\N
@@ -302,39 +302,41 @@ COPY public.reference_code_values (id, reference_code_id, value, code, ) FROM st
 10	2	Extra	EXTRA	\N
 9	2	Work Order	WORK_ORDER	\N
 
-insert into reference_codes (name,code,created_at) 
-values ('Job Locations','JOB_LOCATIONS',CURRENT_DATE);
-insert into reference_codes (name,code,created_at) 
-values ('Type of Work','WORK_TYPES',CURRENT_DATE);
-insert into reference_codes (name,code,created_at) 
-values ('Circuit Directory Types','CIRCUIT_DIRECTORY_TYPES',CURRENT_DATE);
 
-INSERT INTO reference_code_values(reference_code_id,value,code,created_at) 
+
+insert into reference_codes (id,name,code,created_at)
+values (1, 'Job Locations','JOB_LOCATIONS',CURRENT_DATE);
+insert into reference_codes (id,name,code,created_at)
+values (2, 'Type of Work','WORK_TYPES',CURRENT_DATE);
+insert into reference_codes (id,name,code,created_at)
+values (3,'Circuit Directory Types','CIRCUIT_DIRECTORY_TYPES',CURRENT_DATE);
+
+INSERT INTO reference_code_values(reference_code_id,value,code,created_at)
 VALUES (1, 'Ceres', 'CERES', CURRENT_DATE);
-INSERT INTO reference_code_values(reference_code_id,value,code,created_at) 
+INSERT INTO reference_code_values(reference_code_id,value,code,created_at)
 VALUES (1, 'Modesto', 'MODESTO', CURRENT_DATE);
-INSERT INTO reference_code_values(reference_code_id,value,code,created_at) 
+INSERT INTO reference_code_values(reference_code_id,value,code,created_at)
 VALUES (1, 'Lodi Bowling', 'LODI_BOWLING', CURRENT_DATE);
-INSERT INTO reference_code_values(reference_code_id,value,code,created_at) 
+INSERT INTO reference_code_values(reference_code_id,value,code,created_at)
 VALUES (1, 'Sensient Livingston', 'SENSIENT_LIVINGSTON', CURRENT_DATE);
-INSERT INTO reference_code_values(reference_code_id,value,code,created_at) 
+INSERT INTO reference_code_values(reference_code_id,value,code,created_at)
 VALUES (1, 'Sensient Turlock', 'SENSIENT_TURLOCK', CURRENT_DATE);
-INSERT INTO reference_code_values(reference_code_id,value,code,created_at) 
+INSERT INTO reference_code_values(reference_code_id,value,code,created_at)
 VALUES (1, 'PepsiCo', 'PEPSICO', CURRENT_DATE);
-INSERT INTO reference_code_values(reference_code_id,value,code,created_at) 
+INSERT INTO reference_code_values(reference_code_id,value,code,created_at)
 VALUES (1, 'Frito Lay', 'FRITO_LAY', CURRENT_DATE);
-INSERT INTO reference_code_values(reference_code_id,value,code,created_at) 
+INSERT INTO reference_code_values(reference_code_id,value,code,created_at)
 VALUES (2, 'Service Call', 'SERVICE_CALL',CURRENT_DATE);
-INSERT INTO reference_code_values(reference_code_id,value,code,created_at) 
+INSERT INTO reference_code_values(reference_code_id,value,code,created_at)
 VALUES (2, 'Extra', 'EXTRA',CURRENT_DATE);
-INSERT INTO reference_code_values(reference_code_id,value,code,created_at) 
+INSERT INTO reference_code_values(reference_code_id,value,code,created_at)
 VALUES (2, 'Work Order', 'WORK_ORDER',CURRENT_DATE);
 
-insert into reference_code_values (reference_code_id,value,code,created_at) 
+insert into reference_code_values (reference_code_id,value,code,created_at)
 values (3,'Home','HOME',CURRENT_DATE);
-insert into reference_code_values (reference_code_id,value,code,created_at) 
+insert into reference_code_values (reference_code_id,value,code,created_at)
 values (3,'Business 208V','BUSINESS_208V',CURRENT_DATE);
-insert into reference_code_values (reference_code_id,value,code,created_at) 
+insert into reference_code_values (reference_code_id,value,code,created_at)
 values (3,'Business 480V','BUSINESS_480V',CURRENT_DATE);
 
 
@@ -355,6 +357,6 @@ create table motor_cheat_sheet_480v (
 	created_at		timestamp with time zone,
 	updated_at		timestamp with time zone,
 	deleted_at		timestamp with time zone
-	
+
 
 );
