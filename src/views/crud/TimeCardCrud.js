@@ -65,7 +65,7 @@ import { array } from "prop-types";
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { useToasts } from "react-toast-notifications";
-import { base64Blank } from "../../assets/blankBase610244";
+import { base64Blank } from "../../assets/blankBase64";
 import { useConfirmation } from "src/contexts/ConfirmationContext";
 
 const required = (value) => (value ? undefined : "Required");
@@ -80,7 +80,6 @@ for (let index = 1; index < 43; index++) {
 initialArray.push();
 
 function TimeEntry({ push, locations }) {
-
   return (
     <div>
       <Field name="lunch_in">
@@ -394,8 +393,8 @@ const useIsAdmin = () => {
   const user = useSelector((state) => {
     return state.user;
   });
-  return user.rol === 'admin';
-}
+  return user.rol === "admin";
+};
 
 const TimeCardCrud = () => {
   const [collapsed, setCollapsed] = React.useState(true);
@@ -403,10 +402,9 @@ const TimeCardCrud = () => {
   const [collapseMulti, setCollapseMulti] = useState([false, false]);
   const [checkedJobLocations, setCheckedJobLocations] = React.useState({});
 
-  const isAdmin = useIsAdmin()
+  const isAdmin = useIsAdmin();
   useEffect(() => {}, []);
   const nullValue = "-";
-
 
   const handleChange = (event) => {
     // updating an object instead of a Map
@@ -477,7 +475,6 @@ const TimeCardCrud = () => {
   };
 
   function deleteTimeEntry(timeEntry) {
-
     return api
       .delete(DELETE_TIME_ENTRY, {
         data: {
@@ -634,26 +631,29 @@ const TimeCardCrud = () => {
                                     }}
                                   >
                                     <CButtonGroup size="sm">
-                                    {isAdmin ?
-                                      <CButton
-                                        color="danger"
-                                        size="sm"
-                                        onClick={async (row) => {
-                                          const confirmed = await openConfirmation({
-                                            title: "Delete Time Card",
-                                            message: `Are you sure you want to continue? - Timecard Employee: ${row.employeeName}`,
-                                          });
-                                          if (confirmed) {
-                                            await deleteTimeCard(itemsecondLevel);
-                                            fetchTable();
-                                          } else {
-                                            throw Error;
-                                          }
-                                        }}
-                                      >
-                                        <CIcon width={24} name="cil-trash" />
-                                      </CButton>
-                                      : null}
+                                      {isAdmin ? (
+                                        <CButton
+                                          color="danger"
+                                          size="sm"
+                                          onClick={async (row) => {
+                                            const confirmed =
+                                              await openConfirmation({
+                                                title: "Delete Time Card",
+                                                message: `Are you sure you want to continue? - Timecard Employee: ${row.employeeName}`,
+                                              });
+                                            if (confirmed) {
+                                              await deleteTimeCard(
+                                                itemsecondLevel
+                                              );
+                                              fetchTable();
+                                            } else {
+                                              throw Error;
+                                            }
+                                          }}
+                                        >
+                                          <CIcon width={24} name="cil-trash" />
+                                        </CButton>
+                                      ) : null}
                                     </CButtonGroup>
                                   </td>
                                 );
@@ -717,54 +717,60 @@ const TimeCardCrud = () => {
                         }}
                       >
                         <CButtonGroup size="sm">
-                          {isAdmin ?
-                          <>
-                            <CButton
-                              color="info"
-                              size="sm"
-                              onClick={() => {
-                                setInitialData({
-                                  ...item,
-                                  date: moment(item.entryDate).format(
-                                    "YYYY-MM-DD"
-                                  ),
-                                  id: item.id,
-                                  user: users.find((user) => {
-                                    return user.return === itemWeek.employee?.id;
-                                  }),
-                                  lunch_in: item.lunchIn,
-                                  lunch_out: item.lunchOut,
-                                  timecards: item.timecard.map((tc) => {
-                                    return {
-                                      jobName: tc.jobName,
-                                      jobDescription: tc.jobDescription,
-                                      clockIn: tc.clockIn,
-                                      clockInGps: tc.clockInGps,
-                                      clockOut: tc.clockOut,
-                                      clockOutGps: tc.clockOutGps,
-                                      jobLocations: tc.otherLocation
-                                        ? [
-                                            {
-                                              label: tc.otherLocation,
-                                              value: tc.otherLocation,
-                                              __isNew__: true,
-                                            },
-                                            ...locations.filter((value) => {
-                                              return tc.location.find((lc) => {
-                                                return value.id == lc.id;
-                                              });
-                                            }),
-                                          ]
-                                        : [
-                                            ...locations.filter((value) => {
-                                              return tc.location.find((lc) => {
-                                                return value.id == lc.id;
-                                              });
-                                            }),
-                                          ],
-                                    };
-                                  }),
-                                  /* user: values.user,
+                          {isAdmin ? (
+                            <>
+                              <CButton
+                                color="info"
+                                size="sm"
+                                onClick={() => {
+                                  setInitialData({
+                                    ...item,
+                                    date: moment(item.entryDate).format(
+                                      "YYYY-MM-DD"
+                                    ),
+                                    id: item.id,
+                                    user: users.find((user) => {
+                                      return (
+                                        user.return === itemWeek.employee?.id
+                                      );
+                                    }),
+                                    lunch_in: item.lunchIn,
+                                    lunch_out: item.lunchOut,
+                                    timecards: item.timecard.map((tc) => {
+                                      return {
+                                        jobName: tc.jobName,
+                                        jobDescription: tc.jobDescription,
+                                        clockIn: tc.clockIn,
+                                        clockInGps: tc.clockInGps,
+                                        clockOut: tc.clockOut,
+                                        clockOutGps: tc.clockOutGps,
+                                        jobLocations: tc.otherLocation
+                                          ? [
+                                              {
+                                                label: tc.otherLocation,
+                                                value: tc.otherLocation,
+                                                __isNew__: true,
+                                              },
+                                              ...locations.filter((value) => {
+                                                return tc.location.find(
+                                                  (lc) => {
+                                                    return value.id == lc.id;
+                                                  }
+                                                );
+                                              }),
+                                            ]
+                                          : [
+                                              ...locations.filter((value) => {
+                                                return tc.location.find(
+                                                  (lc) => {
+                                                    return value.id == lc.id;
+                                                  }
+                                                );
+                                              }),
+                                            ],
+                                      };
+                                    }),
+                                    /* user: values.user,
                                   date: values.date,
                                   lunch_in: re.timeEntryLunchIn,
                                   lunch_out: re.timeEntryLunchOut,
@@ -818,13 +824,13 @@ const TimeCardCrud = () => {
                                       };
                                     }
                                   ), */
-                                  /* entryDate: moment(item.entryDate).format(
+                                    /* entryDate: moment(item.entryDate).format(
                                     "YYYY-MM-DD"
                                   ),
                                   isTimeEntry: true, */
-                                });
-                                setModal(true);
-                                /* setMetadataCustom([
+                                  });
+                                  setModal(true);
+                                  /* setMetadataCustom([
                                   {
                                     key: "entryDate",
                                     label: "Date",
@@ -857,35 +863,31 @@ const TimeCardCrud = () => {
                                   isTimeEntry: true,
                                 });
                                 setModal(true); */
-                              }}
-                            >
-                              <CIcon width={24} name="cil-pencil" />
-                            </CButton>
-                            {isAdmin ?
-                            <CButton
-                              color="danger"
-                              size="sm"
-                              onClick={async () => {
-                                const confirmed = await openConfirmation({
-                                  title: "Delete Time Entry",
-                                  message: `Are you sure you want to continue? - Entry Date: ${item.entryDate}`,
-                                });
-                                if (confirmed) {
-                                  await deleteTimeEntry(item);
-                                  fetchTable();
-                                } else {
-
-                                }
-                              }}
-
-                            >
-                              <CIcon width={24} name="cil-trash" />
-                            </CButton>
-                            : null }
-                          </>
-                          :
-                          null
-                        }
+                                }}
+                              >
+                                <CIcon width={24} name="cil-pencil" />
+                              </CButton>
+                              {isAdmin ? (
+                                <CButton
+                                  color="danger"
+                                  size="sm"
+                                  onClick={async () => {
+                                    const confirmed = await openConfirmation({
+                                      title: "Delete Time Entry",
+                                      message: `Are you sure you want to continue? - Entry Date: ${item.entryDate}`,
+                                    });
+                                    if (confirmed) {
+                                      await deleteTimeEntry(item);
+                                      fetchTable();
+                                    } else {
+                                    }
+                                  }}
+                                >
+                                  <CIcon width={24} name="cil-trash" />
+                                </CButton>
+                              ) : null}
+                            </>
+                          ) : null}
                           <CButton
                             color="dark"
                             size="sm"
@@ -1526,9 +1528,9 @@ const TimeCardCrud = () => {
                       });
                       if (confirmed) {
                         row.timeEntry.forEach(async (te) => {
-                          await deleteTimeEntry(te)
-                          fetchTable()
-                        })
+                          await deleteTimeEntry(te);
+                          fetchTable();
+                        });
                       } else {
                         throw Error;
                       }
