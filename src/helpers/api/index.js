@@ -1,11 +1,8 @@
-//import axios from "axios";
+import axios from "axios";
 import { BASE } from "../urls";
 import { Service } from "axios-middleware";
 import store from "src/store";
-import axiosOriginal from "axios";
-import adapter from "axios/lib/adapters/xhr";
 
-const axios = axiosOriginal.create({ adapter });
 const authHeader = () => {
   let user = JSON.parse(localStorage.getItem("user"));
 

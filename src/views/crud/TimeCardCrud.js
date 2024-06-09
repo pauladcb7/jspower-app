@@ -65,7 +65,7 @@ import { array } from "prop-types";
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { useToasts } from "react-toast-notifications";
-import { base64Blank } from "../../assets/blankBase64";
+import { base64Blank } from "../../assets/blankBase610244";
 import { useConfirmation } from "src/contexts/ConfirmationContext";
 
 const required = (value) => (value ? undefined : "Required");
