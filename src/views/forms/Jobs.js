@@ -92,8 +92,20 @@ const Jobs = () => {
         jobs?.map((job) => {
           return {
             ...job,
-            jobNumber: job.job_number || "",
-            jobName: job.job_name || "",
+            number: job.job_number || "",
+            name: job.job_name || "",
+            manager: job.manager || "",
+            company_name: job.company_name || "",
+            company_phone: job.company_phone || "",
+            billing_address: job.billing_address || "",
+            working_address: job.working_address || "",
+            main_contact_name: job.main_contact_name || "",
+            main_contact_number: job.main_contact_number || "",
+            job_desc: job.job_desc || "",
+            any_material: job.any_material || "",
+            start_date: job.start_date || "",
+            end_date: job.end_date || "",
+            quoted_or_time_material: job.quoted_or_time_material || "",
             // percentage: job.percentage || ""
           };
         });
@@ -118,8 +130,20 @@ const Jobs = () => {
               <CDataTable
                 items={jobs}
                 fields={[
-                  "job_number",
-                  "job_name",
+                  "number",
+                  "name",
+                  "manager",
+                  "company_name",
+                  "company_phone",
+                  "billing_address",
+                  "working_address",
+                  "main_contact_name",
+                  "main_contact_number",
+                  "job_desc",
+                  "any_material",
+                  "start_date",
+                  "end_date",
+                  "quoted_or_time_material",
                   // "percentage",
                 ]}
                 hover

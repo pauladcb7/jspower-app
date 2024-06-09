@@ -1,4 +1,4 @@
-CREATE DATABASE jspowerdev WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.UTF-8';
+--CREATE DATABASE jspowerdev WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.UTF-8';
 
 -- Table: users
 
@@ -289,18 +289,6 @@ CREATE TABLE IF NOT EXISTS time_card_locations
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 );
-
-COPY public.reference_code_values (id, reference_code_id, value, code ) FROM stdin;
-1	1	Ceres	CERES	\N
-3	1	Modesto	MODESTO	\N
-4	1	Lodi Bowling	LODI_BOWLING	\N
-5	1	Sensient Livingston	SENSIENT_LIVINGSTON	\N
-6	1	Sensient Turlock	SENSIENT_TURLOCK	\N
-7	1	PepsiCo	PEPSICO	\N
-2	1	Frito Lay	FRITO_LAY	\N
-8	2	Service Call	SERVICE_CALL	\N
-10	2	Extra	EXTRA	\N
-9	2	Work Order	WORK_ORDER	\N
 
 
 
