@@ -66,7 +66,12 @@ const _nav = [
       text: "NEW",
     },
   },
-
+  {
+    _tag: "CSidebarNavItem",
+    name: "Receipts",
+    to: "/receipts/create",
+    icon: "cil-layers",
+  },
 ];
 
 export default _nav;

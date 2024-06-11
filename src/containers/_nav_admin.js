@@ -55,7 +55,11 @@ const _nav_admin = [
     name: (
       <>
         <span
-         style={{"fontWeight":"700", "fontSize": "80%", "color": "rgba(255, 255, 255, 0.6)"}}
+          style={{
+            fontWeight: "700",
+            fontSize: "80%",
+            color: "rgba(255, 255, 255, 0.6)",
+          }}
         >
           LISTS
         </span>
@@ -139,6 +143,12 @@ const _nav_admin = [
     name: "Motor Cheat Sheet Edition",
     to: "/mcs/edition",
     icon: "cil-list",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Receipts",
+    to: "/receipts/create",
+    icon: "cil-layers",
   },
 ];
 
