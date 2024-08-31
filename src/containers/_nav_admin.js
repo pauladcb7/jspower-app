@@ -46,6 +46,12 @@ const _nav_admin = [
     to: "/safety-sheets/list",
     icon: "cil-task",
   },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Receipts",
+    to: "/receipts/create",
+    icon: "cil-note-add",
+  },
   // {
   //   _tag: "CSidebarNavTitle",
   //   _children: ["Lists"],
@@ -129,6 +135,12 @@ const _nav_admin = [
     icon: "cil-task",
   },
   {
+    _tag: "CSidebarNavItem",
+    name: "Receipts",
+    to: "/report/receipts",
+    icon: "cil-note-add",
+  },
+  {
     _tag: "CSidebarNavTitle",
     _children: ["Management"],
   },
@@ -143,12 +155,6 @@ const _nav_admin = [
     name: "Motor Cheat Sheet Edition",
     to: "/mcs/edition",
     icon: "cil-list",
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Receipts",
-    to: "/receipts/create",
-    icon: "cil-layers",
   },
 ];
 

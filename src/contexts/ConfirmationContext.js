@@ -57,7 +57,7 @@ export function ConfirmationRoot({ children }) {
         <CModalBody>{options?.message}</CModalBody>
         <CModalFooter>
           <CButton color="primary" onClick={confirm}>
-            Do Something
+            Confirm
           </CButton>
           <CButton color="secondary" onClick={close}>
             Cancel

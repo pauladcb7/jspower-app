@@ -47,6 +47,12 @@ const _nav = [
     icon: "cil-task",
   },
   {
+    _tag: "CSidebarNavItem",
+    name: "Receipts",
+    to: "/receipts/create",
+    icon: "cil-layers",
+  },
+  {
     _tag: "CSidebarNavTitle",
     _children: ["Lists"],
   },
@@ -61,16 +67,6 @@ const _nav = [
     name: "Motor Cheat Sheet 480V",
     to: "/mcs",
     icon: <CIcon name="cil-list" customClasses="c-sidebar-nav-icon" />,
-    badge: {
-      color: "info",
-      text: "NEW",
-    },
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Receipts",
-    to: "/receipts/create",
-    icon: "cil-layers",
   },
 ];
 

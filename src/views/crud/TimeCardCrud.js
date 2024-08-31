@@ -529,7 +529,7 @@ const TimeCardCrud = () => {
       label: "",
       _style: { width: "1%" },
       sorter: false,
-      filter: false,
+      filter: true,
       hide: true,
       custom: (item, indexLevel1) => {
         const itemWeek = item;
@@ -938,16 +938,16 @@ const TimeCardCrud = () => {
       key: "dateRange",
       label: "Date Range",
       type: "text",
-      sorter: false,
-      filter: false,
+      sorter: true,
+      filter: true,
       _style: { minWidth: "120px" },
     },
     {
       key: "employeeName",
       label: "Employee",
       type: "text",
-      sorter: false,
-      filter: false,
+      sorter: true,
+      filter: true,
     },
     {
       key: "timecards",
@@ -1510,6 +1510,29 @@ const TimeCardCrud = () => {
               </CCardHeader>
               <CCollapse show={collapsed} timeout={1000}>
                 <CCardBody>
+                  <CCol md={12}>
+                  <CCol md={4}>
+                    <CFormGroup>
+                      <CLabel>Start Date</CLabel>
+                      <CInput
+                        type="date"
+                        id="startDateFilter"
+                        placeholder="Start Date"
+                      />
+                    </CFormGroup>
+                  </CCol>
+                  <CCol md={4}>
+                    <CFormGroup>
+                      <CLabel>End Date</CLabel>
+                      <CInput
+                        type="date"
+                        id="endDateFilter"
+                        placeholder="End Date"
+                      />
+                    </CFormGroup>
+                  </CCol>
+                  </CCol>
+
                   <CrudTable
                     disableDelete={!isAdmin}
                     title="Time Card"
@@ -1538,6 +1561,13 @@ const TimeCardCrud = () => {
                     metadata={metadata}
                     loading={loading}
                     disableEdit
+                    filters={(startDate, endDate) => {
+                      return (
+                        <>
+                          <div>Filters...</div>
+                        </>
+                      );
+                    }}
                     addOption={(row, index) => {
                       return (
                         <>

@@ -157,7 +157,7 @@ const Dashboard = () => {
             }}
             text={<CIcon height="44" name="cil-note-add" />}
             onClick={() => {
-              history.push("/ureceipt");
+              history.push("/receipts/create");
             }}
           ></CWidgetSimple>
         </CCol>

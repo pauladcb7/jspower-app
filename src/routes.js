@@ -22,6 +22,7 @@ import CircuitDirectoryBusiness208 from "./views/forms/CircuitDirectoryBusiness2
 import CircuitDirectoryBusiness480 from "./views/forms/CircuitDirectoryBusiness480";
 import InstallIOs from "./views/pages/ios/Install";
 import ReceiptsCrud from "./views/crud/ReceiptsCrud";
+import Receipts from "./views/forms/Receipts";
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const CoreUIIcons = React.lazy(() =>
   import("./views/icons/coreui-icons/CoreUIIcons")
@@ -169,10 +170,16 @@ const routes = [
     component: InstallIOs,
   },
   {
-    path: "/receipts/create",
+    path: "/report/receipts",
     exact: true,
     name: "Receipts",
     component: ReceiptsCrud,
+  },
+  {
+    path: "/receipts/create",
+    exact: true,
+    name: "Receipts",
+    component: Receipts,
   },
 ];
 

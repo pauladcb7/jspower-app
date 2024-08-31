@@ -48,7 +48,7 @@ const CrudTable = ({
       label: "Name",
       type: "text",
       sorter: false,
-      filter: false,
+      filter: true,
       hide: false,
     },
   ],
@@ -184,7 +184,7 @@ const CrudTable = ({
             label: "",
             _style: { maxWidth: "10px" },
             sorter: false,
-            filter: false,
+            filter: true,
           },
           ...metadata.filter(function (m) {
             return !m.hide;

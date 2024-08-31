@@ -56,3 +56,8 @@ export const GET_MCS = "mcs/get";
 /* Users */
 export const USERS_GET = "users/get";
 export const USER_UPDATE = "users/update";
+
+/* Receipts */
+export const SAVE_RECEIPT = "receipts/save";
+export const GET_RECEIPTS = "receipts/get";
+export const DELETE_RECEIPT = "receipt";
