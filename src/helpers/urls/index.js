@@ -60,4 +60,4 @@ export const USER_UPDATE = "users/update";
 /* Receipts */
 export const SAVE_RECEIPT = "receipts/save";
 export const GET_RECEIPTS = "receipts/get";
-export const DELETE_RECEIPT = "receipt";
+export const DELETE_RECEIPT = "receipts";

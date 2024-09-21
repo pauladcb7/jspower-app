@@ -1510,28 +1510,34 @@ const TimeCardCrud = () => {
               </CCardHeader>
               <CCollapse show={collapsed} timeout={1000}>
                 <CCardBody>
-                  <CCol md={12}>
-                  <CCol md={4}>
-                    <CFormGroup>
-                      <CLabel>Start Date</CLabel>
-                      <CInput
-                        type="date"
-                        id="startDateFilter"
-                        placeholder="Start Date"
-                      />
-                    </CFormGroup>
-                  </CCol>
-                  <CCol md={4}>
-                    <CFormGroup>
-                      <CLabel>End Date</CLabel>
-                      <CInput
-                        type="date"
-                        id="endDateFilter"
-                        placeholder="End Date"
-                      />
-                    </CFormGroup>
-                  </CCol>
-                  </CCol>
+                  <CRow>
+                    <CCol md={5}>
+                      <CFormGroup>
+                        <CLabel>Start Date</CLabel>
+                        <CInput
+                          type="date"
+                          id="startDateFilter"
+                          placeholder="Start Date"
+                        />
+                      </CFormGroup>
+                    </CCol>
+                    <CCol md={5}>
+                      <CFormGroup>
+                        <CLabel>End Date</CLabel>
+                        <CInput
+                          type="date"
+                          id="endDateFilter"
+                          placeholder="End Date"
+                        />
+                      </CFormGroup>
+                    </CCol>
+                    <CCol md={2}>
+                      <CFormGroup>
+                        <CLabel>All Times</CLabel>
+                        <CInput type="checkbox" id="allTimesFilter" />
+                      </CFormGroup>
+                    </CCol>
+                  </CRow>
 
                   <CrudTable
                     disableDelete={!isAdmin}

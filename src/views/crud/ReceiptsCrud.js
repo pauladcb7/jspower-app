@@ -63,7 +63,7 @@ const ReceiptsCrud = () => {
   const [loading, setLoading] = useState(false);
   const [metadata, setMetaData] = useState([
     {
-      key: "jobName",
+      key: "job_name",
       label: "Job Name",
       type: "text",
       sorter: false,
@@ -71,7 +71,15 @@ const ReceiptsCrud = () => {
       _style: { minWidth: "120px" },
     },
     {
-      key: "workOrder",
+      key: "job_number",
+      label: "Job Number",
+      type: "number",
+      sorter: false,
+      filter: false,
+      _style: { minWidth: "120px" },
+    },
+    {
+      key: "work_order",
       label: "Work Order",
       type: "text",
       sorter: false,
@@ -79,11 +87,12 @@ const ReceiptsCrud = () => {
       _style: { minWidth: "120px" },
     },
     {
-      key: "job_id",
-      label: "Job ID",
-      type: "number",
+      key: "receipt_file",
+      label: "See Receipt",
+      type: "image",
       sorter: false,
       filter: false,
+      source: "",
       _style: { minWidth: "120px" },
     },
     {
@@ -130,7 +139,7 @@ const ReceiptsCrud = () => {
     return api
       .delete(DELETE_RECEIPT, {
         data: {
-          id: row.id,
+          receipt_id: row.receipt_id,
         },
       })
       .then(() => {
@@ -150,10 +159,16 @@ const ReceiptsCrud = () => {
 
   function parseData(row) {
     return {
-      user_id: row.user.id,
+      receipt_id: row.receipt_id,
+      user_id: row.user_id,
+      user_email: row.user_email,
       job_id: row.job_id,
+      job_name: row.job_name,
+      job_number: row.job_number,
       work_order_id: row.work_order_id,
+      work_order: row.work_order,
       receipt_file: row.receipt_file,
+      created_at: row.created_at,
       comments: row.comments,
     };
   }
@@ -186,32 +201,20 @@ const ReceiptsCrud = () => {
                   return api
                     .post(SAVE_RECEIPT, {
                       data: {
-                        work_order_id: row.id,
-                        user_id: user.email,
-                        entry_date: row.entryDate,
-                        start_time: edittedRow.startTime,
-                        end_time: edittedRow.endTime,
-                        job_location: edittedRow.jobLocation,
-                        job_details: edittedRow.jobDetails,
-                        total_cost: edittedRow.totalCost,
-                        employee_signature: edittedRow.employeeSignature,
-                        customer_name: edittedRow.customerName,
-                        customer_address: edittedRow.customerAddress,
-                        customer_phone_number: edittedRow.customerPhone,
-                        customer_signature: edittedRow.customerSignature,
-                        work_type:
-                          edittedRow.workTypeRc === "other"
-                            ? null
-                            : edittedRow.workTypeRc,
-                        other:
-                          edittedRow.workTypeRc === "other"
-                            ? edittedRow.workTypeOther
-                            : null,
-                        customer_email: edittedRow.customer_email,
+                        user_email: edittedRow.user_email,
+                        user_id: row.user_id,
+                        job_name: edittedRow.job_name,
+                        job_number: edittedRow.job_number,
+                        job_id: row.job_id,
+                        work_order_id: row.work_order_id,
+                        work_order: edittedRow.work_order,
+                        receipt_file: edittedRow.receipt_file,
+                        created_at: edittedRow.created_at,
+                        comments: edittedRow.comments,
                       },
                     })
                     .then((result) => {
-                      addToast("Work Order Submitted.", {
+                      addToast("Receipt Submitted.", {
                         appearance: "success",
                         autoDismiss: true,
                       });
@@ -219,7 +222,7 @@ const ReceiptsCrud = () => {
                     })
                     .catch((error) => {
                       addToast(
-                        "Something went wrong creating Work Order. Try again.",
+                        "Something went wrong creating Receipt. Try again.",
                         {
                           appearance: "error",
                           autoDismiss: true,
@@ -233,36 +236,28 @@ const ReceiptsCrud = () => {
                   return api
                     .post(SAVE_RECEIPT, {
                       data: {
-                        work_order_id: "-1",
-                        user_id: user.email,
-                        entry_date: row.entryDate,
-                        start_time: e.startTime,
-                        end_time: e.endTime,
-                        job_location: e.jobLocation,
-                        job_details: e.jobDetails,
-                        total_cost: e.totalCost,
-                        employee_signature: e.employeeSignature,
-                        customer_name: e.customerName,
-                        customer_address: e.customerAddress,
-                        customer_phone_number: e.customerPhone,
-                        customer_signature: e.customerSignature,
-
-                        work_type:
-                          e.workTypeRc === "other" ? null : e.workTypeRc,
-                        other:
-                          e.workTypeRc === "other" ? e.workTypeOther : null,
-                        customer_email: e.customer_email,
+                        receipt_id: "-1",
+                        user_email: e.user_email,
+                        user_id: row.user_id,
+                        job_name: e.job_name,
+                        job_number: e.job_number,
+                        job_id: row.job_id,
+                        work_order_id: row.work_order_id,
+                        work_order: e.work_order,
+                        receipt_file: e.receipt_file,
+                        created_at: e.created_at,
+                        comments: e.comments,
                       },
                     })
                     .then((result) => {
-                      addToast("Work Order Submitted.", {
+                      addToast("Receipt Submitted.", {
                         appearance: "success",
                         autoDismiss: true,
                       });
                     })
                     .catch((error) => {
                       addToast(
-                        "Something went wrong creating Work Order. Try again.",
+                        "Something went wrong creating Receipt. Try again.",
                         {
                           appearance: "error",
                           autoDismiss: true,
