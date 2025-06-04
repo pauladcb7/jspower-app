@@ -1,19 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Redirect, Route } from 'react-router';
-import { isLogged } from '../utils';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
+import { isLogged } from "../utils";
 
+export const LoginRoute = ({ children }) => {
+  const user = useSelector((store) => store.user);
 
-export const LoginRoute = ({component: Component, ...rest}) => {
-  const user = useSelector(store => store.user);
-  
-  return (
-      // Show the component only when the user is logged in
-      // Otherwise, redirect the user to /signin page
-      <Route {...rest} render={props => (
-          !user ?
-            <Component {...props} />
-          : <Redirect to="/" />
-      )} />
-  );
+  // If the user is logged in, redirect them to the home page
+  if (user) {
+    return <Navigate to="/" />;
+  }
+
+  // Otherwise, render the requested component (children)
+  return children ? children : <Outlet />;
 };

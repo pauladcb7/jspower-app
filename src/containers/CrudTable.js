@@ -81,61 +81,61 @@ const CrudTable = ({
 
   function validate() {}
 
-  async function downloadXls() {
-    const XLSX = (await import("xlsx")).default;
+  // async function downloadXls() {
+  //   const XLSX = (await import("xlsx")).default;
 
-    /* var data = [
-      { name: "Barack Obama", pres: 44 },
-      { name: "Donald Trump", pres: 45 }
-    ]; */
-    const data = rows.map((row) => {
-      return metadata.reduce((previous, current) => {
-        if (!current.hide) {
-          previous.push(row[current.key]);
-        }
-        return previous;
-      }, []);
-    });
-    //metadata
-    var heading = [
-      metadata.reduce((previous, current) => {
-        if (!current.hide) {
-          previous.push(current.label);
-        }
-        return previous;
-      }, []),
-    ];
-    const ws = XLSX.utils.book_new();
-    XLSX.utils.sheet_add_aoa(ws, heading);
-    XLSX.utils.sheet_add_aoa(ws, data, {
-      origin: "A2",
-    });
+  //   /* var data = [
+  //     { name: "Barack Obama", pres: 44 },
+  //     { name: "Donald Trump", pres: 45 }
+  //   ]; */
+  //   const data = rows.map((row) => {
+  //     return metadata.reduce((previous, current) => {
+  //       if (!current.hide) {
+  //         previous.push(row[current.key]);
+  //       }
+  //       return previous;
+  //     }, []);
+  //   });
+  //   //metadata
+  //   var heading = [
+  //     metadata.reduce((previous, current) => {
+  //       if (!current.hide) {
+  //         previous.push(current.label);
+  //       }
+  //       return previous;
+  //     }, []),
+  //   ];
+  //   const ws = XLSX.utils.book_new();
+  //   XLSX.utils.sheet_add_aoa(ws, heading);
+  //   XLSX.utils.sheet_add_aoa(ws, data, {
+  //     origin: "A2",
+  //   });
 
-    function fitToColumn(arrayOfArray) {
-      return arrayOfArray[0].map((a, i) => ({
-        wch:
-          Math.max(
-            ...arrayOfArray.map((a2) => (a2[i] ? a2[i].toString().length : 0))
-          ) + 5,
-      }));
-    }
-    var wholeRange = XLSX.utils.decode_range(ws["!ref"]);
-    var range = XLSX.utils.encode_range(
-      {
-        c: wholeRange.s.c,
-        r: 0,
-      },
-      {
-        c: wholeRange.e.c,
-        r: 0,
-      }
-    );
-    ws["!autofilter"] = { ref: range };
-    ws["!cols"] = fitToColumn([...heading, ...[data[0]]]);
-    var wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet");
-    XLSX.writeFile(wb, "sheetjs.xlsx");
-  }
+  //   function fitToColumn(arrayOfArray) {
+  //     return arrayOfArray[0].map((a, i) => ({
+  //       wch:
+  //         Math.max(
+  //           ...arrayOfArray.map((a2) => (a2[i] ? a2[i].toString().length : 0))
+  //         ) + 5,
+  //     }));
+  //   }
+  //   var wholeRange = XLSX.utils.decode_range(ws["!ref"]);
+  //   var range = XLSX.utils.encode_range(
+  //     {
+  //       c: wholeRange.s.c,
+  //       r: 0,
+  //     },
+  //     {
+  //       c: wholeRange.e.c,
+  //       r: 0,
+  //     }
+  //   );
+  //   ws["!autofilter"] = { ref: range };
+  //   ws["!cols"] = fitToColumn([...heading, ...[data[0]]]);
+  //   var wb = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(wb, ws, "Sheet");
+  //   XLSX.writeFile(wb, "sheetjs.xlsx");
+  // }
 
   return (
     <>
@@ -155,9 +155,9 @@ const CrudTable = ({
         playsInline
         color="dark"
         type="button"
-        onClick={() => {
-          downloadXls();
-        }}
+        // onClick={() => {
+        //   downloadXls();
+        // }}
       >
         <CIcon size="lg" name="cil-cloud-download" />
       </CButton>{" "}

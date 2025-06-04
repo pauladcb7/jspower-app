@@ -219,13 +219,13 @@ const MaterialRequisitionForm = () => {
                 fields={[
                   {
                     key: "edit",
-                    
+
                     label: " ",
                     _style: { width: "10px" },
                   },
                   {
                     key: "print",
-                    
+
                     label: " ",
                     _style: { width: "10px" },
                   },
@@ -253,8 +253,8 @@ const MaterialRequisitionForm = () => {
                   ),
                   edit: (item) => (
                     <td>
-                      
-                        <CButton 
+
+                        <CButton
                         onClick={(items) => {
                             setInitialValue({ ...item, test: Symbol() });
                             setVisible(true);
@@ -262,13 +262,13 @@ const MaterialRequisitionForm = () => {
                         color="info" size="sm">
                           <CIcon width={24} name="cil-pencil" />
                         </CButton>
-                     
+
                     </td>
                   ),
                   print: (item) => (
                     <td>
-                     
-                        <CButton 
+Math.min(3)
+                        <CButton
                            onClick={(items) => {
                             materialRequisitionPrint({
                               jobLocation: item.jobLocation,
@@ -282,7 +282,7 @@ const MaterialRequisitionForm = () => {
                           color="dark" size="sm">
                           <CIcon width={24} name="cil-print" />
                         </CButton>
-                     
+
                     </td>
                   ),
                 }}

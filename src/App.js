@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LoginRoute } from "./components/LoginRoutes";
 import { PrivateRoute } from "./components/PrivateRoute";
 import Login from "./views/pages/login/Login";
@@ -27,33 +27,34 @@ class App extends Component {
       <RootContext>
         <BrowserRouter>
           <React.Suspense fallback={loading}>
-            <Switch>
-              <LoginRoute
-                exact
+            <Routes>
+              <Route
                 path="/login"
-                name="Login Page"
-                component={Login}
+                element={
+                  <LoginRoute>
+                    <Login />
+                  </LoginRoute>
+                }
               />
-              <LoginRoute
-                exact
+              <Route
                 path="/register"
-                name="Register Page"
-                component={Register}
+                element={
+                  <LoginRoute>
+                    <Register />
+                  </LoginRoute>
+                }
               />
+              <Route path="/404" element={<Page404 />} />
+              <Route path="/500" element={<Page500 />} />
               <Route
-                exact
-                path="/404"
-                name="Page 404"
-                render={(props) => <Page404 {...props} />}
+                path="*"
+                element={
+                  <PrivateRoute>
+                    <TheLayout />
+                  </PrivateRoute>
+                }
               />
-              <Route
-                exact
-                path="/500"
-                name="Page 500"
-                render={(props) => <Page500 {...props} />}
-              />
-              <PrivateRoute path="/" name="Home" component={TheLayout} />
-            </Switch>
+            </Routes>
           </React.Suspense>
         </BrowserRouter>
       </RootContext>

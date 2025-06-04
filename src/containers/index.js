@@ -8,6 +8,7 @@ import TheHeaderDropdownTasks from "./TheHeaderDropdownTasks";
 import TheHeaderDropdownSettings from "./TheHeaderDropdownSettings";
 import TheLayout from "./TheLayout";
 import TheSidebar from "./TheSidebar";
+import AppBreadcrumb from "./AppBreadcrumb";
 
 export {
   TheContent,
@@ -20,4 +21,5 @@ export {
   TheHeaderDropdownSettings,
   TheLayout,
   TheSidebar,
+  AppBreadcrumb,
 };

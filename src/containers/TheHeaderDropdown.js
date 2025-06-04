@@ -5,12 +5,13 @@ import {
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
-  CImg,
+  Image,
 } from "@coreui/react";
+import CImage from "@coreui/react/src/components/image/CImage";
 import CIcon from "@coreui/icons-react";
 import AddToHomeScreen from "@ideasio/add-to-homescreen-react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const TheHeaderDropdown = () => {
   const dispatch = useDispatch();
   function logout() {
@@ -21,7 +22,7 @@ const TheHeaderDropdown = () => {
   const user = useSelector((state) => {
     return state.user;
   });
-  const history = useHistory();
+  const navigate = useNavigate();
 
   let [first_name, last_name = ""] = user.email.split("@")[0].split(".");
   first_name = first_name.charAt(0).toUpperCase() + first_name.slice(1);
@@ -36,7 +37,7 @@ const TheHeaderDropdown = () => {
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <div className="c-avatar">
-          <CImg
+          <Image
             src={user.profile_img || "avatars/profile_photo.png"}
             className="c-avatar-img rounded-circle p-1 img-fluid"
             alt={user.email}
@@ -47,14 +48,14 @@ const TheHeaderDropdown = () => {
         <CDropdownItem header tag="div" color="light" className="text-center">
           <strong>{fullName}</strong>
         </CDropdownItem>
-        <CDropdownItem onClick={(item) => history.push(`/profile`)}>
+        <CDropdownItem onClick={() => navigate(`/profile`)}>
           <CIcon name="cil-user" className="mfe-2" />
           Profile
         </CDropdownItem>
         {/* <CDropdownItem>
           <CIcon name="cil-user" className="mfe-2" />
           Install App
-          
+
         </CDropdownItem> */}
         <CDropdownItem onClick={logout}>
           <CIcon name="cil-account-logout" className="mfe-2" />

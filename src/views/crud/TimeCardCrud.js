@@ -967,6 +967,8 @@ const TimeCardCrud = () => {
       let [first_name, last_name = ""] = ar.employee.email
         .split("@")[0]
         .split(".");
+
+
       first_name = first_name.charAt(0).toUpperCase() + first_name.slice(1);
       last_name = last_name.charAt(0).toUpperCase() + last_name.slice(1);
 
@@ -1532,10 +1534,7 @@ const TimeCardCrud = () => {
                       </CFormGroup>
                     </CCol>
                     <CCol md={2}>
-                      <CFormGroup>
-                        <CLabel>All Times</CLabel>
-                        <CInput type="checkbox" id="allTimesFilter" />
-                      </CFormGroup>
+                      <CInputCheckbox className="class-name" text="All time" />
                     </CCol>
                   </CRow>
 

@@ -290,6 +290,30 @@ CREATE TABLE IF NOT EXISTS time_card_locations
         ON DELETE NO ACTION
 );
 
+-- Table: work_orders
+
+-- DROP TABLE IF EXISTS work_orders;
+
+CREATE TABLE IF NOT EXISTS work_orders
+(
+    id SERIAL NOT NULL PRIMARY KEY,
+    entry_date date NOT NULL,
+    work_type_rc integer,
+    user_id integer NOT NULL,
+    start_time text COLLATE pg_catalog."default",
+    end_time text COLLATE pg_catalog."default",
+    job_location character varying COLLATE pg_catalog."default" NOT NULL,
+    job_details character varying COLLATE pg_catalog."default" NOT NULL,
+    total_cost numeric,
+    customer_id integer,
+    other text COLLATE pg_catalog."default",
+    employee_signature text COLLATE pg_catalog."default",
+    customer_signature text COLLATE pg_catalog."default",
+    deleted_at time with time zone,
+    created_at timestamp with time zone,
+    updated_at timestamp with time zone,
+    CONSTRAINT work_orders_pkey PRIMARY KEY (id)
+);
 
 
 insert into reference_codes (id,name,code,created_at)
